@@ -8,6 +8,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
+  JSON_CACHE_VERSION: v1
 
 jobs:
   deploy:
@@ -53,7 +54,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT }}
           publish_dir: ./build
           cname: awesomeyou.io
           allow_empty_commit: true
