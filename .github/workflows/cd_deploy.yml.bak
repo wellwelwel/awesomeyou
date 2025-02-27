@@ -10,38 +10,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    name: Cache
-    steps:
-      - name: Actions - Checkout
-        uses: actions/checkout@v4
-
-      - name: Actions - Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Dependencies Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
-
-      - name: Installing Dependencies
-        run: npm ci
-
-      - name: Building Site
-        run: npm run build
-
-      - name: Uploading JSON Assets Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: json-assets
-          path: ./content/assets/json
-
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -71,11 +39,13 @@ jobs:
       - name: Checking Lint
         run: npm run lint
 
-      - name: Downloading JSON Assets Artifact
-        uses: actions/download-artifact@v4
+      - name: Restore JSON Assets Cache
+        uses: actions/cache@v4
         with:
-          name: json-assets
-          path: ./content/assets/json
+          path: content/assets/json
+          key: json-assets-${{ runner.os }}-${{ env.JSON_CACHE_VERSION }}
+          restore-keys: |
+            json-assets-${{ runner.os }}-
 
       - name: Building Site
         run: npm run build
