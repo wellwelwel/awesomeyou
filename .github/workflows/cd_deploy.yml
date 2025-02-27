@@ -6,6 +6,9 @@ on:
       - 'main'
   workflow_dispatch:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
