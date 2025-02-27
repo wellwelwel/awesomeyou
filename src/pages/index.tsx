@@ -71,7 +71,7 @@ export default (): ReactNode => {
                     <Code />
                   </span>
                 </Link>
-                <Link to='#' className='btn-split'>
+                <Link to='/maintainers' className='btn-split'>
                   <span className='btn-dropdown'>
                     <UsersRound />
                   </span>

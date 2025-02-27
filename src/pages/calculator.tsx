@@ -27,7 +27,7 @@ import { getScore } from '@site/src/helpers/get-score';
 
 export default (): ReactNode => {
   const { siteConfig } = useDocusaurusContext();
-  const [stats, setStats] = useState<ScoreSimulator>(Object.create(null));
+  const [stats, setStats] = useState<ScoreSimulator | null>(null);
   const repositoryURL = useRef<string>('');
   const { current: LRU } = useRef(
     createLRU<string, ScoreSimulator>({ max: 100 })
@@ -163,7 +163,7 @@ export default (): ReactNode => {
                           <td>Contribuidores:</td>
                           <td>
                             <Link
-                              to={`repositoryURL ? '#' : ${repositoryURL.current}/graphs/contributors`}
+                              to={`repositoryURL ? undefined : ${repositoryURL.current}/graphs/contributors`}
                             >
                               <HeartHandshake />
                               {stats?.contributors?.label || null}
@@ -223,11 +223,7 @@ export default (): ReactNode => {
                           <td>Forks:</td>
                           <td>
                             <Link
-                              to={
-                                repositoryURL.current
-                                  ? '#'
-                                  : `${repositoryURL.current}/graphs/contributors`
-                              }
+                              to={`${repositoryURL.current}/graphs/contributors`}
                             >
                               <UtensilsCrossed />
                               {stats?.forks?.label || null}
@@ -238,13 +234,7 @@ export default (): ReactNode => {
                         <tr>
                           <td>Estrelas:</td>
                           <td>
-                            <Link
-                              to={
-                                repositoryURL.current
-                                  ? '#'
-                                  : `${repositoryURL.current}/stargazers`
-                              }
-                            >
+                            <Link to={`${repositoryURL.current}/stargazers`}>
                               <Star />
                               {stats?.stars?.label || null}
                             </Link>
@@ -258,13 +248,7 @@ export default (): ReactNode => {
                         <tr>
                           <td>Issues abertas:</td>
                           <td>
-                            <Link
-                              to={
-                                repositoryURL.current
-                                  ? '#'
-                                  : `${repositoryURL.current}/issues`
-                              }
-                            >
+                            <Link to={`${repositoryURL.current}/issues`}>
                               <Bug />
                               {stats?.issues?.label || null}
                             </Link>
@@ -275,7 +259,7 @@ export default (): ReactNode => {
                           <td>Issues fechadas:</td>
                           <td>
                             <Link
-                              to={`${repositoryURL.current ? '#' : repositoryURL.current}/issues?q=is:issue+is:closed`}
+                              to={`${repositoryURL.current ? undefined : repositoryURL.current}/issues?q=is:issue+is:closed`}
                             >
                               <BugOff />
                               {stats?.closedIssues?.label || null}
@@ -286,13 +270,7 @@ export default (): ReactNode => {
                         <tr>
                           <td>Último commit:</td>
                           <td>
-                            <Link
-                              to={
-                                repositoryURL.current
-                                  ? '#'
-                                  : `${repositoryURL.current}/commits`
-                              }
-                            >
+                            <Link to={`${repositoryURL.current}/commits`}>
                               <Wrench />
                               {stats?.commits || null}
                             </Link>

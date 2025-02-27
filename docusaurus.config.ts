@@ -1,5 +1,6 @@
 import type * as Preset from '@docusaurus/preset-classic';
 import type { Config } from '@docusaurus/types';
+import { resolve } from 'node:path';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
@@ -72,8 +73,7 @@ const config: Config = {
       additionalLanguages: ['bash', 'json', 'diff', 'sql'],
     },
   } satisfies Preset.ThemeConfig,
-
-  plugins: ['docusaurus-plugin-sass'],
+  plugins: ['docusaurus-plugin-sass', resolve('./plugins/maintainers-page.ts')],
 };
 
 export default config;
