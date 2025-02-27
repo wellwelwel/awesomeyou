@@ -1,9 +1,8 @@
 name: '🚀 CD (Website) — Publish'
 
 on:
-  push:
-    branches:
-      - 'main'
+  schedule:
+    - cron: '0 3 * * 1-5'
   workflow_dispatch:
 
 env:
@@ -15,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     if: ${{ github.event.repository.fork == false && github.ref == 'refs/heads/main' }}
-    name: Deploy
+    name: Schedule Deploy
     steps:
       - name: Actions - Checkout
         uses: actions/checkout@v4

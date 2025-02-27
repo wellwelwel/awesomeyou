@@ -12,7 +12,7 @@ Como seu projeto impacta o mundo real?
       "name": "Meu Repositório",
       "repository": "https://github.com/meu-repositorio",
       "description": "Meu projeto impactante.",
-      "support": "Vou amar ter você por aqui!",
+      "message": "Vou amar ter você por aqui!",
       "madeInBrazil": true
     }
   ]
@@ -21,7 +21,7 @@ Como seu projeto impacta o mundo real?
 
 ### Template
 
-```json
+```js
 {
   "$schema": "../../../schemas/projects.json",
   "projects": [
@@ -34,7 +34,7 @@ Como seu projeto impacta o mundo real?
 }
 ```
 
-```json
+```js
 {
   "$schema": "../../../schemas/projects.json",
   "projects": [

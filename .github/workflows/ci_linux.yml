@@ -51,7 +51,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    name: Deploy
+    name: Test
     steps:
       - name: Actions - Checkout
         uses: actions/checkout@v4
