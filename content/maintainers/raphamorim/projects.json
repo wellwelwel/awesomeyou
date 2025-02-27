@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Rio",
+      "repository": "https://github.com/raphamorim/rio",
+      "languages": ["rust"],
+      "description": "Rio is a modern terminal built to run everywhere.",
+      "categories": ["app"],
+      "madeInBrazil": true
+    }
+  ]
+}

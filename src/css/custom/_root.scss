@@ -1,0 +1,42 @@
+@use 'sass:meta' as *;
+
+@include load-css('reset');
+
+body {
+  min-height: calc(100vh - 55px);
+  min-height: calc(100dvh - 55px);
+  min-width: 320px;
+  background-color: var(--background-color);
+  transition: background-color 0.25s ease;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(
+      var(--background-dots-pattern-color) 0.5px,
+      transparent 0.5px
+    );
+    background-size: 10px 10px;
+    filter: blur(var(--background-dots-blur-intensity));
+  }
+
+  #__docusaurus {
+    background: unset;
+    height: 100% !important;
+    overflow: auto !important;
+
+    #__docusaurus_skipToContent_fallback {
+      animation: fadeIn 0.25s ease-in forwards;
+    }
+
+    @include load-css('navbar');
+    @include load-css('markdown');
+    @include load-css('table');
+    @include load-css('article');
+
+    & > {
+      @include load-css('footer');
+    }
+  }
+}

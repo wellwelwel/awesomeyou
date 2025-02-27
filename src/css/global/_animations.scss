@@ -1,0 +1,49 @@
+@keyframes colorChange {
+  0% {
+    color: var(--title-color-1);
+  }
+
+  50% {
+    color: var(--title-color-2);
+  }
+
+  100% {
+    color: var(--title-color-1);
+  }
+}
+
+@keyframes showIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

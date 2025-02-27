@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Dracula Theme",
+      "repository": "https://github.com/dracula/dracula-theme",
+      "description": "One theme. All platforms.",
+      "categories": ["theme"],
+      "madeInBrazil": true
+    },
+    {
+      "repository": "https://github.com/zenorocha/clipboard.js",
+      "description": "Modern copy to clipboard. No Flash. Just 3kb gzipped.",
+      "npm": "clipboard",
+      "categories": ["tool"],
+      "languages": ["javascript"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "React Email",
+      "repository": "https://github.com/resend/react-email",
+      "description": "Build and send emails using React.",
+      "npm": "@react-email/components",
+      "categories": ["tool", "frontend"],
+      "languages": ["typescript", "javascript"],
+      "madeInBrazil": true
+    }
+  ]
+}

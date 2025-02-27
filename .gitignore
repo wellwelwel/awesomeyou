@@ -1,0 +1,7 @@
+/node_modules
+/build
+.docusaurus
+.cache-loader
+.DS_Store
+.env
+/content/assets/json

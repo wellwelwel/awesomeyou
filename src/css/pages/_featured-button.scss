@@ -1,0 +1,57 @@
+@use '../global/mixins' as *;
+
+$color-glow: #adc0ff;
+$color-text: #dfeafa;
+
+.btn-split {
+  @include flex(row, center, center);
+  gap: 10px;
+  width: 150px;
+  height: 40px;
+  border: 2px solid #ffffff36;
+  border-radius: 20px;
+  font-family: var(--ifm-font-family-featured);
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text;
+  text-shadow: 1px 1px 1px #1b2842a5;
+  background:
+    linear-gradient(90deg, #3a40e7, #17ae2b) border-box,
+    #1d1d20 padding-box;
+  background-clip: border-box, padding-box;
+  background-position: 0 0;
+  box-shadow:
+    0 0 10px $color-glow,
+    0 0 10px $color-glow;
+  transition:
+    border-color 0.25s cubic-bezier(0.75, -1.5, 0.2, 0.9),
+    gap 0.25s cubic-bezier(0.75, -1.5, 0.2, 0.9);
+
+  &:hover,
+  &:focus {
+    gap: 7.5px;
+    border-color: #7583ff4d;
+  }
+
+  .btn-content {
+    .text {
+      line-height: 1;
+    }
+  }
+
+  .btn-dropdown {
+    @include flex(row, center, center);
+
+    svg {
+      width: 16px;
+      filter: drop-shadow(1px 1px 1px #1b4229a5);
+      transition: transform 0.25s cubic-bezier(0.75, -0.75, 0.2, 0.9);
+    }
+  }
+
+  ~ .btn-split {
+    background:
+      linear-gradient(90deg, #17ae2b, #3a40e7) border-box,
+      #1d1d20 padding-box;
+  }
+}

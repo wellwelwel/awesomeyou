@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Corcel",
+      "repository": "https://github.com/corcel/corcel",
+      "description": "Use WordPress backend with Laravel or any PHP application.",
+      "languages": ["php"],
+      "categories": ["tool"],
+      "madeInBrazil": true
+    }
+  ]
+}

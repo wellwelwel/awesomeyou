@@ -1,0 +1,74 @@
+@use 'sass:meta' as *;
+@use 'global/functions' as *;
+
+// Import the fonts you want based in their names (preconfigured for Google Fonts)
+$baseFontFamily: 'Poppins';
+$featuredFontFamily: 'Noto Sans';
+
+@import url('https://fonts.googleapis.com/css2?display=swap&family=#{set-font($baseFontFamily)}:wght@300;400;500;600;800;900&family=#{set-font($featuredFontFamily)}:wght@600;700;800;900');
+
+:root {
+  // Docusaurus
+  --ifm-font-family-base: '#{$baseFontFamily}', serif;
+  --ifm-font-family-featured: '#{$featuredFontFamily}', serif;
+  --ifm-color-primary: #227bf8;
+  --ifm-color-main: #048ae3;
+  --ifm-color-primary-dark: #0949c1;
+  --ifm-color-primary-darker: #0b50cf;
+  --ifm-color-primary-darkest: #052387;
+  --ifm-color-primary-light: #9cd7ff;
+  --ifm-color-primary-lighter: #afd3ff;
+  --ifm-color-primary-lightest: #afe4ff;
+  --ifm-blockquote-border-color: #d3edff;
+  --ifm-navbar-link-color: var(--ifm-link-color);
+  --ifm-navbar-search-input-color: var(--ifm-color-main);
+
+  // Personal
+  --background-color: #eaf6ff;
+  --background-dots-pattern-color: #30e7aab7;
+  --background-dots-blur-intensity: 0.5px;
+  --title-color-1: #002e90;
+  --title-color-2: #22b130;
+  --title-shadow-color: #ffffff50;
+  --headline-color: #1987d5;
+  --avatar-border-color: #ecebf6;
+  --avatar-shadow-color: #00000075;
+  --social-popup-color: #1dab7c;
+  --social-popup-pointer-color: var(--ifm-color-primary);
+  --social-popup-background-color: #e8e9ff;
+  --social-popup-border-color: #c7ffed;
+  --social-popup-shadow-color: #00000005;
+  --menu-home-color: var(--ifm-color-primary);
+  --menu-home-icon-color: var(--ifm-color-primary);
+  --menu-home-border-color: #bcf1e0;
+  --menu-home-background-color: #ffffff6a;
+  --menu-home-hover-color: var(--ifm-color-main);
+  --menu-home-icon-hover-color: #27ff9a;
+  --menu-home-border-hover-color: #b1ffd7;
+  --menu-home-background-hover-color: #ffffffa3;
+  --card-title-color: var(--title-color-1);
+  --card-background-color: var(--menu-home-background-color);
+  --card-border-color: var(--menu-home-border-color);
+  --card-description-color: #2a7f50;
+  --card-description-strong-color: #319c85;
+  --card-title-hover-color: var(--ifm-color-main);
+  --card-background-hover-color: var(--menu-home-background-hover-color);
+  --card-border-hover-color: var(--menu-home-border-hover-color);
+  --card-description-hover-color: var(--card-description-color);
+  --card-description-strong-hover-color: var(--card-description-strong-color);
+  --see-more-color: var(--ifm-color-main);
+  --see-more-icon-color: var(--ifm-color-main);
+  --see-more-hover-color: var(--title-color-1);
+  --see-more-icon-hover-color: #12d27b;
+}
+
+::selection,
+mark {
+  color: #e7fffa;
+  background-color: #02ac4fa4;
+  text-shadow: none;
+}
+
+@include load-css('global/animations');
+@include load-css('global/faq');
+@include load-css('custom/root');

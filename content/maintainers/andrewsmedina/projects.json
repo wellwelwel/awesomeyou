@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Splinter",
+      "repository": "https://github.com/cobrateam/splinter",
+      "languages": ["python"],
+      "description": "Python test framework for web applications.",
+      "categories": ["test", "ci"],
+      "pypi": "splinter",
+      "madeInBrazil": true
+    },
+    {
+      "repository": "https://github.com/tsuru/tsuru",
+      "languages": ["go"],
+      "description": "Open source and extensible Platform as a Service (PaaS).",
+      "categories": ["app"],
+      "madeInBrazil": true
+    }
+  ]
+}

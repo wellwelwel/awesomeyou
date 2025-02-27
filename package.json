@@ -1,0 +1,83 @@
+{
+  "name": "awesomeyou",
+  "version": "0.1.0",
+  "license": "AGPL-3.0-only",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/wellwelwel"
+  },
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "prestart": "tsx tools/host.mts",
+    "start": "docusaurus start --host 0.0.0.0",
+    "prestart:en": "tsx tools/host.mts",
+    "start:en": "docusaurus start --locale en",
+    "build:maintainers": "tsx --env-file-if-exists=.env tools/generate-maintainers.mts",
+    "build:projects": "tsx tools/generate-stats.mts && tsx tools/generate-scores.mts",
+    "prebuild": "npm run build:projects && npm run build:maintainers",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "clear": "docusaurus clear",
+    "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i && npm run update",
+    "prepreview": "npm run build && tsx tools/host.mts",
+    "preview": "docusaurus serve",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "lint": "prettier --check .",
+    "lint:fix": "prettier --write .",
+    "update": "pu minor && npm i && (npm audit fix || true)",
+    "postupdate": "npm run lint:fix",
+    "purge": "tsx --env-file-if-exists=.env tools/purge-cache.mts",
+    "pretest": "npm run build:projects && docusaurus build",
+    "test": "poku -r=compact",
+    "posttest": "npm run typecheck && npm run lint"
+  },
+  "devDependencies": {
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
+    "@mdx-js/react": "^3.1.0",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/webpack-env": "^1.18.8",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "docusaurus-plugin-sass": "^0.2.6",
+    "lru.min": "^1.1.1",
+    "lucide-react": "^0.476.0",
+    "packages-update": "^2.0.0",
+    "poku": "^3.0.1",
+    "prettier": "^3.5.2",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-intersection-observer": "^9.15.1",
+    "react-typed": "^2.0.12",
+    "sass": "^1.85.1",
+    "sonner": "^2.0.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0"
+  },
+  "private": true
+}

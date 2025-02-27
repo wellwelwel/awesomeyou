@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome do projeto."
+          },
+          "description": {
+            "type": "string",
+            "description": "Descrição obrigatória do projeto."
+          },
+          "repository": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL do repositório do projeto."
+          },
+          "message": {
+            "type": "string",
+            "description": "Escreve um CTA ou uma mensagem personalizada para quem visualizar seu projeto."
+          },
+          "languages": {
+            "type": "array",
+            "description": "Linguagens de programação usadas no projeto.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "c",
+                "csharp",
+                "cpp",
+                "css",
+                "clojure",
+                "dart",
+                "delphi",
+                "haskell",
+                "java",
+                "javascript",
+                "typescript",
+                "php",
+                "shell",
+                "docker",
+                "go",
+                "lua",
+                "ruby",
+                "elixir",
+                "rust",
+                "swift",
+                "vim",
+                "python",
+                "zig"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "categories": {
+            "type": "array",
+            "description": "Categorias do projeto.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "api",
+                "app",
+                "database",
+                "ci",
+                "devops",
+                "language",
+                "performance",
+                "test",
+                "theme",
+                "plugin",
+                "cli",
+                "educational",
+                "career",
+                "tool",
+                "frontend",
+                "backend",
+                "observability",
+                "machinelearning",
+                "ai",
+                "ui",
+                "frameworks",
+                "security",
+                "productivity"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "npm": {
+            "type": "string",
+            "description": "Nome do pacote NPM, se existir."
+          },
+          "pypi": {
+            "type": "string",
+            "description": "Nome do pacote PyPI, se existir."
+          },
+          "homebrew": {
+            "type": "string",
+            "description": "Nome do pacote Homebrew, se existir."
+          },
+          "madeInBrazil": {
+            "type": "boolean",
+            "description": "O projeto foi feito por brasileiros?"
+          }
+        },
+        "required": ["description", "repository", "madeInBrazil"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["projects"]
+}

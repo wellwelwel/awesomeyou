@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Vagas",
+      "repository": "https://github.com/frontendbr/vagas",
+      "description": "Espaço para divulgação de vagas para front-enders.",
+      "categories": ["career", "frontend"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "Front-end Challenges",
+      "repository": "https://github.com/felipefialho/frontend-challenges",
+      "description": "A public list of open-source challenges from companies around the world.",
+      "categories": ["educational", "frontend"],
+      "madeInBrazil": true
+    }
+  ]
+}

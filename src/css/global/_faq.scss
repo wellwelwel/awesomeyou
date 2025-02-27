@@ -1,0 +1,33 @@
+details {
+  &.faq {
+    background-color: var(--faq-background);
+    border-color: var(--faq-border-color);
+
+    p,
+    li {
+      code {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        padding-inline: 5px;
+        font-weight: 500;
+      }
+    }
+
+    pre {
+      code {
+        border: 0.0625rem solid var(--faq-code-border-color);
+      }
+    }
+  }
+}
+
+[data-theme='dark'] {
+  details {
+    &.faq {
+      --docusaurus-details-decoration-color: #7230d6;
+      --faq-background: #151518;
+      --faq-border-color: #36284b;
+      --faq-code-border-color: #38225a;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "HVM2",
+      "repository": "https://github.com/HigherOrderCO/HVM",
+      "description": "A massively parallel, optimal functional runtime in Rust.",
+      "categories": ["language"],
+      "languages": ["rust"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "Bend",
+      "repository": "https://github.com/HigherOrderCO/Bend",
+      "description": "A massively parallel, high-level programming language.",
+      "categories": ["language"],
+      "languages": ["rust"],
+      "madeInBrazil": true
+    }
+  ]
+}

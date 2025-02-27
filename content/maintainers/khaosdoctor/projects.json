@@ -1,0 +1,23 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Node.js",
+      "repository": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime.",
+      "categories": ["language"],
+      "languages": ["cpp"],
+      "homebrew": "node",
+      "madeInBrazil": false
+    },
+    {
+      "name": "GOT",
+      "repository": "https://github.com/khaosdoctor/gotql",
+      "description": "Write GraphQL queries as objects instead of strings.",
+      "categories": ["tool"],
+      "languages": ["typescript", "javascript"],
+      "npm": "gotql",
+      "madeInBrazil": true
+    }
+  ]
+}

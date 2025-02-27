@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Poku",
+      "repository": "https://github.com/wellwelwel/poku",
+      "message": "🐷 Que tal deixar uma estrela no repositório pra apoiar nosso porquinho test runner brasileiro?",
+      "languages": ["typescript", "javascript"],
+      "description": "Poku torna testes fáceis para Node.js, Bun, Deno e você ao mesmo tempo.",
+      "npm": "poku",
+      "categories": ["test", "ci", "cli", "backend"],
+      "madeInBrazil": true
+    },
+    {
+      "repository": "https://github.com/wellwelwel/lru.min",
+      "languages": ["typescript", "javascript"],
+      "description": "Um cache LRU extremamente rápido e eficiente para JavaScript com alta compatibilidade (incluindo navegadores antigos).",
+      "npm": "lru.min",
+      "categories": ["performance", "backend", "frontend", "tool"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "MySQL2",
+      "repository": "https://github.com/sidorares/node-mysql2",
+      "languages": ["typescript", "javascript"],
+      "description": "Cliente MySQL de alta performance mais baixado do ecossistema JavaScript, compatível com Node.js, Deno e Bun.",
+      "npm": "mysql2",
+      "categories": ["database", "tool", "backend"],
+      "madeInBrazil": false
+    },
+    {
+      "name": "AWS SSL Profiles",
+      "repository": "https://github.com/mysqljs/aws-ssl-profiles",
+      "languages": ["typescript", "javascript"],
+      "description": "Centralização de certificados AWS RDS (SSL) para clientes SQL como mysql, mysql2 e pg, dentre outros.",
+      "npm": "aws-ssl-profiles",
+      "categories": ["productivity", "plugin", "database", "backend"],
+      "madeInBrazil": true
+    }
+  ]
+}

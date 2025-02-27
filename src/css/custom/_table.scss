@@ -1,0 +1,29 @@
+table {
+  thead {
+    background-color: #cacaff;
+
+    th {
+      border-color: #363663;
+    }
+
+    tr {
+      border-bottom-color: #363663;
+    }
+  }
+
+  tbody,
+  & {
+    td {
+      border-color: #bfe4ff;
+      font-size: 14px;
+    }
+
+    tr:nth-child(1n) {
+      background-color: #e8f7ff;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #dbf3ff;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/filipedeschamps/tabnews.com.br",
+      "languages": ["javascript"],
+      "description": "Conteúdos para quem trabalha com Programação e Tecnologia.",
+      "categories": ["app"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "Brasil API",
+      "repository": "https://github.com/BrasilAPI/BrasilAPI",
+      "languages": ["javascript"],
+      "description": "Vamos transformar o Brasil em uma API?",
+      "categories": ["api"],
+      "madeInBrazil": true
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+:root {
+  --ifm-link-hover-decoration: none;
+}
+
+img,
+svg {
+  user-select: none;
+
+  & > * {
+    pointer-events: none;
+  }
+}
