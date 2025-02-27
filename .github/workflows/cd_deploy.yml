@@ -27,6 +27,9 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
+      - name: Installing Dependencies
+        run: npm ci
+
       - name: Building Site
         run: npm run build
 
