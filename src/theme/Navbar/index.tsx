@@ -40,7 +40,7 @@ const Navbar = (): ReactNode => {
   return (
     <>
       <Toaster richColors={true} theme='light' position='top-right' />
-      <header></header>;
+      <header></header>
     </>
   );
 };
