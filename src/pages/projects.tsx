@@ -1,10 +1,7 @@
 import type { ChangeEvent, MouseEvent, ReactNode } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import Layout from '@theme/Layout';
-import { ProjectsProvider } from '@site/src/contexts/Projects';
-import { projects } from '@site/src/helpers/get-contents';
-import '@site/src/css/pages/projects.scss';
 import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout';
 import {
   Dices,
   Earth,
@@ -19,22 +16,25 @@ import { Project } from '@site/src/components/Project';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
+import { ProjectsProvider } from '@site/src/contexts/Projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { projects } from '@site/src/helpers/get-contents';
 import { mergeRepositories } from '@site/src/helpers/merge-projects';
 import { randomize } from '@site/src/helpers/radomizer';
 import { sortObjectByValues } from '@site/src/helpers/sort-object';
 
+import '@site/src/css/pages/projects.scss';
+
 const Projects = (): ReactNode => {
   const [scores, setScores] = useState<Record<string, number> | null>(null);
   const projectsByMaintainers = useMemo(() => projects(), []);
-  const allProjects = useMemo(
+  const mergedProjects = useMemo(
     () =>
-      randomize(
-        mergeRepositories(projectsByMaintainers.flatMap((projects) => projects))
-      ),
+      mergeRepositories(projectsByMaintainers.flatMap((projects) => projects)),
     [projectsByMaintainers]
   );
 
+  const [allProjects, setAllProjects] = useState(mergedProjects);
   const title = "<Brazil class='Open Source' />";
   const projectsLength = allProjects.length;
   const activeCategoryFilter = new Set<string>('');
@@ -155,7 +155,7 @@ const Projects = (): ReactNode => {
             `[data-repository="https://github.com/${key}"]`
           );
 
-          if (!element) return;
+          if (!element) continue;
 
           element.style.order = String(index++);
         }
@@ -163,6 +163,10 @@ const Projects = (): ReactNode => {
     },
     [scores]
   );
+
+  useEffect(() => {
+    setAllProjects(randomize(mergedProjects));
+  }, [mergedProjects]);
 
   useEffect(() => {
     const controller = new AbortController();

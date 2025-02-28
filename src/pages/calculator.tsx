@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react';
 import { useRef, useState } from 'react';
+import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import '@site/src/css/pages/home.scss';
-import Link from '@docusaurus/Link';
 import { createLRU } from 'lru.min';
 import {
   Activity,
@@ -15,6 +14,7 @@ import {
   HeartHandshake,
   Loader,
   Rocket,
+  Scale,
   Star,
   Trophy,
   UtensilsCrossed,
@@ -24,6 +24,8 @@ import { toast } from 'sonner';
 import { ScoreSimulator } from '@site/src/@types/projects';
 import { processProject } from '@site/src/helpers/generate-stats';
 import { getScore } from '@site/src/helpers/get-score';
+
+import '@site/src/css/pages/home.scss';
 
 export default (): ReactNode => {
   const { siteConfig } = useDocusaurusContext();
@@ -50,7 +52,7 @@ export default (): ReactNode => {
       return;
     }
 
-    const key = `${user}/${repository}`;
+    const key = `${user.trim()}/${repository.trim()}`;
     repositoryURL.current = `https://github.com/${key}`;
 
     if (LRU.has(key)) {
@@ -82,7 +84,12 @@ export default (): ReactNode => {
           commits: results?.commits,
         });
 
-        const result = { ...results, score };
+        const result = {
+          ...results,
+          score,
+          username: user.trim(),
+          repository: repository.trim(),
+        };
 
         LRU.set(key, result);
 
@@ -108,13 +115,13 @@ export default (): ReactNode => {
               <form onSubmit={getRepository}>
                 <input
                   placeholder='dracula'
-                  defaultValue='dracula'
+                  defaultValue='raphamorim'
                   type='text'
                   name='user'
                 />
                 <input
                   placeholder='dracula-theme'
-                  defaultValue='dracula-theme'
+                  defaultValue='lucario'
                   type='text'
                   name='repository'
                 />
@@ -133,6 +140,13 @@ export default (): ReactNode => {
 
                 {stats ? (
                   <>
+                    <header>
+                      <img
+                        src={`https://avatars.githubusercontent.com/${stats.username}`}
+                        loading='lazy'
+                        alt={`${stats.username} profile avatar`}
+                      />
+                    </header>
                     <table>
                       <tbody>
                         {stats.score ? (
@@ -240,6 +254,22 @@ export default (): ReactNode => {
                             </Link>
                           </td>
                         </tr>
+
+                        {stats?.license && (
+                          <tr
+                            className={
+                              stats.license.includes('not specified')
+                                ? 'error'
+                                : undefined
+                            }
+                          >
+                            <td>Licença:</td>
+                            <td>
+                              <Scale />
+                              <span className='score'>{stats?.license}</span>
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
 
@@ -259,7 +289,7 @@ export default (): ReactNode => {
                           <td>Issues fechadas:</td>
                           <td>
                             <Link
-                              to={`${repositoryURL.current ? undefined : repositoryURL.current}/issues?q=is:issue+is:closed`}
+                              to={`${repositoryURL.current}/issues?q=is:issue+is:closed`}
                             >
                               <BugOff />
                               {stats?.closedIssues?.label || null}

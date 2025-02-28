@@ -11,6 +11,7 @@ export type ProjectOptions = {
   npm?: string;
   pypi?: string;
   homebrew?: string;
+  vscode?: string;
   madeInBrazil: boolean;
 };
 
@@ -62,6 +63,14 @@ export type ProjectStats = {
     value: number;
     label: string;
   };
+  vscode?: {
+    value: number;
+    label: string;
+  };
 };
 
-export type ScoreSimulator = ProjectStats & { score: number };
+export type ScoreSimulator = ProjectStats & {
+  score: number;
+  username: string;
+  repository: string;
+};

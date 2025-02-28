@@ -97,6 +97,10 @@
             "type": "string",
             "description": "Nome do pacote NPM, se existir."
           },
+          "vscode": {
+            "type": "string",
+            "description": "ID da extensão no Marketplace do Visual Studio Code."
+          },
           "pypi": {
             "type": "string",
             "description": "Nome do pacote PyPI, se existir."

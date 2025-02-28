@@ -6,7 +6,8 @@
       "repository": "https://github.com/dracula/dracula-theme",
       "description": "One theme. All platforms.",
       "categories": ["theme"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "vscode": "dracula-theme.theme-dracula"
     },
     {
       "repository": "https://github.com/zenorocha/clipboard.js",

@@ -171,6 +171,16 @@ const pypiDownloads = async (pypi: string) => {
   return setResult(results.value.replace(/month/, 'mês'));
 };
 
+const vscodeDownloads = async (vscode: string) => {
+  const results = await (
+    await fetch(
+      `https://img.shields.io/visual-studio-marketplace/i/${vscode}.json`
+    )
+  ).json();
+
+  return setResult(results.value.replace(/month/, 'mês'));
+};
+
 export const processProject = async (
   options: ProjectOptions,
   cb: (data: {
@@ -179,7 +189,7 @@ export const processProject = async (
     results: ProjectStats;
   }) => unknown
 ) => {
-  const { repository: repositoryURL, npm, pypi, homebrew } = options;
+  const { repository: repositoryURL, npm, pypi, homebrew, vscode } = options;
   const { organization, repository } = extractRepository(repositoryURL);
   const results = Object.create(null);
 
@@ -204,6 +214,7 @@ export const processProject = async (
   if (npm) results.npm = await npmDownloads(npm);
   if (homebrew) results.homebrew = await homebrewDownloads(homebrew);
   if (pypi) results.pypi = await pypiDownloads(pypi);
+  if (vscode) results.vscode = await vscodeDownloads(vscode);
 
   return await cb({
     organization,

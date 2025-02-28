@@ -40,7 +40,6 @@ import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { ProjectsContext } from '@site/src/contexts/Projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-import { randomize } from '@site/src/helpers/radomizer';
 
 export const Project: FC<MergedProjects & { score?: number }> = ({
   name,
@@ -49,6 +48,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   npm,
   pypi,
   homebrew,
+  vscode,
   maintainers,
   languages: currentLanguages,
   categories: currentCategories,
@@ -338,6 +338,22 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     </tr>
                   ) : null}
 
+                  {vscode ? (
+                    <tr>
+                      <td>
+                        <span>Downloads totais:</span>
+                      </td>
+                      <td>
+                        <Link
+                          to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
+                        >
+                          <img loading='lazy' src='/img/vscode.svg' />
+                          {stats?.vscode?.label || null}
+                        </Link>
+                      </td>
+                    </tr>
+                  ) : null}
+
                   <tr>
                     <td>Forks:</td>
                     <td>
@@ -399,7 +415,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
               <UsersRound /> Mantenedores Brasileiros
             </h3>
             <menu>
-              {randomize(maintainers).map((maintainer) => (
+              {maintainers.map((maintainer) => (
                 <Link
                   key={`maintainer:${projectName}:${maintainer}`}
                   to={`https://github.com/${maintainer}`}

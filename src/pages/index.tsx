@@ -1,9 +1,7 @@
 import type { ReactNode } from 'react';
+import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import { Name } from '@site/src/components/Name';
-import '@site/src/css/pages/home.scss';
-import Link from '@docusaurus/Link';
 import {
   ChevronRight,
   // CircleDot,
@@ -16,6 +14,9 @@ import {
   UsersRound,
 } from 'lucide-react';
 import { ReactTyped } from 'react-typed';
+import { Name } from '@site/src/components/Name';
+
+import '@site/src/css/pages/home.scss';
 
 // import { FAQ } from '@site/src/components/FAQ';
 

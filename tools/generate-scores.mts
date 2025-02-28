@@ -40,6 +40,7 @@ for (const content of parsedContents) {
     homebrew: stats?.homebrew?.value,
     npm: stats?.npm?.value,
     pypi: stats?.pypi?.value,
+    vscode: stats?.vscode?.value,
     stars: stats?.stars?.value,
     issues: stats?.issues?.value,
     closedIssues: stats?.closedIssues?.value,

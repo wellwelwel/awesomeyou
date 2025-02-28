@@ -15,7 +15,8 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
 /**
  * - Each star equals 1 point.
  * - Each fork equals 2 points.
- * - Each interval of 1,000 downloads equals 3 points.
+ * - Each interval of 1,000 total downloads equals 2 points.
+ * - Each interval of 1,000 downloads per month equals 3 points.
  * - Each commit contributor equals 4 points.
  * - Each issue opened penalizes 1 point.
  * - Each issue closed equals 2 points.
@@ -27,6 +28,8 @@ export const getScore = (options: {
   /* Intention */
   forks?: number;
   /* Impact: Downloads & Installations */
+  vscode?: number;
+  /* Impact: Downloads & Installations */
   npm?: number;
   /* Impact: Downloads & Installations */
   homebrew?: number;
@@ -36,9 +39,9 @@ export const getScore = (options: {
   contributors?: number;
   /* Maintenance: Activity */
   commits?: string;
-  /* Maintenance: Activity */
+  /* Maintenance: Community Reports */
   issues?: number;
-  /* Maintenance: Activity */
+  /* Maintenance: Community Support */
   closedIssues?: number;
 }) => {
   const {
@@ -47,6 +50,7 @@ export const getScore = (options: {
     homebrew,
     npm,
     pypi,
+    vscode,
     stars,
     commits,
     closedIssues,
@@ -56,10 +60,14 @@ export const getScore = (options: {
   let score = 0;
 
   if (typeof stars === 'number') score += stars;
+
   if (typeof forks === 'number') score += forks * 2;
+  if (typeof vscode === 'number') score += Math.floor(vscode / 1000) * 2;
+
   if (typeof npm === 'number') score += Math.floor(npm / 1000) * 3;
   if (typeof homebrew === 'number') score += Math.floor(homebrew / 1000) * 3;
   if (typeof pypi === 'number') score += Math.floor(pypi / 1000) * 3;
+
   if (typeof contributors === 'number') score += contributors * 4;
 
   if (typeof commits === 'string') {
@@ -68,10 +76,8 @@ export const getScore = (options: {
     score = score - penalty;
   }
 
-  if (typeof closedIssues === 'number' && typeof issues === 'number') {
-    score -= issues;
-    score += closedIssues * 2;
-  }
+  if (typeof issues === 'number') score -= issues;
+  if (typeof closedIssues === 'number') score += closedIssues * 2;
 
   return score;
 };

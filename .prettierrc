@@ -22,9 +22,12 @@
     "<BUILTIN_MODULES>",
     "^react$",
     "^@docusaurus",
+    "^@@theme",
     "<THIRD_PARTY_MODULES>",
     "^@site",
-    "^[.]"
+    "^[.]",
+    "",
+    "scss$"
   ],
   "overrides": [
     {
