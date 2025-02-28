@@ -1,11 +1,5 @@
 import type { FC } from 'react';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Activity,
   ArrowUpDown,
@@ -38,8 +32,8 @@ import { Name } from '@site/src/components/Name';
 import { SafeLink as Link } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
-import { ProjectsContext } from '@site/src/contexts/Projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { randomize } from '@site/src/helpers/radomizer';
 
 export const Project: FC<MergedProjects & { score?: number }> = ({
   name,
@@ -77,22 +71,22 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
 
   const { organization, repository } = repositoryData;
   const projectName = name || repository;
-
-  const { getCounter } = useContext(ProjectsContext);
-  const counter = getCounter(projectName);
-  const isFirstOnes = counter <= 2;
   const [stats, setStats] = useState<ProjectStats | null>(null);
   const [maintainersInfos, setMaintainersInfos] = useState<
     Record<string, MaintainerInfo>
   >(Object.create(null));
   const hasFetchedProjects = useRef(false);
   const hasFetchedMaintainers = useRef(false);
-  const { ref: inViewRef, inView: hookInView } = useInView({
+  const { ref: inViewRef, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
   });
 
-  const inView = isFirstOnes ? true : hookInView;
+  const [shuffledMaintainers, setShuffledMaintainers] = useState(maintainers);
+
+  useEffect(() => {
+    setShuffledMaintainers(randomize(maintainers));
+  }, [maintainers]);
 
   const getStats = useCallback(() => {
     if (hasFetchedProjects.current) return;
@@ -171,20 +165,16 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   }, [getMaintainersInfos]);
 
   useEffect(() => {
-    if (!(isFirstOnes || inView)) return;
+    if (!inView) return;
 
     getStats();
     getMaintainersInfos();
-  }, [isFirstOnes, inView, getStats, getMaintainersInfos]);
+  }, [inView, getStats, getMaintainersInfos]);
 
   return (
     <nav
       ref={inViewRef}
-      className={(() => {
-        if (isFirstOnes) return undefined;
-        return inView ? 'show' : 'hide';
-      })()}
-      data-counter={counter}
+      className={inView ? 'show' : 'hide'}
       data-repository={repositoryURL}
       data-madeinbrazil={Number(madeInBrazil)}
       {...currentCategories?.reduce((acc, category) => {
@@ -415,7 +405,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
               <UsersRound /> Mantenedores Brasileiros
             </h3>
             <menu>
-              {maintainers.map((maintainer) => (
+              {shuffledMaintainers.map((maintainer) => (
                 <Link
                   key={`maintainer:${projectName}:${maintainer}`}
                   to={`https://github.com/${maintainer}`}

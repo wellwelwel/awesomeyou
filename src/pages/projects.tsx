@@ -16,7 +16,6 @@ import { Project } from '@site/src/components/Project';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
-import { ProjectsProvider } from '@site/src/contexts/Projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { projects } from '@site/src/helpers/get-contents';
 import { mergeRepositories } from '@site/src/helpers/merge-projects';
@@ -53,7 +52,7 @@ const Projects = (): ReactNode => {
       }
 
       const allElements = Array.from(
-        document.querySelectorAll('[data-counter]')
+        document.querySelectorAll('[data-repository]')
       );
 
       for (const project of allElements) {
@@ -91,7 +90,7 @@ const Projects = (): ReactNode => {
       event.currentTarget.classList.add('active');
 
       const allElements = Array.from(
-        document.querySelectorAll('[data-counter]')
+        document.querySelectorAll('[data-repository]')
       );
 
       for (const project of allElements) {
@@ -131,7 +130,7 @@ const Projects = (): ReactNode => {
       event.currentTarget.classList.add('active');
 
       const allElements = Array.from<HTMLElement>(
-        document.querySelectorAll('[data-counter]')
+        document.querySelectorAll('[data-repository]')
       );
 
       if (typeof sortByScore !== 'number') {
@@ -321,27 +320,25 @@ const Projects = (): ReactNode => {
               </small>
             </div>
           </menu>
-          <ProjectsProvider>
-            <div className='container'>
-              {allProjects.map((project, i) => {
-                const { organization, repository } = extractRepository(
-                  project.repository
-                );
+          <div className='container'>
+            {allProjects.map((project, i) => {
+              const { organization, repository } = extractRepository(
+                project.repository
+              );
 
-                return (
-                  <Project
-                    key={`project:${i}`}
-                    score={
-                      scores
-                        ? scores?.[`${organization}/${repository}`]
-                        : undefined
-                    }
-                    {...project}
-                  />
-                );
-              })}
-            </div>
-          </ProjectsProvider>
+              return (
+                <Project
+                  key={`project:${i}`}
+                  score={
+                    scores
+                      ? scores?.[`${organization}/${repository}`]
+                      : undefined
+                  }
+                  {...project}
+                />
+              );
+            })}
+          </div>
         </main>
       </div>
       <Link to='/'>Back</Link>
