@@ -1,4 +1,4 @@
-name: '🚀 CD (Website) — Publish'
+name: '🚀 CD (Website) — Update'
 
 on:
   schedule:
@@ -50,6 +50,13 @@ jobs:
 
       - name: Building Site
         run: npm run build
+
+      - name: Update JSON Assets Cache
+        if: steps.json-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: content/assets/json
+          key: json-assets-${{ runner.os }}-${{ env.JSON_CACHE_VERSION }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
