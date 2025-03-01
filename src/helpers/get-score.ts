@@ -34,7 +34,7 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
  * - Each interval of 1,000 downloads per month equals 3 points.
  * - Each commit contributor equals 4 points.
  * - Each issue opened penalizes 1 point.
- * - Each issue closed equals 2 points.
+ * - Each issue closed equals 2 points, limited to 50% of the total score.
  * - From two years onwards, each year without maintenance (commits) penalizes 250 points progressively and for each Issue opened, it penalizes 2,500 points.
  */
 export const getScore = (options: {
@@ -107,8 +107,12 @@ export const getScore = (options: {
   if (typeof stars === 'number') score += stars * SCORE_FACTORS.STAR_POINTS;
 
   // Maintenance
-  if (typeof closedIssues === 'number')
-    score += closedIssues * SCORE_FACTORS.CLOSED_ISSUE_POINTS;
+  if (typeof closedIssues === 'number') {
+    const closedIssuesPoints = closedIssues * SCORE_FACTORS.CLOSED_ISSUE_POINTS;
+    const maxAllowedPoints = score * 0.5;
+
+    score += Math.min(closedIssuesPoints, maxAllowedPoints);
+  }
 
   // Activity
   if (typeof commits === 'string') {
