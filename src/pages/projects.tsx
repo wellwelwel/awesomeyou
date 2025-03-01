@@ -24,6 +24,9 @@ import { sortObjectByValues } from '@site/src/helpers/sort-object';
 
 import '@site/src/css/pages/projects.scss';
 
+const activeCategoryFilter = new Set<string>('');
+const activeLanguageFilter = new Set<string>('');
+
 const Projects = (): ReactNode => {
   const [scores, setScores] = useState<Record<string, number> | null>(null);
   const projectsByMaintainers = useMemo(() => projects(), []);
@@ -34,62 +37,56 @@ const Projects = (): ReactNode => {
   );
 
   const [allProjects, setAllProjects] = useState(mergedProjects);
+  const projectsLength = allProjects.length;
+  const [visibleCount, setVisibleCount] = useState(projectsLength);
+
   const title = "<Brazil class='Open Source' />";
-
-  // Using state for filters instead of external Sets
-  const [categoryFilter, setCategoryFilter] = useState<
-    keyof typeof categories | ''
-  >('');
-  const [languageFilter, setLanguageFilter] = useState<
-    keyof typeof languages | ''
-  >('');
-  const [countryFilter, setCountryFilter] = useState<number | false>(false);
-  const [sortByScore, setSortByScore] = useState<0 | 1 | false>(false);
-
-  const filteredProjects = useMemo(() => {
-    return allProjects.filter((project) => {
-      const matchesCategory =
-        !categoryFilter ||
-        (project.categories && project.categories.includes(categoryFilter));
-
-      const matchesLanguage =
-        !languageFilter ||
-        (project.languages && project.languages.includes(languageFilter));
-
-      const matchesCountry =
-        countryFilter === false ||
-        project.madeInBrazil === Boolean(countryFilter);
-
-      return matchesCategory && matchesLanguage && matchesCountry;
-    });
-  }, [allProjects, categoryFilter, languageFilter, countryFilter]);
-
-  const displayedProjects = useMemo(() => {
-    if (!scores || sortByScore === false) return filteredProjects;
-
-    return [...filteredProjects].sort((a, b) => {
-      const { organization: orgA, repository: repoA } = extractRepository(
-        a.repository
-      );
-      const { organization: orgB, repository: repoB } = extractRepository(
-        b.repository
-      );
-      const scoreA = scores[`${orgA}/${repoA}`] || 0;
-      const scoreB = scores[`${orgB}/${repoB}`] || 0;
-
-      return sortByScore === 0 ? scoreB - scoreA : scoreA - scoreB;
-    });
-  }, [filteredProjects, scores, sortByScore]);
 
   const filter = useCallback(
     (event: ChangeEvent<HTMLSelectElement>, type: 'language' | 'category') => {
-      const value = event.target.value as keyof typeof languages;
+      const value = event.target.value;
+
       if (type === 'language') {
-        setLanguageFilter(value);
-        return;
+        activeLanguageFilter.clear();
+        if (value) activeLanguageFilter.add(value);
+      } else {
+        activeCategoryFilter.clear();
+        if (value) activeCategoryFilter.add(value);
       }
 
-      setCategoryFilter(value as keyof typeof categories);
+      const allElements = Array.from(
+        document.querySelectorAll('[data-repository]')
+      );
+
+      let visibleItems = 0;
+
+      for (const project of allElements) {
+        const matchesCategory =
+          !activeCategoryFilter.size ||
+          Array.from(activeCategoryFilter).some((category) => {
+            const attr = project.getAttribute(`data-${category}`);
+            return attr !== null;
+          });
+
+        const matchesLanguage =
+          !activeLanguageFilter.size ||
+          Array.from(activeLanguageFilter).some((lang) => {
+            const attr = project.getAttribute(`data-${lang}`);
+            return attr !== null;
+          });
+
+        const isHiddenByCountry = project.classList.contains('d-n2');
+
+        const shouldBeVisible =
+          matchesCategory && matchesLanguage && !isHiddenByCountry;
+        project.classList.toggle('d-n', !shouldBeVisible);
+
+        if (shouldBeVisible) {
+          visibleItems++;
+        }
+      }
+
+      setVisibleCount(visibleItems);
     },
     []
   );
@@ -101,27 +98,84 @@ const Projects = (): ReactNode => {
         .forEach((btn) => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
 
-      setCountryFilter(origin);
+      const allElements = Array.from(
+        document.querySelectorAll('[data-repository]')
+      );
+
+      let visibleItems = 0;
+
+      for (const project of allElements) {
+        const isHiddenByCountryFilter =
+          typeof origin === 'number' &&
+          project.getAttribute('data-madeinbrazil') !== String(origin);
+
+        project.classList.toggle('d-n2', isHiddenByCountryFilter);
+
+        const isHiddenByTypeFilter = project.classList.contains('d-n');
+        const isVisible = !isHiddenByCountryFilter && !isHiddenByTypeFilter;
+
+        if (isVisible) {
+          visibleItems++;
+        }
+      }
+
+      setVisibleCount(visibleItems);
     },
     []
   );
 
   const sortProjectsByScore = useCallback(
-    (event: MouseEvent<HTMLButtonElement>, sortByScoreValue: 0 | 1 | false) => {
+    async (
+      event: MouseEvent<HTMLButtonElement>,
+      sortByScore: 0 | 1 | false
+    ) => {
       if (!scores) return;
 
       document
         .querySelectorAll('button[data-filter="order"]')
         .forEach((btn) => btn.classList.remove('active'));
+
       event.currentTarget.classList.add('active');
 
-      setSortByScore(sortByScoreValue);
+      const allElements = Array.from<HTMLElement>(
+        document.querySelectorAll('[data-repository]')
+      );
+
+      if (typeof sortByScore !== 'number') {
+        for (const project of allElements)
+          project.style.removeProperty('order');
+
+        return;
+      }
+
+      const itemsToSort = allElements.map((element) => {
+        const repo = element.getAttribute('data-repository');
+        if (!repo) return { element, score: 0 };
+
+        const repoPath = repo.replace('https://github.com/', '');
+
+        return {
+          element,
+          score: scores[repoPath] || 0,
+        };
+      });
+
+      if (sortByScore === 0) {
+        itemsToSort.sort((a, b) => b.score - a.score);
+      } else {
+        itemsToSort.sort((a, b) => a.score - b.score);
+      }
+
+      itemsToSort.forEach((item, index) => {
+        item.element.style.order = String(index + 1);
+      });
     },
     [scores]
   );
 
   useEffect(() => {
     setAllProjects(randomize(mergedProjects));
+    setVisibleCount(mergedProjects.length);
   }, [mergedProjects]);
 
   useEffect(() => {
@@ -173,7 +227,6 @@ const Projects = (): ReactNode => {
                 <select
                   name='languages'
                   onChange={(e) => filter(e, 'language')}
-                  value={languageFilter}
                 >
                   <option value=''>Todas</option>
                   {Object.entries(sortObjectByValues(languages)).map(
@@ -190,7 +243,6 @@ const Projects = (): ReactNode => {
                 <select
                   name='categories'
                   onChange={(e) => filter(e, 'category')}
-                  value={categoryFilter}
                 >
                   <option value=''>Todas</option>
                   {Object.entries(sortObjectByValues(categories)).map(
@@ -209,21 +261,19 @@ const Projects = (): ReactNode => {
                 <h4>Ordenar por:</h4>
                 <div>
                   <button
-                    className={sortByScore === false ? 'active' : ''}
+                    className='active'
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, false)}
                   >
                     <Dices /> Padrão
                   </button>
                   <button
-                    className={sortByScore === 0 ? 'active' : ''}
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, 0)}
                   >
                     <Flame /> Maior Score
                   </button>
                   <button
-                    className={sortByScore === 1 ? 'active' : ''}
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, 1)}
                   >
@@ -235,7 +285,7 @@ const Projects = (): ReactNode => {
                 <h4>Países</h4>
                 <div>
                   <button
-                    className={countryFilter === false ? 'active' : ''}
+                    className='active'
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, false)}
                   >
@@ -243,7 +293,6 @@ const Projects = (): ReactNode => {
                     Todos
                   </button>
                   <button
-                    className={countryFilter === 1 ? 'active' : ''}
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, 1)}
                   >
@@ -251,7 +300,6 @@ const Projects = (): ReactNode => {
                     Brasil
                   </button>
                   <button
-                    className={countryFilter === 0 ? 'active' : ''}
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, 0)}
                   >
@@ -264,9 +312,7 @@ const Projects = (): ReactNode => {
 
             <div>
               <h4>
-                Exibindo{' '}
-                <span className='length'>{displayedProjects.length}</span>{' '}
-                Projetos
+                Exibindo <span className='length'>{visibleCount}</span> Projetos
               </h4>
               <small>
                 <blockquote>
@@ -285,7 +331,7 @@ const Projects = (): ReactNode => {
             </div>
           </menu>
           <div className='container'>
-            {displayedProjects.map((project, i) => {
+            {allProjects.map((project, i) => {
               const { organization, repository } = extractRepository(
                 project.repository
               );
