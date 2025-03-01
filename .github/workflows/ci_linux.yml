@@ -12,7 +12,6 @@ env:
 
 jobs:
   test:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
     name: Test
