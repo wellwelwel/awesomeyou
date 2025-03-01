@@ -1,3 +1,18 @@
+export const SCORE_FACTORS = {
+  STAR_POINTS: 1,
+  FORK_POINTS: 2,
+  TOTAL_DOWNLOADS_POINTS: 2,
+  TOTAL_DOWNLOADS_INTERVAL: 5000,
+  MONTHLY_DOWNLOADS_POINTS: 3,
+  MONTHLY_DOWNLOADS_INTERVAL: 1000,
+  CONTRIBUTOR_POINTS: 4,
+  ISSUE_PENALTY: 1,
+  CLOSED_ISSUE_POINTS: 2,
+  INACTIVE_ISSUE_PENALTY: 2500,
+  INACTIVE_YEAR_BASE_PENALTY: 250,
+  MIN_INACTIVE_YEARS_FOR_PENALTY: 2,
+} as const;
+
 export const calculatePenaltyFromActivity = (activityDate: string): number => {
   const currentYear = new Date().getUTCFullYear();
   const yearMatch = activityDate.match(/\b\d{4}\b/);
@@ -7,9 +22,9 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
   const activityYear = parseInt(yearMatch[0], 10);
   const yearsPassed = currentYear - activityYear;
 
-  if (yearsPassed < 2) return 0; // up to one year (unpenalized)
+  if (yearsPassed < SCORE_FACTORS.MIN_INACTIVE_YEARS_FOR_PENALTY) return 0; // up to one year (unpenalized)
 
-  return yearsPassed ** 2 * 250;
+  return yearsPassed ** 2 * SCORE_FACTORS.INACTIVE_YEAR_BASE_PENALTY;
 };
 
 /**
@@ -60,31 +75,47 @@ export const getScore = (options: {
   let score = 0;
 
   // Contributors
-  if (typeof contributors === 'number') score += contributors * 4;
+  if (typeof contributors === 'number')
+    score += contributors * SCORE_FACTORS.CONTRIBUTOR_POINTS;
 
   // Total Downloads
-  if (typeof vscode === 'number') score += Math.floor(vscode / 5000) * 2;
+  if (typeof vscode === 'number')
+    score +=
+      Math.floor(vscode / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS;
 
   // Monthly Downloads
-  if (typeof npm === 'number') score += Math.floor(npm / 1000) * 3;
-  if (typeof homebrew === 'number') score += Math.floor(homebrew / 1000) * 3;
-  if (typeof pypi === 'number') score += Math.floor(pypi / 1000) * 3;
+  if (typeof npm === 'number')
+    score +=
+      Math.floor(npm / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
+
+  if (typeof homebrew === 'number')
+    score +=
+      Math.floor(homebrew / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
+
+  if (typeof pypi === 'number')
+    score +=
+      Math.floor(pypi / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
 
   // Forks
-  if (typeof forks === 'number') score += forks * 2;
+  if (typeof forks === 'number') score += forks * SCORE_FACTORS.FORK_POINTS;
 
   // Stars
-  if (typeof stars === 'number') score += stars;
+  if (typeof stars === 'number') score += stars * SCORE_FACTORS.STAR_POINTS;
 
   // Maintenance
-  if (typeof closedIssues === 'number') score += closedIssues * 2;
+  if (typeof closedIssues === 'number')
+    score += closedIssues * SCORE_FACTORS.CLOSED_ISSUE_POINTS;
 
   // Activity
   if (typeof commits === 'string') {
     const penalty = calculatePenaltyFromActivity(commits);
 
     if (typeof issues === 'number') {
-      if (penalty > 0) score -= issues * 2500;
+      if (penalty > 0) score -= issues * SCORE_FACTORS.INACTIVE_ISSUE_PENALTY;
       else score -= issues;
     }
 
