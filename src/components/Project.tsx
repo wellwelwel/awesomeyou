@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Link from '@docusaurus/Link';
 import {
   Activity,
   ArrowUpDown,
@@ -20,7 +21,6 @@ import {
   Star,
   StarHalf,
   Trophy,
-  Unplug,
   UsersRound,
   UtensilsCrossed,
   Wrench,
@@ -29,7 +29,7 @@ import { useInView } from 'react-intersection-observer';
 import { MaintainerInfo } from '@site/src/@types/maintainers';
 import { MergedProjects, ProjectStats } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
-import { SafeLink as Link } from '@site/src/components/SafeLink';
+import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
@@ -173,7 +173,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
     >
       <main>
         <section>
-          <Link to={repositoryURL} aria-label='Go to repository'>
+          <SafeLink to={repositoryURL} aria-label='Go to repository'>
             <h2>
               <img
                 src={`https://avatars.githubusercontent.com/${organization}`}
@@ -192,7 +192,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
               <ExternalLink />
             </h2>
             <p>{description}</p>
-          </Link>
+          </SafeLink>
 
           {currentLanguages || currentCategories ? (
             <menu>
@@ -256,10 +256,10 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Contribuidores:</td>
                     <td>
-                      <Link to={`${repositoryURL}/graphs/contributors`}>
+                      <SafeLink to={`${repositoryURL}/graphs/contributors`}>
                         <HeartHandshake />
                         {stats?.contributors?.label}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
 
@@ -269,10 +269,10 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                         <span>Downloads por mês:</span>
                       </td>
                       <td>
-                        <Link to={`https://www.npmjs.com/package/${npm}`}>
+                        <SafeLink to={`https://www.npmjs.com/package/${npm}`}>
                           <img loading='lazy' src='/img/npm.svg' />
                           {stats?.npm?.label}
-                        </Link>
+                        </SafeLink>
                       </td>
                     </tr>
                   ) : null}
@@ -283,12 +283,12 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                         <span>Downloads por mês:</span>
                       </td>
                       <td>
-                        <Link
+                        <SafeLink
                           to={`https://formulae.brew.sh/formula/${homebrew}`}
                         >
                           <img loading='lazy' src='/img/homebrew.svg' />
                           {stats?.homebrew?.label}
-                        </Link>
+                        </SafeLink>
                       </td>
                     </tr>
                   ) : null}
@@ -299,10 +299,10 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                         <span>Downloads por mês:</span>
                       </td>
                       <td>
-                        <Link to={`https://pypi.org/project/${pypi}/`}>
+                        <SafeLink to={`https://pypi.org/project/${pypi}/`}>
                           <img loading='lazy' src='/img/pypi.svg' />
                           {stats?.pypi?.label}
-                        </Link>
+                        </SafeLink>
                       </td>
                     </tr>
                   ) : null}
@@ -310,15 +310,15 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   {vscode ? (
                     <tr>
                       <td>
-                        <span>Downloads totais:</span>
+                        <span>Downloads Totais:</span>
                       </td>
                       <td>
-                        <Link
+                        <SafeLink
                           to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
                         >
                           <img loading='lazy' src='/img/vscode.svg' />
                           {stats?.vscode?.label}
-                        </Link>
+                        </SafeLink>
                       </td>
                     </tr>
                   ) : null}
@@ -326,20 +326,20 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Forks:</td>
                     <td>
-                      <Link to={`${repositoryURL}/graphs/contributors`}>
+                      <SafeLink to={`${repositoryURL}/graphs/contributors`}>
                         <UtensilsCrossed />
                         {stats?.forks?.label}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
 
                   <tr>
                     <td>Estrelas:</td>
                     <td>
-                      <Link to={`${repositoryURL}/stargazers`}>
+                      <SafeLink to={`${repositoryURL}/stargazers`}>
                         <Star />
                         {stats?.stars?.label}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
                 </tbody>
@@ -350,30 +350,32 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Issues abertas:</td>
                     <td>
-                      <Link to={`${repositoryURL}/issues`}>
+                      <SafeLink to={`${repositoryURL}/issues`}>
                         <Bug />
                         {stats?.issues?.label}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
 
                   <tr>
                     <td>Issues fechadas:</td>
                     <td>
-                      <Link to={`${repositoryURL}/issues?q=is:issue+is:closed`}>
+                      <SafeLink
+                        to={`${repositoryURL}/issues?q=is:issue+is:closed`}
+                      >
                         <BugOff />
                         {stats?.closedIssues?.label}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
 
                   <tr>
                     <td>Último commit:</td>
                     <td>
-                      <Link to={`${repositoryURL}/commits`}>
+                      <SafeLink to={`${repositoryURL}/commits`}>
                         <Wrench />
                         {stats?.commits}
-                      </Link>
+                      </SafeLink>
                     </td>
                   </tr>
                 </tbody>
@@ -386,8 +388,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <menu>
               {maintainers.map((maintainer) => (
                 <Link
+                  target='_blank'
                   key={`maintainer:${projectName}:${maintainer}`}
-                  to={`https://github.com/${maintainer}`}
+                  to={`/maintainers/${maintainer}`}
                 >
                   {maintainersInfos[maintainer]?.name || maintainer}
                   <ArrowUpDown />
@@ -417,11 +420,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           <MapPin /> {maintainersInfos[maintainer].location}
                         </div>
                       ) : null}
-                      {maintainersInfos[maintainer].hireable ? (
-                        <div>
-                          <Unplug /> Disponível para contratação
-                        </div>
-                      ) : null}
                       {maintainersInfos[maintainer].blog ? (
                         <div>
                           <Network />
@@ -438,12 +436,15 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             </menu>
           </div>
           <footer>
-            <Link to={repositoryURL}>
+            <SafeLink to={repositoryURL}>
               <span>Apoie esse projeto</span> <StarHalf />
-            </Link>
+            </SafeLink>
             {message ? (
               <section>
-                <span>{message}</span>
+                <h4>Esse projeto deixou uma mensagem para você:</h4>
+                <blockquote>
+                  <span>{message}</span>
+                </blockquote>
               </section>
             ) : null}
           </footer>

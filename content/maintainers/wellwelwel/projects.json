@@ -14,7 +14,7 @@
     {
       "repository": "https://github.com/wellwelwel/lru.min",
       "languages": ["typescript", "javascript"],
-      "description": "Um cache LRU extremamente rápido e eficiente para JavaScript com alta compatibilidade (incluindo navegadores antigos).",
+      "description": "Um cache baseado em LRU extremamente rápido e eficiente para JavaScript com alta compatibilidade (incluindo navegadores antigos).",
       "npm": "lru.min",
       "categories": ["performance", "backend", "frontend", "tool"],
       "madeInBrazil": true
@@ -23,7 +23,7 @@
       "name": "MySQL2",
       "repository": "https://github.com/sidorares/node-mysql2",
       "languages": ["typescript", "javascript"],
-      "description": "Cliente MySQL de alta performance mais baixado do ecossistema JavaScript, compatível com Node.js, Deno e Bun.",
+      "description": "Cliente MySQL de alta performance mais baixado do ecossistema JavaScript, compatível com Node.js, Deno, Bun e Cloudflare Workers.",
       "npm": "mysql2",
       "categories": ["database", "tool", "backend"],
       "madeInBrazil": false

@@ -38,17 +38,52 @@
   }
 
   & > main {
+    & > h3 {
+      margin: 0;
+      user-select: none;
+      cursor: pointer;
+
+      &.active {
+        svg {
+          transform: rotate(180deg);
+        }
+
+        + menu {
+          grid-template-rows: 1fr;
+
+          & > .container {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
     & > menu {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: 0.25s grid-template-rows;
+
+      & > .container {
+        overflow: hidden;
+        @include flex(column);
+        gap: 25px;
+        padding: 0;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+
       & > div {
         h4 {
+          width: 100%;
           margin: 0;
           font-size: 14px;
           font-weight: 600;
         }
 
         div {
-          @include flex(row, stretch, flex-start, wrap);
+          @include flex(row, center, flex-start, wrap);
           gap: 7.5px;
+          width: fit-content;
         }
       }
     }
@@ -260,7 +295,7 @@
                 grid-template-rows: 0fr;
                 pointer-events: none;
                 transition:
-                  grid-template-rows 0.35s,
+                  grid-template-rows 0.25s,
                   opacity 0.25s ease;
 
                 tbody {

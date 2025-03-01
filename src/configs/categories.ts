@@ -10,7 +10,7 @@ export const categories = Object.freeze({
   theme: 'Temas',
   plugin: 'Plug-ins',
   cli: 'CLI',
-  educational: 'Conteúdos Educacionais',
+  educational: 'Educacionais',
   career: 'Carreira',
   tool: 'Ferramentas',
   frontend: 'Frontend',
@@ -19,7 +19,7 @@ export const categories = Object.freeze({
   machinelearning: 'Machine Learning',
   ai: 'Inteligência Artificial',
   ui: 'UI/UX',
-  frameworks: 'Frameworks e Livrarias',
+  frameworks: 'Livrarias e Frameworks',
   security: 'Segurança e Privacidade',
   productivity: 'Produtividade',
 });

@@ -1,13 +1,13 @@
-import type { ChangeEvent, MouseEvent, ReactNode } from 'react';
+import type { MouseEvent, ReactNode } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
+  ChevronDown,
   Dices,
   Earth,
   Flame,
   House,
-  Lightbulb,
   Loader,
   Plane,
 } from 'lucide-react';
@@ -27,8 +27,50 @@ import '@site/src/css/pages/projects.scss';
 const activeCategoryFilter = new Set<string>('');
 const activeLanguageFilter = new Set<string>('');
 
+const tips = {
+  default: (
+    <>
+      <Dices />
+      <span>
+        Por padrão, os projetos são exibidos em ordem aleatória por meio do
+        algoritmo de{' '}
+        <SafeLink
+          rel='noopener noreferrer'
+          to='https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle'
+        >
+          Fisher-Yates
+        </SafeLink>
+        . Assim, você sempre irá descobrir projetos novos toda vez que voltar na
+        lista.
+      </span>
+    </>
+  ),
+  greater: (
+    <>
+      <Flame />
+      <span>
+        Projetos com grande impacto e reconhecimento geralmente se destacam por
+        sua ampla adoção, popularidade e pela força de sua comunidade,
+        especialmente quando somados entre si.
+      </span>
+    </>
+  ),
+  less: (
+    <>
+      <Loader />
+      <span>
+        Descubra e incentive projetos inovadores! Ao contribuir com projetos em
+        constante crescimento, você tem a oportunidade de participar do
+        amadurecimento de novas ideias e tecnologias. Sua estrela pode colocar
+        um <strong>sorriso</strong> no rosto de quem mantém o projeto ✨
+      </span>
+    </>
+  ),
+} as const;
+
 const Projects = (): ReactNode => {
   const [scores, setScores] = useState<Record<string, number> | null>(null);
+  const [tip, setTip] = useState<keyof typeof tips>('default');
   const projectsByMaintainers = useMemo(() => projects(), []);
   const mergedProjects = useMemo(
     () =>
@@ -42,9 +84,20 @@ const Projects = (): ReactNode => {
 
   const title = "<Brazil class='Open Source' />";
 
+  const showFilters = (event: MouseEvent<HTMLHeadingElement>) => {
+    event.currentTarget.classList.toggle('active');
+  };
+
   const filter = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>, type: 'language' | 'category') => {
-      const value = event.target.value;
+    (
+      event: MouseEvent<HTMLButtonElement>,
+      type: 'language' | 'category',
+      value: string
+    ) => {
+      event.currentTarget
+        .parentElement!.querySelectorAll('button')
+        .forEach((btn) => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
 
       if (type === 'language') {
         activeLanguageFilter.clear();
@@ -145,6 +198,7 @@ const Projects = (): ReactNode => {
         for (const project of allElements)
           project.style.removeProperty('order');
 
+        setTip('default');
         return;
       }
 
@@ -161,8 +215,10 @@ const Projects = (): ReactNode => {
       });
 
       if (sortByScore === 0) {
+        setTip('greater');
         itemsToSort.sort((a, b) => b.score - a.score);
       } else {
+        setTip('less');
         itemsToSort.sort((a, b) => a.score - b.score);
       }
 
@@ -219,94 +275,110 @@ const Projects = (): ReactNode => {
               </p>
             </section>
           </header>
+
+          <h3 onClick={showFilters}>
+            Filtros <ChevronDown />
+          </h3>
           <menu>
-            <h3>Filtros</h3>
             <div className='container'>
               <div>
                 <h4>Linguagens</h4>
-                <select
-                  name='languages'
-                  onChange={(e) => filter(e, 'language')}
-                >
-                  <option value=''>Todas</option>
+                <div>
+                  <button
+                    className='active'
+                    data-filter='language'
+                    onClick={(e) => filter(e, 'language', '')}
+                  >
+                    Todas
+                  </button>
                   {Object.entries(sortObjectByValues(languages)).map(
                     ([key, name]) => (
-                      <option key={`filter:languages:${key}`} value={key}>
+                      <button
+                        key={`filter:languages:${key}`}
+                        data-filter='language'
+                        onClick={(e) => filter(e, 'language', key)}
+                      >
                         {name}
-                      </option>
+                      </button>
                     )
                   )}
-                </select>
+                </div>
               </div>
               <div>
                 <h4>Categorias</h4>
-                <select
-                  name='categories'
-                  onChange={(e) => filter(e, 'category')}
-                >
-                  <option value=''>Todas</option>
+                <div>
+                  <button
+                    className='active'
+                    data-filter='category'
+                    onClick={(e) => filter(e, 'category', '')}
+                  >
+                    Todas
+                  </button>
                   {Object.entries(sortObjectByValues(categories)).map(
                     ([key, name]) => (
-                      <option key={`filter:categories:${key}`} value={key}>
+                      <button
+                        key={`filter:categories:${key}`}
+                        data-filter='category'
+                        onClick={(e) => filter(e, 'category', key)}
+                      >
                         {name}
-                      </option>
+                      </button>
                     )
                   )}
-                </select>
+                </div>
               </div>
             </div>
 
-            <div className='container'>
+            <div>
+              <h4>Países</h4>
               <div>
-                <h4>Ordenar por:</h4>
-                <div>
-                  <button
-                    className='active'
-                    data-filter='order'
-                    onClick={(e) => sortProjectsByScore(e, false)}
-                  >
-                    <Dices /> Padrão
-                  </button>
-                  <button
-                    data-filter='order'
-                    onClick={(e) => sortProjectsByScore(e, 0)}
-                  >
-                    <Flame /> Maior Score
-                  </button>
-                  <button
-                    data-filter='order'
-                    onClick={(e) => sortProjectsByScore(e, 1)}
-                  >
-                    <Loader /> Menor Score
-                  </button>
-                </div>
+                <button
+                  className='active'
+                  data-filter='country'
+                  onClick={(e) => filterByCountry(e, false)}
+                >
+                  <Earth />
+                  Todos
+                </button>
+                <button
+                  data-filter='country'
+                  onClick={(e) => filterByCountry(e, 1)}
+                >
+                  <House />
+                  Brasil
+                </button>
+                <button
+                  data-filter='country'
+                  onClick={(e) => filterByCountry(e, 0)}
+                >
+                  <Plane />
+                  Estrangeiros
+                </button>
               </div>
+            </div>
+
+            <div>
+              <h4>Ordenar por:</h4>
               <div>
-                <h4>Países</h4>
-                <div>
-                  <button
-                    className='active'
-                    data-filter='country'
-                    onClick={(e) => filterByCountry(e, false)}
-                  >
-                    <Earth />
-                    Todos
-                  </button>
-                  <button
-                    data-filter='country'
-                    onClick={(e) => filterByCountry(e, 1)}
-                  >
-                    <House />
-                    Brasil
-                  </button>
-                  <button
-                    data-filter='country'
-                    onClick={(e) => filterByCountry(e, 0)}
-                  >
-                    <Plane />
-                    Estrangeiros
-                  </button>
-                </div>
+                <button
+                  className='active'
+                  data-filter='order'
+                  onClick={(e) => sortProjectsByScore(e, false)}
+                >
+                  <Dices /> Padrão
+                </button>
+                <button
+                  data-filter='order'
+                  onClick={(e) => sortProjectsByScore(e, 0)}
+                >
+                  <Flame /> Maior Score
+                </button>
+                <button
+                  data-filter='order'
+                  onClick={(e) => sortProjectsByScore(e, 1)}
+                >
+                  <Loader /> Menor Score
+                </button>
               </div>
             </div>
 
@@ -315,18 +387,7 @@ const Projects = (): ReactNode => {
                 Exibindo <span className='length'>{visibleCount}</span> Projetos
               </h4>
               <small>
-                <blockquote>
-                  <Lightbulb /> Por padrão, os projetos são exibidos em ordem
-                  aleatória por meio do algoritmo de{' '}
-                  <SafeLink
-                    rel='noopener noreferrer'
-                    to='https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle'
-                  >
-                    Fisher-Yates
-                  </SafeLink>
-                  . Assim, você sempre irá descobrir projetos novos toda vez que
-                  voltar na lista.
-                </blockquote>
+                <blockquote>{tips[tip]}</blockquote>
               </small>
             </div>
           </menu>

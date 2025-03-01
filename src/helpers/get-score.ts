@@ -9,18 +9,18 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
 
   if (yearsPassed < 2) return 0; // up to one year (unpenalized)
 
-  return yearsPassed * 1000;
+  return yearsPassed ** 2 * 250;
 };
 
 /**
  * - Each star equals 1 point.
  * - Each fork equals 2 points.
- * - Each interval of 1,000 total downloads equals 2 points.
+ * - Each interval of 5,000 total downloads equals 2 points.
  * - Each interval of 1,000 downloads per month equals 3 points.
  * - Each commit contributor equals 4 points.
  * - Each issue opened penalizes 1 point.
  * - Each issue closed equals 2 points.
- * - From two years onwards, each year without maintenance (commits) penalizes 1000 points.
+ * - From two years onwards, each year without maintenance (commits) penalizes 250 points progressively and for each Issue opened, it penalizes 2,500 points.
  */
 export const getScore = (options: {
   /* Popularity */
@@ -59,25 +59,37 @@ export const getScore = (options: {
 
   let score = 0;
 
-  if (typeof stars === 'number') score += stars;
+  // Contributors
+  if (typeof contributors === 'number') score += contributors * 4;
 
-  if (typeof forks === 'number') score += forks * 2;
-  if (typeof vscode === 'number') score += Math.floor(vscode / 1000) * 2;
+  // Total Downloads
+  if (typeof vscode === 'number') score += Math.floor(vscode / 5000) * 2;
 
+  // Monthly Downloads
   if (typeof npm === 'number') score += Math.floor(npm / 1000) * 3;
   if (typeof homebrew === 'number') score += Math.floor(homebrew / 1000) * 3;
   if (typeof pypi === 'number') score += Math.floor(pypi / 1000) * 3;
 
-  if (typeof contributors === 'number') score += contributors * 4;
+  // Forks
+  if (typeof forks === 'number') score += forks * 2;
 
+  // Stars
+  if (typeof stars === 'number') score += stars;
+
+  // Maintenance
+  if (typeof closedIssues === 'number') score += closedIssues * 2;
+
+  // Activity
   if (typeof commits === 'string') {
     const penalty = calculatePenaltyFromActivity(commits);
 
+    if (typeof issues === 'number') {
+      if (penalty > 0) score -= issues * 2500;
+      else score -= issues;
+    }
+
     score = score - penalty;
   }
-
-  if (typeof issues === 'number') score -= issues;
-  if (typeof closedIssues === 'number') score += closedIssues * 2;
 
   return score;
 };
