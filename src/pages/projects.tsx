@@ -35,49 +35,61 @@ const Projects = (): ReactNode => {
 
   const [allProjects, setAllProjects] = useState(mergedProjects);
   const title = "<Brazil class='Open Source' />";
-  const projectsLength = allProjects.length;
-  const activeCategoryFilter = new Set<string>('');
-  const activeLanguageFilter = new Set<string>('');
+
+  // Using state for filters instead of external Sets
+  const [categoryFilter, setCategoryFilter] = useState<
+    keyof typeof categories | ''
+  >('');
+  const [languageFilter, setLanguageFilter] = useState<
+    keyof typeof languages | ''
+  >('');
+  const [countryFilter, setCountryFilter] = useState<number | false>(false);
+  const [sortByScore, setSortByScore] = useState<0 | 1 | false>(false);
+
+  const filteredProjects = useMemo(() => {
+    return allProjects.filter((project) => {
+      const matchesCategory =
+        !categoryFilter ||
+        (project.categories && project.categories.includes(categoryFilter));
+
+      const matchesLanguage =
+        !languageFilter ||
+        (project.languages && project.languages.includes(languageFilter));
+
+      const matchesCountry =
+        countryFilter === false ||
+        project.madeInBrazil === Boolean(countryFilter);
+
+      return matchesCategory && matchesLanguage && matchesCountry;
+    });
+  }, [allProjects, categoryFilter, languageFilter, countryFilter]);
+
+  const displayedProjects = useMemo(() => {
+    if (!scores || sortByScore === false) return filteredProjects;
+
+    return [...filteredProjects].sort((a, b) => {
+      const { organization: orgA, repository: repoA } = extractRepository(
+        a.repository
+      );
+      const { organization: orgB, repository: repoB } = extractRepository(
+        b.repository
+      );
+      const scoreA = scores[`${orgA}/${repoA}`] || 0;
+      const scoreB = scores[`${orgB}/${repoB}`] || 0;
+
+      return sortByScore === 0 ? scoreB - scoreA : scoreA - scoreB;
+    });
+  }, [filteredProjects, scores, sortByScore]);
 
   const filter = useCallback(
     (event: ChangeEvent<HTMLSelectElement>, type: 'language' | 'category') => {
-      const value = event.target.value;
-
+      const value = event.target.value as keyof typeof languages;
       if (type === 'language') {
-        activeLanguageFilter.clear();
-        if (value) activeLanguageFilter.add(value);
-      } else {
-        activeCategoryFilter.clear();
-        if (value) activeCategoryFilter.add(value);
+        setLanguageFilter(value);
+        return;
       }
 
-      const allElements = Array.from(
-        document.querySelectorAll('[data-repository]')
-      );
-
-      for (const project of allElements) {
-        const matchesCategory =
-          !activeCategoryFilter.size ||
-          [...activeCategoryFilter].some((category) =>
-            project.hasAttribute(`data-${category}`)
-          );
-
-        const matchesLanguage =
-          !activeLanguageFilter.size ||
-          [...activeLanguageFilter].some((lang) =>
-            project.hasAttribute(`data-${lang}`)
-          );
-
-        project.classList.toggle('d-n', !(matchesCategory && matchesLanguage));
-      }
-
-      const visibleCount = allElements.filter(
-        (project) =>
-          !project.classList.contains('d-n') &&
-          !project.classList.contains('d-n2')
-      ).length;
-
-      document.querySelector('.length')!.textContent = String(visibleCount);
+      setCategoryFilter(value as keyof typeof categories);
     },
     []
   );
@@ -89,76 +101,21 @@ const Projects = (): ReactNode => {
         .forEach((btn) => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
 
-      const allElements = Array.from(
-        document.querySelectorAll('[data-repository]')
-      );
-
-      for (const project of allElements) {
-        if (typeof origin !== 'number') {
-          project.classList.remove('d-n2');
-          continue;
-        }
-
-        project.classList.toggle(
-          'd-n2',
-          project.getAttribute('data-madeinbrazil') !== String(origin)
-        );
-      }
-
-      const visibleCount = allElements.filter(
-        (project) =>
-          !project.classList.contains('d-n') &&
-          !project.classList.contains('d-n2')
-      ).length;
-
-      document.querySelector('.length')!.textContent = String(visibleCount);
+      setCountryFilter(origin);
     },
     []
   );
 
   const sortProjectsByScore = useCallback(
-    async (
-      event: MouseEvent<HTMLButtonElement>,
-      sortByScore: 0 | 1 | false
-    ) => {
+    (event: MouseEvent<HTMLButtonElement>, sortByScoreValue: 0 | 1 | false) => {
       if (!scores) return;
 
       document
         .querySelectorAll('button[data-filter="order"]')
         .forEach((btn) => btn.classList.remove('active'));
-
       event.currentTarget.classList.add('active');
 
-      const allElements = Array.from<HTMLElement>(
-        document.querySelectorAll('[data-repository]')
-      );
-
-      if (typeof sortByScore !== 'number') {
-        for (const project of allElements)
-          project.style.removeProperty('order');
-        return;
-      }
-
-      const scoresByType =
-        sortByScore === 0
-          ? scores
-          : Object.fromEntries(
-              Object.entries(scores).sort(([, a], [, b]) => a - b)
-            );
-
-      let index = 1;
-
-      for (const key in scoresByType) {
-        if (Object.prototype.hasOwnProperty.call(scoresByType, key)) {
-          const element = document.querySelector<HTMLElement>(
-            `[data-repository="https://github.com/${key}"]`
-          );
-
-          if (!element) continue;
-
-          element.style.order = String(index++);
-        }
-      }
+      setSortByScore(sortByScoreValue);
     },
     [scores]
   );
@@ -216,6 +173,7 @@ const Projects = (): ReactNode => {
                 <select
                   name='languages'
                   onChange={(e) => filter(e, 'language')}
+                  value={languageFilter}
                 >
                   <option value=''>Todas</option>
                   {Object.entries(sortObjectByValues(languages)).map(
@@ -232,6 +190,7 @@ const Projects = (): ReactNode => {
                 <select
                   name='categories'
                   onChange={(e) => filter(e, 'category')}
+                  value={categoryFilter}
                 >
                   <option value=''>Todas</option>
                   {Object.entries(sortObjectByValues(categories)).map(
@@ -250,19 +209,21 @@ const Projects = (): ReactNode => {
                 <h4>Ordenar por:</h4>
                 <div>
                   <button
-                    className='active'
+                    className={sortByScore === false ? 'active' : ''}
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, false)}
                   >
                     <Dices /> Padrão
                   </button>
                   <button
+                    className={sortByScore === 0 ? 'active' : ''}
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, 0)}
                   >
                     <Flame /> Maior Score
                   </button>
                   <button
+                    className={sortByScore === 1 ? 'active' : ''}
                     data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, 1)}
                   >
@@ -274,7 +235,7 @@ const Projects = (): ReactNode => {
                 <h4>Países</h4>
                 <div>
                   <button
-                    className='active'
+                    className={countryFilter === false ? 'active' : ''}
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, false)}
                   >
@@ -282,6 +243,7 @@ const Projects = (): ReactNode => {
                     Todos
                   </button>
                   <button
+                    className={countryFilter === 1 ? 'active' : ''}
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, 1)}
                   >
@@ -289,6 +251,7 @@ const Projects = (): ReactNode => {
                     Brasil
                   </button>
                   <button
+                    className={countryFilter === 0 ? 'active' : ''}
                     data-filter='country'
                     onClick={(e) => filterByCountry(e, 0)}
                   >
@@ -301,7 +264,8 @@ const Projects = (): ReactNode => {
 
             <div>
               <h4>
-                Exibindo <span className='length'>{projectsLength}</span>{' '}
+                Exibindo{' '}
+                <span className='length'>{displayedProjects.length}</span>{' '}
                 Projetos
               </h4>
               <small>
@@ -321,7 +285,7 @@ const Projects = (): ReactNode => {
             </div>
           </menu>
           <div className='container'>
-            {allProjects.map((project, i) => {
+            {displayedProjects.map((project, i) => {
               const { organization, repository } = extractRepository(
                 project.repository
               );
