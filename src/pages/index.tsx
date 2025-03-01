@@ -58,9 +58,9 @@ export default (): ReactNode => {
               />
             </small>
             <small>
-              Uma iniciativa que combina o lado humano com o open-source, focada
-              em te apresentar projetos <em>open-source</em> incríveis criados e
-              mantidos por desenvolvedores <strong>brasileiros</strong>.
+              Uma iniciativa que traz o lado humano do <em>open-source</em>, te
+              apresentando projetos incríveis criados e mantidos por
+              desenvolvedores brasileiros.
             </small>
             <menu>
               <section>

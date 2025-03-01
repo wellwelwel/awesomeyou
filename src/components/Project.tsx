@@ -33,7 +33,6 @@ import { SafeLink as Link } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-import { randomize } from '@site/src/helpers/radomizer';
 
 export const Project: FC<MergedProjects & { score?: number }> = ({
   name,
@@ -71,28 +70,12 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
 
   const { organization, repository } = repositoryData;
   const projectName = name || repository;
-  const [stats, setStats] = useState<ProjectStats | null>(null);
+  const [stats, setStats] = useState<ProjectStats>(Object.create(null));
   const [maintainersInfos, setMaintainersInfos] = useState<
     Record<string, MaintainerInfo>
   >(Object.create(null));
-  const hasFetchedProjects = useRef(false);
-  const hasFetchedMaintainers = useRef(false);
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0,
-    triggerOnce: true,
-  });
-
-  const [shuffledMaintainers, setShuffledMaintainers] = useState(maintainers);
-
-  useEffect(() => {
-    setShuffledMaintainers(randomize(maintainers));
-  }, [maintainers]);
 
   const getStats = useCallback(() => {
-    if (hasFetchedProjects.current) return;
-
-    hasFetchedProjects.current = true;
-
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -108,9 +91,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   }, [organization, repository]);
 
   const getMaintainersInfos = useCallback(async () => {
-    if (hasFetchedMaintainers.current) return;
-    hasFetchedMaintainers.current = true;
-
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -160,16 +140,16 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
     [refs]
   );
 
-  useEffect(() => {
-    getMaintainersInfos();
-  }, [getMaintainersInfos]);
+  const { ref: inViewRef, inView } = useInView({
+    threshold: 0,
+    triggerOnce: true,
+    onChange(inView) {
+      if (!inView) return;
 
-  useEffect(() => {
-    if (!inView) return;
-
-    getStats();
-    getMaintainersInfos();
-  }, [inView, getStats, getMaintainersInfos]);
+      getMaintainersInfos();
+      getStats();
+    },
+  });
 
   return (
     <nav
@@ -207,7 +187,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                 </span>
                 <small>
                   <Scale />
-                  {stats?.license || null}
+                  {stats?.license}
                 </small>
               </span>
               <ExternalLink />
@@ -279,7 +259,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/graphs/contributors`}>
                         <HeartHandshake />
-                        {stats?.contributors?.label || null}
+                        {stats?.contributors?.label}
                       </Link>
                     </td>
                   </tr>
@@ -292,7 +272,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       <td>
                         <Link to={`https://www.npmjs.com/package/${npm}`}>
                           <img loading='lazy' src='/img/npm.svg' />
-                          {stats?.npm?.label || null}
+                          {stats?.npm?.label}
                         </Link>
                       </td>
                     </tr>
@@ -308,7 +288,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           to={`https://formulae.brew.sh/formula/${homebrew}`}
                         >
                           <img loading='lazy' src='/img/homebrew.svg' />
-                          {stats?.homebrew?.label || null}
+                          {stats?.homebrew?.label}
                         </Link>
                       </td>
                     </tr>
@@ -322,7 +302,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       <td>
                         <Link to={`https://pypi.org/project/${pypi}/`}>
                           <img loading='lazy' src='/img/pypi.svg' />
-                          {stats?.pypi?.label || null}
+                          {stats?.pypi?.label}
                         </Link>
                       </td>
                     </tr>
@@ -338,7 +318,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
                         >
                           <img loading='lazy' src='/img/vscode.svg' />
-                          {stats?.vscode?.label || null}
+                          {stats?.vscode?.label}
                         </Link>
                       </td>
                     </tr>
@@ -349,7 +329,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/graphs/contributors`}>
                         <UtensilsCrossed />
-                        {stats?.forks?.label || null}
+                        {stats?.forks?.label}
                       </Link>
                     </td>
                   </tr>
@@ -359,7 +339,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/stargazers`}>
                         <Star />
-                        {stats?.stars?.label || null}
+                        {stats?.stars?.label}
                       </Link>
                     </td>
                   </tr>
@@ -373,7 +353,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/issues`}>
                         <Bug />
-                        {stats?.issues?.label || null}
+                        {stats?.issues?.label}
                       </Link>
                     </td>
                   </tr>
@@ -383,7 +363,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/issues?q=is:issue+is:closed`}>
                         <BugOff />
-                        {stats?.closedIssues?.label || null}
+                        {stats?.closedIssues?.label}
                       </Link>
                     </td>
                   </tr>
@@ -393,7 +373,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     <td>
                       <Link to={`${repositoryURL}/commits`}>
                         <Wrench />
-                        {stats?.commits || null}
+                        {stats?.commits}
                       </Link>
                     </td>
                   </tr>
@@ -405,7 +385,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
               <UsersRound /> Mantenedores Brasileiros
             </h3>
             <menu>
-              {shuffledMaintainers.map((maintainer) => (
+              {maintainers.map((maintainer) => (
                 <Link
                   key={`maintainer:${projectName}:${maintainer}`}
                   to={`https://github.com/${maintainer}`}
