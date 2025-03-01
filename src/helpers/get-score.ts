@@ -109,7 +109,7 @@ export const getScore = (options: {
   // Maintenance
   if (typeof closedIssues === 'number') {
     const closedIssuesPoints = closedIssues * SCORE_FACTORS.CLOSED_ISSUE_POINTS;
-    const maxAllowedPoints = score * 0.5;
+    const maxAllowedPoints = Math.floor(score * 0.5);
 
     score += Math.min(closedIssuesPoints, maxAllowedPoints);
   }

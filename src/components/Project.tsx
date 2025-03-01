@@ -442,9 +442,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             {message ? (
               <section>
                 <h4>Esse projeto deixou uma mensagem para você:</h4>
-                <blockquote>
+                <small>
                   <span>{message}</span>
-                </blockquote>
+                </small>
               </section>
             ) : null}
           </footer>

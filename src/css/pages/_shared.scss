@@ -219,14 +219,17 @@
             pointer-events: none;
 
             h4 {
+              font-size: 14px;
               font-weight: 600;
+              margin-bottom: 25px;
             }
 
-            blockquote {
+            small {
               @include flex(row);
               gap: 25px;
               color: #0a574f;
               padding: 10px;
+              quotes: none;
               margin: 0;
 
               &::before {
@@ -236,7 +239,7 @@
 
               span {
                 @include flex(row, center, center);
-                font-size: 13px;
+                font-size: 13.5px;
                 font-weight: 500;
               }
             }
