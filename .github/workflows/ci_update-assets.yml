@@ -7,7 +7,6 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
-  JSON_CACHE_VERSION: v1
 
 jobs:
   deploy:
@@ -40,23 +39,36 @@ jobs:
       - name: Checking Lint
         run: npm run lint
 
-      - name: Restore JSON Assets Cache
+      - name: Restore Projects Cache
         uses: actions/cache@v4
         with:
-          path: content/assets/json
-          key: json-assets-${{ runner.os }}-${{ env.JSON_CACHE_VERSION }}
+          path: content/assets/json/projects
+          key: json-assets-projects
           restore-keys: |
-            json-assets-${{ runner.os }}-
+            json-assets-projects
+
+      - name: Restore Maintainers Cache
+        uses: actions/cache@v4
+        with:
+          path: content/assets/json/maintainers
+          key: json-assets-maintainers
+          restore-keys: |
+            json-assets-maintainers
 
       - name: Building Site
         run: npm run build
 
-      - name: Update JSON Assets Cache
-        if: steps.json-cache.outputs.cache-hit != 'true'
+      - name: Update Projects Cache
         uses: actions/cache@v4
         with:
-          path: content/assets/json
-          key: json-assets-${{ runner.os }}-${{ env.JSON_CACHE_VERSION }}
+          path: content/assets/json/projects
+          key: json-assets-projects
+
+      - name: Update Maintainers Cache
+        uses: actions/cache@v4
+        with:
+          path: content/assets/json/maintainers
+          key: json-assets-maintainers
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
