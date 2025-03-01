@@ -143,13 +143,12 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   const { ref: inViewRef, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
-    onChange(inView) {
-      if (!inView) return;
-
-      getMaintainersInfos();
-      getStats();
-    },
   });
+
+  useEffect(() => {
+    getMaintainersInfos();
+    getStats();
+  }, [getMaintainersInfos, getStats]);
 
   return (
     <nav
