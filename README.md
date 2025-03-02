@@ -1,99 +1,70 @@
-Como seu projeto impacta o mundo real?
+<div align="center">
+  <h1>Awesome You</h1>
+  <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
+  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open-source</i>, te apresentando projetos incríveis criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
+</div>
 
-## Cadastrando projetos de um ou mais mantenedores
+---
 
-### Exemplo
+## 🤝 Contribuindo
 
-```json
-{
-  "$schema": "../../../schemas/projects.json",
-  "projects": [
-    {
-      "name": "Meu Repositório",
-      "repository": "https://github.com/meu-repositorio",
-      "description": "Meu projeto impactante.",
-      "message": "Vou amar ter você por aqui!",
-      "madeInBrazil": true
-    }
-  ]
-}
-```
+Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
 
-### Template
+Que incluir seu projeto ou de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Cadastrar meu Projeto**](#), siga as instruções na própia página e abra seu **Pull Request**.
 
-```js
-{
-  "$schema": "../../../schemas/projects.json",
-  "projects": [
-    {
-      "repository": "",
-      "description": "",
-      "madeInBrazil": true // false
-    }
-  ]
-}
-```
-
-```js
-{
-  "$schema": "../../../schemas/projects.json",
-  "projects": [
-    {
-      "repository": "",
-      "description": "",
-      "name": "", // Opcional (irá usar o nome do repositório caso não for passado)
-      "languages": [], // Opcional: Selecione até três linguagens de programação (veja abaixo todas as linguagens disponíveis)
-      "categories": [], // Opcional: Selecione as categorias do seu projeto (veja abaixo todas as categorias disponíveis)
-      "npm": "", // Opcional: nome do pacote no registro do NPM.
-      "pypi": "", // Opcional: nome do pacote no registro do PyPI.
-      "homebrew": "" // Opcional: nome do pacote no registro do Homebrew.
-    }
-  ]
-}
-```
-
-### Explicando cada opção
-
-#### `$schema`
-
-> [!IMPORTANT]
+> [!TIP]
 >
-> - Obrigatório.
+> - Você não precisa ser o autor ou o mantenedor do projeto para incluí-lo 💡
+> - Sinta-se à vontade para conversar em português 🏡
 
-> [!NOTE]
+---
+
+## 💡 Por que mais uma Lista?
+
+Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) não é uma lista.
+
+### Relevância vs. Impacto vs. Popularidade
+
+Será que metrificar um projeto apenas com base na sua popularidade ou do seu respectivo autor é a melhor maneira de medir a relevância e impacto de um projeto?
+
+Nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo que apenas projetos que se mantenham relevantes permaneçam na lista e abrindo espaço para projetos inovadores que não sejam necessariamente populares.
+
+### O lado humano do _open-source_
+
+Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantenedores, abrindo espaço para bate papos técnicos através do nosso futuro Podcast e agrupando projetos de impacto de cada mantenedor na iniciativa, aprimorando pesquisas por sistemas de busca ao vincular projetos com seus respectivos mantenedores brasileiros.
+
+---
+
+## 🔟 Sistema de Pontos
+
+O cálculo da pontuação inclui:
+
+- 🧑‍🧑‍🧒‍🧒 **Criação de Comunidade** através de contribuições com _commits_ e _forks_.
+- 🚀 **Impacto** através de Instalações e Downloads.
+- 🌟 **Popularidade** através de estrelas no repositório.
+- 🛠️ **Manutenção** através de Issues abertas e fechadas.
+- 👴🏼 **Atividade** através de _commits_.
+
+Você pode consultar detalhadamente como sistema de pontos funciona [aqui](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/1) e também averiguar a fórmula diretamente no [código](./src/helpers/get-score.ts) de forma totalmente transparente.
+
+---
+
+## 🧮 Acompanhe a Pontuação do seu Projeto
+
+Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a pontuação do seu repositório dinamicamente e sem compromisso através da nossa [**calculadora**](https://awesomeyou.io/calculator/).
+
+> [!TIP]
 >
-> Sempre padrão para todos os arquivos (`"../../../schemas/projects.json"`).
+> Se o projeto bater **250** pontos ou mais, garanta que ele cumpre as [regras](./docs/RULES.md) e sinta-se à vontade para abrir um **Pull Request** incluindo seu projeto na iniciativa.
 
-Essa opção garante sugestões inteligentes _(IntelliSense)_ ao inserir os dados com <kbd>Ctrl</kbd> + <kbd>Espaço</kbd> no arquivo **JSON**, por exemplo:
+---
 
-> <img src="./resources/intellisense-example.png" width="480" />
+## 🧑‍⚖️ Regras
 
-#### `projects`
+Você pode consultar as regras [aqui](./docs/RULES.md) e debatê-las [aqui](https://github.com/wellwelwel/awesomeyou/issues/2).
 
-> [!IMPORTANT]
->
-> - Obrigatório.
-> - Ao menos um projeto é necessário para cadastrar um mantenedor.
+---
 
-> [!NOTE]
->
-> Sempre padrão para todos os arquivos (`"projects": []`).
+## 🫰 Agradecimentos
 
-Recebe uma lista de projetos de um mantenedor.
-
-##### `repository`
-
-> [!IMPORTANT]
->
-> - Obrigatório.
-
-Insira a **URL** do seu repositório no **GitHub**, por exemplo: `https://github.com/wellwelwel/poku`.
-
-##### `description`
-
-> [!IMPORTANT]
->
-> - Obrigatório.
-> - Limite de 200 caracteres.
-
-Faça uma breve descrição do seu projeto (em português ou inglês — como você preferir).
+A você, que leu até aqui.
