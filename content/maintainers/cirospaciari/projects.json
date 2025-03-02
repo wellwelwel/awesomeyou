@@ -8,8 +8,7 @@
       "categories": ["language"],
       "languages": ["zig"],
       "npm": "bun",
-      "chocolatey": "bun",
-      "madeInBrazil": false
+      "chocolatey": "bun"
     },
     {
       "name": "Socketify",

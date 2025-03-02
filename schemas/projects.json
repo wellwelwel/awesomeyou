@@ -88,7 +88,8 @@
                 "ui",
                 "frameworks",
                 "security",
-                "productivity"
+                "productivity",
+                "list"
               ]
             },
             "uniqueItems": true
@@ -122,7 +123,7 @@
             "description": "O projeto foi criado pelo mantenedor atual?"
           }
         },
-        "required": ["description", "repository", "madeInBrazil"],
+        "required": ["description", "repository"],
         "additionalProperties": false
       }
     }

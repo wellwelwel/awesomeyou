@@ -1,19 +1,17 @@
 import type { MouseEvent, ReactNode } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
   ChevronDown,
   Dices,
   Earth,
   Flame,
+  Heart,
   House,
-  Loader,
   Plane,
 } from 'lucide-react';
 import { Name } from '@site/src//components/Name';
 import { Project } from '@site/src/components/Project';
-import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
@@ -27,44 +25,36 @@ import '@site/src/css/pages/projects.scss';
 const activeCategoryFilter = new Set<string>('');
 const activeLanguageFilter = new Set<string>('');
 
-const tips = {
+export const tips = {
   default: (
-    <>
+    <small key='1'>
       <Dices />
       <span>
-        Por padrão, os projetos são exibidos em ordem aleatória por meio do
-        algoritmo de{' '}
-        <SafeLink
-          rel='noopener noreferrer'
-          to='https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle'
-        >
-          Fisher-Yates
-        </SafeLink>
-        . Assim, você sempre irá descobrir projetos novos toda vez que voltar na
-        lista.
+        Por padrão, os projetos são exibidos em ordem aleatória. Assim, você
+        sempre irá descobrir projetos novos toda vez que voltar na lista.
       </span>
-    </>
+    </small>
   ),
   greater: (
-    <>
+    <small key='2'>
       <Flame />
       <span>
         Projetos com grande impacto e reconhecimento geralmente se destacam por
         sua ampla adoção, popularidade e pela força de sua comunidade,
         especialmente quando somados entre si.
       </span>
-    </>
+    </small>
   ),
   less: (
-    <>
-      <Loader />
+    <small key='3'>
+      <Heart />
       <span>
         Descubra e incentive projetos inovadores! Ao contribuir com projetos em
         constante crescimento, você tem a oportunidade de participar do
         amadurecimento de novas ideias e tecnologias. Sua estrela pode colocar
-        um <strong>sorriso</strong> no rosto de quem mantém o projeto ✨
+        um sorriso no rosto de quem mantém o projeto ✨
       </span>
-    </>
+    </small>
   ),
 } as const;
 
@@ -75,7 +65,13 @@ const Projects = (): ReactNode => {
 
   const mergedProjects = useMemo(
     () =>
-      mergeRepositories(projectsByMaintainers.flatMap((projects) => projects)),
+      mergeRepositories(
+        projectsByMaintainers.flatMap((projects) => projects)
+      ).filter(
+        (project) =>
+          !project.categories?.includes('list') &&
+          !project.categories?.includes('educational')
+      ),
     [projectsByMaintainers]
   );
 
@@ -107,7 +103,7 @@ const Projects = (): ReactNode => {
     event.currentTarget.classList.toggle('active');
   };
 
-  const title = "<Brazil class='Open Source' />";
+  const title = "<Brazil class='Projetos' />";
 
   const filter = useCallback(
     (
@@ -279,24 +275,11 @@ const Projects = (): ReactNode => {
               <Name name={title} />
             </h1>
             <small>
-              Uma lista inteligente pra você conhecer projetos{' '}
+              Uma lista inteligente para você conhecer projetos{' '}
               <em>open-source</em> criados e mantidos por desenvolvedores{' '}
-              <strong>brasileiros</strong>.
+              brasileiros.
             </small>
-            <section>
-              <h2>Apoie gratuitamente</h2>
-              <p>🌟 Dê uma estrela para os repositórios que mais gostar.</p>
-              <p>
-                🤝 Contribua resolvendo os issues abertos e tenha seu nome
-                eternizado nos commits do repositório.
-              </p>
-              <p>
-                💡 Use, teste e compartilhe projetos que você nem sabia que
-                tinham nosso querido país envolvido.
-              </p>
-            </section>
           </header>
-
           <h3 onClick={showFilters}>
             Filtros <ChevronDown />
           </h3>
@@ -398,7 +381,7 @@ const Projects = (): ReactNode => {
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 1)}
                 >
-                  <Loader /> Menor Score
+                  <Heart /> Menor Score
                 </button>
               </div>
             </div>
@@ -407,9 +390,7 @@ const Projects = (): ReactNode => {
               <h4>
                 Exibindo <span className='length'>{visibleCount}</span> Projetos
               </h4>
-              <small>
-                <blockquote>{tips[tip]}</blockquote>
-              </small>
+              {tips[tip]}
             </div>
           </menu>
           <div className='container'>
@@ -433,7 +414,6 @@ const Projects = (): ReactNode => {
           </div>
         </main>
       </div>
-      <Link to='/'>Back</Link>
     </Layout>
   );
 };

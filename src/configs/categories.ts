@@ -22,4 +22,5 @@ export const categories = Object.freeze({
   frameworks: 'Livrarias e Frameworks',
   security: 'Segurança e Privacidade',
   productivity: 'Produtividade',
+  list: 'Listas',
 });

@@ -14,11 +14,12 @@ body {
     position: fixed;
     inset: 0;
     background-image: radial-gradient(
-      var(--background-dots-pattern-color) 0.5px,
-      transparent 0.5px
+      ellipse farthest-corner at 10px 10px,
+      var(--background-dots-pattern-color),
+      var(--background-dots-pattern-color) 50%,
+      transparent 50%
     );
     background-size: 10px 10px;
-    filter: blur(var(--background-dots-blur-intensity));
   }
 
   #__docusaurus {

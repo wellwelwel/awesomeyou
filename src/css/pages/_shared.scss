@@ -68,33 +68,6 @@
         font-size: 14px;
         color: #625da4;
       }
-
-      section {
-        @include flex(column, center);
-        width: 100%;
-        padding: 25px;
-        margin-top: 35px;
-        margin-bottom: 15px;
-        background-color: #aae1ff38;
-        border-radius: 10px;
-        color: #104c76;
-        border: 1px solid #b9e2ff;
-        text-align: center;
-
-        h2 {
-          font-family: var(--ifm-font-family-featured);
-          font-size: 14px;
-        }
-
-        p {
-          font-size: 12px;
-          font-weight: 300;
-
-          + p {
-            margin-top: 5px;
-          }
-        }
-      }
     }
 
     & > menu {

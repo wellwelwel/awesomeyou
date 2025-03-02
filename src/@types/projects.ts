@@ -13,7 +13,7 @@ export type ProjectOptions = {
   homebrew?: string;
   vscode?: string;
   chocolatey?: string;
-  madeInBrazil: boolean;
+  madeInBrazil?: boolean;
   isAuthor?: boolean;
 };
 

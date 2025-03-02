@@ -27,8 +27,7 @@
       "languages": ["typescript", "javascript"],
       "description": "Cliente MySQL de alta performance para Node.js, Deno, Bun e Cloudflare Workers.",
       "npm": "mysql2",
-      "categories": ["database", "tool", "backend"],
-      "madeInBrazil": false
+      "categories": ["database", "tool", "backend"]
     },
     {
       "name": "AWS SSL Profiles",

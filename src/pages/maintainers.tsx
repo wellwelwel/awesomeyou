@@ -1,5 +1,6 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout';
 import { ProjectOptions } from '../@types/projects';
 import { randomize } from '../helpers/radomizer';
 
@@ -35,33 +36,40 @@ const loadMaintainers = (): Maintainer[] => {
   return maintainers;
 };
 
-const maintainers = randomize(loadMaintainers());
-
 const MaintainersIndex: React.FC = () => {
+  const rawMaintainers = loadMaintainers();
+  const [maintainers, setMaintainers] = useState<Maintainer[]>([]);
+
+  useEffect(() => {
+    setMaintainers(randomize([...rawMaintainers]));
+  }, []);
+
   return (
-    <main style={{ padding: '2rem', zIndex: 1 }}>
-      <h1>Mantenedores</h1>
+    <Layout title={''} description='Lista de projetos open source do Brasil'>
+      <main style={{ padding: '2rem', zIndex: 1 }}>
+        <h1>Mantenedores</h1>
 
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {maintainers.map((maintainer) => (
-          <li key={maintainer.username} style={{ marginBottom: '2rem' }}>
-            <h2>
-              <Link to={`/maintainers/${maintainer.username}`}>
-                {maintainer.username}
-              </Link>
-            </h2>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+          {maintainers.map((maintainer) => (
+            <li key={maintainer.username} style={{ marginBottom: '2rem' }}>
+              <h2>
+                <Link to={`/maintainers/${maintainer.username}`}>
+                  {maintainer.username}
+                </Link>
+              </h2>
 
-            <ul>
-              {maintainer.projects.map((project, index) => (
-                <li key={index}>
-                  <strong>{project.name || '...'}</strong>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
-    </main>
+              <ul>
+                {maintainer.projects.map((project, index) => (
+                  <li key={index}>
+                    <strong>{project.name || '...'}</strong>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </Layout>
   );
 };
 

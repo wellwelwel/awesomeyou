@@ -80,6 +80,22 @@
           font-weight: 600;
         }
 
+        small {
+          @include flex(column, center);
+          gap: 10px;
+          width: 100%;
+          padding: 20px;
+          margin-top: 35px;
+          margin-bottom: 10px;
+          background-color: #aae1ff38;
+          border-radius: 10px;
+          color: #104c76;
+          border: 1px solid #b9e2ff;
+          text-align: center;
+          font-weight: 500;
+          animation: fadeIn 0.25s ease forwards;
+        }
+
         div {
           @include flex(row, center, flex-start, wrap);
           gap: 7.5px;
@@ -110,7 +126,7 @@
         overflow: hidden;
 
         &.show {
-          animation: showIn 0.25s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+          animation: showIn 0.25s ease forwards;
         }
 
         main {
@@ -295,8 +311,8 @@
                 grid-template-rows: 0fr;
                 pointer-events: none;
                 transition:
-                  grid-template-rows 0.25s,
-                  opacity 0.25s ease;
+                  grid-template-rows 0.15s,
+                  opacity 0.5s ease;
 
                 tbody {
                   width: 100%;
@@ -346,6 +362,10 @@
 
                       a {
                         gap: 5px;
+
+                        &:hover {
+                          color: #4ba2ff;
+                        }
                       }
 
                       & > svg {

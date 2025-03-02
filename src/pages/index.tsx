@@ -6,6 +6,8 @@ import {
   Calculator,
   ChevronRight,
   Code,
+  GraduationCap,
+  List,
   PackagePlus,
   UsersRound,
 } from 'lucide-react';
@@ -79,15 +81,27 @@ export default (): ReactNode => {
           </header>
           <footer>
             <p>
-              <PackagePlus />
-              <Link to='new'>
-                Submeta seu projeto <ChevronRight />
+              <GraduationCap />
+              <Link to='learn'>
+                Aprenda Programação <ChevronRight />
+              </Link>
+            </p>
+            <p>
+              <List />
+              <Link to='lists'>
+                Conheça outras listas incríveis <ChevronRight />
               </Link>
             </p>
             <p>
               <Calculator />
               <Link to='calculator'>
                 Descubra o score do seu projeto <ChevronRight />
+              </Link>
+            </p>
+            <p>
+              <PackagePlus />
+              <Link to='new'>
+                Submeta seu projeto <ChevronRight />
               </Link>
             </p>
           </footer>

@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react';
 import React, { memo, useEffect } from 'react';
+import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
+import { Code, Github, LandPlot, UsersRound } from 'lucide-react';
 import { Toaster } from 'sonner';
+import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
   const location = useLocation();
@@ -40,7 +43,22 @@ const Navbar = (): ReactNode => {
   return (
     <>
       <Toaster richColors={true} theme='light' position='top-right' />
-      <header></header>
+      <header className='main-header'>
+        <Link to='/'>
+          <LandPlot />
+        </Link>
+        <aside>
+          <Link to='/projects'>
+            <Code /> Projetos
+          </Link>
+          <Link to='/maintainers'>
+            <UsersRound /> Pessoas
+          </Link>
+          <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
+            <Github />
+          </SafeLink>
+        </aside>
+      </header>
     </>
   );
 };

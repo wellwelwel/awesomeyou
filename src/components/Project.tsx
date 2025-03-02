@@ -155,7 +155,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
       ref={inViewRef}
       className={inView ? 'show' : 'hide'}
       data-repository={repositoryURL}
-      data-madeinbrazil={Number(madeInBrazil)}
+      data-madeinbrazil={Number(madeInBrazil) || 0}
       {...currentCategories?.reduce((acc, category) => {
         const key = `data-${category}`;
 

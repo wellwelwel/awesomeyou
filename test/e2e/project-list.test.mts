@@ -6,12 +6,16 @@ const require = createRequire(import.meta.url);
 const { mergeRepositories } = require('@site/src/helpers/merge-projects');
 
 test('Ensure projects are the same length', async () => {
-  const html = await readFile('./build/projects/index.html', 'utf8');
+  const projects = await readFile('./build/projects/index.html', 'utf8');
+  const lists = await readFile('./build/lists/index.html', 'utf8');
+  const learn = await readFile('./build/learn/index.html', 'utf8');
   const files = await listFiles('./content/maintainers/', {
     filter: /projects\.json/,
   });
 
-  const uniqueRepositories = new Set<string>();
+  const uniqueProjects = new Set<string>();
+  const uniqueLists = new Set<string>();
+  const uniqueLearn = new Set<string>();
 
   const filesContent = await Promise.all(
     files.map((file) => readFile(file, 'utf8'))
@@ -28,10 +32,26 @@ test('Ensure projects are the same length', async () => {
       projectsByMaintainers.flatMap((projects: any) => projects)
     );
 
-    for (const project of projects) uniqueRepositories.add(project.repository);
+    for (const project of projects) {
+      if (project?.categories.includes('list')) {
+        uniqueLists.add(project.repository);
+        continue;
+      }
+
+      if (project?.categories.includes('educational')) {
+        uniqueLearn.add(project.repository);
+        continue;
+      }
+
+      uniqueProjects.add(project.repository);
+    }
   }
 
   strict(
-    html.includes(`<span class="length">${uniqueRepositories.size}</span>`)
+    projects.includes(`<span class="length">${uniqueProjects.size}</span>`)
   );
+
+  strict(learn.includes(`<span class="length">${uniqueLearn.size}</span>`));
+
+  strict(lists.includes(`<span class="length">${uniqueLists.size}</span>`));
 });
