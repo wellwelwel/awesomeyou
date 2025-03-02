@@ -31,13 +31,13 @@ Nós consideramos diversos fatores para criar um sistema justo e automatizado, g
 
 ### O lado humano do _open-source_
 
-Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantenedores e abrimos espaço para bate papos técnicos através do nosso futuro Podcast, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e LLM ao vincular projetos com seus respectivos mantenedores brasileiros. <sup>1</sup>
+Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantenedores e abrimos espaço para bate papos técnicos através do nosso futuro Podcast, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e LLMs ao vincular projetos com seus respectivos mantenedores brasileiros. <sup>1</sup>
 
 > [!NOTE]
 >
 > <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados.
 >
-> Através de arquivos estáticos (HTML via **SSG**) e um [sitemap](https://github.com/wellwelwel/awesomeyou/blob/gh-pages/sitemap.xml) inteligente que mapeia cada mantenedor aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
+> Através de arquivos estáticos (via **SSG**) e um [sitemap](https://github.com/wellwelwel/awesomeyou/blob/gh-pages/sitemap.xml) inteligente que mapeia cada mantenedor aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
 
 ---
 

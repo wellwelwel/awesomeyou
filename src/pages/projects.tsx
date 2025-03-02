@@ -72,6 +72,7 @@ const Projects = (): ReactNode => {
   const [scores, setScores] = useState<Record<string, number> | null>(null);
   const [tip, setTip] = useState<keyof typeof tips>('default');
   const projectsByMaintainers = useMemo(() => projects(), []);
+
   const mergedProjects = useMemo(
     () =>
       mergeRepositories(projectsByMaintainers.flatMap((projects) => projects)),
@@ -82,11 +83,31 @@ const Projects = (): ReactNode => {
   const projectsLength = allProjects.length;
   const [visibleCount, setVisibleCount] = useState(projectsLength);
 
-  const title = "<Brazil class='Open Source' />";
+  const usedLanguages = useMemo(() => {
+    const languageSet = new Set<string>();
+    allProjects.forEach((project) => {
+      if (project.languages) {
+        project.languages.forEach((lang) => languageSet.add(String(lang)));
+      }
+    });
+    return languageSet;
+  }, [allProjects]);
+
+  const usedCategories = useMemo(() => {
+    const categorySet = new Set<string>();
+    allProjects.forEach((project) => {
+      if (project.categories) {
+        project.categories.forEach((cat) => categorySet.add(String(cat)));
+      }
+    });
+    return categorySet;
+  }, [allProjects]);
 
   const showFilters = (event: MouseEvent<HTMLHeadingElement>) => {
     event.currentTarget.classList.toggle('active');
   };
+
+  const title = "<Brazil class='Open Source' />";
 
   const filter = useCallback(
     (
@@ -291,8 +312,9 @@ const Projects = (): ReactNode => {
                   >
                     Todas
                   </button>
-                  {Object.entries(sortObjectByValues(languages)).map(
-                    ([key, name]) => (
+                  {Object.entries(sortObjectByValues(languages))
+                    .filter(([key]) => usedLanguages.has(key))
+                    .map(([key, name]) => (
                       <button
                         key={`filter:languages:${key}`}
                         data-filter='language'
@@ -300,8 +322,7 @@ const Projects = (): ReactNode => {
                       >
                         {name}
                       </button>
-                    )
-                  )}
+                    ))}
                 </div>
               </div>
               <div>
@@ -314,8 +335,9 @@ const Projects = (): ReactNode => {
                   >
                     Todas
                   </button>
-                  {Object.entries(sortObjectByValues(categories)).map(
-                    ([key, name]) => (
+                  {Object.entries(sortObjectByValues(categories))
+                    .filter(([key]) => usedCategories.has(key))
+                    .map(([key, name]) => (
                       <button
                         key={`filter:categories:${key}`}
                         data-filter='category'
@@ -323,8 +345,7 @@ const Projects = (): ReactNode => {
                       >
                         {name}
                       </button>
-                    )
-                  )}
+                    ))}
                 </div>
               </div>
             </div>
