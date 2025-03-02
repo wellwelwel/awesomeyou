@@ -1,4 +1,4 @@
-# Sistema de Pontuação
+# Sistema de Pontos
 
 A iniciativa vai além de uma lista:
 

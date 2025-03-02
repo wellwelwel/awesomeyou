@@ -10,7 +10,7 @@
 
 Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
 
-Que incluir seu projeto ou de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Cadastrar meu Projeto**](#), siga as instruções na própia página e abra seu **Pull Request**.
+Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Cadastrar meu Projeto**](#), siga as instruções na própia página e abra seu **Pull Request**.
 
 > [!TIP]
 >
