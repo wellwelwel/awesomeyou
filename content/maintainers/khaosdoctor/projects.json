@@ -18,7 +18,8 @@
       "categories": ["tool"],
       "languages": ["typescript", "javascript"],
       "npm": "gotql",
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

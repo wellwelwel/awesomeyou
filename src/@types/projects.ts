@@ -14,6 +14,7 @@ export type ProjectOptions = {
   vscode?: string;
   chocolatey?: string;
   madeInBrazil: boolean;
+  isAuthor?: boolean;
 };
 
 export type RawProject = {

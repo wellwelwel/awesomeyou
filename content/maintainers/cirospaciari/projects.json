@@ -18,7 +18,8 @@
       "categories": ["performance", "tool"],
       "languages": ["python"],
       "pypi": "socketify",
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

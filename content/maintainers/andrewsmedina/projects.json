@@ -8,14 +8,16 @@
       "description": "Python test framework for web applications.",
       "categories": ["test", "ci"],
       "pypi": "splinter",
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "repository": "https://github.com/tsuru/tsuru",
       "languages": ["go"],
       "description": "Open source and extensible Platform as a Service (PaaS).",
       "categories": ["app"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

@@ -7,7 +7,8 @@
       "description": "A massively parallel, optimal functional runtime in Rust.",
       "categories": ["language"],
       "languages": ["rust"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "name": "Bend",
@@ -15,7 +16,8 @@
       "description": "A massively parallel, high-level programming language.",
       "categories": ["language"],
       "languages": ["rust"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

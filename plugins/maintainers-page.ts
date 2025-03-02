@@ -1,5 +1,4 @@
-import { constants } from 'node:fs';
-import { access, readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Plugin } from '@docusaurus/types';
 import { ProjectOptions } from '@site/src/@types/projects';
@@ -11,13 +10,6 @@ export interface ProcessedMaintainer {
 
 const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
   const maintainersDir = resolve('./content/maintainers');
-
-  try {
-    await access(maintainersDir, constants.F_OK);
-  } catch {
-    throw new Error(`Directory not found: ${maintainersDir}`);
-  }
-
   const dirents = await readdir(maintainersDir, { withFileTypes: true });
   const maintainerDirs = dirents
     .filter((dirent) => dirent.isDirectory())
@@ -27,18 +19,11 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
 
   for (const username of maintainerDirs) {
     const projectsFile = join(maintainersDir, username, 'projects.json');
+    const fileContents = await readFile(projectsFile, 'utf8');
+    const projectsData = JSON.parse(fileContents);
 
-    try {
-      await access(projectsFile, constants.F_OK);
-      const fileContents = await readFile(projectsFile, 'utf8');
-      const projectsData = JSON.parse(fileContents);
-
-      if (projectsData && Array.isArray(projectsData.projects)) {
-        maintainers.push({ username, projects: projectsData.projects });
-      }
-    } catch (error) {
-      console.error(`Error reading or parsing file ${projectsFile}:`, error);
-    }
+    if (projectsData && Array.isArray(projectsData.projects))
+      maintainers.push({ username, projects: projectsData.projects });
   }
 
   return maintainers;

@@ -7,7 +7,8 @@
       "description": "One theme. All platforms.",
       "categories": ["theme"],
       "madeInBrazil": true,
-      "vscode": "dracula-theme.theme-dracula"
+      "vscode": "dracula-theme.theme-dracula",
+      "isAuthor": true
     },
     {
       "name": "React Email",
@@ -16,7 +17,8 @@
       "npm": "@react-email/components",
       "categories": ["tool", "frontend"],
       "languages": ["typescript", "javascript"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

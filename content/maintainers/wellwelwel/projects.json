@@ -9,7 +9,8 @@
       "description": "Poku torna testes fáceis para Node.js, Bun, Deno e você ao mesmo tempo.",
       "npm": "poku",
       "categories": ["test", "ci", "cli", "backend"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "repository": "https://github.com/wellwelwel/lru.min",
@@ -17,7 +18,8 @@
       "description": "Um cache baseado em LRU extremamente rápido e eficiente para JavaScript com alta compatibilidade (incluindo navegadores antigos).",
       "npm": "lru.min",
       "categories": ["performance", "backend", "frontend", "tool"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "name": "MySQL2",
@@ -35,7 +37,8 @@
       "description": "Centralização de certificados AWS RDS (SSL) para clientes SQL como mysql, mysql2 e pg, dentre outros.",
       "npm": "aws-ssl-profiles",
       "categories": ["productivity", "plugin", "database", "backend"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

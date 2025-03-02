@@ -7,7 +7,8 @@
       "description": "Lwan is a high-performance & scalable web server.",
       "categories": ["devops", "performance"],
       "languages": ["c"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

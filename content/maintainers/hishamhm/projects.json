@@ -7,7 +7,8 @@
       "description": "LuaRocks is the package manager for the Lua programming language.",
       "languages": ["lua"],
       "categories": ["tool"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

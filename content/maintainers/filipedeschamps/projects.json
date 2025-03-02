@@ -6,7 +6,8 @@
       "languages": ["javascript"],
       "description": "Conteúdos para quem trabalha com Programação e Tecnologia.",
       "categories": ["app"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "name": "Brasil API",
@@ -14,7 +15,8 @@
       "languages": ["javascript"],
       "description": "Vamos transformar o Brasil em uma API?",
       "categories": ["api"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

@@ -9,7 +9,8 @@
       "categories": ["language"],
       "homebrew": "elixir",
       "chocolatey": "elixir",
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     },
     {
       "name": "Devise",
@@ -17,7 +18,8 @@
       "languages": ["ruby"],
       "description": "Flexible authentication solution for Rails with Warden.",
       "categories": ["tool"],
-      "madeInBrazil": true
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }

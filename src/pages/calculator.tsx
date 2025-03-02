@@ -108,7 +108,7 @@ export default (): ReactNode => {
       <div id='home'>
         <main>
           <header>
-            <h1>Teste</h1>
+            <h1>Teste 2</h1>
             <small>...</small>
             <section>
               <h2>Verifique seu score</h2>

@@ -16,6 +16,7 @@
     "build:projects": "tsx tools/generate-stats.mts && tsx tools/generate-scores.mts",
     "prebuild": "npm run build:projects && npm run build:maintainers",
     "build": "docusaurus build",
+    "postbuild": "tsx tools/modify-sitemap.mts",
     "swizzle": "docusaurus swizzle",
     "clear": "docusaurus clear",
     "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i && npm run update",
@@ -42,15 +43,16 @@
     "@docusaurus/types": "3.7.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@mdx-js/react": "^3.1.0",
-    "@types/node": "^22.13.5",
+    "@types/node": "^22.13.8",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/webpack-env": "^1.18.8",
+    "@types/xml2js": "^0.4.14",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "docusaurus-plugin-sass": "^0.2.6",
     "lru.min": "^1.1.1",
-    "lucide-react": "^0.476.0",
+    "lucide-react": "^0.477.0",
     "packages-update": "^2.0.0",
     "poku": "^3.0.1",
     "prettier": "^3.5.2",
@@ -62,7 +64,8 @@
     "sass": "^1.85.1",
     "sonner": "^2.0.1",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.2",
+    "xml2js": "^0.6.2"
   },
   "browserslist": {
     "production": [

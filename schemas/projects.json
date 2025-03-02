@@ -116,6 +116,10 @@
           "madeInBrazil": {
             "type": "boolean",
             "description": "O projeto foi feito por brasileiros?"
+          },
+          "isAuthor": {
+            "type": "boolean",
+            "description": "O projeto foi criado pelo mantenedor atual?"
           }
         },
         "required": ["description", "repository", "madeInBrazil"],
