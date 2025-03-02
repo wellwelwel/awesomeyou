@@ -386,15 +386,18 @@
 
                   section {
                     position: absolute;
-                    left: 0;
-                    right: 0;
-                    top: 0;
+                    left: 20px;
+                    right: 20px;
+                    top: 20px;
+                    align-items: center;
                     justify-content: center;
-                    width: 100%;
+                    gap: 15px;
                     height: 275px;
                     padding-bottom: 0;
                     border-radius: 10px;
                     background-color: #1e2fb2ea;
+                    border: 1px solid #4b60ffea;
+                    box-shadow: 0 0 7.5px #00000050;
                     color: #fff;
                     transition:
                       transform 0.25s cubic-bezier(0.75, -0.25, 0.2, 0.9),
@@ -413,6 +416,31 @@
                       width: 92px;
                       height: 92px;
                       object-fit: contain;
+                      filter: drop-shadow(1px 1px 2px #0000008d);
+                    }
+
+                    header {
+                      @include flex(row, center, flex-start);
+                      gap: 15px;
+                      width: 100%;
+                      text-shadow: 1px 1px 2.5px #000000cc;
+
+                      h4 {
+                        font-weight: 600;
+                        margin-bottom: 7.5px;
+
+                        strong {
+                          font-size: 12px;
+                          font-weight: 500;
+                        }
+                      }
+                    }
+
+                    footer {
+                      width: 75%;
+                      border-top: 2.5px solid #5cabff;
+                      padding-inline: 0;
+                      padding-top: 15px;
                     }
 
                     div {
@@ -440,7 +468,7 @@
                       background-position: center;
                       background-size: 200%;
                       mix-blend-mode: multiply;
-                      filter: blur(15px) opacity(0.25) grayscale(0.5);
+                      filter: blur(12.5px) opacity(0.25) grayscale(0.5);
                       overflow: hidden;
                     }
                   }

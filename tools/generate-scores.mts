@@ -41,6 +41,7 @@ for (const content of parsedContents) {
     npm: stats?.npm?.value,
     pypi: stats?.pypi?.value,
     vscode: stats?.vscode?.value,
+    chocolatey: stats?.chocolatey?.value,
     stars: stats?.stars?.value,
     issues: stats?.issues?.value,
     closedIssues: stats?.closedIssues?.value,

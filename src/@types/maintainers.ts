@@ -3,5 +3,4 @@ export type MaintainerInfo = {
   bio: string;
   blog: string;
   location: string;
-  hireable: boolean;
 };

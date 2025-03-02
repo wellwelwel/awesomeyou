@@ -23,7 +23,7 @@
       "name": "MySQL2",
       "repository": "https://github.com/sidorares/node-mysql2",
       "languages": ["typescript", "javascript"],
-      "description": "Cliente MySQL de alta performance mais baixado do ecossistema JavaScript, compatível com Node.js, Deno, Bun e Cloudflare Workers.",
+      "description": "Cliente MySQL de alta performance para Node.js, Deno, Bun e Cloudflare Workers.",
       "npm": "mysql2",
       "categories": ["database", "tool", "backend"],
       "madeInBrazil": false

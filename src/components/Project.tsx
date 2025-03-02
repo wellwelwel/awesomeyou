@@ -42,6 +42,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   pypi,
   homebrew,
   vscode,
+  chocolatey,
   maintainers,
   languages: currentLanguages,
   categories: currentCategories,
@@ -105,7 +106,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
               bio: '',
               blog: '',
               location: '',
-              hireable: null,
             },
           ])
       )
@@ -264,7 +264,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   </tr>
 
                   {npm ? (
-                    <tr>
+                    <tr title='npm'>
                       <td>
                         <span>Downloads por mês:</span>
                       </td>
@@ -278,7 +278,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   ) : null}
 
                   {homebrew ? (
-                    <tr>
+                    <tr title='Homebrew'>
                       <td>
                         <span>Downloads por mês:</span>
                       </td>
@@ -294,7 +294,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   ) : null}
 
                   {pypi ? (
-                    <tr>
+                    <tr title='PyPi'>
                       <td>
                         <span>Downloads por mês:</span>
                       </td>
@@ -307,8 +307,24 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     </tr>
                   ) : null}
 
+                  {chocolatey ? (
+                    <tr title='Chocolatey'>
+                      <td>
+                        <span>Downloads Totais:</span>
+                      </td>
+                      <td>
+                        <SafeLink
+                          to={`https://community.chocolatey.org/packages/${chocolatey}`}
+                        >
+                          <img loading='lazy' src='/img/chocolatey.svg' />
+                          {stats?.chocolatey?.label}
+                        </SafeLink>
+                      </td>
+                    </tr>
+                  ) : null}
+
                   {vscode ? (
-                    <tr>
+                    <tr title='Visual Studio Code Marketplace'>
                       <td>
                         <span>Downloads Totais:</span>
                       </td>
@@ -396,7 +412,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <ArrowUpDown />
                   {maintainersInfos[maintainer]?.name ? (
                     <section>
-                      <div>
+                      <header>
                         <aside>
                           <img
                             src={`https://avatars.githubusercontent.com/${maintainer}`}
@@ -413,22 +429,24 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                             <div>{maintainersInfos[maintainer].bio}</div>
                           ) : null}
                         </aside>
-                      </div>
+                      </header>
 
-                      {maintainersInfos[maintainer].location ? (
-                        <div>
-                          <MapPin /> {maintainersInfos[maintainer].location}
-                        </div>
-                      ) : null}
-                      {maintainersInfos[maintainer].blog ? (
-                        <div>
-                          <Network />
-                          {maintainersInfos[maintainer].blog.replace(
-                            /(^http(s)?:\/\/)|\/$/g,
-                            ''
-                          )}
-                        </div>
-                      ) : null}
+                      <footer>
+                        {maintainersInfos[maintainer].location ? (
+                          <div>
+                            <MapPin /> {maintainersInfos[maintainer].location}
+                          </div>
+                        ) : null}
+                        {maintainersInfos[maintainer].blog ? (
+                          <div>
+                            <Network />
+                            {maintainersInfos[maintainer].blog.replace(
+                              /(^http(s)?:\/\/)|\/$/g,
+                              ''
+                            )}
+                          </div>
+                        ) : null}
+                      </footer>
                     </section>
                   ) : null}
                 </Link>

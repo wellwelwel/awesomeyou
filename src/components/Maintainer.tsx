@@ -16,7 +16,7 @@ const MaintainerPage: React.FC<MaintainerPageProps> = ({ data }) => {
       <header>
         <img
           src={`https://avatars.githubusercontent.com/${username}`}
-          loading='lazy'
+          loading='eager'
           alt={`${username} profile avatar`}
         />
         <h1>

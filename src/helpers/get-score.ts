@@ -50,6 +50,8 @@ export const getScore = (options: {
   homebrew?: number;
   /* Impact: Downloads & Installations */
   pypi?: number;
+  /* Impact: Downloads & Installations */
+  chocolatey?: number;
   /* Community */
   contributors?: number;
   /* Maintenance: Activity */
@@ -66,6 +68,7 @@ export const getScore = (options: {
     npm,
     pypi,
     vscode,
+    chocolatey,
     stars,
     commits,
     closedIssues,
@@ -82,6 +85,11 @@ export const getScore = (options: {
   if (typeof vscode === 'number')
     score +=
       Math.floor(vscode / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS;
+
+  if (typeof chocolatey === 'number')
+    score +=
+      Math.floor(chocolatey / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
       SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS;
 
   // Monthly Downloads

@@ -171,6 +171,14 @@ const pypiDownloads = async (pypi: string) => {
   return setResult(results.value.replace(/month/, 'mês'));
 };
 
+const chocoDownloads = async (chocolatey: string) => {
+  const results = await (
+    await fetch(`https://img.shields.io/chocolatey/dt/${chocolatey}.json`)
+  ).json();
+
+  return setResult(results.value.replace(/month/, 'mês'));
+};
+
 const vscodeDownloads = async (vscode: string) => {
   const getDownloadsManually = async () => {
     try {
@@ -220,7 +228,14 @@ export const processProject = async (
     results: ProjectStats;
   }) => unknown
 ) => {
-  const { repository: repositoryURL, npm, pypi, homebrew, vscode } = options;
+  const {
+    repository: repositoryURL,
+    npm,
+    pypi,
+    homebrew,
+    vscode,
+    chocolatey,
+  } = options;
   const { organization, repository } = extractRepository(repositoryURL);
   const results = Object.create(null);
 
@@ -246,6 +261,7 @@ export const processProject = async (
   if (homebrew) results.homebrew = await homebrewDownloads(homebrew);
   if (pypi) results.pypi = await pypiDownloads(pypi);
   if (vscode) results.vscode = await vscodeDownloads(vscode);
+  if (chocolatey) results.chocolatey = await chocoDownloads(chocolatey);
 
   return await cb({
     organization,

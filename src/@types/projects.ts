@@ -12,6 +12,7 @@ export type ProjectOptions = {
   pypi?: string;
   homebrew?: string;
   vscode?: string;
+  chocolatey?: string;
   madeInBrazil: boolean;
 };
 
@@ -64,6 +65,10 @@ export type ProjectStats = {
     label: string;
   };
   vscode?: {
+    value: number;
+    label: string;
+  };
+  chocolatey?: {
     value: number;
     label: string;
   };

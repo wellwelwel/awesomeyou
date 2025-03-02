@@ -109,6 +109,10 @@
             "type": "string",
             "description": "Nome do pacote Homebrew, se existir."
           },
+          "chocolatey": {
+            "type": "string",
+            "description": "Nome do pacote Chocolatey, se existir."
+          },
           "madeInBrazil": {
             "type": "boolean",
             "description": "O projeto foi feito por brasileiros?"

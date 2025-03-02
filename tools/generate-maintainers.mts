@@ -24,9 +24,9 @@ const getGitHubUserName = async (username: string) => {
     headers: typeof token ? { Authorization: `Bearer ${token}` } : undefined,
   });
 
-  const { name, bio, location, blog, hireable } = await response.json();
+  const { name, bio, location, blog } = await response.json();
 
-  return { name, bio, location, blog, hireable };
+  return { name, bio, location, blog };
 };
 
 const files = await listFiles('./content/maintainers/', {
@@ -48,13 +48,11 @@ for (const file of files) {
     await sleep(waitTimeMs);
   }
 
-  getGitHubUserName(username).then(
-    async ({ name, bio, location, blog, hireable }) => {
-      await mkdir(base, { recursive: true });
-      await writeFile(
-        `${base}/infos.json`,
-        JSON.stringify({ name, bio, location, blog, hireable }, null, 0)
-      );
-    }
-  );
+  getGitHubUserName(username).then(async ({ name, bio, location, blog }) => {
+    await mkdir(base, { recursive: true });
+    await writeFile(
+      `${base}/infos.json`,
+      JSON.stringify({ name, bio, location, blog }, null, 0)
+    );
+  });
 }

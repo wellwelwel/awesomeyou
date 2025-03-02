@@ -47,6 +47,12 @@ for (const { schemaPath, path, filter } of schemas) {
             project.repository
           );
 
+          strict.strictEqual(
+            project.repository,
+            project.repository.trim(),
+            `${organization}/${repository}: Ensure repository URL is trimmed`
+          );
+
           strict(
             organization,
             `${organization}/${repository}: Ensure organization name exists`
@@ -85,6 +91,18 @@ for (const { schemaPath, path, filter } of schemas) {
             `${organization}/${repository}: Ensure project description does not contain emojis or symbols`
           );
 
+          strict.match(
+            project.description,
+            /(\.|!|\?)$/,
+            `${organization}/${repository}: Ensure project description ends with a valid pontuation`
+          );
+
+          strict.strictEqual(
+            project.description,
+            project.description.trim(),
+            `${organization}/${repository}: Ensure project description is trimmed`
+          );
+
           if (project.name) {
             strict(
               project.name.length <= 50,
@@ -96,12 +114,24 @@ for (const { schemaPath, path, filter } of schemas) {
               invalidChars,
               `${organization}/${repository}: Ensure project name does not contain emojis or symbols`
             );
+
+            strict.strictEqual(
+              project.name,
+              project.name.trim(),
+              `${organization}/${repository}: Ensure project name is trimmed`
+            );
           }
 
           if (project.message) {
             strict(
               project.message.length <= 120,
               `${organization}/${repository}: Ensure message (CTA) length (${project.message.length}/120)`
+            );
+
+            strict.strictEqual(
+              project.message,
+              project.message.trim(),
+              `${organization}/${repository}: Ensure project description is trimmed`
             );
           }
 

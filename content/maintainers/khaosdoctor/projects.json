@@ -8,6 +8,7 @@
       "categories": ["language"],
       "languages": ["cpp"],
       "homebrew": "node",
+      "chocolatey": "nodejs",
       "madeInBrazil": false
     },
     {
