@@ -1,4 +1,4 @@
-name: '🚀 CD (Website) — Update'
+name: '⏲️ CD (Website) — Auto Update'
 
 on:
   schedule:
@@ -58,6 +58,14 @@ jobs:
       - name: Building Site
         run: npm run build
 
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PAT }}
+          publish_dir: ./build
+          cname: awesomeyou.io
+          allow_empty_commit: true
+
       - name: Update Projects Cache
         uses: actions/cache@v4
         with:
@@ -69,11 +77,3 @@ jobs:
         with:
           path: content/assets/json/maintainers
           key: json-assets-maintainers
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.PAT }}
-          publish_dir: ./build
-          cname: awesomeyou.io
-          allow_empty_commit: true

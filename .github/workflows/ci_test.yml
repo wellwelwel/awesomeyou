@@ -59,17 +59,5 @@ jobs:
       - name: Building Site
         run: npm run build
 
-      - name: Update Projects Cache
-        uses: actions/cache@v4
-        with:
-          path: content/assets/json/projects
-          key: json-assets-projects
-
-      - name: Update Maintainers Cache
-        uses: actions/cache@v4
-        with:
-          path: content/assets/json/maintainers
-          key: json-assets-maintainers
-
       - name: Testing Projects
         run: npm test
