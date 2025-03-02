@@ -10,14 +10,6 @@
       "vscode": "dracula-theme.theme-dracula"
     },
     {
-      "repository": "https://github.com/zenorocha/clipboard.js",
-      "description": "Modern copy to clipboard. No Flash. Just 3kb gzipped.",
-      "npm": "clipboard",
-      "categories": ["tool"],
-      "languages": ["javascript"],
-      "madeInBrazil": true
-    },
-    {
       "name": "React Email",
       "repository": "https://github.com/resend/react-email",
       "description": "Build and send emails using React.",
