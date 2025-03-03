@@ -5,7 +5,7 @@
       "name": "Padrões de commits",
       "repository": "https://github.com/iuricode/padroes-de-commits",
       "description": "Padrões de commits.",
-      "categories": ["educational"],
+      "categories": ["educational", "git"],
       "madeInBrazil": true,
       "isAuthor": true
     }

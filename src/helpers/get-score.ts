@@ -4,7 +4,7 @@ export const SCORE_FACTORS = Object.freeze({
   DIRECT_REPOSITORY_DEPENDENTS_POINTS: 4,
   DIRECT_REPOSITORY_DEPENDENTS_INTERVAL: 10,
   TOTAL_DOWNLOADS_POINTS: 2,
-  TOTAL_DOWNLOADS_INTERVAL: 5000,
+  TOTAL_DOWNLOADS_INTERVAL: 2000,
   MONTHLY_DOWNLOADS_POINTS: 3,
   MONTHLY_DOWNLOADS_INTERVAL: 1000,
   CONTRIBUTOR_POINTS: 5,
@@ -33,7 +33,7 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
  * - Each star equals 1 point.
  * - Each fork equals 2 points.
  * - Each commit contributor equals 5 points.
- * - Each interval of 5,000 total downloads equals 2 points.
+ * - Each interval of 2,000 total downloads equals 2 points.
  * - Each interval of 1,000 downloads per month equals 3 points.
  * - Each issue closed equals 2 points, limited to 50% of the current accumulated score.
  * - Each 10 direct repository dependents equals 4 points, limited to 50% of the current accumulated score.

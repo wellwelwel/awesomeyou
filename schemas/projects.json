@@ -25,7 +25,7 @@
           },
           "message": {
             "type": "string",
-            "description": "Escreve um CTA ou uma mensagem personalizada para quem visualizar seu projeto."
+            "description": "Escreva um CTA ou uma mensagem personalizada para quem visualizar seu projeto."
           },
           "languages": {
             "type": "array",
@@ -89,7 +89,8 @@
                 "frameworks",
                 "security",
                 "productivity",
-                "list"
+                "list",
+                "git"
               ]
             },
             "uniqueItems": true

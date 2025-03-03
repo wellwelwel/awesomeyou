@@ -63,7 +63,7 @@ As pontuações com base em impacto são baseadas na quantidade de dependentes d
 
 - Cada **10** dependentes diretos equivalem a **4** pontos, limitado a 50% da pontuação acumulada.
 - Métricas que podem ser medidas mensalmente valem **3** pontos a cada **1.000** downloads mensais.
-- Métricas que não podem ser medidas por períodos valem **2** pontos a cada **5.000** downloads ou instalações.
+- Métricas que não podem ser medidas por períodos valem **2** pontos a cada **2.000** downloads ou instalações totais.
 
 **Por que um intervalo tão grande de downloads ou instalações?**
 

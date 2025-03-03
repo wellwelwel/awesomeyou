@@ -5,7 +5,7 @@
       "name": "Vagas",
       "repository": "https://github.com/frontendbr/vagas",
       "description": "Espaço para divulgação de vagas para front-enders.",
-      "categories": ["career", "frontend"],
+      "categories": ["list", "career", "frontend"],
       "madeInBrazil": true,
       "isAuthor": true
     },

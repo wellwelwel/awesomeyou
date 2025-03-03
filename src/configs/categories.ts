@@ -23,4 +23,5 @@ export const categories = Object.freeze({
   security: 'Segurança e Privacidade',
   productivity: 'Produtividade',
   list: 'Listas',
+  git: 'Git',
 });
