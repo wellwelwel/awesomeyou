@@ -73,6 +73,10 @@ export type ProjectStats = {
     value: number;
     label: string;
   };
+  repositoryDependents?: {
+    value: number;
+    label: string;
+  };
 };
 
 export type ScoreSimulator = ProjectStats & {

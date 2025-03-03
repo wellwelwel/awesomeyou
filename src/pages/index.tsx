@@ -79,7 +79,7 @@ export default (): ReactNode => {
               </section>
             </menu>
           </header>
-          <footer>
+          <main>
             <p>
               <GraduationCap />
               <Link to='learn'>
@@ -104,7 +104,7 @@ export default (): ReactNode => {
                 Submeta seu projeto <ChevronRight />
               </Link>
             </p>
-          </footer>
+          </main>
         </main>
       </div>
     </Layout>

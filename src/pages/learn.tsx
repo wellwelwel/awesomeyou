@@ -1,7 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
-import { Dices, Flame, Heart } from 'lucide-react';
+import { Dices, Flame, Sprout } from 'lucide-react';
 import { Name } from '@site/src//components/Name';
 import { Project } from '@site/src/components/Project';
 import { extractRepository } from '@site/src/helpers/extract-repository';
@@ -16,8 +16,8 @@ export const tips = {
     <small key='1'>
       <Dices />
       <span>
-        Por padrão, as listas são exibidas em ordem aleatória. Assim, você
-        sempre irá descobrir listas novas toda vez que voltar aqui.
+        Por padrão, as conteúdos são exibidas em ordem aleatória. Assim, você
+        sempre irá descobrir novos conteúdos toda vez que voltar aqui.
       </span>
     </small>
   ),
@@ -25,7 +25,7 @@ export const tips = {
     <small key='2'>
       <Flame />
       <span>
-        Projetos com grande impacto e reconhecimento geralmente se destacam por
+        Conteúdos com grande impacto e reconhecimento geralmente se destacam por
         sua ampla adoção, popularidade e pela força de sua comunidade,
         especialmente quando somados entre si.
       </span>
@@ -33,12 +33,17 @@ export const tips = {
   ),
   less: (
     <small key='3'>
-      <Heart />
+      <Sprout />
       <span>
-        Descubra e incentive projetos inovadores! Ao contribuir com projetos em
-        constante crescimento, você tem a oportunidade de participar do
-        amadurecimento de novas ideias e tecnologias. Sua estrela pode colocar
-        um sorriso no rosto de quem mantém o projeto ✨
+        <p>
+          Descubra e incentive novos conteúdos! Ao contribuir com projetos em
+          constante crescimento, você tem a oportunidade de participar do
+          amadurecimento de novas ideias.
+        </p>
+        <p>
+          Sua estrela pode colocar um sorriso no rosto de quem mantém o projeto
+          ✨
+        </p>
       </span>
     </small>
   ),
@@ -169,7 +174,7 @@ const Projects = (): ReactNode => {
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 1)}
                 >
-                  <Heart /> Menor Score
+                  <Sprout /> Menor Score
                 </button>
               </div>
             </div>

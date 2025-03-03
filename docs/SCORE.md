@@ -19,17 +19,17 @@ Por exemplo, um projeto com poucas estrelas, mas que tenha contribuições de ou
 
 Projeto com uma comunidade forte:
 
-- Com **15** contribuidores, **0** instalações ou downloads, **20** forks, **50** estrelas, **10** issues abertas e **55** issues fechadas conseguiria quebrar a barreira dos **250** pontos.
+- Com **15** contribuidores, **0** instalações ou downloads, **20** forks, **55** estrelas, **5** issues abertas e **45** issues fechadas conseguiria quebrar a barreira dos **250** pontos.
 
 Projeto com alto impacto, mas baixa popularidade:
 
-- Com **5** contribuidores, **50.000** instalações ou downloads, **5** forks, **10** estrelas, **0** issues abertas e **30** issues fechadas conseguiria quebrar a barreira dos **250** pontos.
+- Com **6** contribuidores, **20.000** instalações ou downloads mensais, **3** forks, **16** estrelas, **0** issues abertas, **28** issues fechadas e **250** dependências diretas do repositório conseguiria quebrar a barreira dos **250** pontos.
 
 **Como é possível um projeto ter tantos downloads e não ser popular?**
 
-Projetos podem ser adotados por projetos maiores como dependências diretas, se tornando críticos para o funcionamento do seu respectivo ecossistema, _você mesmo pode usá-lo nesse exato momento, mas não sabe que ele existe._
+Projetos podem ser adotados por projetos maiores como dependências diretas, se tornando críticos para o funcionamento do seu respectivo ecossistema, _você mesmo pode usá-los nesse exato momento, mas não sabe que eles existem._
 
-Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **250** estrelas e **0** Issues abertas ou **250** estrelas adicionais para cada ano sem manutenção.
+Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **250** estrelas e **0** Issues abertas ou **250** estrelas adicionais para cada ano sem manutenção, garantindo o equilíbrio entre relevância, impacto e popularidade.
 
 </details>
 
@@ -47,7 +47,7 @@ Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter
 
 As pontuações por senso de comunidade envolvem números de contribuidores com _commits_ na _branch_ principal do repositório e também através da intenção de contribuição _(forks)_:
 
-- Cada contribuidor com _commits_ na _branch_ principal equivale a **4** pontos.
+- Cada contribuidor com _commits_ na _branch_ principal equivale a **5** pontos.
   - Atualmente, essa conta também inclui _bots_, não por intenção, mas por limitação de automação.
 - Cada intenção de contribuição _(forks)_ equivalem a **2** pontos.
 - É obrigatório que o projeto tenha uma licença transparente e identificada pelo **GitHub**.
@@ -59,8 +59,9 @@ As pontuações por senso de comunidade envolvem números de contribuidores com 
 
 <br />
 
-As pontuações com base em impacto são baseadas em números de instalações ou downloads ou instalações:
+As pontuações com base em impacto são baseadas na quantidade de dependentes diretos do repositório e em números de instalações ou downloads ou instalações:
 
+- Cada **10** dependentes diretos equivalem a **4** pontos, limitado a 50% da pontuação acumulada.
 - Métricas que podem ser medidas mensalmente valem **3** pontos a cada **1.000** downloads mensais.
 - Métricas que não podem ser medidas por períodos valem **2** pontos a cada **5.000** downloads ou instalações.
 
@@ -85,7 +86,7 @@ As pontuações com base em impacto são baseadas em números de instalações o
 Baixa manutenção pode penalizar a pontuação, assim como uma boa manutenção de um projeto pode aumentar ainda mais a pontuação:
 
 - Cada Issues aberta penaliza **1** ponto.
-- Cada Issue fechada/resolvida equivale a **2** pontos, com limite de 50% da pontuação total.
+- Cada Issue fechada/resolvida equivale a **2** pontos, limitado a 50% da pontuação acumulada.
 - Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **250** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2500** pontos a menos.
 
 Isso ajuda a filtrar projetos com altas pontuações que não são mais mantidos e não possuem expectativa de dar suporte aos issues abertos, mas sem penalizar de forma injusta projetos estáveis que não precisam de manutenção recorrente.
@@ -119,3 +120,6 @@ Isso evita que projetos que não são mantidos ou que se baseiam unicamente na p
 > - As automações trazem os dados através da API pública do [**shields.io**](https://shields.io/), devido às taxas de limites da API oficial do **GitHub**.
 > - Comentários ofensivos ou grosseiros serão ocultados ou excluídos.
 > - Se atente ao nosso [código de conduta](https://github.com/wellwelwel/awesomeyou?tab=coc-ov-file).
+> - A ordem do cálculo importa. Para maior transparência, você pode analisar o cálculo diretamente no [código fonte](../src/helpers/get-score.ts).
+> - Originalmente, cogitei aplicar escala logarítmica na pontuação, mas a ideia é trabalhar com números fáceis de serem auditáveis.
+> - Uma ideia interessante a ser discutida, seria considerar pesos diferentes baseado nas categorias dos projetos.

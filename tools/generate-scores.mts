@@ -46,6 +46,7 @@ for (const content of parsedContents) {
     issues: stats?.issues?.value,
     closedIssues: stats?.closedIssues?.value,
     commits: stats?.commits,
+    repositoryDependents: stats.repositoryDependents?.value,
   });
 
   results[key] = score;

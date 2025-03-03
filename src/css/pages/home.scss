@@ -100,14 +100,12 @@
       }
 
       menu {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        @include flex(row, center, center);
         gap: 10px;
         margin: 0;
         padding: 0;
         margin-top: 30px;
+        margin-bottom: 10px;
 
         section {
           display: grid;
@@ -121,161 +119,17 @@
       }
     }
 
-    & > nav {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 7.5px;
+    & > main {
+      @include flex(column, flex-start, center);
+      gap: 15px;
       width: 100%;
 
-      a {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 20px;
-        padding: 12px 20px;
-        border: 1px solid var(--card-border-color);
-        border-radius: 15px;
-        background-color: var(--card-background-color);
-        cursor: pointer;
-        transition:
-          background-color ease 0.25s,
-          border-color ease 0.5s,
-          color ease 0.5s;
-        padding-right: 60px;
-
-        @media (max-width: 630px) {
-          flex-wrap: wrap;
-          padding-right: 20px;
-        }
-
-        img {
-          width: 50px;
-          transition: transform ease 0.3s;
-
-          @media (max-width: 630px) {
-            width: 36px;
-            transform: translateY(6px);
-          }
-        }
-
-        & > div {
-          margin-bottom: 0 !important;
-          color: var(--card-title-color);
-          transition: transform 0.15s;
-
-          strong {
-            font-size: 15px;
-            font-weight: 600;
-            transition: color ease 0.5s;
-          }
-
-          span {
-            p {
-              font-size: 12.5px;
-              font-weight: 300;
-              color: var(--card-description-color);
-              transition: color ease 0.3s;
-              margin-bottom: 0;
-
-              strong {
-                color: var(--card-description-strong-color);
-                font-size: 12.5px;
-                font-weight: 500;
-              }
-            }
-          }
-        }
-
-        svg {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          width: 20px;
-          min-width: 20px;
-          color: var(--ifm-color-main);
-          transition: transform ease 0.25s;
-        }
-
-        &:hover {
-          border-color: var(--card-border-hover-color);
-          color: var(--card-title-hover-color);
-          background-color: var(--card-background-hover-color);
-
-          & > div {
-            transform: scale(0.997);
-          }
-
-          img {
-            transform: scale(1.05);
-
-            @media (max-width: 630px) {
-              transform: scale(1.05) translateY(6px);
-            }
-          }
-
-          svg {
-            transform: scale(1.1);
-
-            @media (max-width: 630px) {
-              margin-top: 0;
-            }
-          }
-
-          span {
-            &,
-            strong {
-              color: var(--ifm-color-main);
-            }
-          }
-        }
-
-        & + a {
-          margin-top: 10px;
-        }
-      }
-
-      & > small {
+      p {
+        @include flex(row, center, flex-start);
         width: 100%;
-
-        a {
-          flex-direction: row;
-          justify-content: flex-end;
-          align-items: center;
-          gap: 5px;
-          width: 100%;
-          padding: 0;
-          padding-top: 5px;
-          padding-right: 2.5px;
-          margin: 0 !important;
-          border: none;
-          background-color: unset;
-          text-align: right;
-          font-weight: 500;
-          color: var(--see-more-color);
-
-          svg {
-            position: static;
-            width: 16px;
-            height: 16px;
-            color: var(--see-more-icon-color);
-          }
-
-          &:hover {
-            border: none;
-            background-color: unset;
-            color: var(--see-more-hover-color);
-
-            svg {
-              transform: translateX(2.5px);
-              color: var(--see-more-icon-hover-color);
-            }
-          }
-        }
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: #fff;
       }
     }
   }

@@ -1,17 +1,19 @@
-export const SCORE_FACTORS = {
+export const SCORE_FACTORS = Object.freeze({
   STAR_POINTS: 1,
   FORK_POINTS: 2,
+  DIRECT_REPOSITORY_DEPENDENTS_POINTS: 4,
+  DIRECT_REPOSITORY_DEPENDENTS_INTERVAL: 10,
   TOTAL_DOWNLOADS_POINTS: 2,
   TOTAL_DOWNLOADS_INTERVAL: 5000,
   MONTHLY_DOWNLOADS_POINTS: 3,
   MONTHLY_DOWNLOADS_INTERVAL: 1000,
-  CONTRIBUTOR_POINTS: 4,
-  ISSUE_PENALTY: 1,
+  CONTRIBUTOR_POINTS: 5,
   CLOSED_ISSUE_POINTS: 2,
+  ISSUE_PENALTY: 1,
+  MIN_INACTIVE_YEARS_FOR_PENALTY: 2,
   INACTIVE_ISSUE_PENALTY: 2500,
   INACTIVE_YEAR_BASE_PENALTY: 250,
-  MIN_INACTIVE_YEARS_FOR_PENALTY: 2,
-} as const;
+});
 
 export const calculatePenaltyFromActivity = (activityDate: string): number => {
   const currentYear = new Date().getUTCFullYear();
@@ -30,12 +32,15 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
 /**
  * - Each star equals 1 point.
  * - Each fork equals 2 points.
+ * - Each commit contributor equals 5 points.
  * - Each interval of 5,000 total downloads equals 2 points.
  * - Each interval of 1,000 downloads per month equals 3 points.
- * - Each commit contributor equals 4 points.
+ * - Each issue closed equals 2 points, limited to 50% of the current accumulated score.
+ * - Each 10 direct repository dependents equals 4 points, limited to 50% of the current accumulated score.
  * - Each issue opened penalizes 1 point.
- * - Each issue closed equals 2 points, limited to 50% of the total score.
  * - From two years onwards, each year without maintenance (commits) penalizes 250 points progressively and for each Issue opened, it penalizes 2,500 points.
+ *
+ * **Note:** order matters.
  */
 export const getScore = (options: {
   /* Popularity */
@@ -60,6 +65,8 @@ export const getScore = (options: {
   issues?: number;
   /* Maintenance: Community Support */
   closedIssues?: number;
+  /* Maintenance: Community Support */
+  repositoryDependents?: number;
 }) => {
   const {
     contributors,
@@ -73,9 +80,16 @@ export const getScore = (options: {
     commits,
     closedIssues,
     issues,
+    repositoryDependents,
   } = options;
 
   let score = 0;
+
+  // Stars
+  if (typeof stars === 'number') score += stars * SCORE_FACTORS.STAR_POINTS;
+
+  // Forks
+  if (typeof forks === 'number') score += forks * SCORE_FACTORS.FORK_POINTS;
 
   // Contributors
   if (typeof contributors === 'number')
@@ -108,18 +122,25 @@ export const getScore = (options: {
       Math.floor(pypi / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
       SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
 
-  // Forks
-  if (typeof forks === 'number') score += forks * SCORE_FACTORS.FORK_POINTS;
-
-  // Stars
-  if (typeof stars === 'number') score += stars * SCORE_FACTORS.STAR_POINTS;
-
   // Maintenance
   if (typeof closedIssues === 'number') {
     const closedIssuesPoints = closedIssues * SCORE_FACTORS.CLOSED_ISSUE_POINTS;
     const maxAllowedPoints = Math.floor(score * 0.5);
 
     score += Math.min(closedIssuesPoints, maxAllowedPoints);
+  }
+
+  // Critical Impact
+  if (typeof repositoryDependents === 'number') {
+    const directDependentsPoints =
+      Math.floor(
+        repositoryDependents /
+          SCORE_FACTORS.DIRECT_REPOSITORY_DEPENDENTS_INTERVAL
+      ) * SCORE_FACTORS.DIRECT_REPOSITORY_DEPENDENTS_POINTS;
+
+    const maxAllowedPoints = Math.floor(score * 0.5);
+
+    score += Math.min(directDependentsPoints, maxAllowedPoints);
   }
 
   // Activity

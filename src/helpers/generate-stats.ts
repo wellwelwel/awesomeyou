@@ -1,224 +1,18 @@
 import { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-
-const langMap: Record<string, string> = {
-  today: 'Hoje',
-  yesterday: 'Ontem',
-  'this week': 'Esta semana',
-  'this month': 'Este mês',
-  'this year': 'Este ano',
-  'last week': 'Semana passada',
-  'last month': 'Mês passado',
-  'last year': 'Ano passado',
-  'two weeks ago': 'Duas semanas atrás',
-  'three weeks ago': 'Três semanas atrás',
-  'four weeks ago': 'Quatro semanas atrás',
-  'five weeks ago': 'Cinco semanas atrás',
-  'six weeks ago': 'Seis semanas atrás',
-  'seven weeks ago': 'Sete semanas atrás',
-  'eight weeks ago': 'Oito semanas atrás',
-  'nine weeks ago': 'Nove semanas atrás',
-  'ten weeks ago': 'Dez semanas atrás',
-  'last sunday': 'Último domingo',
-  'last monday': 'Última segunda-feira',
-  'last tuesday': 'Última terça-feira',
-  'last wednesday': 'Última quarta-feira',
-  'last thursday': 'Última quinta-feira',
-  'last friday': 'Última sexta-feira',
-  'last saturday': 'Último sábado',
-  january: 'Janeiro',
-  february: 'Fevereiro',
-  march: 'Março',
-  april: 'Abril',
-  may: 'Maio',
-  june: 'Junho',
-  july: 'Julho',
-  august: 'Agosto',
-  september: 'Setembro',
-  october: 'Outubro',
-  november: 'Novembro',
-  december: 'Dezembro',
-};
-
-const localeNumber = (num: number) => {
-  if (num < 1000) return num.toLocaleString('pt-BR');
-
-  const suffixes = [' mil', 'M', 'B'];
-  let tier = Math.floor(Math.log10(num) / 3);
-
-  if (tier === 0) return num.toLocaleString('pt-BR');
-
-  const shortNumber = (num / Math.pow(10, tier * 3))
-    .toFixed(1)
-    .replace('.0', '');
-  return `${shortNumber}${suffixes[tier - 1]}`;
-};
-
-const setResult = (value: string) => {
-  const number =
-    Number(value.replace(/[^0-9.]/g, '')) *
-    (/k/i.test(value.replace(/mês/, ''))
-      ? 1_000
-      : /m/i.test(value.replace(/mês/, ''))
-        ? 1_000_000
-        : 1);
-  const label = localeNumber(number);
-
-  return {
-    value: number,
-    label,
-  };
-};
-
-const license = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/license/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return results.value.includes('identifiable') ? 'Other' : results.value;
-};
-
-const stars = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/stars/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return setResult(results.value);
-};
-
-const issues = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/issues/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return setResult(results.value.replace(/open/, ''));
-};
-
-const issuesClosed = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/issues-closed/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return setResult(results.value.replace(/closed/, ''));
-};
-
-const forks = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/forks/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return setResult(results.value);
-};
-
-const commits = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/last-commit/${organization}/${repository}.json`
-    )
-  ).json();
-
-  const raw: string = results.value;
-  const regex = new RegExp(Object.keys(langMap).join('|'), 'gi');
-
-  const translatedValue: string = raw.replace(regex, (match) => {
-    return langMap[match.toLowerCase()] || match;
-  });
-
-  return translatedValue;
-};
-
-const contributors = async (organization: string, repository: string) => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/contributors/${organization}/${repository}.json`
-    )
-  ).json();
-
-  return setResult(results.value);
-};
-
-const npmDownloads = async (npm: string) => {
-  const results = await (
-    await fetch(`https://img.shields.io/npm/dm/${npm}.json`)
-  ).json();
-
-  return setResult(results.value.replace(/month/, 'mês'));
-};
-
-const homebrewDownloads = async (homebrew: string) => {
-  const results = await (
-    await fetch(`https://img.shields.io/homebrew/installs/dm/${homebrew}.json`)
-  ).json();
-
-  return setResult(results.value.replace(/month/, 'mês'));
-};
-
-const pypiDownloads = async (pypi: string) => {
-  const results = await (
-    await fetch(`https://img.shields.io/pypi/dm/${pypi}.json`)
-  ).json();
-
-  return setResult(results.value.replace(/month/, 'mês'));
-};
-
-const chocoDownloads = async (chocolatey: string) => {
-  const results = await (
-    await fetch(`https://img.shields.io/chocolatey/dt/${chocolatey}.json`)
-  ).json();
-
-  return setResult(results.value.replace(/month/, 'mês'));
-};
-
-const vscodeDownloads = async (vscode: string) => {
-  const getDownloadsManually = async () => {
-    try {
-      // Require CORS
-      const response = await fetch(
-        `https://marketplace.visualstudio.com/items?itemName=${vscode}`
-      );
-
-      const text = await response.text();
-      const downloadsMatch = text.match(/([\d,]+) installs/);
-
-      if (downloadsMatch && downloadsMatch[1]) {
-        const downloads = downloadsMatch[1].replace(/,/g, '');
-
-        return Number(downloads);
-      }
-
-      return 0;
-    } catch {
-      return 0;
-    }
-  };
-
-  const results = await (
-    await fetch(
-      `https://img.shields.io/visual-studio-marketplace/i/${vscode}.json`
-    )
-  ).json();
-
-  if (results.value.includes('rate limited by upstream service')) {
-    const contingency = await getDownloadsManually();
-
-    return {
-      value: contingency,
-      label: localeNumber(contingency),
-    };
-  }
-
-  return setResult(results.value.replace(/month/, 'mês'));
-};
+import { chocolateyDownloads } from './services/stats/chocolatey';
+import { issuesClosed } from './services/stats/closed-issues';
+import { commits } from './services/stats/commits';
+import { contributors } from './services/stats/contributors';
+import { forks } from './services/stats/forks';
+import { homebrewDownloads } from './services/stats/homebrew';
+import { issues } from './services/stats/issues';
+import { license } from './services/stats/license';
+import { npmDownloads } from './services/stats/npm';
+import { pypiDownloads } from './services/stats/pypi';
+import { getRepoDepsManually } from './services/stats/repo-dependencies';
+import { stars } from './services/stats/stars';
+import { vscodeDownloads } from './services/stats/vscode';
 
 export const processProject = async (
   options: ProjectOptions,
@@ -247,6 +41,7 @@ export const processProject = async (
     issuesClosed(organization, repository),
     commits(organization, repository),
     contributors(organization, repository),
+    getRepoDepsManually(organization, repository),
   ]);
 
   results.license = requests[0];
@@ -256,12 +51,13 @@ export const processProject = async (
   results.closedIssues = requests[4];
   results.commits = requests[5];
   results.contributors = requests[6];
+  results.repositoryDependents = requests[7];
 
   if (npm) results.npm = await npmDownloads(npm);
   if (homebrew) results.homebrew = await homebrewDownloads(homebrew);
   if (pypi) results.pypi = await pypiDownloads(pypi);
   if (vscode) results.vscode = await vscodeDownloads(vscode);
-  if (chocolatey) results.chocolatey = await chocoDownloads(chocolatey);
+  if (chocolatey) results.chocolatey = await chocolateyDownloads(chocolatey);
 
   return await cb({
     organization,

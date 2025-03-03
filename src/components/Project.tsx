@@ -12,12 +12,12 @@ import {
   Flame,
   FlameKindling,
   HeartHandshake,
-  Loader,
   MapPin,
   Network,
   Rocket,
   Scale,
   Shapes,
+  Sprout,
   Star,
   StarHalf,
   Trophy,
@@ -244,11 +244,23 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                         ) : score > 1_000 ? (
                           <FlameKindling />
                         ) : (
-                          <Loader />
+                          <Sprout />
                         )}
                         <span className='score'>
                           {Number(score).toLocaleString('pt-BR')}
                         </span>
+                      </td>
+                    </tr>
+                  ) : null}
+
+                  {stats?.repositoryDependents?.label !== '0' ? (
+                    <tr>
+                      <td>Dependentes:</td>
+                      <td>
+                        <SafeLink to={`${repositoryURL}/graphs/contributors`}>
+                          <HeartHandshake />
+                          {stats?.repositoryDependents?.label}
+                        </SafeLink>
                       </td>
                     </tr>
                   ) : null}

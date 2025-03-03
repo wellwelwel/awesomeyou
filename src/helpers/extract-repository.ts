@@ -5,8 +5,16 @@ export const extractRepository = (
     /^https?:\/\/github\.com\/([^\/]+)\/([^\/]+)(?:\/|$)/
   );
 
-  return {
+  const result = {
     organization: match![1],
     repository: match![2],
   };
+
+  if (result.organization.length > 39)
+    throw new Error('Check the organization name.');
+
+  if (result.repository.length > 100)
+    throw new Error('Check the repository name.');
+
+  return result;
 };

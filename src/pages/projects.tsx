@@ -6,9 +6,9 @@ import {
   Dices,
   Earth,
   Flame,
-  Heart,
   House,
   Plane,
+  Sprout,
 } from 'lucide-react';
 import { Name } from '@site/src//components/Name';
 import { Project } from '@site/src/components/Project';
@@ -28,16 +28,23 @@ const activeLanguageFilter = new Set<string>('');
 export const tips = {
   default: (
     <small key='1'>
-      <Dices />
+      <div className='float'>
+        <Dices />
+      </div>
       <span>
-        Por padrão, os projetos são exibidos em ordem aleatória. Assim, você
-        sempre irá descobrir projetos novos toda vez que voltar na lista.
+        <p>Por padrão, os projetos são exibidos em ordem aleatória.</p>
+        <p>
+          Assim, você sempre irá descobrir projetos novos toda vez que voltar na
+          lista.
+        </p>
       </span>
     </small>
   ),
   greater: (
     <small key='2'>
-      <Flame />
+      <div className='float'>
+        <Flame />
+      </div>
       <span>
         Projetos com grande impacto e reconhecimento geralmente se destacam por
         sua ampla adoção, popularidade e pela força de sua comunidade,
@@ -47,12 +54,13 @@ export const tips = {
   ),
   less: (
     <small key='3'>
-      <Heart />
+      <div className='float'>
+        <Sprout />
+      </div>
       <span>
         Descubra e incentive projetos inovadores! Ao contribuir com projetos em
         constante crescimento, você tem a oportunidade de participar do
-        amadurecimento de novas ideias e tecnologias. Sua estrela pode colocar
-        um sorriso no rosto de quem mantém o projeto ✨
+        amadurecimento de novas ideias e tecnologias.
       </span>
     </small>
   ),
@@ -381,7 +389,7 @@ const Projects = (): ReactNode => {
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 1)}
                 >
-                  <Heart /> Menor Score
+                  <Sprout /> Menor Score
                 </button>
               </div>
             </div>
