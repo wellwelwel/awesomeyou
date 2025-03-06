@@ -107,19 +107,3 @@ Um projeto com **0** estrelas, mas um grande número instalações e downloads o
 Isso evita que projetos que não são mantidos ou que se baseiam unicamente na popularidade do criador, não comprometam a qualidade e relevância dos projetos na iniciativa.
 
 </details>
-
----
-
-## Considerações Finais
-
-É importante que todas as métricas sejam automatizáveis (via testes automatizados) para garantir a imparcialidade tanto ao aceitar, como remover projetos.
-
-> [!IMPORTANT]
->
-> - O senso do que é justo ou não é extremamente amplo e relativo para cada pessoa, entenda que há limites que estão além do nosso controle (especialmente relacionados a automações) e respeite todas as opiniões.
-> - As automações trazem os dados através da API pública do [**shields.io**](https://shields.io/), devido às taxas de limites da API oficial do **GitHub**.
-> - Comentários ofensivos ou grosseiros serão ocultados ou excluídos.
-> - Se atente ao nosso [código de conduta](https://github.com/wellwelwel/awesomeyou?tab=coc-ov-file).
-> - A ordem do cálculo importa. Para maior transparência, você pode analisar o cálculo diretamente no [código fonte](../src/helpers/get-score.ts).
-> - Originalmente, cogitei aplicar escala logarítmica na pontuação, mas a ideia é trabalhar com números fáceis de serem auditáveis.
-> - Uma ideia interessante a ser discutida, seria considerar pesos diferentes baseado nas categorias dos projetos.
