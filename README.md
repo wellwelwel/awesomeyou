@@ -46,7 +46,7 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantened
 O cálculo da pontuação inclui:
 
 - 🧑‍🧑‍🧒‍🧒 **Criação de Comunidade** através de contribuições com _commits_ e _forks_.
-- 🚀 **Impacto** através de Instalações e Downloads.
+- 🚀 **Impacto** através de dependentes diretos, instalações e downloads.
 - 🌟 **Popularidade** através de estrelas no repositório.
 - 🛠️ **Manutenção** através de Issues abertas e fechadas.
 - 👴🏼 **Atividade** através de _commits_.

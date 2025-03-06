@@ -1,4 +1,5 @@
 import type { MouseEvent, ReactNode } from 'react';
+import type { MergedProjects } from '../@types/projects';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
 import {
@@ -83,7 +84,7 @@ const Projects = (): ReactNode => {
     [projectsByMaintainers]
   );
 
-  const [allProjects, setAllProjects] = useState(mergedProjects);
+  const [allProjects, setAllProjects] = useState<MergedProjects[]>([]);
   const projectsLength = allProjects.length;
   const [visibleCount, setVisibleCount] = useState(projectsLength);
 
@@ -110,8 +111,6 @@ const Projects = (): ReactNode => {
   const showFilters = (event: MouseEvent<HTMLHeadingElement>) => {
     event.currentTarget.classList.toggle('active');
   };
-
-  const title = "<Brazil class='Projetos' />";
 
   const filter = useCallback(
     (
@@ -255,11 +254,6 @@ const Projects = (): ReactNode => {
   );
 
   useEffect(() => {
-    setAllProjects(randomize(mergedProjects));
-    setVisibleCount(mergedProjects.length);
-  }, [mergedProjects]);
-
-  useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
 
@@ -273,6 +267,13 @@ const Projects = (): ReactNode => {
       controller.abort();
     };
   }, [setScores]);
+
+  useEffect(() => {
+    setAllProjects(randomize(mergedProjects));
+    setVisibleCount(mergedProjects.length);
+  }, [mergedProjects]);
+
+  const title = "<Brazil class='Projetos' />";
 
   return (
     <Layout title={title} description='Lista de projetos open source do Brasil'>
