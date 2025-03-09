@@ -7,6 +7,8 @@
       "languages": ["rust"],
       "description": "Rio is a modern terminal built to run everywhere.",
       "categories": ["app"],
+      "homebrew": "rio",
+      "chocolatey": "rio-terminal",
       "madeInBrazil": true,
       "isAuthor": true
     }

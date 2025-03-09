@@ -134,6 +134,7 @@
     & > .container {
       @include flex(row, stretch, flex-start, wrap);
       gap: 25px;
+      animation: fadeIn 0.25s ease-in forwards;
 
       @media (max-width: 630px) {
         padding-inline: 0;

@@ -8,6 +8,7 @@ import {
   Bug,
   BugOff,
   Code,
+  Dna,
   ExternalLink,
   Flame,
   FlameKindling,
@@ -25,7 +26,6 @@ import {
   UtensilsCrossed,
   Wrench,
 } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
 import { MaintainerInfo } from '@site/src/@types/maintainers';
 import { MergedProjects, ProjectStats } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
@@ -140,11 +140,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
     [refs]
   );
 
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0,
-    triggerOnce: true,
-  });
-
   useEffect(() => {
     getMaintainersInfos();
     getStats();
@@ -152,8 +147,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
 
   return (
     <nav
-      ref={inViewRef}
-      className={inView ? 'show' : 'hide'}
       data-repository={repositoryURL}
       data-madeinbrazil={Number(madeInBrazil) || 0}
       {...currentCategories?.reduce((acc, category) => {
@@ -253,18 +246,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                     </tr>
                   ) : null}
 
-                  {stats?.repositoryDependents?.label !== '0' ? (
-                    <tr>
-                      <td>Dependentes:</td>
-                      <td>
-                        <SafeLink to={`${repositoryURL}/graphs/contributors`}>
-                          <HeartHandshake />
-                          {stats?.repositoryDependents?.label}
-                        </SafeLink>
-                      </td>
-                    </tr>
-                  ) : null}
-
                   <tr>
                     <td>Contribuidores:</td>
                     <td>
@@ -274,6 +255,18 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       </SafeLink>
                     </td>
                   </tr>
+
+                  {stats?.repositoryDependents?.label !== '0' ? (
+                    <tr>
+                      <td>Dependentes Diretos:</td>
+                      <td>
+                        <SafeLink to={`${repositoryURL}/network/dependents`}>
+                          <Dna />
+                          {stats?.repositoryDependents?.label}
+                        </SafeLink>
+                      </td>
+                    </tr>
+                  ) : null}
 
                   {npm ? (
                     <tr title='npm'>

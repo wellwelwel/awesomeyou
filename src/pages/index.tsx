@@ -60,7 +60,7 @@ export default (): ReactNode => {
             </small>
             <menu>
               <section>
-                <Link to='/projects' className='btn-split'>
+                <Link to='projects' className='btn-split'>
                   <span className='btn-content'>
                     <span className='text'>Projetos</span>
                   </span>
@@ -68,7 +68,7 @@ export default (): ReactNode => {
                     <Code />
                   </span>
                 </Link>
-                <Link to='/maintainers' className='btn-split'>
+                <Link to='maintainers' className='btn-split'>
                   <span className='btn-dropdown'>
                     <UsersRound />
                   </span>
@@ -80,30 +80,93 @@ export default (): ReactNode => {
             </menu>
           </header>
           <main>
-            <p>
-              <GraduationCap />
+            <h2>
+              <strong>[Re]</strong> Descubra o <em>open-source</em> ✨
+            </h2>
+            <div className='cards'>
+              <Link to='projects'>
+                <header>
+                  <Code />
+                  Projetos
+                </header>
+                <main>
+                  Conheça projetos open-source criados e mantidos por
+                  brasileiros.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
+              </Link>
+
+              <Link to='maintainers'>
+                <header>
+                  <UsersRound />
+                  Pessoas
+                </header>
+                <main>
+                  Conheça mantenedores por trás de projetos incríveis.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
+              </Link>
+
               <Link to='learn'>
-                Aprenda Programação <ChevronRight />
+                <header>
+                  <GraduationCap />
+                  Aprenda Programação
+                </header>
+                <main>
+                  Encontre repositórios que ensinam desde conteúdos básicos a
+                  conceitos avançados.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
               </Link>
-            </p>
-            <p>
-              <List />
+
               <Link to='lists'>
-                Conheça outras listas incríveis <ChevronRight />
+                <header>
+                  <List />
+                  Conheça Listas Incríveis
+                </header>
+                <main>
+                  Por que parar por aqui? Veja listas criadas por brasileiros
+                  com repositórios incríveis.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
               </Link>
-            </p>
-            <p>
-              <Calculator />
+
               <Link to='calculator'>
-                Descubra o score do seu projeto <ChevronRight />
+                <header>
+                  <Calculator />
+                  Descubra seu score
+                </header>
+                <main>
+                  Seja por diversão, meta ou apenas curiosidade, descubra o
+                  impacto do seu projeto.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
               </Link>
-            </p>
-            <p>
-              <PackagePlus />
+
               <Link to='new'>
-                Submeta seu projeto <ChevronRight />
+                <header>
+                  <PackagePlus />
+                  Submeta seu projeto
+                </header>
+                <main>
+                  Você tem um projeto inovador que pode receber contribuições?
+                  Deixe a gente descobrir ele.
+                </main>
+                <footer>
+                  <ChevronRight />
+                </footer>
               </Link>
-            </p>
+            </div>
           </main>
         </main>
       </div>

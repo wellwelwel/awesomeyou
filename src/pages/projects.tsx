@@ -68,9 +68,12 @@ export const tips = {
 } as const;
 
 const Projects = (): ReactNode => {
+  const [allProjects, setAllProjects] = useState<MergedProjects[]>([]);
   const [scores, setScores] = useState<Record<string, number> | null>(null);
   const [tip, setTip] = useState<keyof typeof tips>('default');
   const projectsByMaintainers = useMemo(() => projects(), []);
+  const projectsLength = allProjects.length;
+  const [visibleCount, setVisibleCount] = useState(projectsLength);
 
   const mergedProjects = useMemo(
     () =>
@@ -83,10 +86,6 @@ const Projects = (): ReactNode => {
       ),
     [projectsByMaintainers]
   );
-
-  const [allProjects, setAllProjects] = useState<MergedProjects[]>([]);
-  const projectsLength = allProjects.length;
-  const [visibleCount, setVisibleCount] = useState(projectsLength);
 
   const usedLanguages = useMemo(() => {
     const languageSet = new Set<string>();
@@ -246,9 +245,9 @@ const Projects = (): ReactNode => {
         itemsToSort.sort((a, b) => a.score - b.score);
       }
 
-      itemsToSort.forEach((item, index) => {
-        item.element.style.order = String(index + 1);
-      });
+      itemsToSort.forEach(
+        (item, index) => (item.element.style.order = String(index + 1))
+      );
     },
     [scores]
   );
@@ -371,7 +370,7 @@ const Projects = (): ReactNode => {
             </div>
 
             <div>
-              <h4>Ordenar por:</h4>
+              <h4>Ordem</h4>
               <div>
                 <button
                   className='active'
@@ -384,13 +383,13 @@ const Projects = (): ReactNode => {
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 0)}
                 >
-                  <Flame /> Maior Score
+                  <Flame /> Maior Impacto
                 </button>
                 <button
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 1)}
                 >
-                  <Sprout /> Menor Score
+                  <Sprout /> Ajude a Construir
                 </button>
               </div>
             </div>

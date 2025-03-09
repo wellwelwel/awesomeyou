@@ -13,10 +13,6 @@ nav {
     filter 0.25s ease-in-out;
   overflow: hidden;
 
-  &.show {
-    animation: showIn 0.25s ease forwards;
-  }
-
   main {
     height: 100%;
 

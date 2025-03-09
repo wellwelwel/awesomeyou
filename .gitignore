@@ -4,5 +4,6 @@
 .cache-loader
 .DS_Store
 .env
+.wrangler
 /content/assets/json
-t.ts
+t.mts

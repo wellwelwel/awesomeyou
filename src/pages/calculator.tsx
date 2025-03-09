@@ -22,8 +22,6 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ScoreSimulator } from '@site/src/@types/projects';
-import { processProject } from '@site/src/helpers/generate-stats';
-import { getScore } from '@site/src/helpers/get-score';
 
 import '@site/src/css/pages/home.scss';
 
@@ -60,41 +58,15 @@ export default (): ReactNode => {
       return;
     }
 
-    return await processProject(
-      {
-        repository: repositoryURL.current,
-        description: '',
-        madeInBrazil: true,
-      },
-      ({ results }) => {
-        if (results.license.includes('repo not found')) {
-          toast.error('Repositório não encontrado.');
-          return false;
-        }
-
-        const score = getScore({
-          closedIssues: results?.closedIssues?.value,
-          contributors: results?.contributors?.value,
-          forks: results?.forks?.value,
-          homebrew: results?.homebrew?.value,
-          issues: results?.issues?.value,
-          npm: results?.npm?.value,
-          pypi: results?.pypi?.value,
-          stars: results?.stars?.value,
-          commits: results?.commits,
-        });
-
-        const result = {
-          ...results,
-          score,
-          username: user.trim(),
-          repository: repository.trim(),
-        };
-
-        LRU.set(key, result);
-
-        setStats(result);
-      }
+    console.log(
+      await (
+        await fetch('http://localhost:3001', {
+          method: 'POST',
+          body: JSON.stringify({
+            repositoryURL: repositoryURL.current,
+          }),
+        })
+      ).json()
     );
   };
 
