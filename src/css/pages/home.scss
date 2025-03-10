@@ -151,6 +151,10 @@
         text-align: center;
         color: #3e5977;
 
+        strong {
+          font-weight: 600;
+        }
+
         p {
           + p {
             margin-top: 15px;

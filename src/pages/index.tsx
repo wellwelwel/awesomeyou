@@ -282,8 +282,11 @@ export default (): ReactNode => {
             <small>
               <p>
                 Para discussões, ideias, reportar erros, iniciar discussões e
-                até debates, você pode abrir um Issue no repositório hospedado
-                no GitHub, assim toda comunidade pode participar.
+                até debates, você pode abrir um Issue no nosso{' '}
+                <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
+                  <strong>Repositório do GitHub</strong>
+                </SafeLink>
+                , assim toda comunidade pode participar.
               </p>
               <p>
                 Se precisar entrar em contato diretamente com alguém do nosso
