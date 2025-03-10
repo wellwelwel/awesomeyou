@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { IntersectionOptions } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -35,12 +36,18 @@ export default (): ReactNode => {
     maintainers: [],
   });
 
+  const viewerOptions: IntersectionOptions = {
+    triggerOnce: true,
+  };
+
   const sectionViews = [
-    useInView({ triggerOnce: true }),
-    useInView({ triggerOnce: true }),
-    useInView({ triggerOnce: true }),
-    useInView({ triggerOnce: true }),
-    useInView({ triggerOnce: true }),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
+    useInView(viewerOptions),
   ];
 
   useEffect(() => {
@@ -132,15 +139,11 @@ export default (): ReactNode => {
               </section>
             </menu>
           </header>
-          <main
-            ref={sectionViews[0][0]}
-            className={sectionViews[0][1] ? 'show' : 'hide'}
-            id='cards'
-          >
+          <main id='cards'>
             <h2>
               <strong>[Re]</strong> Descubra o <em>open-source</em> ✨
             </h2>
-            <div className='cards'>
+            <div className='show cards'>
               <Link to='projects'>
                 <header>
                   <Code />
@@ -226,8 +229,8 @@ export default (): ReactNode => {
             </div>
           </main>
           <main
-            ref={sectionViews[1][0]}
-            className={sectionViews[1][1] ? 'show' : 'hide'}
+            ref={sectionViews[0][0]}
+            className={sectionViews[0][1] ? 'show' : 'hide'}
             id='maintainers'
           >
             <h2>Apoie projetos criados por brasileiros 🏡</h2>
@@ -262,8 +265,8 @@ export default (): ReactNode => {
             </footer>
           </main>
           <main
-            ref={sectionViews[2][0]}
-            className={sectionViews[2][1] ? 'show' : 'hide'}
+            ref={sectionViews[1][0]}
+            className={sectionViews[1][1] ? 'show' : 'hide'}
             id='projects'
           >
             <h2>Conheça mantenedores brasileiros 👋</h2>
@@ -298,8 +301,8 @@ export default (): ReactNode => {
             </footer>
           </main>
           <main
-            ref={sectionViews[3][0]}
-            className={sectionViews[3][1] ? 'show' : 'hide'}
+            ref={sectionViews[2][0]}
+            className={sectionViews[2][1] ? 'show' : 'hide'}
             id='about'
           >
             <h2>
@@ -315,8 +318,8 @@ export default (): ReactNode => {
             </small>
           </main>
           <main
-            ref={sectionViews[4][0]}
-            className={sectionViews[4][1] ? 'show' : 'hide'}
+            ref={sectionViews[3][0]}
+            className={sectionViews[3][1] ? 'show' : 'hide'}
             id='team'
           >
             <h2>
