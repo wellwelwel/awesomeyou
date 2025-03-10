@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Awesome You</h1>
   <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
-  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open-source</i>, te apresentando projetos incríveis criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
+  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open-source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo..</p>
 </div>
 
 ---
@@ -10,7 +10,7 @@
 
 Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
 
-Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Cadastrar meu Projeto**](#), siga as instruções na própia página e abra seu **Pull Request**.
+Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Submeta seu Projeto**](https://awesomeyou.io/new/), siga as instruções na própia página e abra seu **Pull Request**.
 
 > [!TIP]
 >

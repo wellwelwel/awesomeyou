@@ -174,7 +174,7 @@ export default (): ReactNode => {
                   Pessoas
                 </header>
                 <main>
-                  Conheça mantenedores por trás de projetos incríveis.
+                  Conheça pessoas mantenedoras por trás de projetos incríveis.
                 </main>
                 <footer>
                   <ChevronRight />
@@ -212,7 +212,7 @@ export default (): ReactNode => {
               <Link to='calculator'>
                 <header>
                   <Calculator />
-                  Descubra seu score
+                  Descubra seu Score
                 </header>
                 <main>
                   Seja por diversão, meta ou apenas curiosidade, descubra o
@@ -226,7 +226,7 @@ export default (): ReactNode => {
               <Link to='new'>
                 <header>
                   <PackagePlus />
-                  Submeta seu projeto
+                  Submeta seu Projeto
                 </header>
                 <main>
                   Você tem um projeto inovador que pode receber contribuições da
@@ -336,7 +336,7 @@ export default (): ReactNode => {
                 começam com "Awesome [Linguagem]", "Awesome Made by [País]" e
                 assim vai?
               </p>
-              <p>Aqui quem é "Awesome" é você 🫶</p>
+              <p>Aqui quem é "Awesome" é você 😌</p>
             </small>
           </main>
           <main className='show' id='team'>

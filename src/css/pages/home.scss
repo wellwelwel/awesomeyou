@@ -358,12 +358,15 @@
           color: #0075fe;
           cursor: pointer;
           user-select: none;
+          transition: background-color 0.25s;
 
           svg {
             transition: transform 0.25s;
           }
 
           &:hover {
+            background-color: #ffffff29;
+
             svg {
               transform: rotate(25deg);
             }
@@ -371,6 +374,8 @@
 
           &:active,
           &:focus {
+            background-color: #80bdff23;
+
             svg {
               transform: rotate(360deg);
             }
