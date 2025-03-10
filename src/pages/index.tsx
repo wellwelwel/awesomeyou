@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
-import type { IntersectionOptions } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -20,7 +19,6 @@ import {
   Trophy,
   UsersRound,
 } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
 import { ReactTyped } from 'react-typed';
 import { Name } from '@site/src/components/Name';
 import { ResumedMaintaners } from '../@types/maintainers';
@@ -33,6 +31,8 @@ import '@site/src/css/pages/home.scss';
 
 export default (): ReactNode => {
   const { siteConfig } = useDocusaurusContext();
+  const projectSort = useRef(0);
+  const maintainerSort = useRef(0);
 
   const [data, setData] = useState<{
     projects: ResumedProject[];
@@ -42,16 +42,29 @@ export default (): ReactNode => {
     maintainers: [],
   });
 
-  const viewerOptions: IntersectionOptions = {
-    triggerOnce: true,
-  };
+  const sortMaintainers = useCallback(
+    (results: ResumedMaintaners[]) => {
+      setData((prev) => ({
+        ...prev,
+        maintainers: randomize(results),
+      }));
 
-  const sectionViews = [
-    useInView(viewerOptions),
-    useInView(viewerOptions),
-    useInView(viewerOptions),
-    useInView(viewerOptions),
-  ];
+      maintainerSort.current++;
+    },
+    [setData]
+  );
+
+  const sortProjects = useCallback(
+    (results: ResumedProject[]) => {
+      setData((prev) => ({
+        ...prev,
+        projects: randomize(results),
+      }));
+
+      projectSort.current++;
+    },
+    [setData]
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -59,28 +72,22 @@ export default (): ReactNode => {
 
     fetch(`/json/resume/maintainers.json`, { signal }).then(
       async (response) => {
-        const results: ResumedMaintaners[] = await response.json();
+        const results = await response.json();
 
-        setData((prev) => ({
-          ...prev,
-          maintainers: randomize(results),
-        }));
+        sortMaintainers(results);
       }
     );
 
     fetch(`/json/resume/projects.json`, { signal }).then(async (response) => {
-      const results: ResumedProject[] = await response.json();
+      const results = await response.json();
 
-      setData((prev) => ({
-        ...prev,
-        projects: randomize(results),
-      }));
+      sortProjects(results);
     });
 
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [sortProjects, sortMaintainers]);
 
   return (
     <Layout
@@ -231,52 +238,52 @@ export default (): ReactNode => {
               </Link>
             </div>
           </main>
-          <main
-            ref={sectionViews[0][0]}
-            className={sectionViews[0][1] ? 'show' : 'hide'}
-            id='projects'
-          >
+          <main className='show' id='projects'>
             <h2>Apoie projetos criados por brasileiros 🏡</h2>
-            <small>
-              Selecionados aleatóriamente <Dices />
+            <small onClick={() => sortProjects(data.projects)}>
+              Gerar Novamente <Dices />
             </small>
             <div className='cards'>
               {data.projects.slice(0, 3).map((project, i) => (
-                <SafeLink
-                  key={`project:${i}`}
-                  to={`https://github.com/${project.organization}/${project.repository}`}
+                <div
+                  key={`project:${i}:${projectSort.current}`}
+                  className='card show'
                 >
-                  <header>
-                    <img
-                      src={`https://avatars.githubusercontent.com/${project.organization}`}
-                      loading='lazy'
-                      alt={`${project.organization} profile avatar`}
-                    />
-                    {`${project.organization}/${project.repository}`}
-                  </header>
-                  <main>
-                    <button>
-                      {project.score > 1_000_000 ? (
-                        <Trophy />
-                      ) : project.score > 100_000 ? (
-                        <Award />
-                      ) : project.score > 10_000 ? (
-                        <Flame />
-                      ) : project.score > 1_000 ? (
-                        <FlameKindling />
-                      ) : (
-                        <Sprout />
-                      )}{' '}
-                      Score
-                      <span>|</span>
-                      <strong>{localeNumber(project.score)}</strong>
-                    </button>
-                    <p>{project.description}</p>
-                  </main>
-                  <footer>
-                    <ExternalLink />
-                  </footer>
-                </SafeLink>
+                  <SafeLink
+                    to={`https://github.com/${project.organization}/${project.repository}`}
+                  >
+                    <header>
+                      <img
+                        src={`https://avatars.githubusercontent.com/${project.organization}`}
+                        loading='lazy'
+                        alt={`${project.organization} profile avatar`}
+                      />
+                      {`${project.organization}/${project.repository}`}
+                    </header>
+                    <main>
+                      <p>{project.description}</p>
+                    </main>
+                    <footer>
+                      <button>
+                        {project.score > 1_000_000 ? (
+                          <Trophy />
+                        ) : project.score > 100_000 ? (
+                          <Award />
+                        ) : project.score > 10_000 ? (
+                          <Flame />
+                        ) : project.score > 1_000 ? (
+                          <FlameKindling />
+                        ) : (
+                          <Sprout />
+                        )}{' '}
+                        Score
+                        <span>|</span>
+                        <strong>{localeNumber(project.score)}</strong>
+                      </button>
+                      <ExternalLink />
+                    </footer>
+                  </SafeLink>
+                </div>
               ))}
             </div>
             <footer>
@@ -285,34 +292,35 @@ export default (): ReactNode => {
               </Link>
             </footer>
           </main>
-          <main
-            ref={sectionViews[1][0]}
-            className={sectionViews[1][1] ? 'show' : 'hide'}
-            id='maintainers'
-          >
+          <main className='show' id='maintainers'>
             <h2>Conheça mantenedores brasileiros 👋</h2>
-            <small>
-              Selecionados aleatóriamente <Dices />
+            <small onClick={() => sortMaintainers(data.maintainers)}>
+              Gerar Novamente <Dices />
             </small>
             <div className='cards'>
               {data.maintainers.slice(0, 3).map((maintainer, i) => (
-                <Link
-                  key={`maintainer:${i}`}
-                  to={`maintainers/${maintainer.username}`}
+                <div
+                  key={`project:${i}:${maintainerSort.current}`}
+                  className='card show'
                 >
-                  <header>
-                    <img
-                      src={`https://avatars.githubusercontent.com/${maintainer.username}`}
-                      loading='lazy'
-                      alt={`${maintainer.name} profile avatar`}
-                    />
-                    {maintainer.name}
-                  </header>
-                  <main>{maintainer.bio}</main>
-                  <footer>
-                    <ChevronRight />
-                  </footer>
-                </Link>
+                  <Link
+                    to={`maintainers/${maintainer.username}`}
+                    className='show'
+                  >
+                    <header>
+                      <img
+                        src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                        loading='lazy'
+                        alt={`${maintainer.name} profile avatar`}
+                      />
+                      {maintainer.name}
+                    </header>
+                    <main>{maintainer.bio}</main>
+                    <footer>
+                      <ChevronRight />
+                    </footer>
+                  </Link>
+                </div>
               ))}
             </div>
             <footer>
@@ -321,11 +329,7 @@ export default (): ReactNode => {
               </Link>
             </footer>
           </main>
-          <main
-            ref={sectionViews[2][0]}
-            className={sectionViews[2][1] ? 'show' : 'hide'}
-            id='about'
-          >
+          <main className='show' id='about'>
             <h2>
               Por que "<strong>Awesome You</strong>"?
             </h2>
@@ -338,11 +342,7 @@ export default (): ReactNode => {
               <p>Aqui quem é "Awesome" é você 🫶</p>
             </small>
           </main>
-          <main
-            ref={sectionViews[3][0]}
-            className={sectionViews[3][1] ? 'show' : 'hide'}
-            id='team'
-          >
+          <main className='show' id='team'>
             <h2>
               Quem está por trás da <strong>Awesome You</strong>?
             </h2>

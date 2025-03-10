@@ -18,6 +18,7 @@
   &,
   & > main {
     @include flex(column, center, flex-start);
+    gap: 5px;
     width: 100%;
   }
 
@@ -43,11 +44,6 @@
 
     .show {
       animation: showIn 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
-    }
-
-    .hide {
-      transform: scale(0);
-      opacity: 0;
     }
 
     & > header {
@@ -163,7 +159,6 @@
         & > svg {
           width: 16px;
           height: 16px;
-          transform: translate(5px, 2px);
         }
 
         strong {
@@ -351,21 +346,62 @@
         padding: 0;
 
         small {
-          margin: 0;
-          transform: translateY(-20px);
+          @include flex(row, center, center);
+          gap: 10px;
+          padding: 7.5px 15px;
+          margin-top: -10px;
+          margin-bottom: 20px;
+          border-radius: 12.5px;
+          border: 0.5px solid #007bff50;
+          background-color: #80bdff23;
+          font-weight: 500;
+          color: #0075fe;
+          cursor: pointer;
+          user-select: none;
+
+          svg {
+            transition: transform 0.25s;
+          }
+
+          &:hover {
+            svg {
+              transform: rotate(25deg);
+            }
+          }
+
+          &:active,
+          &:focus {
+            svg {
+              transform: rotate(360deg);
+            }
+          }
         }
 
         .cards {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          width: 275px;
 
           @media (max-width: 630px) {
             grid-template-columns: 1fr;
             width: 100%;
           }
 
+          .card {
+            width: 275px;
+            min-height: 242.5px;
+            background-color: unset;
+            overflow: visible;
+
+            @media (max-width: 630px) {
+              width: 100%;
+              min-height: auto;
+            }
+          }
+
           a {
+            width: 100%;
+            height: 100%;
+
             header {
               gap: 12.5px;
               font-size: 14px;
@@ -379,9 +415,14 @@
               }
             }
 
-            main {
+            main,
+            main p {
               font-size: 13px;
               color: #225597;
+            }
+
+            main {
+              flex-grow: 1;
             }
 
             &:hover {
@@ -419,12 +460,15 @@
       &#projects {
         .cards {
           a {
-            main {
+            footer {
+              @include flex(row, center, space-between);
+
               button {
+                flex-grow: unset;
                 @include flex(row, center, center);
                 padding: 7.5px 15px;
-                margin-top: 5px;
-                margin-bottom: 10px;
+                margin: 0;
+                width: fit-content;
                 border: 1px dotted #a6cce0a6;
                 border-radius: 5px;
                 background-color: #edf5ff;
@@ -450,6 +494,18 @@
                   color: inherit;
                 }
               }
+            }
+          }
+        }
+      }
+
+      &#maintainers {
+        .cards {
+          .card {
+            min-height: 225px;
+
+            @media (max-width: 630px) {
+              min-height: auto;
             }
           }
         }
