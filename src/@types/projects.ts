@@ -89,4 +89,5 @@ export type ResumedProject = {
   organization: string;
   repository: string;
   description: string;
+  score: number;
 };

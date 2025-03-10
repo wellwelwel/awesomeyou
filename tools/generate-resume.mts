@@ -16,8 +16,11 @@ const projectsPath = `${base}/projects.json`;
 const maintainersPath = `${base}/maintainers.json`;
 
 const maintaners: ResumedMaintaners[] = [];
-
 const projects: ResumedProject[] = [];
+
+const scores = JSON.parse(
+  await readFile('content/assets/json/scores.json', 'utf8')
+);
 
 const files = await listFiles('./content/maintainers', {
   filter: /projects\.json/,
@@ -70,6 +73,7 @@ for (const { maintainer, projects: rawProjects } of parsedContents) {
       description: project.description,
       repository,
       organization,
+      score: scores[`${organization}/${repository}`],
     });
   }
 }

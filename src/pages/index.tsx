@@ -5,14 +5,19 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import {
+  Award,
   Calculator,
   ChevronRight,
   Code,
   Dices,
   ExternalLink,
+  Flame,
+  FlameKindling,
   GraduationCap,
   List,
   PackagePlus,
+  Sprout,
+  Trophy,
   UsersRound,
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
@@ -22,6 +27,7 @@ import { ResumedMaintaners } from '../@types/maintainers';
 import { ResumedProject } from '../@types/projects';
 import { SafeLink } from '../components/SafeLink';
 import { randomize } from '../helpers/radomizer';
+import { localeNumber } from '../helpers/services/stats/set-result';
 
 import '@site/src/css/pages/home.scss';
 
@@ -41,9 +47,6 @@ export default (): ReactNode => {
   };
 
   const sectionViews = [
-    useInView(viewerOptions),
-    useInView(viewerOptions),
-    useInView(viewerOptions),
     useInView(viewerOptions),
     useInView(viewerOptions),
     useInView(viewerOptions),
@@ -141,7 +144,7 @@ export default (): ReactNode => {
           </header>
           <main id='cards'>
             <h2>
-              <strong>[Re]</strong> Descubra o <em>open-source</em> ✨
+              <strong>Re</strong> Descubra o <em>open-source</em> ✨
             </h2>
             <div className='show cards'>
               <Link to='projects'>
@@ -231,7 +234,7 @@ export default (): ReactNode => {
           <main
             ref={sectionViews[0][0]}
             className={sectionViews[0][1] ? 'show' : 'hide'}
-            id='maintainers'
+            id='projects'
           >
             <h2>Apoie projetos criados por brasileiros 🏡</h2>
             <small>
@@ -251,7 +254,25 @@ export default (): ReactNode => {
                     />
                     {`${project.organization}/${project.repository}`}
                   </header>
-                  <main>{project.description}</main>
+                  <main>
+                    <button>
+                      {project.score > 1_000_000 ? (
+                        <Trophy />
+                      ) : project.score > 100_000 ? (
+                        <Award />
+                      ) : project.score > 10_000 ? (
+                        <Flame />
+                      ) : project.score > 1_000 ? (
+                        <FlameKindling />
+                      ) : (
+                        <Sprout />
+                      )}{' '}
+                      Score
+                      <span>|</span>
+                      <strong>{localeNumber(project.score)}</strong>
+                    </button>
+                    <p>{project.description}</p>
+                  </main>
                   <footer>
                     <ExternalLink />
                   </footer>
@@ -267,7 +288,7 @@ export default (): ReactNode => {
           <main
             ref={sectionViews[1][0]}
             className={sectionViews[1][1] ? 'show' : 'hide'}
-            id='projects'
+            id='maintainers'
           >
             <h2>Conheça mantenedores brasileiros 👋</h2>
             <small>

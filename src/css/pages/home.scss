@@ -310,6 +310,32 @@
         max-width: 855px;
       }
 
+      &#cards {
+        h2 {
+          strong {
+            &::before {
+              content: '[';
+              display: inline-block;
+              padding-right: 4px;
+              opacity: 0.5;
+              transform: translateY(-3px);
+              font-size: 9px;
+              font-weight: 900;
+            }
+
+            &::after {
+              content: ']';
+              display: inline-block;
+              padding-left: 4px;
+              opacity: 0.5;
+              transform: translateY(-3px);
+              font-size: 9px;
+              font-weight: 900;
+            }
+          }
+        }
+      }
+
       &#team {
         max-width: 640px;
 
@@ -390,11 +416,48 @@
         }
       }
 
+      &#projects {
+        .cards {
+          a {
+            main {
+              button {
+                @include flex(row, center, center);
+                padding: 7.5px 15px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+                border: 1px dotted #a6cce0a6;
+                border-radius: 5px;
+                background-color: #edf5ff;
+                font-family: var(--ifm-font-family-base);
+                font-size: 12px;
+                font-weight: 400;
+                color: #2e8cf2;
+
+                span {
+                  display: block;
+                  padding-inline: 5px;
+                  opacity: 0.25;
+                }
+
+                strong {
+                  font-weight: 600;
+                }
+
+                svg {
+                  width: 16px;
+                  height: 16px;
+                  transform: none;
+                  color: inherit;
+                }
+              }
+            }
+          }
+        }
+      }
+
       &#about,
       &#motivation,
       &#team {
-        margin-top: -20px;
-
         & > small {
           margin-top: -15px;
         }
