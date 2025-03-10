@@ -40,9 +40,26 @@
 
   & > main {
     & > h3 {
+      @include flex(row, center);
+      gap: 5px;
       margin: 0;
+      font-family: var(--ifm-font-family-featured);
+      font-size: 14px;
+      font-weight: 700;
       user-select: none;
+      color: var(--title-color-1);
       cursor: pointer;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        transition: color 0.15s;
+      }
+
+      svg,
+      span {
+        color: #2e8cf2;
+      }
 
       &.active {
         svg {
@@ -57,28 +74,39 @@
           }
         }
       }
+
+      &:hover {
+        svg {
+          color: #23c59a;
+        }
+      }
     }
 
     & > menu {
       display: grid;
       grid-template-rows: 0fr;
+      gap: 7.5px;
       transition: 0.25s grid-template-rows;
 
       & > .container {
         overflow: hidden;
         @include flex(column);
-        gap: 25px;
+        gap: 15px;
         padding: 0;
         opacity: 0;
         transition: opacity 0.35s ease;
       }
 
       & > div {
+        @include flex(column);
+        gap: 7.5px;
+
         h4 {
           width: 100%;
           margin: 0;
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 600;
+          color: #0057c2;
         }
 
         small {
@@ -87,7 +115,7 @@
           gap: 10px;
           width: 100%;
           padding: 20px;
-          margin-top: 35px;
+          margin-top: 20px;
           margin-bottom: 10px;
           background-color: #aae1ff38;
           border-radius: 10px;
@@ -96,6 +124,10 @@
           text-align: center;
           font-weight: 500;
           animation: fadeIn 0.25s ease forwards;
+
+          p {
+            font-size: 13px;
+          }
 
           .float {
             position: absolute;
@@ -134,6 +166,7 @@
     & > .container {
       @include flex(row, stretch, flex-start, wrap);
       gap: 25px;
+      margin-top: 10px;
       animation: fadeIn 0.25s ease-in forwards;
 
       @media (max-width: 630px) {

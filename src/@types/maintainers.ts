@@ -4,3 +4,9 @@ export type MaintainerInfo = {
   blog: string;
   location: string;
 };
+
+export type ResumedMaintaners = {
+  username: string;
+  name: string;
+  bio: string;
+};

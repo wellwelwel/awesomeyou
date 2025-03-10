@@ -23,12 +23,13 @@
 
   & > main {
     position: relative;
-    gap: 40px;
+    gap: 50px;
     padding: 40px;
     padding-top: 80px;
 
     @media (max-width: 630px) {
       justify-content: flex-start;
+      gap: 40px;
       padding-inline: 25px;
       width: 100%;
       padding-top: 50px;
@@ -89,9 +90,9 @@
 
       small {
         margin-top: 7.5px;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 300;
-        color: var(--headline-color);
+        color: #3e5977;
         letter-spacing: 0.25px;
         text-shadow: 1px 1px 2px var(--title-shadow-color);
 
@@ -126,14 +127,15 @@
     }
 
     & > main {
-      max-width: 1080px;
+      @include flex(column);
 
       h2 {
         margin-top: 10px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         font-family: var(--ifm-font-family-featured);
         font-size: 18px;
         font-weight: 700;
+        text-align: center;
         color: var(--title-color-1);
 
         strong {
@@ -143,22 +145,33 @@
         }
       }
 
+      small {
+        margin-bottom: 20px;
+        font-size: 13px;
+        text-align: center;
+        color: #3e5977;
+
+        p {
+          + p {
+            margin-top: 15px;
+          }
+        }
+      }
+
       .cards {
-        @include flex(row, stretch, flex-start, wrap);
+        @include flex(row, stretch, center, wrap);
         gap: 15px;
-        width: 100%;
 
         a {
           @include flex(column);
           gap: 10px;
-          width: 250px;
-          min-height: 125px;
+          width: 275px;
           padding: 20px;
           border-radius: 10px;
           background-color: #ffffff60;
           border: 1px solid #acccff95;
           box-shadow: 0 0 5px #445cc619;
-          transition: transform 0.25s;
+          transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
 
           @media (max-width: 630px) {
             width: 100%;
@@ -185,7 +198,7 @@
           main {
             flex-grow: 1;
             font-size: 13px;
-            color: #3367d7;
+            color: #5b80d0;
 
             @media (max-width: 630px) {
               font-size: 14px;
@@ -207,13 +220,156 @@
           }
 
           &:hover {
-            transform: scale(1.025);
+            transform: scale(1.05);
 
             svg {
               transform: scale(1.175);
               color: #3367d7;
             }
           }
+        }
+      }
+
+      .team {
+        @include flex(row, stretch, center, wrap);
+        gap: 15px;
+
+        .cards {
+          a {
+            width: fit-content;
+            flex-direction: row;
+            align-items: center;
+            padding: 5px;
+            padding-right: 15px;
+
+            header {
+              font-size: 11px;
+              font-weight: 500;
+
+              img {
+                border-radius: 10px;
+                width: 36px;
+                border: 3px solid transparent;
+                transition: border-color 0.25s;
+              }
+            }
+
+            &:hover {
+              img {
+                border-color: #f0f9ff;
+              }
+            }
+          }
+        }
+
+        + footer {
+          position: relative;
+          @include flex(column, center);
+          gap: 10px;
+          width: 100%;
+          padding: 20px;
+          margin-top: 20px;
+          margin-bottom: 10px;
+          background-color: #aae1ff38;
+          border-radius: 10px;
+          color: #104c76;
+          border: 1px solid #b9e2ff;
+          text-align: center;
+          font-weight: 500;
+          animation: fadeIn 0.25s ease forwards;
+          font-size: 13px;
+        }
+      }
+
+      &#cards,
+      &#maintainers,
+      &#projects {
+        max-width: 855px;
+      }
+
+      &#team {
+        max-width: 640px;
+      }
+
+      &#maintainers,
+      &#projects {
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+
+        small {
+          margin: 0;
+          transform: translateY(-20px);
+        }
+
+        .cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          width: 275px;
+
+          @media (max-width: 630px) {
+            grid-template-columns: 1fr;
+            width: 100%;
+          }
+
+          a {
+            header {
+              gap: 12.5px;
+              font-size: 14px;
+              font-weight: 600;
+              word-break: break-all;
+
+              img {
+                border-radius: 10px;
+                width: 36px;
+                transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+              }
+            }
+
+            main {
+              font-size: 13px;
+              color: #225597;
+            }
+
+            &:hover {
+              img {
+                transform: scale(1.125);
+              }
+            }
+          }
+        }
+
+        & > footer {
+          width: 100%;
+          font-size: 13px;
+          font-weight: 600;
+
+          a {
+            @include flex(row, center);
+            gap: 5px;
+            padding-top: 15px;
+            transform: translateX(5px);
+            transition: transform 0.15s;
+
+            svg {
+              width: 16px;
+              height: 16px;
+            }
+
+            &:hover {
+              transform: translateX(25px) scale(1.05);
+            }
+          }
+        }
+      }
+
+      &#about,
+      &#motivation,
+      &#team {
+        margin-top: -20px;
+
+        & > small {
+          margin-top: -15px;
         }
       }
     }

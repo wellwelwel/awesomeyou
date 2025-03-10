@@ -84,3 +84,9 @@ export type ScoreSimulator = ProjectStats & {
   username: string;
   repository: string;
 };
+
+export type ResumedProject = {
+  organization: string;
+  repository: string;
+  description: string;
+};

@@ -4,6 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
 import {
   ChevronDown,
+  Code,
   Dices,
   Earth,
   Flame,
@@ -288,59 +289,7 @@ const Projects = (): ReactNode => {
               brasileiros.
             </small>
           </header>
-          <h3 onClick={showFilters}>
-            Filtros <ChevronDown />
-          </h3>
           <menu>
-            <div className='container'>
-              <div>
-                <h4>Linguagens</h4>
-                <div>
-                  <button
-                    className='active'
-                    data-filter='language'
-                    onClick={(e) => filter(e, 'language', '')}
-                  >
-                    Todas
-                  </button>
-                  {Object.entries(sortObjectByValues(languages))
-                    .filter(([key]) => usedLanguages.has(key))
-                    .map(([key, name]) => (
-                      <button
-                        key={`filter:languages:${key}`}
-                        data-filter='language'
-                        onClick={(e) => filter(e, 'language', key)}
-                      >
-                        {name}
-                      </button>
-                    ))}
-                </div>
-              </div>
-              <div>
-                <h4>Categorias</h4>
-                <div>
-                  <button
-                    className='active'
-                    data-filter='category'
-                    onClick={(e) => filter(e, 'category', '')}
-                  >
-                    Todas
-                  </button>
-                  {Object.entries(sortObjectByValues(categories))
-                    .filter(([key]) => usedCategories.has(key))
-                    .map(([key, name]) => (
-                      <button
-                        key={`filter:categories:${key}`}
-                        data-filter='category'
-                        onClick={(e) => filter(e, 'category', key)}
-                      >
-                        {name}
-                      </button>
-                    ))}
-                </div>
-              </div>
-            </div>
-
             <div>
               <h4>Países</h4>
               <div>
@@ -393,14 +342,65 @@ const Projects = (): ReactNode => {
                 </button>
               </div>
             </div>
-
-            <div>
-              <h4>
-                Exibindo <span className='length'>{visibleCount}</span> Projetos
-              </h4>
-              {tips[tip]}
+            <div>{tips[tip]}</div>
+          </menu>
+          <h3 onClick={showFilters}>
+            Filtros <ChevronDown />
+          </h3>
+          <menu>
+            <div className='container'>
+              <div>
+                <h4>Linguagens</h4>
+                <div>
+                  <button
+                    className='active'
+                    data-filter='language'
+                    onClick={(e) => filter(e, 'language', '')}
+                  >
+                    Todas
+                  </button>
+                  {Object.entries(sortObjectByValues(languages))
+                    .filter(([key]) => usedLanguages.has(key))
+                    .map(([key, name]) => (
+                      <button
+                        key={`filter:languages:${key}`}
+                        data-filter='language'
+                        onClick={(e) => filter(e, 'language', key)}
+                      >
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+              <div>
+                <h4>Categorias</h4>
+                <div>
+                  <button
+                    className='active'
+                    data-filter='category'
+                    onClick={(e) => filter(e, 'category', '')}
+                  >
+                    Todas
+                  </button>
+                  {Object.entries(sortObjectByValues(categories))
+                    .filter(([key]) => usedCategories.has(key))
+                    .map(([key, name]) => (
+                      <button
+                        key={`filter:categories:${key}`}
+                        data-filter='category'
+                        onClick={(e) => filter(e, 'category', key)}
+                      >
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
             </div>
           </menu>
+          <h3>
+            <Code /> Exibindo <span className='length'>{visibleCount}</span>{' '}
+            Projetos
+          </h3>
           <div className='container'>
             {allProjects.map((project, i) => {
               const { organization, repository } = extractRepository(
