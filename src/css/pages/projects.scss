@@ -75,6 +75,10 @@
         }
       }
 
+      &.counter {
+        margin-top: 10px;
+      }
+
       &:hover {
         svg {
           color: #23c59a;

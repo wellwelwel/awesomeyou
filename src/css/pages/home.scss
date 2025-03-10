@@ -129,6 +129,15 @@
     & > main {
       @include flex(column);
 
+      &.show {
+        animation: showIn 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+      }
+
+      &.hide {
+        transform: scale(0);
+        opacity: 0;
+      }
+
       h2 {
         margin-top: 10px;
         margin-bottom: 30px;

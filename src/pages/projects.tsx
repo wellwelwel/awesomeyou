@@ -397,7 +397,7 @@ const Projects = (): ReactNode => {
               </div>
             </div>
           </menu>
-          <h3>
+          <h3 className='counter'>
             <Code /> Exibindo <span className='length'>{visibleCount}</span>{' '}
             Projetos
           </h3>

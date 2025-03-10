@@ -14,6 +14,7 @@ import {
   PackagePlus,
   UsersRound,
 } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 import { ReactTyped } from 'react-typed';
 import { Name } from '@site/src/components/Name';
 import { ResumedMaintaners } from '../@types/maintainers';
@@ -25,6 +26,7 @@ import '@site/src/css/pages/home.scss';
 
 export default (): ReactNode => {
   const { siteConfig } = useDocusaurusContext();
+
   const [data, setData] = useState<{
     projects: ResumedProject[];
     maintainers: ResumedMaintaners[];
@@ -32,6 +34,14 @@ export default (): ReactNode => {
     projects: [],
     maintainers: [],
   });
+
+  const sectionViews = [
+    useInView({ triggerOnce: true }),
+    useInView({ triggerOnce: true }),
+    useInView({ triggerOnce: true }),
+    useInView({ triggerOnce: true }),
+    useInView({ triggerOnce: true }),
+  ];
 
   useEffect(() => {
     const controller = new AbortController();
@@ -122,7 +132,11 @@ export default (): ReactNode => {
               </section>
             </menu>
           </header>
-          <main id='cards'>
+          <main
+            ref={sectionViews[0][0]}
+            className={sectionViews[0][1] ? 'show' : 'hide'}
+            id='cards'
+          >
             <h2>
               <strong>[Re]</strong> Descubra o <em>open-source</em> ✨
             </h2>
@@ -211,7 +225,11 @@ export default (): ReactNode => {
               </Link>
             </div>
           </main>
-          <main id='maintainers'>
+          <main
+            ref={sectionViews[1][0]}
+            className={sectionViews[1][1] ? 'show' : 'hide'}
+            id='maintainers'
+          >
             <h2>Apoie projetos criados por brasileiros 🏡</h2>
             <small>
               Selecionados aleatóriamente <Dices />
@@ -243,7 +261,11 @@ export default (): ReactNode => {
               </Link>
             </footer>
           </main>
-          <main id='projects'>
+          <main
+            ref={sectionViews[2][0]}
+            className={sectionViews[2][1] ? 'show' : 'hide'}
+            id='projects'
+          >
             <h2>Conheça mantenedores brasileiros 👋</h2>
             <small>
               Selecionados aleatóriamente <Dices />
@@ -275,7 +297,11 @@ export default (): ReactNode => {
               </Link>
             </footer>
           </main>
-          <main id='about'>
+          <main
+            ref={sectionViews[3][0]}
+            className={sectionViews[3][1] ? 'show' : 'hide'}
+            id='about'
+          >
             <h2>
               Por que "<strong>Awesome You</strong>"?
             </h2>
@@ -288,7 +314,11 @@ export default (): ReactNode => {
               <p>Aqui quem é "Awesome" é você 🫶</p>
             </small>
           </main>
-          <main id='team'>
+          <main
+            ref={sectionViews[4][0]}
+            className={sectionViews[4][1] ? 'show' : 'hide'}
+            id='team'
+          >
             <h2>
               Quem está por trás da <strong>Awesome You</strong>?
             </h2>
@@ -345,16 +375,6 @@ export default (): ReactNode => {
               Nosso trabalho vai além de ser voluntário, nós simplesmente amamos
               o que fazemos 💙
             </footer>
-          </main>
-          <main id='motivation'>
-            <h2>Motivação</h2>
-            <small>
-              <p>
-                Nós valorizamos além da popularidade de projetosao considerar
-                impacto, criação de comunidade e, principalmente, os
-                mantenedores dos projetos como seres humanos.
-              </p>
-            </small>
           </main>
         </main>
       </div>
