@@ -151,8 +151,18 @@
         text-align: center;
         color: #3e5977;
 
+        & > svg {
+          width: 16px;
+          height: 16px;
+          transform: translate(5px, 2px);
+        }
+
         strong {
           font-weight: 600;
+        }
+
+        a {
+          color: #2f4e71;
         }
 
         p {

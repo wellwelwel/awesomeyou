@@ -7,6 +7,8 @@ import {
   Calculator,
   ChevronRight,
   Code,
+  Dices,
+  ExternalLink,
   GraduationCap,
   List,
   PackagePlus,
@@ -211,7 +213,9 @@ export default (): ReactNode => {
           </main>
           <main id='maintainers'>
             <h2>Apoie projetos criados por brasileiros 🏡</h2>
-            <small>Selecionados aleatóriamente</small>
+            <small>
+              Selecionados aleatóriamente <Dices />
+            </small>
             <div className='cards'>
               {data.projects.slice(0, 3).map((project, i) => (
                 <SafeLink
@@ -227,6 +231,9 @@ export default (): ReactNode => {
                     {`${project.organization}/${project.repository}`}
                   </header>
                   <main>{project.description}</main>
+                  <footer>
+                    <ExternalLink />
+                  </footer>
                 </SafeLink>
               ))}
             </div>
@@ -238,7 +245,9 @@ export default (): ReactNode => {
           </main>
           <main id='projects'>
             <h2>Conheça novos mantenedores 👋</h2>
-            <small>Selecionados aleatóriamente</small>
+            <small>
+              Selecionados aleatóriamente <Dices />
+            </small>
             <div className='cards'>
               {data.maintainers.slice(0, 3).map((maintainer, i) => (
                 <Link
@@ -254,6 +263,9 @@ export default (): ReactNode => {
                     {maintainer.name}
                   </header>
                   <main>{maintainer.bio}</main>
+                  <footer>
+                    <ChevronRight />
+                  </footer>
                 </Link>
               ))}
             </div>
@@ -271,8 +283,9 @@ export default (): ReactNode => {
               <p>
                 Já viu repositórios que listam outros repositórios e sempre
                 começam com "Awesome [Linguagem]", "Awesome Made by [País]" e
-                assim vai? Aqui quem é "Awesome" é você 🫶
+                assim vai?
               </p>
+              <p>Aqui quem é "Awesome" é você 🫶</p>
             </small>
           </main>
           <main id='team'>
