@@ -303,10 +303,7 @@ export default (): ReactNode => {
                   key={`project:${i}:${maintainerSort.current}`}
                   className='card show'
                 >
-                  <Link
-                    to={`maintainers/${maintainer.username}`}
-                    className='show'
-                  >
+                  <Link to={`maintainers/${maintainer.username}`}>
                     <header>
                       <img
                         src={`https://avatars.githubusercontent.com/${maintainer.username}`}
