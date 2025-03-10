@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { listFiles } from 'poku';
 import {
@@ -6,7 +7,9 @@ import {
   ResumedMaintaners,
 } from '@site/src/@types/maintainers';
 import { RawProject, ResumedProject } from '@site/src/@types/projects';
-import { extractRepository } from '@site/src/helpers/extract-repository';
+
+const require = createRequire(import.meta.url);
+const { extractRepository } = require('@site/src/helpers/extract-repository');
 
 const base = `./content/assets/json/resume`;
 const projectsPath = `${base}/projects.json`;
