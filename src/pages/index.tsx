@@ -244,7 +244,7 @@ export default (): ReactNode => {
             </footer>
           </main>
           <main id='projects'>
-            <h2>Conheça novos mantenedores 👋</h2>
+            <h2>Conheça mantenedores brasileiros 👋</h2>
             <small>
               Selecionados aleatóriamente <Dices />
             </small>
