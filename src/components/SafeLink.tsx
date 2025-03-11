@@ -6,6 +6,9 @@ export type SafeLinkOptions = {
   children: ReactNode;
 } & Props;
 
+export const normalizeURL = (url: string) =>
+  url.replace(/(^http(s)?:\/\/)|\/$/g, '');
+
 /** Use for external links only */
 export const SafeLink: FC<SafeLinkOptions> = ({ children, to, ...props }) => (
   <Link target='_blank' rel='noopener' to={to} {...props}>

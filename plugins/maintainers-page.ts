@@ -5,6 +5,7 @@ import { ProjectOptions } from '@site/src/@types/projects';
 
 export interface ProcessedMaintainer {
   username: string;
+  name: string;
   projects: ProjectOptions[];
 }
 
@@ -21,9 +22,19 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
     const projectsFile = join(maintainersDir, username, 'projects.json');
     const fileContents = await readFile(projectsFile, 'utf8');
     const projectsData = JSON.parse(fileContents);
+    const maintainerInfos = JSON.parse(
+      await readFile(
+        `./content/assets/json/maintainers/${username}/infos.json`,
+        'utf8'
+      )
+    );
 
     if (projectsData && Array.isArray(projectsData.projects))
-      maintainers.push({ username, projects: projectsData.projects });
+      maintainers.push({
+        name: maintainerInfos.name,
+        username,
+        projects: projectsData.projects,
+      });
   }
 
   return maintainers;

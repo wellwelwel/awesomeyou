@@ -353,9 +353,9 @@ export default (): ReactNode => {
                 , assim toda comunidade pode participar.
               </p>
               <p>
-                Se precisar entrar em contato diretamente com alguém do nosso
-                time, fique à vontade para nos chamar através da rede social de
-                sua preferência 🤝
+                Se precisar entrar em contato de forma privada com alguém do
+                nosso time, fique à vontade para nos chamar através da rede
+                social de sua preferência 🤝
               </p>
             </small>
             <div className='team'>

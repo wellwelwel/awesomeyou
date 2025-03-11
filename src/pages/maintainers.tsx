@@ -1,21 +1,51 @@
 import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
+import {
+  ChevronRight,
+  ExternalLink,
+  Github,
+  MapPin,
+  Network,
+} from 'lucide-react';
+import { MaintainerInfo } from '../@types/maintainers';
 import { ProjectOptions } from '../@types/projects';
+import { Name } from '../components/Name';
+import { normalizeURL, SafeLink } from '../components/SafeLink';
+import { extractRepository } from '../helpers/extract-repository';
 import { randomize } from '../helpers/radomizer';
+
+import '@site/src/css/pages/maintainers.scss';
 
 interface Maintainer {
   username: string;
   projects: ProjectOptions[];
+  info: MaintainerInfo;
 }
 
 const loadMaintainers = (): Maintainer[] => {
+  const maintainers: Maintainer[] = [];
+  const maintainersInfos = new Map();
+
   const context = require.context(
     '@site/content/maintainers',
     true,
     /projects\.json$/
   );
-  const maintainers: Maintainer[] = [];
+
+  const subContext = require.context(
+    '@site/content/assets/json/maintainers/',
+    true,
+    /infos\.json$/
+  );
+
+  subContext.keys().forEach((key: string) => {
+    const parts = key.split('/');
+    if (parts.length >= 2) {
+      const username = parts[1];
+      maintainersInfos.set(username, subContext(key));
+    }
+  });
 
   context.keys().forEach((key: string) => {
     const parts = key.split('/');
@@ -28,6 +58,7 @@ const loadMaintainers = (): Maintainer[] => {
         maintainers.push({
           username,
           projects: projectsData.projects,
+          info: maintainersInfos.get(username),
         });
       }
     }
@@ -44,31 +75,108 @@ const MaintainersIndex: React.FC = () => {
     setMaintainers(randomize([...rawMaintainers]));
   }, []);
 
+  const title = "<Brazil class='Pessoas' />";
+
   return (
     <Layout title={''} description='Lista de projetos open source do Brasil'>
-      <main style={{ padding: '2rem', zIndex: 1 }}>
-        <h1>Mantenedores</h1>
+      <div id='maintainers'>
+        <main>
+          <header className='show'>
+            <h1>
+              <Name name={title} />
+            </h1>
+            <small>
+              Conheça novos mantenedores brasileiros toda vez que voltar aqui.
+            </small>
+          </header>
 
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {maintainers.map((maintainer) => (
-            <li key={maintainer.username} style={{ marginBottom: '2rem' }}>
-              <h2>
-                <Link to={`/maintainers/${maintainer.username}`}>
-                  {maintainer.username}
-                </Link>
-              </h2>
+          <main>
+            <div className='cards'>
+              {maintainers?.map((maintainer) => {
+                if (maintainer?.projects?.length === 0) return null;
 
-              <ul>
-                {maintainer.projects.map((project, index) => (
-                  <li key={index}>
-                    <strong>{project.name || '...'}</strong>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </main>
+                return (
+                  <section className='card' key={maintainer.username}>
+                    <header>
+                      <Link to={`/maintainers/${maintainer.username}`}>
+                        <img
+                          src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                          loading='lazy'
+                          alt={`${maintainer.username} profile avatar`}
+                        />
+                        <h2>
+                          <span>
+                            <span className='group-name'>
+                              <Name name={maintainer.info.name} />{' '}
+                            </span>
+                            {maintainer.info?.location ? (
+                              <strong>
+                                <MapPin /> {maintainer.info?.location}
+                              </strong>
+                            ) : null}
+                          </span>
+                          <ChevronRight />
+                        </h2>
+                      </Link>
+                    </header>
+
+                    {maintainer.info.bio && (
+                      <main>
+                        <p className='bio'>{maintainer.info.bio}</p>
+                      </main>
+                    )}
+
+                    <main>
+                      <div className='links'>
+                        <SafeLink
+                          to={`https://github.com/${maintainer.username}`}
+                        >
+                          <Github /> @{maintainer.username}
+                        </SafeLink>
+                        {maintainer.info.blog && (
+                          <SafeLink
+                            to={`https://${normalizeURL(maintainer.info.blog)}`}
+                          >
+                            <Network /> {normalizeURL(maintainer.info.blog)}
+                          </SafeLink>
+                        )}
+                      </div>
+                    </main>
+
+                    <footer>
+                      {maintainer.projects.map((project, index) => {
+                        const { organization, repository } = extractRepository(
+                          project.repository
+                        );
+
+                        return (
+                          <SafeLink
+                            key={index}
+                            to={project.repository}
+                            className='project'
+                          >
+                            <span>
+                              <img
+                                src={`https://avatars.githubusercontent.com/${organization}`}
+                                loading='lazy'
+                                alt={`${maintainer.username} profile avatar`}
+                              />
+                              <span className='name'>
+                                {project.name || repository}
+                              </span>
+                            </span>
+                            <ExternalLink />
+                          </SafeLink>
+                        );
+                      })}
+                    </footer>
+                  </section>
+                );
+              })}
+            </div>
+          </main>
+        </main>
+      </div>
     </Layout>
   );
 };

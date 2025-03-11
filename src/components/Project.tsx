@@ -29,7 +29,7 @@ import {
 import { MaintainerInfo } from '@site/src/@types/maintainers';
 import { MergedProjects, ProjectStats } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
-import { SafeLink } from '@site/src/components/SafeLink';
+import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
@@ -445,10 +445,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                         {maintainersInfos[maintainer].blog ? (
                           <div>
                             <Network />
-                            {maintainersInfos[maintainer].blog.replace(
-                              /(^http(s)?:\/\/)|\/$/g,
-                              ''
-                            )}
+                            {normalizeURL(maintainersInfos[maintainer].blog)}
                           </div>
                         ) : null}
                       </footer>

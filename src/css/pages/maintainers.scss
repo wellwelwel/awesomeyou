@@ -1,0 +1,184 @@
+@use 'sass:meta' as *;
+@use '../global/mixins' as *;
+@use 'shared';
+
+#maintainers {
+  @extend %page;
+
+  & > main {
+    .cards {
+      @include flex(row, stretch, center, wrap);
+      gap: 20px;
+      margin-top: 30px;
+      animation: fadeIn 0.25s ease-in forwards;
+
+      & > section {
+        position: relative;
+        @include flex(column);
+        gap: 10px;
+        width: 275px;
+        padding: 25px;
+        border-radius: 10px;
+        background-color: #ffffff60;
+        border: 1px solid #acccff95;
+        box-shadow: 0 0 5px #445cc619;
+        transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+        overflow: hidden;
+
+        @media (max-width: 630px) {
+          width: 100%;
+        }
+
+        & > header {
+          position: relative;
+          z-index: 1;
+
+          a {
+            @include flex(column);
+            gap: 12.5px;
+            transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+            color: var(--title-color-1);
+
+            img {
+              width: 100%;
+              height: 200px;
+              object-fit: cover;
+              object-position: center;
+              border: 1px solid #acccff95;
+              border-radius: 10px;
+              box-shadow: 0 0 5px #445cc62e;
+            }
+
+            h2 {
+              @include flex(row);
+              gap: 5px;
+              width: 100%;
+              font-family: var(--ifm-font-family-featured);
+              font-size: 20px;
+              font-weight: 800;
+              transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+
+              & > span {
+                flex-grow: 1;
+                @include flex(column);
+                gap: 6px;
+
+                .group-name {
+                  span {
+                    transition: color ease 0.5s;
+                    animation: colorChange 5s ease-in-out infinite;
+                    animation-delay: calc(var(--index) * 0.2s);
+                  }
+                }
+
+                & > strong {
+                  @include flex(row, center);
+                  font-family: var(--ifm-font-family-base);
+                  font-size: 12.5px;
+                  font-weight: 300;
+                  color: var(--title-color-1);
+
+                  svg {
+                    width: 12px;
+                    height: 12px;
+                    margin-right: 2.5px;
+                    opacity: 0.5;
+                  }
+                }
+              }
+            }
+
+            &:hover {
+              transform: scale(1.05);
+
+              h2 {
+                transform: scale(0.9);
+              }
+            }
+          }
+        }
+
+        & > main {
+          // flex-grow: 1;
+
+          .bio {
+            font-size: 13px;
+          }
+
+          .links {
+            @include flex(column);
+
+            a {
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        & > footer {
+          @include flex(column);
+          gap: 7.5px;
+
+          .project {
+            @include flex(row, center, space-between);
+            gap: 5px;
+            width: 100%;
+            padding: 7.5px 15px;
+            border: 1px dotted #a6cce0a6;
+            border-radius: 5px;
+            background-color: #edf5ff;
+            color: #2e8cf2;
+            font-size: 12px;
+            font-weight: 600;
+            transition:
+              background-color 0.1s,
+              color 0.15s;
+            cursor: pointer;
+            user-select: none;
+
+            & > span {
+              @include flex(row, center);
+              gap: 7.5px;
+              transition: transform 0.25s;
+
+              .name {
+                width: 150px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+
+              img {
+                width: 20px;
+                height: 20px;
+                object-fit: cover;
+                border-radius: 5px;
+              }
+            }
+
+            svg {
+              width: 14px;
+              height: 14px;
+              min-width: 14px;
+              min-height: 14px;
+              transition: transform 0.25s;
+            }
+
+            &:hover {
+              background-color: #f7fbff;
+
+              & > span {
+                transform: translateX(-1.5px);
+              }
+
+              svg {
+                transform: translateX(1.5px);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
