@@ -168,13 +168,15 @@
     }
 
     & > .container {
-      @include flex(row, stretch, flex-start, wrap);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 25px;
       margin-top: 10px;
       animation: fadeIn 0.25s ease-in forwards;
 
       @media (max-width: 630px) {
         padding-inline: 0;
+        grid-template-columns: 1fr;
       }
 
       @include load-css('project');
@@ -183,7 +185,7 @@
         filter: opacity(0.5);
         will-change: filter;
 
-        @media (max-width: 630px) {
+        @media (max-width: 820px) {
           filter: none;
         }
       }

@@ -4,19 +4,15 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import {
-  Award,
   Calculator,
   ChevronRight,
   Code,
   Dices,
   ExternalLink,
-  Flame,
-  FlameKindling,
   GraduationCap,
   List,
   PackagePlus,
-  Sprout,
-  Trophy,
+  Shapes,
   UsersRound,
 } from 'lucide-react';
 import { ReactTyped } from 'react-typed';
@@ -24,8 +20,9 @@ import { Name } from '@site/src/components/Name';
 import { ResumedMaintaners } from '../@types/maintainers';
 import { ResumedProject } from '../@types/projects';
 import { SafeLink } from '../components/SafeLink';
+import { categories } from '../configs/categories';
+import { languages } from '../configs/languages';
 import { randomize } from '../helpers/radomizer';
-import { localeNumber } from '../helpers/services/stats/set-result';
 
 import '@site/src/css/pages/home.scss';
 
@@ -258,29 +255,25 @@ export default (): ReactNode => {
                         loading='lazy'
                         alt={`${project.organization} profile avatar`}
                       />
-                      {`${project.organization}/${project.repository}`}
+                      <span title={project.name || project.repository}>
+                        {project.name || project.repository}
+                      </span>
+                      <ExternalLink />
                     </header>
                     <main>
                       <p>{project.description}</p>
                     </main>
                     <footer>
-                      <button>
-                        {project.score > 1_000_000 ? (
-                          <Trophy />
-                        ) : project.score > 100_000 ? (
-                          <Award />
-                        ) : project.score > 10_000 ? (
-                          <Flame />
-                        ) : project.score > 1_000 ? (
-                          <FlameKindling />
-                        ) : (
-                          <Sprout />
-                        )}{' '}
-                        Score
-                        <span>|</span>
-                        <strong>{localeNumber(project.score)}</strong>
-                      </button>
-                      <ExternalLink />
+                      {project.language && (
+                        <button>
+                          <Code /> {languages[project.language]}
+                        </button>
+                      )}
+                      {project.category && (
+                        <button>
+                          <Shapes /> {categories[project.category]}
+                        </button>
+                      )}
                     </footer>
                   </SafeLink>
                 </div>

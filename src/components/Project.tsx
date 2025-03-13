@@ -4,24 +4,19 @@ import Link from '@docusaurus/Link';
 import {
   Activity,
   ArrowUpDown,
-  Award,
   Bug,
   BugOff,
   Code,
   Dna,
   ExternalLink,
-  Flame,
-  FlameKindling,
   HeartHandshake,
   MapPin,
   Network,
   Rocket,
   Scale,
   Shapes,
-  Sprout,
   Star,
   StarHalf,
-  Trophy,
   UsersRound,
   UtensilsCrossed,
   Wrench,
@@ -222,30 +217,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <>
               <table ref={refs.impact.table} className='active'>
                 <tbody>
-                  {score ? (
-                    <tr>
-                      <td>
-                        <span>Score:</span>
-                      </td>
-                      <td>
-                        {score > 1_000_000 ? (
-                          <Trophy />
-                        ) : score > 100_000 ? (
-                          <Award />
-                        ) : score > 10_000 ? (
-                          <Flame />
-                        ) : score > 1_000 ? (
-                          <FlameKindling />
-                        ) : (
-                          <Sprout />
-                        )}
-                        <span className='score'>
-                          {Number(score).toLocaleString('pt-BR')}
-                        </span>
-                      </td>
-                    </tr>
-                  ) : null}
-
                   <tr>
                     <td>Contribuidores:</td>
                     <td>
@@ -258,7 +229,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
 
                   {stats?.repositoryDependents?.label !== '0' ? (
                     <tr>
-                      <td>Dependentes Diretos:</td>
+                      <td>Dependentes:</td>
                       <td>
                         <SafeLink to={`${repositoryURL}/network/dependents`}>
                           <Dna />
@@ -409,7 +380,6 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <menu>
               {maintainers.map((maintainer) => (
                 <Link
-                  target='_blank'
                   key={`maintainer:${projectName}:${maintainer}`}
                   to={`/maintainers/${maintainer}`}
                 >

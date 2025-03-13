@@ -88,6 +88,8 @@ export type ScoreSimulator = ProjectStats & {
 export type ResumedProject = {
   organization: string;
   repository: string;
+  name?: string;
   description: string;
-  score: number;
+  language?: keyof typeof languages;
+  category?: keyof typeof categories;
 };

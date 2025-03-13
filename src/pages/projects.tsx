@@ -34,10 +34,9 @@ export const tips = {
         <Dices />
       </div>
       <span>
-        <p>Por padrão, os projetos são exibidos em ordem aleatória.</p>
         <p>
-          Assim, você sempre irá descobrir projetos novos toda vez que voltar na
-          lista.
+          Conheça novos projetos criados e mantidos por brasileiros toda vez que
+          voltar aqui.
         </p>
       </span>
     </small>
@@ -48,9 +47,9 @@ export const tips = {
         <Flame />
       </div>
       <span>
-        Projetos com grande impacto e reconhecimento geralmente se destacam por
-        sua ampla adoção, popularidade e pela força de sua comunidade,
-        especialmente quando somados entre si.
+        Projetos com grande impacto e reconhecimento se destacam por sua ampla
+        adoção, popularidade e pela força de sua comunidade, especialmente
+        quando somados entre si.
       </span>
     </small>
   ),
@@ -61,8 +60,8 @@ export const tips = {
       </div>
       <span>
         Descubra e incentive projetos inovadores! Ao contribuir com projetos em
-        constante crescimento, você tem a oportunidade de participar do
-        amadurecimento de novas ideias e tecnologias.
+        constante crescimento, você tem a oportunidade de participar da história
+        e amadurecimento de novas ideias e tecnologias.
       </span>
     </small>
   ),

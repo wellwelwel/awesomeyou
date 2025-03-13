@@ -16,6 +16,7 @@
       "repository": "https://github.com/wellwelwel/lru.min",
       "languages": ["typescript", "javascript"],
       "description": "Um cache baseado em LRU extremamente rápido e eficiente para JavaScript com alta compatibilidade (incluindo navegadores antigos).",
+      "message": "Esse projeto prova que, mesmo sem popularidade, projetos podem ter impacto imenso no ecossitema open-source 💡",
       "npm": "lru.min",
       "categories": ["performance", "backend", "frontend", "tool"],
       "madeInBrazil": true,

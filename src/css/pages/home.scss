@@ -386,18 +386,19 @@
           display: grid;
           grid-template-columns: repeat(3, 1fr);
 
-          @media (max-width: 630px) {
+          @media (max-width: 820px) {
             grid-template-columns: 1fr;
             width: 100%;
           }
 
           .card {
-            width: 275px;
-            min-height: 242.5px;
+            width: 100%;
+            min-height: 240px;
             background-color: unset;
             overflow: visible;
+            box-shadow: none;
 
-            @media (max-width: 630px) {
+            @media (max-width: 820px) {
               width: 100%;
               min-height: auto;
             }
@@ -409,14 +410,29 @@
 
             header {
               gap: 12.5px;
+              width: 100%;
               font-size: 14px;
               font-weight: 600;
-              word-break: break-all;
 
               img {
                 border-radius: 10px;
                 width: 36px;
                 transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+              }
+
+              span {
+                flex-grow: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+
+              svg {
+                align-self: flex-start;
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+                min-height: 16px;
               }
             }
 
@@ -466,21 +482,28 @@
         .cards {
           a {
             footer {
-              @include flex(row, center, space-between);
+              @include flex(row, center, flex-start, wrap);
+              gap: 7.5px;
 
               button {
-                flex-grow: unset;
+                flex-grow: 1;
                 @include flex(row, center, center);
-                padding: 7.5px 15px;
+                padding: 5px 7.5px;
                 margin: 0;
-                width: fit-content;
                 border: 1px dotted #a6cce0a6;
                 border-radius: 5px;
                 background-color: #edf5ff;
                 font-family: var(--ifm-font-family-base);
-                font-size: 12px;
-                font-weight: 400;
                 color: #2e8cf2;
+                font-size: 11px;
+                font-weight: 600;
+
+                svg {
+                  width: 14px;
+                  height: 14px;
+                  color: #2e8cf2;
+                  transform: none;
+                }
 
                 span {
                   display: block;
@@ -490,13 +513,6 @@
 
                 strong {
                   font-weight: 600;
-                }
-
-                svg {
-                  width: 16px;
-                  height: 16px;
-                  transform: none;
-                  color: inherit;
                 }
               }
             }
@@ -509,7 +525,7 @@
           .card {
             min-height: 225px;
 
-            @media (max-width: 630px) {
+            @media (max-width: 820px) {
               min-height: auto;
             }
           }
