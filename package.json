@@ -9,7 +9,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "prestart": "tsx tools/host.mts",
-    "start": "docusaurus start --host 0.0.0.0",
+    "start": "docusaurus start --host 0.0.0.0 --port 6060",
     "dev": "wrangler dev",
     "build:maintainers": "tsx --env-file-if-exists=.env tools/generate-maintainers.mts",
     "build:projects": "tsx tools/generate-stats.mts && tsx tools/generate-scores.mts",
