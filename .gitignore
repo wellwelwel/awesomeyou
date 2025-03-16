@@ -7,4 +7,4 @@
 .wrangler
 /content/assets/json
 t.mts
-/server
+/lib
