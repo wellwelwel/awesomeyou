@@ -68,6 +68,7 @@ jobs:
           publish_dir: ./server
           publish_branch: 'server'
           allow_empty_commit: false
+          enable_jekyll: true
 
       - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
