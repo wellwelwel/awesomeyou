@@ -30,25 +30,16 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
-      - name: Getting the Latest Assets
+      - name: Getting Latest Assets
         run: |
-          git fetch origin website
-          git checkout origin/website -- json/maintainers json/projects
-          # find json/maintainers -type f | while read file; do
-          #   mtime=$(stat -c %Y "$file")
-          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
-          #   touch -mt "$formatted" "$file"
-          # done
-          # find json/projects -type f | while read file; do
-          #   mtime=$(stat -c %Y "$file")
-          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
-          #   touch -mt "$formatted" "$file"
-          # done
-          mkdir -p content/assets/json/maintainers
-          mkdir -p content/assets/json/projects
-          cp -rp json/maintainers/* content/assets/json/maintainers/
-          cp -rp json/projects/* content/assets/json/projects/
-          rm -rf json/maintainers json/projects
+          set +e
+          git fetch origin website || true
+          git checkout origin/website -- json/maintainers json/projects || true
+          mkdir -p content/assets/json/maintainers || true
+          mkdir -p content/assets/json/projects || true
+          cp -r json/maintainers/* content/assets/json/maintainers/ || true
+          cp -r json/projects/* content/assets/json/projects/ || true
+          rm -rf json/maintainers json/projects || true
 
       - name: Installing Dependencies
         run: npm ci

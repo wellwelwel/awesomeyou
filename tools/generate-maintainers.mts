@@ -2,7 +2,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { env } from 'node:process';
 import { listFiles, sleep } from 'poku';
-import { shouldUpdateFile } from './helpers/dates.mjs';
+import { getCurrentDate, shouldUpdateFile } from './helpers/dates.mjs';
 
 const token = String(env.GITHUB_TOKEN);
 
@@ -38,6 +38,7 @@ for (const file of files) {
   const base = `./content/assets/json/maintainers/${username}`;
   const filePath = `${base}/infos.json`;
   const { remaining, timeUntilReset } = await checkRateLimit();
+  const currentDate = getCurrentDate();
 
   if (!(await shouldUpdateFile(filePath, 7))) continue;
   console.log('Creating infos for', username);
@@ -52,7 +53,11 @@ for (const file of files) {
     await mkdir(base, { recursive: true });
     await writeFile(
       `${base}/infos.json`,
-      JSON.stringify({ name, bio, location, blog }, null, 0)
+      JSON.stringify(
+        { name, bio, location, blog, updatedAt: currentDate },
+        null,
+        0
+      )
     );
   });
 }
