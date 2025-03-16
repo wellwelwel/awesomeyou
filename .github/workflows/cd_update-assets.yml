@@ -30,6 +30,25 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
+      - name: Getting the Latest Assets
+        run: |
+          git fetch origin website
+          git checkout origin/website -- json/maintainers json/projects
+          # find json/maintainers -type f | while read file; do
+          #   mtime=$(stat -c %Y "$file")
+          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
+          #   touch -mt "$formatted" "$file"
+          # done
+          # find json/projects -type f | while read file; do
+          #   mtime=$(stat -c %Y "$file")
+          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
+          #   touch -mt "$formatted" "$file"
+          # done
+          mkdir -p content/assets/json/maintainers
+          mkdir -p content/assets/json/projects
+          cp -rp json/maintainers/* content/assets/json/maintainers/
+          cp -rp json/projects/* content/assets/json/projects/
+
       - name: Installing Dependencies
         run: npm ci
 
@@ -38,23 +57,6 @@ jobs:
 
       - name: Checking Lint
         run: npm run lint
-
-      - name: Getting the Latest Assets
-        run: |
-          git fetch origin website
-          git checkout origin/website -- json/maintainers json/projects
-          find json/maintainers -type f | while read file; do
-            mtime=$(git log -1 --format=%ct -- "$file")
-            touch -d @"$mtime" "$file"
-          done
-          find json/projects -type f | while read file; do
-            mtime=$(git log -1 --format=%ct -- "$file")
-            touch -d @"$mtime" "$file"
-          done
-          mkdir -p content/assets/json/maintainers
-          mkdir -p content/assets/json/projects
-          cp -r json/maintainers/* content/assets/json/maintainers/
-          cp -r json/projects/* content/assets/json/projects/
 
       - name: Building Site
         run: npm run build
