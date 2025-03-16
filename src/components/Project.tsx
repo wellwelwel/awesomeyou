@@ -379,12 +379,14 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             </h3>
             <menu>
               {maintainers.map((maintainer) => (
-                <Link
-                  key={`maintainer:${projectName}:${maintainer}`}
-                  to={`/maintainers/${maintainer}`}
-                >
-                  {maintainersInfos[maintainer]?.name || maintainer}
-                  <ArrowUpDown />
+                <>
+                  <Link
+                    key={`maintainer:${projectName}:${maintainer}`}
+                    to={`/maintainers/${maintainer}`}
+                  >
+                    {maintainersInfos[maintainer]?.name || maintainer}
+                    <ArrowUpDown />
+                  </Link>
                   {maintainersInfos[maintainer]?.name ? (
                     <section>
                       <header>
@@ -421,7 +423,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       </footer>
                     </section>
                   ) : null}
-                </Link>
+                </>
               ))}
             </menu>
           </div>
