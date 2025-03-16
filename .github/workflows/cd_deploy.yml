@@ -57,7 +57,9 @@ jobs:
             json-assets-maintainers
 
       - name: Building Site
-        run: npm run build
+        run: |
+          npm run build
+          npm run build:server
 
       - name: Deploy — Server
         uses: peaceiris/actions-gh-pages@v4
@@ -65,7 +67,7 @@ jobs:
           github_token: ${{ secrets.PAT }}
           publish_dir: ./server
           publish_branch: 'server'
-          allow_empty_commit: true
+          allow_empty_commit: false
 
       - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
