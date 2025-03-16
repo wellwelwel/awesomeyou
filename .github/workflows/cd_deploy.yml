@@ -77,37 +77,6 @@ jobs:
           cname: awesomeyou.io
           allow_empty_commit: false
 
-      - name: Upload Projects for Cache
-        uses: actions/upload-artifact@v4
-        with:
-          name: projects-cache
-          path: content/assets/json/projects
-          retention-days: 1
-
-      - name: Upload Maintainers Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: maintainers-cache
-          path: content/assets/json/maintainers
-          retention-days: 1
-
-  update-cache:
-    needs: deploy
-    runs-on: ubuntu-latest
-    name: Update Cache
-    steps:
-      - name: Download Projects Cache
-        uses: actions/download-artifact@v4
-        with:
-          name: projects-cache
-          path: content/assets/json/projects
-
-      - name: Download Maintainers Cache
-        uses: actions/download-artifact@v4
-        with:
-          name: maintainers-cache
-          path: content/assets/json/maintainers
-
       - name: Update Projects Cache
         uses: actions/cache/save@v4
         with:
@@ -119,11 +88,3 @@ jobs:
         with:
           path: content/assets/json/maintainers
           key: json-assets-maintainers
-
-      - name: Delete Artifacts
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: |
-            projects-cache
-            maintainers-cache
-          failOnError: false
