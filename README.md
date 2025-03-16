@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Awesome You</h1>
   <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
-  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open-source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo..</p>
+  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo..</p>
 </div>
 
 ---
@@ -29,7 +29,7 @@ Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_
 
 Nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo que apenas projetos que se mantenham relevantes permaneçam na lista e abrindo espaço para projetos inovadores que não sejam necessariamente populares.
 
-### O lado humano do _open-source_
+### O lado humano do _open source_
 
 Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantenedores e abrimos espaço para bate papos técnicos através do nosso futuro Podcast, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e LLMs ao vincular projetos com seus respectivos mantenedores brasileiros. <sup>1</sup>
 

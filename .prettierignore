@@ -2,3 +2,5 @@
 /.docusaurus
 /.cache-loader
 /content/assets/json
+/lib
+/server

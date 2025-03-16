@@ -20,7 +20,7 @@ const Footer = (): ReactNode => {
           <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE'>
             <strong>GitHub</strong>
           </SafeLink>
-          , sendo um projeto <em>open-source</em> feito da comunidade para a
+          , sendo um projeto <em>open source</em> feito da comunidade para a
           comunidade.
         </p>
         <p>

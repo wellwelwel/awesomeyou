@@ -26,77 +26,76 @@ import { API } from '@site/src/configs/api';
 
 import '@site/src/css/pages/home.scss';
 
+import { extractRepository } from '../helpers/extract-repository';
+
 export default (): ReactNode => {
   const { siteConfig } = useDocusaurusContext();
   const [stats, setStats] = useState<ScoreSimulator | null>(null);
   const repositoryURL = useRef<string>('');
   const { current: LRU } = useRef(
-    createLRU<string, ScoreSimulator>({ max: 100 })
+    createLRU<string, ScoreSimulator>({ max: 1000 })
   );
 
   const getRepository = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    try {
+      event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-    const user = formData.get('user');
-    const repository = formData.get('repository');
+      const formData = new FormData(event.currentTarget);
+      const repositoryFormURL = formData.get('repositoryURL');
 
-    if (!user || typeof user !== 'string') {
-      toast.error('Insira um usuário válido');
-      return;
-    }
+      if (!repositoryFormURL || typeof repositoryFormURL !== 'string') {
+        toast.error('Insira uma URL válida.');
+        return;
+      }
 
-    if (!repository || typeof repository !== 'string') {
-      toast.error('Insira um repositório válido');
-      return;
-    }
+      const { organization, repository } = extractRepository(repositoryFormURL);
 
-    const key = `${user.trim()}/${repository.trim()}`;
-    repositoryURL.current = `https://github.com/${key}`;
+      const key = `${organization.trim()}/${repository.trim()}`;
+      repositoryURL.current = `https://github.com/${key}`;
 
-    if (LRU.has(key)) {
+      console.log(key);
+
+      if (LRU.has(key)) {
+        setStats(LRU.get(key)!);
+        return;
+      }
+
+      LRU.set(
+        key,
+        await (
+          await fetch(API, {
+            method: 'POST',
+            body: JSON.stringify({
+              repositoryURL: repositoryURL.current,
+            }),
+          })
+        ).json()
+      );
+
       setStats(LRU.get(key)!);
-      return;
+    } catch (error) {
+      error instanceof Error && toast.error(error.message);
     }
-
-    console.log(
-      await (
-        await fetch(API, {
-          method: 'POST',
-          body: JSON.stringify({
-            repositoryURL: repositoryURL.current,
-          }),
-        })
-      ).json()
-    );
   };
-
-  stats && console.log(stats);
 
   return (
     <Layout
       title={siteConfig.title}
-      description='Descubra projetos open-source incríveis criados e mantidos por desenvolvedores brasileiros.'
+      description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>
         <main>
           <header>
-            <h1>Teste 2</h1>
-            <small>...</small>
+            <h1>Verifique seu score</h1>
+            <small>
+              Insira a URL do seu repositório e clique em "Gerar Score".
+            </small>
             <section>
-              <h2>Verifique seu score</h2>
               <form onSubmit={getRepository}>
                 <input
-                  placeholder='dracula'
-                  defaultValue='raphamorim'
+                  placeholder='https://github.com/dracula/dracula-theme'
                   type='text'
-                  name='user'
-                />
-                <input
-                  placeholder='dracula-theme'
-                  defaultValue='lucario'
-                  type='text'
-                  name='repository'
+                  name='repositoryURL'
                 />
                 <button>Gerar Score</button>
               </form>
@@ -113,15 +112,33 @@ export default (): ReactNode => {
 
                 {stats ? (
                   <>
-                    <header>
-                      <img
-                        src={`https://avatars.githubusercontent.com/${stats.username}`}
-                        loading='lazy'
-                        alt={`${stats.username} profile avatar`}
-                      />
-                    </header>
                     <table>
                       <tbody>
+                        <tr>
+                          <td>Organização</td>
+                          <td>
+                            <img
+                              src={`https://avatars.githubusercontent.com/${stats.username}`}
+                              loading='lazy'
+                              alt={`${stats.username} profile avatar`}
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Repositório</td>
+                          <td>{stats.repository}</td>
+                        </tr>
+                        <tr>
+                          <td>Contribuidores:</td>
+                          <td>
+                            <Link
+                              to={`repositoryURL ? undefined : ${repositoryURL.current}/graphs/contributors`}
+                            >
+                              <HeartHandshake />
+                              {stats?.contributors?.label || null}
+                            </Link>
+                          </td>
+                        </tr>
                         {stats.score ? (
                           <tr>
                             <td>

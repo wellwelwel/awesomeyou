@@ -2,7 +2,7 @@
 
 A iniciativa vai além de uma lista:
 
-- Diferente da metrificação por **100** ou **1.000** estrelas de um repositório, a métrica visa valorizar e humanizar o trabalho de mantenedores brasileiros no ecossistema open-source, equilibrando impacto, consistência e popularidade de forma justa.
+- Diferente da metrificação por **100** ou **1.000** estrelas de um repositório, a métrica visa valorizar e humanizar o trabalho de mantenedores brasileiros no ecossistema _open source_, equilibrando impacto, consistência e popularidade de forma justa.
 
 Projetos que atinjam **250** pontos ou mais podem entrar na iniciativa, desde que respeitem as [regras](https://github.com/wellwelwel/awesomeyou/issues/2).
 

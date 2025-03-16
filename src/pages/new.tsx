@@ -10,7 +10,7 @@ export default (): ReactNode => {
   return (
     <Layout
       title={siteConfig.title}
-      description='Descubra projetos open-source incríveis criados e mantidos por desenvolvedores brasileiros.'
+      description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>
         <main>

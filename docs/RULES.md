@@ -6,7 +6,7 @@
 - O projeto precisa ser ativo. <sup>1</sup>
 - O projeto precisa aceitar possíveis contribuições (**Issues** e **Pull Requests**) de maneira pública e transparente. <sup>2</sup>
 - O projeto precisa ser documentado para que qualquer pessoa possa usá-lo.
-- O projeto precisa ter uma licença _open-source_ transparente. <sup>3</sup>
+- O projeto precisa ter uma licença _open source_ transparente. <sup>3</sup>
 - O projeto deve ter pelo menos um brasileiro mantenedor, independentemente do país do autor do projeto.
 - O nome e descrição do projeto não devem incluir símbolos ou emojis a fim de manter consistência visual entre os projetos.
 - A descrição deve sempre finalizar com uma pontuação (ponto final, exclamação ou interrogação).
@@ -34,6 +34,6 @@
 > [!NOTE]
 >
 > - <sup>1</sup> Por ativo, o projeto precisa estar pronto para receber Issues ou Pull Requests de possíveis contribuidores e estar aberto a discussões.
-> - <sup>2</sup> "Aceitar" é diferente de "mesclar". Se o projeto é feito para a comunidade _open-source_, ele deve estar aberto para debater ideias que usuários proponham e corrigir _bugs_ reportados, por exemplo.
+> - <sup>2</sup> "Aceitar" é diferente de "mesclar". Se o projeto é feito para a comunidade _open source_, ele deve estar aberto para debater ideias que usuários proponham e corrigir _bugs_ reportados, por exemplo.
 > - <sup>3</sup> O **GitHub** busca pelo arquivo `LICENSE` e também por arquivos que comecem por `LICENSE-___`, ambos no diretório raiz do repositório. Caso o **GitHub** não encontre a licença, o projeto irá falhar nos testes automatizados.
 > - <sup>4</sup> Mais informações em breve.

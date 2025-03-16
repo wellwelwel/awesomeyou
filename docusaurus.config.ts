@@ -5,7 +5,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
   title: 'Awesome Brazilian Open Source People and Projects',
-  // favicon: 'img/favicon.ico',
+  favicon: 'favicon.ico',
   url: 'https://awesomeyou.io/',
   baseUrl: '/',
   trailingSlash: true,
@@ -55,6 +55,7 @@ const config: Config = {
           'código-aberto',
           'brasileiro',
           'brasileiros',
+          'incrível',
           'incríveis',
           'projeto',
           'projetos',

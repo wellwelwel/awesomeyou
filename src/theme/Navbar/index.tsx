@@ -2,8 +2,9 @@ import type { ReactNode } from 'react';
 import React, { memo, useEffect } from 'react';
 import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
-import { Code, Github, LandPlot, UsersRound } from 'lucide-react';
+import { Code, Github, UsersRound } from 'lucide-react';
 import { Toaster } from 'sonner';
+import Logo from '@site/content/assets/img/logo.svg';
 import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
@@ -45,7 +46,7 @@ const Navbar = (): ReactNode => {
       <Toaster richColors={true} theme='light' position='top-right' />
       <header className='main-header'>
         <Link to='/'>
-          <LandPlot />
+          <Logo className='logo' />
         </Link>
         <aside>
           <Link to='/projects'>

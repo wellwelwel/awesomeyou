@@ -14,15 +14,21 @@
   background-color: #edf7ffe4;
   box-shadow: 0 0 5px #00000023;
 
+  .logo {
+    width: 28px;
+  }
+
   a {
     @include flex(row, center);
     gap: 5px;
     transition:
       color 0.25s,
-      transform 0.2s;
+      transform 0.1s;
 
     &:hover {
       color: #035ddd;
+      stroke: #035ddd !important;
+      transform: scale(1.025);
     }
   }
 
@@ -37,10 +43,6 @@
       svg {
         width: 16px;
         height: 16px;
-      }
-
-      &:hover {
-        transform: scale(1.025);
       }
     }
   }

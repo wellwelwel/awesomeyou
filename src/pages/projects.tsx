@@ -284,7 +284,7 @@ const Projects = (): ReactNode => {
             </h1>
             <small>
               Uma lista inteligente para você conhecer projetos{' '}
-              <em>open-source</em> criados e mantidos por desenvolvedores{' '}
+              <em>open source</em> criados e mantidos por desenvolvedores{' '}
               brasileiros.
             </small>
           </header>

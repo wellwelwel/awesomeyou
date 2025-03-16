@@ -89,7 +89,7 @@ export default (): ReactNode => {
   return (
     <Layout
       title={siteConfig.title}
-      description='Descubra projetos open-source incríveis criados e mantidos por desenvolvedores brasileiros.'
+      description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>
         <main>
@@ -99,7 +99,7 @@ export default (): ReactNode => {
                 <Name name='Awesome Brazilian' />
               </div>
               <div>
-                <Name name='< open-source >' />
+                <Name name='< open source >' />
               </div>
               <div>
                 <Name name='People' />
@@ -121,7 +121,7 @@ export default (): ReactNode => {
               />
             </small>
             <small>
-              Uma iniciativa que traz o lado humano do <em>open-source</em>, te
+              Uma iniciativa que traz o lado humano do <em>open source</em>, te
               apresentando projetos incríveis criados e mantidos por
               desenvolvedores brasileiros.
             </small>
@@ -148,7 +148,7 @@ export default (): ReactNode => {
           </header>
           <main id='cards'>
             <h2>
-              <strong>Re</strong> Descubra o <em>open-source</em> ✨
+              <strong>Re</strong> Descubra o <em>open source</em> ✨
             </h2>
             <div className='show cards'>
               <Link to='projects'>
@@ -157,7 +157,7 @@ export default (): ReactNode => {
                   Projetos
                 </header>
                 <main>
-                  Conheça projetos open-source criados e mantidos por
+                  Conheça projetos open source criados e mantidos por
                   brasileiros.
                 </main>
                 <footer>
