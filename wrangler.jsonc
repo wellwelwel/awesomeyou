@@ -1,5 +1,8 @@
 {
   "name": "awesomeyou",
   "main": "index.js",
-  "compatibility_date": "2025-03-10"
+  "compatibility_date": "2025-03-10",
+  "vars": {
+    "ENVIRONMENT": "production"
+  }
 }
