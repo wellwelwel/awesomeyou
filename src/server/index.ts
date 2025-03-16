@@ -15,7 +15,7 @@ const cache = {
 export default {
   async fetch(request: Request, env: Env) {
     if (request.method !== 'POST') {
-      return new Response('Method Not Allowed', {
+      return new Response('Method Not Allowed.', {
         status: 405,
       });
     }
@@ -24,7 +24,7 @@ export default {
     const isProduction = env.ENVIRONMENT === 'production';
 
     if (!origin || typeof origin !== 'string')
-      return new Response('Method Not Allowed', {
+      return new Response('Method Not Allowed.', {
         status: 405,
       });
 
@@ -50,7 +50,7 @@ export default {
       const { repositoryURL } = JSON.parse(rawBody);
 
       if (typeof repositoryURL !== 'string')
-        return new Response('Invalid repository URL', {
+        return new Response('Invalid repository URL.', {
           status: 400,
         });
 
@@ -100,7 +100,7 @@ export default {
             )
           );
     } catch {
-      return new Response('Internal Error', {
+      return new Response('Internal Error.', {
         status: 500,
         headers,
       });
