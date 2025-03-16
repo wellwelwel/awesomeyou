@@ -57,9 +57,7 @@ jobs:
             json-assets-maintainers
 
       - name: Building Site
-        run: |
-          npm run build
-          npm run build:server
+        run: npm run build
 
       - name: Deploy — Server
         uses: peaceiris/actions-gh-pages@v4

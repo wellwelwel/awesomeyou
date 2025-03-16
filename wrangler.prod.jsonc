@@ -4,9 +4,7 @@
  */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": "src/server/index.ts",
-  "compatibility_date": "2025-03-10",
-  "dev": {
-    "port": 3001
-  }
+  "name": "awesomeyou",
+  "main": "index.js",
+  "compatibility_date": "2025-03-10"
 }

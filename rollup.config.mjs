@@ -6,7 +6,7 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: 'src/server/index.ts',
   output: {
-    file: 'lib/server/index.js',
+    file: 'server/index.js',
     format: 'esm',
   },
   plugins: [
