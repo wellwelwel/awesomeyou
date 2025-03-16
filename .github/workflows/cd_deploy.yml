@@ -59,11 +59,20 @@ jobs:
       - name: Building Site
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy — Server
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PAT }}
+          publish_dir: ./server
+          publish_branch: 'server'
+          allow_empty_commit: true
+
+      - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PAT }}
           publish_dir: ./build
+          publish_branch: 'website'
           cname: awesomeyou.io
           allow_empty_commit: true
 

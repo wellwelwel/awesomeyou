@@ -5,9 +5,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "awesomeyou",
-  "main": "server/index.ts",
-  "compatibility_date": "2025-02-14",
-  "compatibility_flags": ["nodejs_compat"],
+  "main": "server/index.js",
+  "compatibility_date": "2025-03-10",
+  // "compatibility_flags": ["nodejs_compat"],
   "dev": {
     "port": 3001
   }

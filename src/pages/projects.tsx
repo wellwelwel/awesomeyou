@@ -331,7 +331,7 @@ const Projects = (): ReactNode => {
                   data-filter='order'
                   onClick={(e) => sortProjectsByScore(e, 0)}
                 >
-                  <Flame /> Maior Impacto
+                  <Flame /> Impacto
                 </button>
                 <button
                   data-filter='order'
