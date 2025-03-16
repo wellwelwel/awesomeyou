@@ -48,6 +48,7 @@ jobs:
           mkdir -p content/assets/json/projects
           cp -rp json/maintainers/* content/assets/json/maintainers/
           cp -rp json/projects/* content/assets/json/projects/
+          rm -rf json/maintainers json/projects
 
       - name: Installing Dependencies
         run: npm ci

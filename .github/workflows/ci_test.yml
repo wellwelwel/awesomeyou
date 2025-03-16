@@ -1,6 +1,9 @@
 name: '🔬 CI — Check Projects'
 
 on:
+  push:
+    branches:
+      - 'main'
   pull_request:
   workflow_dispatch:
 
@@ -28,6 +31,26 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
+      - name: Getting the Latest Assets
+        run: |
+          git fetch origin website
+          git checkout origin/website -- json/maintainers json/projects
+          # find json/maintainers -type f | while read file; do
+          #   mtime=$(stat -c %Y "$file")
+          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
+          #   touch -mt "$formatted" "$file"
+          # done
+          # find json/projects -type f | while read file; do
+          #   mtime=$(stat -c %Y "$file")
+          #   formatted=$(date -d "@$mtime" +"%Y%m%d%H%M.%S")
+          #   touch -mt "$formatted" "$file"
+          # done
+          mkdir -p content/assets/json/maintainers
+          mkdir -p content/assets/json/projects
+          cp -rp json/maintainers/* content/assets/json/maintainers/
+          cp -rp json/projects/* content/assets/json/projects/
+          rm -rf json/maintainers json/projects
+
       - name: Installing Dependencies
         run: npm ci
 
@@ -36,22 +59,6 @@ jobs:
 
       - name: Checking Lint
         run: npm run lint
-
-      - name: Restore Projects Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: content/assets/json/projects
-          key: json-assets-projects
-          restore-keys: |
-            json-assets-projects
-
-      - name: Restore Maintainers Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: content/assets/json/maintainers
-          key: json-assets-maintainers
-          restore-keys: |
-            json-assets-maintainers
 
       - name: Building Site
         run: npm run build
