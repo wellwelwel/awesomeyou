@@ -13,7 +13,7 @@
     "dev": "wrangler dev",
     "build:maintainers": "tsx --env-file-if-exists=.env tools/generate-maintainers.mts",
     "build:projects": "tsx tools/generate-stats.mts && tsx tools/generate-scores.mts",
-    "build:server": "rollup -c",
+    "build:server": "rollup -c && cp -f wrangler.prod.jsonc server/wrangler.jsonc",
     "prebuild": "npm run build:projects && npm run build:maintainers && tsx tools/generate-resume.mts",
     "build": "docusaurus build && npm run build:server",
     "postbuild": "tsx tools/modify-sitemap.mts",
