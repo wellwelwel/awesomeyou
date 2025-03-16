@@ -65,7 +65,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PAT }}
-          publish_dir: ./server
+          publish_dir: ./lib
           publish_branch: 'server'
           allow_empty_commit: false
           enable_jekyll: true
