@@ -1,4 +1,7 @@
-import { MergedProjects, ProcessedProjects } from '@site/src/@types/projects';
+import type {
+  MergedProjects,
+  ProcessedProjects,
+} from '@site/src/@types/projects';
 
 export const mergeRepositories = (
   projects: ProcessedProjects[]

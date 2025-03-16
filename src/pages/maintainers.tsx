@@ -1,3 +1,5 @@
+import type { MaintainerInfo } from '@site/src/@types/maintainers';
+import type { ProjectOptions } from '@site/src/@types/projects';
 import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -8,8 +10,6 @@ import {
   MapPin,
   Network,
 } from 'lucide-react';
-import { MaintainerInfo } from '@site/src/@types/maintainers';
-import { ProjectOptions } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';

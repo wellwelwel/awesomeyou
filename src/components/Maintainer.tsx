@@ -1,7 +1,7 @@
+import type { ProjectOptions } from '@site/src/@types/projects';
 import React from 'react';
 import Layout from '@theme/Layout';
 import { ProcessedMaintainer } from '@site/plugins/maintainers-page';
-import { ProjectOptions } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 

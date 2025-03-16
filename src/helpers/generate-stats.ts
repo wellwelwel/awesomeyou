@@ -1,4 +1,4 @@
-import { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
+import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { chocolateyDownloads } from '@site/src/helpers/services/stats/chocolatey';
 import { issuesClosed } from '@site/src/helpers/services/stats/closed-issues';

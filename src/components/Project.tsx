@@ -1,3 +1,5 @@
+import type { MaintainerInfo } from '@site/src/@types/maintainers';
+import type { MergedProjects, ProjectStats } from '@site/src/@types/projects';
 import type { FC } from 'react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
@@ -21,8 +23,6 @@ import {
   UtensilsCrossed,
   Wrench,
 } from 'lucide-react';
-import { MaintainerInfo } from '@site/src/@types/maintainers';
-import { MergedProjects, ProjectStats } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';

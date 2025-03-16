@@ -1,7 +1,7 @@
+import type { ProjectOptions } from '@site/src/@types/projects';
 import { readdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Plugin } from '@docusaurus/types';
-import { ProjectOptions } from '@site/src/@types/projects';
 
 export interface ProcessedMaintainer {
   username: string;

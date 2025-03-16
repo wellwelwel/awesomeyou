@@ -1,4 +1,4 @@
-import { ProcessedProjects, RawProject } from '@site/src/@types/projects';
+import type { ProcessedProjects, RawProject } from '@site/src/@types/projects';
 
 export const projects = (): ProcessedProjects[][] => {
   const context = require.context(

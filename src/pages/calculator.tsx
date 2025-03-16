@@ -1,3 +1,4 @@
+import type { ScoreSimulator } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
 import { useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
@@ -21,8 +22,7 @@ import {
   Wrench,
 } from 'lucide-react';
 import { toast } from 'sonner';
-import { ScoreSimulator } from '@site/src/@types/projects';
-import { API } from '@site/src/configs/server';
+import { API } from '@site/src/configs/api';
 
 import '@site/src/css/pages/home.scss';
 
