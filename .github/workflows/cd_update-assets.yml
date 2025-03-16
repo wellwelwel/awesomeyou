@@ -39,21 +39,22 @@ jobs:
       - name: Checking Lint
         run: npm run lint
 
-      - name: Restore Projects Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: content/assets/json/projects
-          key: json-assets-projects
-          restore-keys: |
-            json-assets-projects
-
-      - name: Restore Maintainers Cache
-        uses: actions/cache/restore@v4
-        with:
-          path: content/assets/json/maintainers
-          key: json-assets-maintainers
-          restore-keys: |
-            json-assets-maintainers
+      - name: Getting the Latest Assets
+        run: |
+          git fetch origin website
+          git checkout origin/website -- json/maintainers json/projects
+          find json/maintainers -type f | while read file; do
+            mtime=$(git log -1 --format=%ct -- "$file")
+            touch -d @"$mtime" "$file"
+          done
+          find json/projects -type f | while read file; do
+            mtime=$(git log -1 --format=%ct -- "$file")
+            touch -d @"$mtime" "$file"
+          done
+          mkdir -p content/assets/json/maintainers
+          mkdir -p content/assets/json/projects
+          cp -r json/maintainers/* content/assets/json/maintainers/
+          cp -r json/projects/* content/assets/json/projects/
 
       - name: Building Site
         run: npm run build
@@ -66,54 +67,3 @@ jobs:
           publish_branch: 'website'
           cname: awesomeyou.io
           allow_empty_commit: false
-
-      - name: Upload Projects for Cache
-        uses: actions/upload-artifact@v4
-        with:
-          name: projects-cache
-          path: content/assets/json/projects
-          retention-days: 1
-
-      - name: Upload Maintainers Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: maintainers-cache
-          path: content/assets/json/maintainers
-          retention-days: 1
-
-  update-cache:
-    needs: deploy
-    runs-on: ubuntu-latest
-    name: Update Cache
-    steps:
-      - name: Download Projects Cache
-        uses: actions/download-artifact@v4
-        with:
-          name: projects-cache
-          path: content/assets/json/projects
-
-      - name: Download Maintainers Cache
-        uses: actions/download-artifact@v4
-        with:
-          name: maintainers-cache
-          path: content/assets/json/maintainers
-
-      - name: Update Projects Cache
-        uses: actions/cache/save@v4
-        with:
-          path: content/assets/json/projects
-          key: json-assets-projects
-
-      - name: Update Maintainers Cache
-        uses: actions/cache/save@v4
-        with:
-          path: content/assets/json/maintainers
-          key: json-assets-maintainers
-
-      - name: Delete Artifacts
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: |
-            projects-cache
-            maintainers-cache
-          failOnError: false
