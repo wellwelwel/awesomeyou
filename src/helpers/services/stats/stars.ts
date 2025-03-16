@@ -1,4 +1,4 @@
-import { setResult } from './set-result';
+import { setResult } from '@site/src/helpers/services/stats/set-result';
 
 export const stars = async (organization: string, repository: string) => {
   const results = await (

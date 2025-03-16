@@ -2,8 +2,8 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import { ProcessedMaintainer } from '@site/plugins/maintainers-page';
 import { ProjectOptions } from '@site/src/@types/projects';
-import { Name } from './Name';
-import { SafeLink } from './SafeLink';
+import { Name } from '@site/src/components/Name';
+import { SafeLink } from '@site/src/components/SafeLink';
 
 interface MaintainerPageProps {
   data: ProcessedMaintainer;

@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ScoreSimulator } from '@site/src/@types/projects';
+import { API } from '@site/src/configs/server';
 
 import '@site/src/css/pages/home.scss';
 
@@ -60,7 +61,7 @@ export default (): ReactNode => {
 
     console.log(
       await (
-        await fetch('http://localhost:3001', {
+        await fetch(API, {
           method: 'POST',
           body: JSON.stringify({
             repositoryURL: repositoryURL.current,

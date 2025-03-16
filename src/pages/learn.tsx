@@ -4,16 +4,15 @@ import Layout from '@theme/Layout';
 import { ChevronDown, Dices, Flame, Sprout } from 'lucide-react';
 import { Name } from '@site/src//components/Name';
 import { Project } from '@site/src/components/Project';
+import { categories } from '@site/src/configs/categories';
+import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { projects } from '@site/src/helpers/get-contents';
 import { mergeRepositories } from '@site/src/helpers/merge-projects';
 import { randomize } from '@site/src/helpers/radomizer';
+import { sortObjectByValues } from '@site/src/helpers/sort-object';
 
 import '@site/src/css/pages/projects.scss';
-
-import { categories } from '../configs/categories';
-import { languages } from '../configs/languages';
-import { sortObjectByValues } from '../helpers/sort-object';
 
 const activeCategoryFilter = new Set<string>('');
 const activeLanguageFilter = new Set<string>('');

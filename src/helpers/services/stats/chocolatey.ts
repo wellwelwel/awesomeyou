@@ -1,4 +1,4 @@
-import { setResult } from './set-result';
+import { setResult } from '@site/src/helpers/services/stats/set-result';
 
 export const chocolateyDownloads = async (chocolatey: string) => {
   const results = await (

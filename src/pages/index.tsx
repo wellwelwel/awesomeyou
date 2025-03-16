@@ -16,13 +16,13 @@ import {
   UsersRound,
 } from 'lucide-react';
 import { ReactTyped } from 'react-typed';
+import { ResumedMaintaners } from '@site/src/@types/maintainers';
+import { ResumedProject } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
-import { ResumedMaintaners } from '../@types/maintainers';
-import { ResumedProject } from '../@types/projects';
-import { SafeLink } from '../components/SafeLink';
-import { categories } from '../configs/categories';
-import { languages } from '../configs/languages';
-import { randomize } from '../helpers/radomizer';
+import { SafeLink } from '@site/src/components/SafeLink';
+import { categories } from '@site/src/configs/categories';
+import { languages } from '@site/src/configs/languages';
+import { randomize } from '@site/src/helpers/radomizer';
 
 import '@site/src/css/pages/home.scss';
 

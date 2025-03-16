@@ -8,12 +8,12 @@ import {
   MapPin,
   Network,
 } from 'lucide-react';
-import { MaintainerInfo } from '../@types/maintainers';
-import { ProjectOptions } from '../@types/projects';
-import { Name } from '../components/Name';
-import { normalizeURL, SafeLink } from '../components/SafeLink';
-import { extractRepository } from '../helpers/extract-repository';
-import { randomize } from '../helpers/radomizer';
+import { MaintainerInfo } from '@site/src/@types/maintainers';
+import { ProjectOptions } from '@site/src/@types/projects';
+import { Name } from '@site/src/components/Name';
+import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
+import { extractRepository } from '@site/src/helpers/extract-repository';
+import { randomize } from '@site/src/helpers/radomizer';
 
 import '@site/src/css/pages/maintainers.scss';
 

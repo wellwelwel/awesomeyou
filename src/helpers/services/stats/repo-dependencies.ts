@@ -1,4 +1,4 @@
-import { localeNumber } from './set-result';
+import { localeNumber } from '@site/src/helpers/services/stats/set-result';
 
 export const getRepoDepsManually = async (
   organization: string,

@@ -1,5 +1,5 @@
+import type { MergedProjects } from '@site/src/@types/projects';
 import type { MouseEvent, ReactNode } from 'react';
-import type { MergedProjects } from '../@types/projects';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '@theme/Layout';
 import {

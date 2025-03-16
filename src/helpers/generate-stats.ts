@@ -1,18 +1,18 @@
 import { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-import { chocolateyDownloads } from './services/stats/chocolatey';
-import { issuesClosed } from './services/stats/closed-issues';
-import { commits } from './services/stats/commits';
-import { contributors } from './services/stats/contributors';
-import { forks } from './services/stats/forks';
-import { homebrewDownloads } from './services/stats/homebrew';
-import { issues } from './services/stats/issues';
-import { license } from './services/stats/license';
-import { npmDownloads } from './services/stats/npm';
-import { pypiDownloads } from './services/stats/pypi';
-import { getRepoDepsManually } from './services/stats/repo-dependencies';
-import { stars } from './services/stats/stars';
-import { vscodeDownloads } from './services/stats/vscode';
+import { chocolateyDownloads } from '@site/src/helpers/services/stats/chocolatey';
+import { issuesClosed } from '@site/src/helpers/services/stats/closed-issues';
+import { commits } from '@site/src/helpers/services/stats/commits';
+import { contributors } from '@site/src/helpers/services/stats/contributors';
+import { forks } from '@site/src/helpers/services/stats/forks';
+import { homebrewDownloads } from '@site/src/helpers/services/stats/homebrew';
+import { issues } from '@site/src/helpers/services/stats/issues';
+import { license } from '@site/src/helpers/services/stats/license';
+import { npmDownloads } from '@site/src/helpers/services/stats/npm';
+import { pypiDownloads } from '@site/src/helpers/services/stats/pypi';
+import { getRepoDepsManually } from '@site/src/helpers/services/stats/repo-dependencies';
+import { stars } from '@site/src/helpers/services/stats/stars';
+import { vscodeDownloads } from '@site/src/helpers/services/stats/vscode';
 
 export const processProject = async (
   options: ProjectOptions,

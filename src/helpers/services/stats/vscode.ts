@@ -1,4 +1,7 @@
-import { localeNumber, setResult } from './set-result';
+import {
+  localeNumber,
+  setResult,
+} from '@site/src/helpers/services/stats/set-result';
 
 export const vscodeDownloads = async (vscode: string) => {
   const getDownloadsManually = async () => {
