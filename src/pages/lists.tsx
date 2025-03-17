@@ -105,8 +105,6 @@ const Projects = (): ReactNode => {
     event.currentTarget.classList.toggle('active');
   };
 
-  const title = "<Brazil class='Listas' />";
-
   const filter = useCallback(
     (
       event: MouseEvent<HTMLButtonElement>,
@@ -236,12 +234,15 @@ const Projects = (): ReactNode => {
   }, [setScores]);
 
   return (
-    <Layout title={title} description='Lista de projetos open source do Brasil'>
+    <Layout
+      title='Listas'
+      description='Lista de projetos open source do Brasil'
+    >
       <div id='projects'>
         <main>
           <header>
             <h1>
-              <Name name={title} />
+              <Name name="<Brazil class='Listas' />" />
             </h1>
             <small>
               Por que parar por aqui, quando podemos incluir e conhecer novos

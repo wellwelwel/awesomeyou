@@ -1,8 +1,6 @@
 import type { ScoreSimulator } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
-import { useRef, useState } from 'react';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { startTransition, useRef, useState } from 'react';
 import Layout from '@theme/Layout';
 import { createLRU } from 'lru.min';
 import {
@@ -10,8 +8,15 @@ import {
   Award,
   Bug,
   BugOff,
+  CircleAlert,
+  CircleHelp,
+  ClipboardList,
+  Dna,
+  ExternalLink,
   Flame,
   FlameKindling,
+  Gamepad2,
+  Github,
   HeartHandshake,
   Loader,
   Rocket,
@@ -22,287 +27,392 @@ import {
   Wrench,
 } from 'lucide-react';
 import { toast } from 'sonner';
+import { Name } from '@site/src/components/Name';
+import { SafeLink } from '@site/src/components/SafeLink';
 import { API } from '@site/src/configs/api';
+import { extractRepository } from '@site/src/helpers/extract-repository';
 
-import '@site/src/css/pages/home.scss';
-
-import { extractRepository } from '../helpers/extract-repository';
+import '@site/src/css/pages/calculator.scss';
 
 export default (): ReactNode => {
-  const { siteConfig } = useDocusaurusContext();
   const [stats, setStats] = useState<ScoreSimulator | null>(null);
+  const scoreRef = useRef<HTMLDivElement>(null);
   const repositoryURL = useRef<string>('');
   const { current: LRU } = useRef(
     createLRU<string, ScoreSimulator>({ max: 1000 })
   );
 
   const getRepository = async (event: React.FormEvent<HTMLFormElement>) => {
-    try {
-      event.preventDefault();
+    event.preventDefault();
 
-      const formData = new FormData(event.currentTarget);
-      const repositoryFormURL = formData.get('repositoryURL');
+    startTransition(async () => {
+      try {
+        const formData = new FormData(event.currentTarget);
+        const repositoryFormURL = formData.get('repositoryURL');
+        const npm = formData.get('npm');
+        const homebrew = formData.get('homebrew');
+        const pypi = formData.get('pypi');
+        const chocolatey = formData.get('chocolatey');
+        const vscode = formData.get('vscode');
 
-      if (!repositoryFormURL || typeof repositoryFormURL !== 'string') {
-        toast.error('Insira uma URL válida.');
-        return;
-      }
+        if (!repositoryFormURL || typeof repositoryFormURL !== 'string') {
+          toast.error('Insira uma URL válida.');
+          return;
+        }
 
-      const { organization, repository } = extractRepository(repositoryFormURL);
+        const { organization, repository } =
+          extractRepository(repositoryFormURL);
 
-      const key = `${organization.trim()}/${repository.trim()}`;
-      repositoryURL.current = `https://github.com/${key}`;
+        const validatedURL = `${organization.trim()}/${repository.trim()}`;
+        const key = `${validatedURL}:${npm}:${homebrew}:${pypi}:${chocolatey}:${vscode}`;
 
-      console.log(key);
+        repositoryURL.current = `https://github.com/${validatedURL}`;
 
-      if (LRU.has(key)) {
+        toast.dismiss();
+
+        scoreRef.current?.classList.add('active');
+
+        if (LRU.has(key)) {
+          setStats(LRU.get(key)!);
+          return;
+        }
+
+        LRU.set(
+          key,
+          await (
+            await fetch(API, {
+              method: 'POST',
+              body: JSON.stringify({
+                repositoryURL: repositoryURL.current,
+                npm,
+                homebrew,
+                pypi,
+                chocolatey,
+                vscode,
+              }),
+            })
+          ).json()
+        );
+
         setStats(LRU.get(key)!);
-        return;
+      } catch (error) {
+        error instanceof Error && toast.error(error.message);
       }
-
-      LRU.set(
-        key,
-        await (
-          await fetch(API, {
-            method: 'POST',
-            body: JSON.stringify({
-              repositoryURL: repositoryURL.current,
-            }),
-          })
-        ).json()
-      );
-
-      setStats(LRU.get(key)!);
-    } catch (error) {
-      error instanceof Error && toast.error(error.message);
-    }
+    });
   };
 
   return (
     <Layout
-      title={siteConfig.title}
+      title='Calculadora'
       description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
-      <div id='home'>
+      <div id='calculator'>
         <main>
           <header>
-            <h1>Verifique seu score</h1>
+            <h1>
+              <Name name='<Descubra seu Score />' />
+            </h1>
             <small>
-              Insira a URL do seu repositório e clique em "Gerar Score".
+              <p>
+                Esse cálculo não é uma forma de validar se um projeto é bom ou
+                não. Cada projeto possui seus propósitos e diferentes formas de
+                impacto. Nós apenas usamos métricas passíveis de automação para
+                garantir a relevância dos projetos dentro da iniciativa.
+              </p>
             </small>
-            <section>
-              <form onSubmit={getRepository}>
+            <form onSubmit={getRepository}>
+              <label>
+                <span>
+                  <Github />
+                  <span>
+                    URL do Repositório <em>*</em>
+                  </span>
+                </span>
                 <input
-                  placeholder='https://github.com/dracula/dracula-theme'
+                  placeholder='Ex.: https://github.com/BrasilAPI/BrasilAPI'
                   type='text'
                   name='repositoryURL'
+                  required
                 />
-                <button>Gerar Score</button>
-              </form>
-              <div className='social'>
-                <div className='tabs'>
+                <small>
+                  <CircleAlert /> Obrigatório.
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
+                  <sup>?</sup>
+                </span>
+                <input placeholder='Ex.: poku' type='text' name='npm' />
+                <small>
+                  <CircleHelp /> Nome do pacote npm, caso exista (opcional).
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img loading='lazy' src='/img/homebrew.svg' alt='npm' />{' '}
+                  Pacote Homebrew<sup>?</sup>
+                </span>
+                <input placeholder='Ex.: elixir' type='text' name='homebrew' />
+                <small>
+                  <CircleHelp /> Nome do pacote Homebrew, caso exista
+                  (opcional).
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img loading='lazy' src='/img/pypi.svg' alt='PyPi' /> Pacote
+                  PyPi <sup>?</sup>
+                </span>
+                <input placeholder='Ex.: socketify' type='text' name='pypi' />
+                <small>
+                  <CircleHelp /> Nome do pacote PyPi, caso exista (opcional).
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img
+                    loading='lazy'
+                    src='/img/chocolatey.svg'
+                    alt='Chocolatey'
+                  />{' '}
+                  Pacote Chocolatey <sup>?</sup>
+                </span>
+                <input
+                  placeholder='Ex.: rio-terminal'
+                  type='text'
+                  name='chocolatey'
+                />
+                <small>
+                  <CircleHelp /> Nome do pacote Chocolatey, caso exista
+                  (opcional).
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img
+                    loading='lazy'
+                    src='/img/vscode.svg'
+                    alt='Visual Studio Code Marketplace'
+                  />{' '}
+                  Visual Studio Code ID <sup>?</sup>
+                </span>
+                <input
+                  placeholder='Ex.: dracula-theme.theme-dracula'
+                  type='text'
+                  name='vscode'
+                />
+                <small>
+                  <CircleHelp /> ID da extensão do Visual Studio Code
+                  Marketplace, caso exista (opcional).
+                </small>
+              </label>
+              <label className='span'>
+                <span>
+                  <input type='checkbox' name='terms' required />
+                  Entendo que o score é baseado em métricas automatizadas
+                  limitadas e não reflete a qualidade do projeto.
+                </span>
+              </label>
+              <button>
+                <Gamepad2 /> Gerar Score
+              </button>
+            </form>
+          </header>
+          <main ref={scoreRef}>
+            <div className='score'>
+              {stats ? (
+                <>
+                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/1'>
+                    Acredita que essa pontuação deveria ser diferente? Sugira
+                    melhorias e ideias para aprimorar as automações
+                    <ExternalLink />
+                  </SafeLink>
+                  <h3>
+                    <ClipboardList /> Resultado
+                  </h3>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Repositório</td>
+                        <td>
+                          <img
+                            src={`https://avatars.githubusercontent.com/${stats.username}`}
+                            loading='lazy'
+                            className='organization'
+                            alt={`${stats.username} profile avatar`}
+                          />{' '}
+                          {stats.username}/{stats.repository}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <span>Score</span>
+                        </td>
+                        <td>
+                          {stats.score > 1_000_000 ? (
+                            <Trophy />
+                          ) : stats.score > 100_000 ? (
+                            <Award />
+                          ) : stats.score > 10_000 ? (
+                            <Flame />
+                          ) : stats.score > 1_000 ? (
+                            <FlameKindling />
+                          ) : (
+                            <Loader />
+                          )}
+                          <span className='score'>
+                            {Number(stats.score).toLocaleString('pt-BR')}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        className={
+                          stats.license.includes('not specified')
+                            ? 'error'
+                            : undefined
+                        }
+                      >
+                        <td>Licença</td>
+                        <td>
+                          <Scale />
+                          <span className='score'>
+                            {stats?.license.includes('not specified')
+                              ? 'Licença não especificada'
+                              : stats?.license}
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
                   <h3>
                     <Rocket /> Impacto
                   </h3>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Contribuidores</td>
+                        <td>
+                          <HeartHandshake />
+                          {stats?.contributors?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Dependentes</td>
+                        <td>
+                          <Dna />
+                          {stats?.repositoryDependents?.label}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <span>Downloads por Mês</span>
+                        </td>
+                        <td>
+                          <img loading='lazy' src='/img/npm.svg' alt='npm' />
+                          {stats?.npm?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <span>Downloads por Mês</span>
+                        </td>
+                        <td>
+                          <img
+                            loading='lazy'
+                            src='/img/homebrew.svg'
+                            alt='Homebrew'
+                          />
+                          {stats?.homebrew?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <span>Downloads por Mês</span>
+                        </td>
+                        <td>
+                          <img loading='lazy' src='/img/pypi.svg' alt='PyPi' />
+                          {stats?.pypi?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr title='Chocolatey'>
+                        <td>
+                          <span>Downloads Totais:</span>
+                        </td>
+                        <td>
+                          <img loading='lazy' src='/img/chocolatey.svg' />
+                          {stats?.chocolatey?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr title='Visual Studio Code Marketplace'>
+                        <td>
+                          <span>Downloads Totais:</span>
+                        </td>
+                        <td>
+                          <img loading='lazy' src='/img/vscode.svg' />
+                          {stats?.vscode?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Forks</td>
+                        <td>
+                          <UtensilsCrossed />
+                          {stats?.forks?.label || 0}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Estrelas</td>
+                        <td>
+                          <Star />
+                          {stats?.stars?.label || 0}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
 
                   <h3>
                     <Activity /> Atividade
                   </h3>
-                </div>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>Issues abertas</td>
+                        <td>
+                          <Bug />
+                          {stats?.issues?.label || 0}
+                        </td>
+                      </tr>
 
-                {stats ? (
-                  <>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Organização</td>
-                          <td>
-                            <img
-                              src={`https://avatars.githubusercontent.com/${stats.username}`}
-                              loading='lazy'
-                              alt={`${stats.username} profile avatar`}
-                            />
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Repositório</td>
-                          <td>{stats.repository}</td>
-                        </tr>
-                        <tr>
-                          <td>Contribuidores:</td>
-                          <td>
-                            <Link
-                              to={`repositoryURL ? undefined : ${repositoryURL.current}/graphs/contributors`}
-                            >
-                              <HeartHandshake />
-                              {stats?.contributors?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-                        {stats.score ? (
-                          <tr>
-                            <td>
-                              <span>Score:</span>
-                            </td>
-                            <td>
-                              {stats.score > 1_000_000 ? (
-                                <Trophy />
-                              ) : stats.score > 100_000 ? (
-                                <Award />
-                              ) : stats.score > 10_000 ? (
-                                <Flame />
-                              ) : stats.score > 1_000 ? (
-                                <FlameKindling />
-                              ) : (
-                                <Loader />
-                              )}
-                              <span className='score'>
-                                {Number(stats.score).toLocaleString('pt-BR')}
-                              </span>
-                            </td>
-                          </tr>
-                        ) : null}
+                      <tr>
+                        <td>Issues fechadas</td>
+                        <td>
+                          <BugOff />
+                          {stats?.closedIssues?.label || 0}
+                        </td>
+                      </tr>
 
-                        <tr>
-                          <td>Contribuidores:</td>
-                          <td>
-                            <Link
-                              to={`repositoryURL ? undefined : ${repositoryURL.current}/graphs/contributors`}
-                            >
-                              <HeartHandshake />
-                              {stats?.contributors?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-
-                        {stats.npm ? (
-                          <tr>
-                            <td>
-                              <span>Downloads por mês:</span>
-                            </td>
-                            <td>
-                              <Link
-                                to={`https://www.npmjs.com/package/${stats.npm}`}
-                              >
-                                <img loading='lazy' src='/img/npm.svg' />
-                                {stats?.npm?.label || null}
-                              </Link>
-                            </td>
-                          </tr>
-                        ) : null}
-
-                        {stats.homebrew ? (
-                          <tr>
-                            <td>
-                              <span>Downloads por mês:</span>
-                            </td>
-                            <td>
-                              <Link
-                                to={`https://formulae.brew.sh/formula/${stats.homebrew}`}
-                              >
-                                <img loading='lazy' src='/img/homebrew.svg' />
-                                {stats?.homebrew?.label || null}
-                              </Link>
-                            </td>
-                          </tr>
-                        ) : null}
-
-                        {stats.pypi ? (
-                          <tr>
-                            <td>
-                              <span>Downloads por mês:</span>
-                            </td>
-                            <td>
-                              <Link
-                                to={`https://pypi.org/project/${stats.pypi}/`}
-                              >
-                                <img loading='lazy' src='/img/pypi.svg' />
-                                {stats?.pypi?.label || null}
-                              </Link>
-                            </td>
-                          </tr>
-                        ) : null}
-
-                        <tr>
-                          <td>Forks:</td>
-                          <td>
-                            <Link
-                              to={`${repositoryURL.current}/graphs/contributors`}
-                            >
-                              <UtensilsCrossed />
-                              {stats?.forks?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>Estrelas:</td>
-                          <td>
-                            <Link to={`${repositoryURL.current}/stargazers`}>
-                              <Star />
-                              {stats?.stars?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-
-                        {stats?.license && (
-                          <tr
-                            className={
-                              stats.license.includes('not specified')
-                                ? 'error'
-                                : undefined
-                            }
-                          >
-                            <td>Licença:</td>
-                            <td>
-                              <Scale />
-                              <span className='score'>{stats?.license}</span>
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Issues abertas:</td>
-                          <td>
-                            <Link to={`${repositoryURL.current}/issues`}>
-                              <Bug />
-                              {stats?.issues?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>Issues fechadas:</td>
-                          <td>
-                            <Link
-                              to={`${repositoryURL.current}/issues?q=is:issue+is:closed`}
-                            >
-                              <BugOff />
-                              {stats?.closedIssues?.label || null}
-                            </Link>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>Último commit:</td>
-                          <td>
-                            <Link to={`${repositoryURL.current}/commits`}>
-                              <Wrench />
-                              {stats?.commits || null}
-                            </Link>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </>
-                ) : null}
-              </div>
-            </section>
-          </header>
+                      <tr>
+                        <td>Último commit</td>
+                        <td>
+                          <Wrench />
+                          {stats?.commits || 0}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </>
+              ) : null}
+            </div>
+          </main>
         </main>
       </div>
     </Layout>

@@ -1,7 +1,12 @@
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  startTransition,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import {
   Calculator,
@@ -27,7 +32,6 @@ import { randomize } from '@site/src/helpers/radomizer';
 import '@site/src/css/pages/home.scss';
 
 export default (): ReactNode => {
-  const { siteConfig } = useDocusaurusContext();
   const projectSort = useRef(0);
   const maintainerSort = useRef(0);
 
@@ -67,18 +71,20 @@ export default (): ReactNode => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    fetch(`/json/resume/maintainers.json`, { signal }).then(
-      async (response) => {
+    startTransition(() => {
+      fetch(`/json/resume/maintainers.json`, { signal }).then(
+        async (response) => {
+          const results = await response.json();
+
+          sortMaintainers(results);
+        }
+      );
+
+      fetch(`/json/resume/projects.json`, { signal }).then(async (response) => {
         const results = await response.json();
 
-        sortMaintainers(results);
-      }
-    );
-
-    fetch(`/json/resume/projects.json`, { signal }).then(async (response) => {
-      const results = await response.json();
-
-      sortProjects(results);
+        sortProjects(results);
+      });
     });
 
     return () => {
@@ -88,7 +94,7 @@ export default (): ReactNode => {
 
   return (
     <Layout
-      title={siteConfig.title}
+      title='Home'
       description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>

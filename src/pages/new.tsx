@@ -1,15 +1,12 @@
 import type { ReactNode } from 'react';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 
 import '@site/src/css/pages/home.scss';
 
 export default (): ReactNode => {
-  const { siteConfig } = useDocusaurusContext();
-
   return (
     <Layout
-      title={siteConfig.title}
+      title='Nova Sumbmissão'
       description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>

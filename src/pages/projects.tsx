@@ -1,6 +1,13 @@
 import type { MergedProjects } from '@site/src/@types/projects';
 import type { MouseEvent, ReactNode } from 'react';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  memo,
+  startTransition,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import Layout from '@theme/Layout';
 import {
   ChevronDown,
@@ -256,10 +263,12 @@ const Projects = (): ReactNode => {
     const controller = new AbortController();
     const { signal } = controller;
 
-    fetch(`/json/scores.json`, { signal }).then(async (response) => {
-      const results = await response.json();
+    startTransition(() => {
+      fetch(`/json/scores.json`, { signal }).then(async (response) => {
+        const results = await response.json();
 
-      setScores(results);
+        setScores(results);
+      });
     });
 
     return () => {
@@ -272,15 +281,16 @@ const Projects = (): ReactNode => {
     setVisibleCount(mergedProjects.length);
   }, [mergedProjects]);
 
-  const title = "<Brazil class='Projetos' />";
-
   return (
-    <Layout title={title} description='Lista de projetos open source do Brasil'>
+    <Layout
+      title='Projetos'
+      description='Lista de projetos open source do Brasil'
+    >
       <div id='projects'>
         <main>
           <header>
             <h1>
-              <Name name={title} />
+              <Name name="<Brazil class='Projetos' />" />
             </h1>
             <small>
               Uma lista inteligente para você conhecer projetos{' '}

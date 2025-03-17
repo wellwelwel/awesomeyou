@@ -190,9 +190,9 @@ nav {
 
         table {
           display: grid;
-          width: 100%;
-          opacity: 0;
           grid-template-rows: 0fr;
+          opacity: 0;
+          width: 100%;
           pointer-events: none;
           transition:
             grid-template-rows 0.15s,

@@ -12,6 +12,13 @@ const cache = {
   stats: createLRU({ max: 1000 }),
 };
 
+const isValidParam = (param: unknown): boolean => {
+  if (typeof param === 'undefined') return true;
+  if (typeof param === 'string' && param.length <= 64) return true;
+
+  return false;
+};
+
 export default {
   async fetch(request: Request, env: Env) {
     if (request.method !== 'POST')
@@ -46,23 +53,61 @@ export default {
 
     try {
       const rawBody = await request.text();
-      const { repositoryURL } = JSON.parse(rawBody);
+      const { repositoryURL, npm, homebrew, pypi, chocolatey, vscode } =
+        JSON.parse(rawBody);
 
       if (typeof repositoryURL !== 'string')
         return new Response('Invalid repository URL.', {
           status: 400,
         });
 
+      if (!isValidParam(npm))
+        return new Response('Invalid npm package.', {
+          status: 400,
+        });
+
+      if (!isValidParam(homebrew))
+        return new Response('Invalid Homebrew package.', {
+          status: 400,
+        });
+
+      if (!isValidParam(pypi))
+        return new Response('Invalid PyPi package.', {
+          status: 400,
+        });
+
+      if (!isValidParam(chocolatey))
+        return new Response('Invalid Chocolatey package.', {
+          status: 400,
+        });
+
+      if (!isValidParam(vscode))
+        return new Response('Invalid Visual Code Studio Marketplace ID.', {
+          status: 400,
+        });
+
+      let key = repositoryURL.trim();
+
+      if (typeof npm === 'string') key += `:${npm.trim()}`;
+      if (typeof homebrew === 'string') key += `:${homebrew.trim()}`;
+      if (typeof pypi === 'string') key += `:${pypi.trim()}`;
+      if (typeof chocolatey === 'string') key += `:${chocolatey.trim()}`;
+      if (typeof vscode === 'string') key += `:${vscode.trim()}`;
+
       const { organization, repository } = extractRepository(repositoryURL);
 
-      return cache.stats.has(repositoryURL)
-        ? response(cache.stats.get(repositoryURL))
+      return cache.stats.has(key)
+        ? response(cache.stats.get(key))
         : response(
             await processProject(
               {
+                description: '', // unused
                 repository: repositoryURL.trim(),
-                description: '',
-                madeInBrazil: true,
+                npm,
+                homebrew,
+                pypi,
+                chocolatey,
+                vscode,
               },
               ({ results }) => {
                 const score = getScore({
@@ -87,7 +132,7 @@ export default {
                   repository,
                 };
 
-                cache.stats.set(repositoryURL, result);
+                cache.stats.set(key, result);
 
                 return {
                   ...results,
@@ -98,7 +143,9 @@ export default {
               }
             )
           );
-    } catch {
+    } catch (error) {
+      if (env.ENVIRONMENT !== 'production') console.error(error);
+
       return new Response('Internal Error.', {
         status: 500,
         headers,

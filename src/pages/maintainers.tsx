@@ -75,15 +75,16 @@ const MaintainersIndex: React.FC = () => {
     setMaintainers(randomize([...rawMaintainers]));
   }, []);
 
-  const title = "<Brazil class='Pessoas' />";
-
   return (
-    <Layout title={''} description='Lista de projetos open source do Brasil'>
+    <Layout
+      title='Pessoas'
+      description='Lista de projetos open source do Brasil'
+    >
       <div id='maintainers'>
         <main>
           <header className='show'>
             <h1>
-              <Name name={title} />
+              <Name name="<Brazil class='Pessoas' />" />
             </h1>
             <small>
               Conheça novos mantenedores brasileiros toda vez que voltar aqui.

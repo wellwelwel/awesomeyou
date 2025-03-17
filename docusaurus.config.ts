@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
-  title: 'Awesome Brazilian Open Source People and Projects',
+  title: 'Awesome You',
   favicon: 'favicon.ico',
   url: 'https://awesomeyou.io/',
   baseUrl: '/',

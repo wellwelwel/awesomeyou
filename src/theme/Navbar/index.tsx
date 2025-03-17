@@ -43,7 +43,12 @@ const Navbar = (): ReactNode => {
 
   return (
     <>
-      <Toaster richColors={true} theme='light' position='top-right' />
+      <Toaster
+        richColors={true}
+        theme='light'
+        position='top-right'
+        closeButton={true}
+      />
       <header className='main-header'>
         <Link to='/'>
           <Logo className='logo' />
