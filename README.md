@@ -10,7 +10,7 @@
 
 Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
 
-Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Submeta seu Projeto**](https://awesomeyou.io/new/), siga as instruções na própia página e abra seu **Pull Request**.
+Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Novo Projeto +**](https://awesomeyou.io/new/), siga as instruções na própia página e abra seu **Pull Request**.
 
 > [!TIP]
 >

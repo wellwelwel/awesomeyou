@@ -1,18 +1,20 @@
 import type { ReactNode } from 'react';
-import { useRef, useState } from 'react';
+import type { ProjectOptions, RawProject } from '../@types/projects';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Link from '@docusaurus/Link';
+import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import {
   ChevronRight,
   CircleAlert,
   CircleHelp,
-  Clipboard,
   ExternalLink,
   FileCode2,
   GitBranchPlus,
   GitGraph,
   Github,
   GitPullRequestCreateArrow,
-  Heart,
+  HousePlus,
   IdCard,
   LetterText,
   MessageCircleHeart,
@@ -21,20 +23,54 @@ import {
   WandSparkles,
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
+import { SafeLink } from '@site/src/components/SafeLink';
 
 import '@site/src/css/pages/new.scss';
 
-import Link from '@docusaurus/Link';
-import { SafeLink } from '../components/SafeLink';
-
 export default (): ReactNode => {
   const scoreRef = useRef<HTMLDivElement>(null);
-  const [maintainer, setMaintainer] = useState('<maintainer>');
+  const [maintainer, setMaintainer] = useState('***');
+  const [json, setJSON] = useState({} as RawProject);
 
-  const json = {
-    $schema: '../../../schemas/projects.json',
-    projects: [{}],
-  };
+  useEffect(() => {
+    setJSON((prev) => {
+      return {
+        ...prev,
+        $schema: '../../../schemas/projects.json',
+        projects: [
+          {
+            repository: '',
+            description: '',
+          },
+        ],
+      };
+    });
+  }, [setJSON]);
+
+  const updateJSON = useCallback(
+    (
+      e: React.ChangeEvent<HTMLInputElement>,
+      field: keyof ProjectOptions,
+      isBoolean?: boolean
+    ) => {
+      const value =
+        e.currentTarget?.value.trim().length > 0
+          ? e.currentTarget?.value.trim()
+          : undefined;
+      const checked = e.currentTarget?.checked ? true : undefined;
+
+      setJSON((prev) => ({
+        ...prev,
+        projects: [
+          {
+            ...prev.projects[0],
+            [field]: isBoolean ? checked : value,
+          },
+        ],
+      }));
+    },
+    []
+  );
 
   return (
     <Layout title='Novo Projeto'>
@@ -100,6 +136,7 @@ export default (): ReactNode => {
                   type='text'
                   name='repositoryURL'
                   required
+                  onChange={(e) => updateJSON(e, 'repository')}
                 />
                 <small>
                   <CircleAlert /> Obrigatório.
@@ -117,6 +154,7 @@ export default (): ReactNode => {
                   type='text'
                   name='description'
                   required
+                  onChange={(e) => updateJSON(e, 'description')}
                 />
                 <small>
                   <CircleAlert /> Descrição do projeto (obrigatório).
@@ -134,6 +172,7 @@ export default (): ReactNode => {
                   type='text'
                   name='name'
                   required
+                  onChange={(e) => updateJSON(e, 'name')}
                 />
                 <small>
                   <CircleHelp /> Se o nome não for definido, será usado o nome
@@ -152,6 +191,7 @@ export default (): ReactNode => {
                   type='text'
                   name='message'
                   required
+                  onChange={(e) => updateJSON(e, 'message')}
                 />
                 <small>
                   <CircleHelp /> Uma mensagem (Call to Action) para atrair
@@ -164,7 +204,12 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
                   <sup>?</sup>
                 </span>
-                <input placeholder='Ex.: gotql' type='text' name='npm' />
+                <input
+                  placeholder='Ex.: gotql'
+                  type='text'
+                  name='npm'
+                  onChange={(e) => updateJSON(e, 'npm')}
+                />
                 <small>
                   <CircleHelp /> Nome do pacote npm, caso exista (opcional).
                 </small>
@@ -174,7 +219,12 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/homebrew.svg' alt='npm' />{' '}
                   Pacote Homebrew<sup>?</sup>
                 </span>
-                <input placeholder='Ex.: rio' type='text' name='homebrew' />
+                <input
+                  placeholder='Ex.: rio'
+                  type='text'
+                  name='homebrew'
+                  onChange={(e) => updateJSON(e, 'homebrew')}
+                />
                 <small>
                   <CircleHelp /> Nome do pacote Homebrew, caso exista
                   (opcional).
@@ -185,7 +235,12 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/pypi.svg' alt='PyPi' /> Pacote
                   PyPi <sup>?</sup>
                 </span>
-                <input placeholder='Ex.: splinter' type='text' name='pypi' />
+                <input
+                  placeholder='Ex.: splinter'
+                  type='text'
+                  name='pypi'
+                  onChange={(e) => updateJSON(e, 'pypi')}
+                />
                 <small>
                   <CircleHelp /> Nome do pacote PyPi, caso exista (opcional).
                 </small>
@@ -203,6 +258,7 @@ export default (): ReactNode => {
                   placeholder='Ex.: elixir'
                   type='text'
                   name='chocolatey'
+                  onChange={(e) => updateJSON(e, 'chocolatey')}
                 />
                 <small>
                   <CircleHelp /> Nome do pacote Chocolatey, caso exista
@@ -222,6 +278,7 @@ export default (): ReactNode => {
                   placeholder='Ex.: dracula-theme.theme-dracula'
                   type='text'
                   name='vscode'
+                  onChange={(e) => updateJSON(e, 'vscode')}
                 />
                 <small>
                   <CircleHelp /> ID da extensão do Visual Studio Code
@@ -230,7 +287,12 @@ export default (): ReactNode => {
               </label>
               <label className='span'>
                 <span>
-                  <input type='checkbox' name='madeInBrazil' required />
+                  <input
+                    type='checkbox'
+                    name='madeInBrazil'
+                    required
+                    onChange={(e) => updateJSON(e, 'madeInBrazil', true)}
+                  />
                   Quem criou o projeto é brasileiro? <sup>?</sup>
                 </span>
                 <small>
@@ -239,7 +301,12 @@ export default (): ReactNode => {
               </label>
               <label className='span'>
                 <span>
-                  <input type='checkbox' name='isAuthor' required />
+                  <input
+                    type='checkbox'
+                    name='isAuthor'
+                    required
+                    onChange={(e) => updateJSON(e, 'isAuthor', true)}
+                  />
                   <ins>{maintainer}</ins> criou esse projeto? <sup>?</sup>
                 </span>
                 <small>
@@ -247,15 +314,12 @@ export default (): ReactNode => {
                 </small>
               </label>
 
-              <textarea
-                readOnly
-                name='json'
-                value={JSON.stringify(json, null, 2)}
-              />
-
-              <button>
-                <Clipboard /> Copiar JSON
-              </button>
+              <CodeBlock
+                language='json'
+                title={`./content/maintainers/${maintainer}/projects.json`}
+              >
+                {JSON.stringify(json, null, 2)}
+              </CodeBlock>
             </form>
           </header>
           <main ref={scoreRef}></main>
@@ -292,7 +356,7 @@ export default (): ReactNode => {
                 <code>
                   ./content/maintainers/<ins>{maintainer}</ins>/projects.json
                 </code>{' '}
-                e cole o conteúdo que você copiou na primeira etapa.
+                e cole o conteúdo da primeira etapa.
               </span>
             </p>
             <p>
@@ -323,7 +387,7 @@ export default (): ReactNode => {
               </span>
             </p>
             <p>
-              <Heart />
+              <HousePlus />
               <span>
                 Fique à vontade para falar do seu projeto e conversar em
                 português.

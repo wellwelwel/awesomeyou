@@ -179,18 +179,49 @@
           }
         }
 
-        textarea {
-          padding: 7.5px 10px;
+        .theme-code-block {
           border: 1px solid #bfd2f9;
-          border-radius: 10px;
           width: 100%;
-          font-family: var(--ifm-font-family-featured);
-          letter-spacing: 0.25px;
-          font-weight: 500;
-          background-color: #ffffff8c;
-          color: #0770e0;
-          resize: vertical;
-          min-height: 150px;
+          background-color: transparent !important;
+
+          pre {
+            background-color: #f5fbff54 !important;
+
+            &.language-json {
+              .token {
+                color: #2d6cd1e0 !important;
+                font-family: monospace;
+                font-size: 13px;
+
+                &.string {
+                  color: #ff49b0 !important;
+                }
+
+                &.property {
+                  color: #0095ff !important;
+                }
+
+                &.punctuation,
+                &.operator {
+                  color: #1046bb85 !important;
+                }
+              }
+            }
+          }
+
+          [class*='codeBlockTitle_'] {
+            background-color: #ffffff8c;
+            color: #0770e0;
+            font-size: 13px;
+          }
+
+          [class*='buttonGroup__'] {
+            transform: translateY(-10px);
+
+            button {
+              opacity: 0.25;
+            }
+          }
         }
       }
 
