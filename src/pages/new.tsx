@@ -60,7 +60,7 @@ export default (): ReactNode => {
                 <input
                   placeholder='Ex.: felipefialho'
                   type='text'
-                  name='repositoryURL'
+                  name='maintainer'
                   required
                 />
                 <small>
@@ -95,7 +95,7 @@ export default (): ReactNode => {
                 <input
                   placeholder='Ex.: Esse é meu projeto incrível que faz coisas ainda mais incríveis se usado por você.'
                   type='text'
-                  name='repositoryURL'
+                  name='description'
                   required
                 />
                 <small>
@@ -112,11 +112,11 @@ export default (): ReactNode => {
                 <input
                   placeholder='Ex.: Meu Projeto'
                   type='text'
-                  name='repositoryURL'
+                  name='name'
                   required
                 />
                 <small>
-                  <CircleAlert /> Se o nome não for definido, será usado o nome
+                  <CircleHelp /> Se o nome não for definido, será usado o nome
                   do repositório (opcional).
                 </small>
               </label>
@@ -130,11 +130,11 @@ export default (): ReactNode => {
                 <input
                   placeholder='Ex.: Deixe uma estrela para mostrar seu apoio.'
                   type='text'
-                  name='repositoryURL'
+                  name='message'
                   required
                 />
                 <small>
-                  <CircleAlert /> Uma mensagem (CTA) para atrair pessoas a
+                  <CircleHelp /> Uma mensagem (CTA) para atrair pessoas a
                   usarem, contribuírem e apoiarem seu projeto (opcional).
                 </small>
               </label>
@@ -209,15 +209,23 @@ export default (): ReactNode => {
               </label>
               <label className='span'>
                 <span>
-                  <input type='checkbox' name='terms' required />
+                  <input type='checkbox' name='madeInBrazil' required />
                   Quem criou o projeto é brasileiro?
                 </span>
+                <small>
+                  <CircleHelp /> Tantos projetos brasileiros como estrangeiros
+                  são bem vindos, desde que possuam ao menos um mantenedor
+                  brasileiro (marque essa opção se a resposta for "sim").
+                </small>
               </label>
               <label className='span'>
                 <span>
-                  <input type='checkbox' name='terms' required />
+                  <input type='checkbox' name='isAuthor' required />
                   {'<username>'} criou esse projeto?
                 </span>
+                <small>
+                  <CircleHelp /> Marque essa opção se a resposta for "sim".
+                </small>
               </label>
 
               <textarea readOnly name='json'></textarea>

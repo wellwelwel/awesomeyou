@@ -222,7 +222,7 @@ export default (): ReactNode => {
                 <span>
                   <input type='checkbox' name='terms' required />
                   Entendo que o score é baseado em métricas automatizadas
-                  limitadas e não reflete a qualidade do projeto.
+                  limitadas e não reflete a qualidade do projeto. <em>*</em>
                 </span>
               </label>
               <button>
