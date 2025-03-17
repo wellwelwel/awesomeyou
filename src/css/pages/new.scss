@@ -182,11 +182,14 @@
           padding: 7.5px 10px;
           border: 1px solid #bfd2f9;
           border-radius: 10px;
-          width: 100% !important;
+          width: 100%;
           font-family: var(--ifm-font-family-featured);
           letter-spacing: 0.25px;
           font-weight: 500;
-          color: #0d5eb5;
+          background-color: #ffffff8c;
+          color: #0770e0;
+          resize: vertical;
+          min-height: 150px;
         }
       }
 

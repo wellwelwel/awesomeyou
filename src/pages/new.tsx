@@ -1,16 +1,24 @@
 import type { ReactNode } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Layout from '@theme/Layout';
 import {
   ChevronRight,
   CircleAlert,
   CircleHelp,
+  Clipboard,
   ExternalLink,
+  FileCode2,
+  GitBranchPlus,
+  GitGraph,
   Github,
-  GitPullRequestCreate,
+  GitPullRequestCreateArrow,
+  Heart,
   IdCard,
   LetterText,
   MessageCircleHeart,
+  PackageCheck,
+  Utensils,
+  WandSparkles,
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
 
@@ -21,12 +29,15 @@ import { SafeLink } from '../components/SafeLink';
 
 export default (): ReactNode => {
   const scoreRef = useRef<HTMLDivElement>(null);
+  const [maintainer, setMaintainer] = useState('<maintainer>');
+
+  const json = {
+    $schema: '../../../schemas/projects.json',
+    projects: [{}],
+  };
 
   return (
-    <Layout
-      title='Novo Projeto'
-      description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
-    >
+    <Layout title='Novo Projeto'>
       <div id='new'>
         <main>
           <header>
@@ -36,10 +47,10 @@ export default (): ReactNode => {
             <small>
               <p>
                 Para manter a relevância dos projetos dentro da iniciativa e dos
-                seus respectivos mantenedores, o projeto precisa atingir pelo
+                seus respectivos mantenedores, os projetos precisam atingir pelo
                 menos <strong>250 pontos</strong>.{' '}
                 <Link to='/calculator'>
-                  Use nossa calculadora para descobrir o score do seu projeto{' '}
+                  Use nossa calculadora para descobrir o score do projeto{' '}
                   <ChevronRight />
                 </Link>
               </p>
@@ -62,6 +73,11 @@ export default (): ReactNode => {
                   type='text'
                   name='maintainer'
                   required
+                  onChange={(e) =>
+                    setMaintainer(
+                      e.currentTarget.value.trim() || '<maintainer>'
+                    )
+                  }
                 />
                 <small>
                   <CircleAlert /> O username do perfil de quem mantém o projeto
@@ -76,7 +92,7 @@ export default (): ReactNode => {
                   </span>
                 </span>
                 <input
-                  placeholder='Ex.: https://github.com/BrasilAPI/BrasilAPI'
+                  placeholder='Ex.: https://github.com/lpereira/lwan'
                   type='text'
                   name='repositoryURL'
                   required
@@ -93,7 +109,7 @@ export default (): ReactNode => {
                   </span>
                 </span>
                 <input
-                  placeholder='Ex.: Esse é meu projeto incrível que faz coisas ainda mais incríveis se usado por você.'
+                  placeholder='Ex.: Esse é um projeto incrível que faz coisas ainda mais incríveis quando usado por você.'
                   type='text'
                   name='description'
                   required
@@ -124,7 +140,7 @@ export default (): ReactNode => {
                 <span>
                   <MessageCircleHeart />
                   <span>
-                    Mensagem <sup>?</sup>
+                    Mensagem (CTA) <sup>?</sup>
                   </span>
                 </span>
                 <input
@@ -134,8 +150,9 @@ export default (): ReactNode => {
                   required
                 />
                 <small>
-                  <CircleHelp /> Uma mensagem (CTA) para atrair pessoas a
-                  usarem, contribuírem e apoiarem seu projeto (opcional).
+                  <CircleHelp /> Uma mensagem (Call to Action) para atrair
+                  pessoas a usarem, contribuírem e apoiarem seu projeto
+                  (opcional).
                 </small>
               </label>
               <label>
@@ -143,7 +160,7 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
                   <sup>?</sup>
                 </span>
-                <input placeholder='Ex.: poku' type='text' name='npm' />
+                <input placeholder='Ex.: gotql' type='text' name='npm' />
                 <small>
                   <CircleHelp /> Nome do pacote npm, caso exista (opcional).
                 </small>
@@ -153,7 +170,7 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/homebrew.svg' alt='npm' />{' '}
                   Pacote Homebrew<sup>?</sup>
                 </span>
-                <input placeholder='Ex.: elixir' type='text' name='homebrew' />
+                <input placeholder='Ex.: rio' type='text' name='homebrew' />
                 <small>
                   <CircleHelp /> Nome do pacote Homebrew, caso exista
                   (opcional).
@@ -164,7 +181,7 @@ export default (): ReactNode => {
                   <img loading='lazy' src='/img/pypi.svg' alt='PyPi' /> Pacote
                   PyPi <sup>?</sup>
                 </span>
-                <input placeholder='Ex.: socketify' type='text' name='pypi' />
+                <input placeholder='Ex.: splinter' type='text' name='pypi' />
                 <small>
                   <CircleHelp /> Nome do pacote PyPi, caso exista (opcional).
                 </small>
@@ -179,7 +196,7 @@ export default (): ReactNode => {
                   Pacote Chocolatey <sup>?</sup>
                 </span>
                 <input
-                  placeholder='Ex.: rio-terminal'
+                  placeholder='Ex.: elixir'
                   type='text'
                   name='chocolatey'
                 />
@@ -210,28 +227,30 @@ export default (): ReactNode => {
               <label className='span'>
                 <span>
                   <input type='checkbox' name='madeInBrazil' required />
-                  Quem criou o projeto é brasileiro?
+                  Quem criou o projeto é brasileiro? <sup>?</sup>
                 </span>
                 <small>
-                  <CircleHelp /> Tantos projetos brasileiros como estrangeiros
-                  são bem vindos, desde que possuam ao menos um mantenedor
-                  brasileiro (marque essa opção se a resposta for "sim").
+                  <CircleHelp /> Marque essa opção se a resposta for "sim".
                 </small>
               </label>
               <label className='span'>
                 <span>
                   <input type='checkbox' name='isAuthor' required />
-                  {'<username>'} criou esse projeto?
+                  <ins>{maintainer}</ins> criou esse projeto? <sup>?</sup>
                 </span>
                 <small>
                   <CircleHelp /> Marque essa opção se a resposta for "sim".
                 </small>
               </label>
 
-              <textarea readOnly name='json'></textarea>
+              <textarea
+                readOnly
+                name='json'
+                value={JSON.stringify(json, null, 2)}
+              />
 
               <button>
-                <GitPullRequestCreate /> [ WIP ] Copiar JSON
+                <Clipboard /> Copiar JSON
               </button>
             </form>
           </header>
@@ -245,42 +264,66 @@ export default (): ReactNode => {
           </header>
           <main>
             <p>
-              — Faça um <strong>fork</strong> do repositório{' '}
-              <strong>
-                <SafeLink to='https://github.com/wellwelwel/awesomeyou/fork'>
-                  awesomeyou
-                </SafeLink>
-              </strong>
-              .
+              <Utensils />
+              <span>
+                Faça um <strong>fork</strong> do repositório{' '}
+                <strong>
+                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/fork'>
+                    awesomeyou
+                  </SafeLink>
+                </strong>
+                .
+              </span>
             </p>
             <p>
-              — Baixe seu fork localmente e crie uma nova <em>branch</em>.
+              <GitBranchPlus />
+              <span>
+                Baixe seu fork localmente e crie uma nova <em>branch</em>.
+              </span>
             </p>
             <p>
-              — Crie o arquivo "
-              <strong>
-                ./content/maintainers/{'<username>'}/projects.json
-              </strong>
-              " e cole o conteúdo que você copiou na primeira etapa.
+              <FileCode2 />
+              <span>
+                Crie o arquivo{' '}
+                <code>
+                  ./content/maintainers/<ins>{maintainer}</ins>/projects.json
+                </code>{' '}
+                e cole o conteúdo que você copiou na primeira etapa.
+              </span>
             </p>
             <p>
-              — Instale as dependências do projeto com o comando{' '}
-              <code>npm ci</code>.
+              <PackageCheck />
+              <span>
+                Instale as dependências do projeto com o comando{' '}
+                <code>npm ci</code>.
+              </span>
             </p>
             <p>
-              — Aplique a formatação com o comando <code>npm run lint:fix</code>
-              .
+              <WandSparkles />
+              <span>
+                Aplique a formatação com o comando <code>npm run lint:fix</code>
+                .
+              </span>
             </p>
             <p>
-              — Realize o <em>commit</em> com suas modificações.
+              <GitGraph />
+              <span>
+                Crie o <em>commit</em> com suas modificações.
+              </span>
             </p>
             <p>
-              — Abra uma <strong>Pull Request</strong> com o título "
-              <strong>docs: add {'<repository>'}</strong>"
+              <GitPullRequestCreateArrow />
+              <span>
+                Abra uma <strong>Pull Request</strong> com o título "
+                <strong>docs: add {'<repository>'}</strong>".
+              </span>
             </p>
             <p>
-              — Fique à vontade para falar do seu projeto e, sempre que
-              possível, prefira conversar em português.
+              <Heart />
+              <span>
+                Fique à vontade para falar do seu projeto e conversar em
+                português.
+              </span>
             </p>
           </main>
         </main>
