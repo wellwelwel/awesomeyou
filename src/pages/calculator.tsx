@@ -8,6 +8,7 @@ import {
   Award,
   Bug,
   BugOff,
+  ChevronRight,
   CircleAlert,
   CircleHelp,
   ClipboardList,
@@ -18,9 +19,9 @@ import {
   Gamepad2,
   Github,
   HeartHandshake,
-  Loader,
   Rocket,
   Scale,
+  Sprout,
   Star,
   Trophy,
   UtensilsCrossed,
@@ -34,6 +35,8 @@ import { extractRepository } from '@site/src/helpers/extract-repository';
 
 import '@site/src/css/pages/calculator.scss';
 
+import Link from '@docusaurus/Link';
+
 export default (): ReactNode => {
   const [stats, setStats] = useState<ScoreSimulator | null>(null);
   const scoreRef = useRef<HTMLDivElement>(null);
@@ -44,6 +47,7 @@ export default (): ReactNode => {
 
   const getRepository = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    scoreRef.current?.classList.remove('active');
 
     startTransition(async () => {
       try {
@@ -70,7 +74,9 @@ export default (): ReactNode => {
 
         toast.dismiss();
 
-        scoreRef.current?.classList.add('active');
+        setTimeout(() => {
+          scoreRef.current?.classList.add('active');
+        }, 250);
 
         if (LRU.has(key)) {
           setStats(LRU.get(key)!);
@@ -119,6 +125,11 @@ export default (): ReactNode => {
                 impacto. Nós apenas usamos métricas passíveis de automação para
                 garantir a relevância dos projetos dentro da iniciativa.
               </p>
+              <br />
+              <Link to='/new'>
+                Quer cadastrar seu projeto na <strong>Awesome You</strong>? Siga
+                as instruções na página de inscrição <ChevronRight />
+              </Link>
             </small>
             <form onSubmit={getRepository}>
               <label>
@@ -221,7 +232,7 @@ export default (): ReactNode => {
           </header>
           <main ref={scoreRef}>
             <div className='score'>
-              {stats ? (
+              {stats && (
                 <>
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/1'>
                     Acredita que essa pontuação deveria ser diferente? Sugira
@@ -259,7 +270,7 @@ export default (): ReactNode => {
                           ) : stats.score > 1_000 ? (
                             <FlameKindling />
                           ) : (
-                            <Loader />
+                            <Sprout />
                           )}
                           <span className='score'>
                             {Number(stats.score).toLocaleString('pt-BR')}
@@ -307,59 +318,73 @@ export default (): ReactNode => {
                         </td>
                       </tr>
 
-                      <tr>
-                        <td>
-                          <span>Downloads por Mês</span>
-                        </td>
-                        <td>
-                          <img loading='lazy' src='/img/npm.svg' alt='npm' />
-                          {stats?.npm?.label || 0}
-                        </td>
-                      </tr>
+                      {stats?.npm?.label && (
+                        <tr>
+                          <td>
+                            <span>Downloads por Mês</span>
+                          </td>
+                          <td>
+                            <img loading='lazy' src='/img/npm.svg' alt='npm' />
+                            {stats.npm.label}
+                          </td>
+                        </tr>
+                      )}
 
-                      <tr>
-                        <td>
-                          <span>Downloads por Mês</span>
-                        </td>
-                        <td>
-                          <img
-                            loading='lazy'
-                            src='/img/homebrew.svg'
-                            alt='Homebrew'
-                          />
-                          {stats?.homebrew?.label || 0}
-                        </td>
-                      </tr>
+                      {stats?.homebrew?.label && (
+                        <tr>
+                          <td>
+                            <span>Downloads por Mês</span>
+                          </td>
+                          <td>
+                            <img
+                              loading='lazy'
+                              src='/img/homebrew.svg'
+                              alt='Homebrew'
+                            />
+                            {stats.homebrew.label}
+                          </td>
+                        </tr>
+                      )}
 
-                      <tr>
-                        <td>
-                          <span>Downloads por Mês</span>
-                        </td>
-                        <td>
-                          <img loading='lazy' src='/img/pypi.svg' alt='PyPi' />
-                          {stats?.pypi?.label || 0}
-                        </td>
-                      </tr>
+                      {stats?.pypi?.label && (
+                        <tr>
+                          <td>
+                            <span>Downloads por Mês</span>
+                          </td>
+                          <td>
+                            <img
+                              loading='lazy'
+                              src='/img/pypi.svg'
+                              alt='PyPi'
+                            />
+                            {stats.pypi.label}
+                          </td>
+                        </tr>
+                      )}
 
-                      <tr title='Chocolatey'>
-                        <td>
-                          <span>Downloads Totais:</span>
-                        </td>
-                        <td>
-                          <img loading='lazy' src='/img/chocolatey.svg' />
-                          {stats?.chocolatey?.label || 0}
-                        </td>
-                      </tr>
+                      {stats?.chocolatey?.label && (
+                        <tr title='Chocolatey'>
+                          <td>
+                            <span>Downloads Totais:</span>
+                          </td>
+                          <td>
+                            <img loading='lazy' src='/img/chocolatey.svg' />
+                            {stats.chocolatey.label}
+                          </td>
+                        </tr>
+                      )}
 
-                      <tr title='Visual Studio Code Marketplace'>
-                        <td>
-                          <span>Downloads Totais:</span>
-                        </td>
-                        <td>
-                          <img loading='lazy' src='/img/vscode.svg' />
-                          {stats?.vscode?.label || 0}
-                        </td>
-                      </tr>
+                      {stats?.vscode?.label && (
+                        <tr title='Visual Studio Code Marketplace'>
+                          <td>
+                            <span>Downloads Totais:</span>
+                          </td>
+                          <td>
+                            <img loading='lazy' src='/img/vscode.svg' />
+                            {stats.vscode.label}
+                          </td>
+                        </tr>
+                      )}
 
                       <tr>
                         <td>Forks</td>
@@ -410,7 +435,7 @@ export default (): ReactNode => {
                     </tbody>
                   </table>
                 </>
-              ) : null}
+              )}
             </div>
           </main>
         </main>

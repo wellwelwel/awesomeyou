@@ -1,12 +1,18 @@
 @use '../global/mixins' as *;
 @use 'shared';
 
-#calculator {
+#new {
   @extend %page;
 
   & > main {
     gap: 30px;
     max-width: 1060px;
+
+    + main {
+      & > header {
+        padding-top: 0;
+      }
+    }
 
     & > header {
       width: 100%;
@@ -35,7 +41,7 @@
         @include flex(column, center, center);
         gap: 7.5px;
         width: 100%;
-        margin-top: 40px;
+        margin-top: 25px;
 
         label {
           position: relative;
@@ -45,7 +51,7 @@
           & > span {
             @include flex(row, center);
             gap: 4px;
-            min-width: 180px;
+            min-width: 210px;
             padding: 7.5px 10px;
             border: 1px solid #bfd2f9;
             border-top-left-radius: 10px;
@@ -171,6 +177,17 @@
             }
           }
         }
+
+        textarea {
+          padding: 7.5px 10px;
+          border: 1px solid #bfd2f9;
+          border-radius: 10px;
+          width: 100% !important;
+          font-family: var(--ifm-font-family-featured);
+          letter-spacing: 0.25px;
+          font-weight: 500;
+          color: #0d5eb5;
+        }
       }
 
       button {
@@ -199,141 +216,6 @@
 
         &:hover {
           background-color: #007bff;
-        }
-      }
-    }
-
-    & > main {
-      width: 100%;
-      display: grid;
-      grid-template-rows: 0fr;
-      opacity: 0;
-      pointer-events: none;
-      transition:
-        grid-template-rows 0.25s,
-        opacity 0.75s ease;
-
-      &.active {
-        opacity: 1;
-        grid-template-rows: 1fr;
-        pointer-events: all;
-      }
-
-      .score {
-        @include flex(column);
-        width: 100%;
-        overflow: hidden;
-
-        & > a {
-          margin-bottom: 25px;
-          text-align: center;
-          padding: 10px;
-          border-radius: 10px;
-          border: 1px solid #e5e50e;
-          background-color: #fffee2;
-          color: #786d0d;
-          font-size: 13px;
-          font-weight: 500;
-          transition:
-            color 0.15s,
-            border-color 0.1s;
-
-          svg {
-            height: 13px;
-          }
-
-          &:hover {
-            color: #373905;
-            border-color: #c5c514;
-          }
-        }
-
-        h3 {
-          @include flex(row, center);
-          gap: 10px;
-          font-size: 15px;
-          font-weight: 600;
-          color: #00458e;
-
-          ~ h3 {
-            margin-top: 25px;
-          }
-        }
-
-        table {
-          width: 100%;
-          margin-bottom: 0;
-
-          tbody {
-            @include flex(column);
-            width: 100%;
-            border: 1px solid #bfe4ff;
-            border-radius: 10px;
-            overflow: hidden;
-          }
-
-          tr {
-            @include flex(row, center);
-            width: 100%;
-            border: none;
-
-            td {
-              @include flex(row, center);
-              padding: 7.5px 10px;
-              border: none;
-              font-size: 13px;
-              font-weight: 500;
-              color: #4098f7;
-
-              &:first-of-type {
-                min-width: 175px;
-              }
-
-              + td {
-                width: 100%;
-                gap: 7.5px;
-                border-left: 1px solid #bfe4ff;
-                font-weight: 600;
-                color: #0770e0;
-
-                img,
-                svg {
-                  width: 18px;
-                  height: 18px;
-                }
-
-                img {
-                  object-fit: contain;
-                  object-position: center;
-
-                  &.organization {
-                    border-radius: 5px;
-                  }
-                }
-
-                svg {
-                  color: #0770e0;
-                }
-              }
-            }
-
-            &.error {
-              background-color: #ed307c;
-
-              td {
-                color: #fff0f6;
-
-                svg {
-                  stroke: #fff0f6;
-                }
-
-                + td {
-                  border-left-color: #cc2266;
-                  text-transform: uppercase;
-                }
-              }
-            }
-          }
         }
       }
     }
