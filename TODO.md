@@ -1,1 +1,2 @@
 - Reutilizar os _hooks_ entre as páginas "projects", "lists" e "learn".
+- Criar limite de requisições no servidor

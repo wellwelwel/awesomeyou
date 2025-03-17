@@ -48,9 +48,13 @@ export default (): ReactNode => {
               <p>
                 Para manter a relevância dos projetos dentro da iniciativa e dos
                 seus respectivos mantenedores, os projetos precisam atingir pelo
-                menos <strong>250 pontos</strong>.{' '}
+                menos <strong>250 pontos</strong>. Consulte as{' '}
+                <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/docs/RULES.md'>
+                  Regras <ExternalLink />
+                </SafeLink>{' '}
+                e{' '}
                 <Link to='/calculator'>
-                  Use nossa calculadora para descobrir o score do projeto{' '}
+                  use nossa calculadora para descobrir o score do projeto{' '}
                   <ChevronRight />
                 </Link>
               </p>

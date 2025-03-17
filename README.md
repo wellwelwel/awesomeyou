@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Awesome You</h1>
   <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
-  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo..</p>
+  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
 </div>
 
 ---
@@ -61,7 +61,7 @@ Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a po
 
 > [!TIP]
 >
-> Se o projeto bater **250** pontos ou mais, garanta que ele cumpre as [regras](./docs/RULES.md) e sinta-se à vontade para abrir um **Pull Request** incluindo seu projeto na iniciativa.
+> Se o projeto bater **250** pontos ou mais, garanta que ele cumpre as [regras](./docs/RULES.md) e sinta-se à vontade para abrir um **Pull Request** [**incluindo seu projeto na iniciativa**](https://awesomeyou.io/new/).
 
 ---
 
