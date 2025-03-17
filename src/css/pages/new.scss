@@ -182,10 +182,13 @@
         .theme-code-block {
           border: 1px solid #bfd2f9;
           width: 100%;
+          margin-bottom: 0;
           background-color: transparent !important;
 
           pre {
+            padding-bottom: 0;
             background-color: #f5fbff54 !important;
+            white-space: pre-wrap;
 
             &.language-json {
               .token {
@@ -251,6 +254,14 @@
 
         &:hover {
           background-color: #007bff;
+        }
+      }
+    }
+
+    p {
+      span {
+        code {
+          white-space: nowrap;
         }
       }
     }

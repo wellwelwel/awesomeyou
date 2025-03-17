@@ -318,7 +318,7 @@ export default (): ReactNode => {
                 language='json'
                 title={`./content/maintainers/${maintainer}/projects.json`}
               >
-                {JSON.stringify(json, null, 2)}
+                {`${JSON.stringify(json, null, 2)}\n\n`}
               </CodeBlock>
             </form>
           </header>
