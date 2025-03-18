@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
+import { extractRepository } from '@site/src/helpers/extract-repository';
 
 import '@site/src/css/pages/new.scss';
 
@@ -334,10 +335,10 @@ export default (): ReactNode => {
             <p>
               <Utensils />
               <span>
-                Faça um <strong>fork</strong> do repositório{' '}
+                Faça um{' '}
                 <strong>
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/fork'>
-                    awesomeyou
+                    fork do repositório awesomeyou
                   </SafeLink>
                 </strong>
                 .
@@ -383,7 +384,19 @@ export default (): ReactNode => {
               <GitPullRequestCreateArrow />
               <span>
                 Abra uma <strong>Pull Request</strong> com o título "
-                <strong>docs: add {'<repository>'}</strong>".
+                <strong>
+                  docs: add{' '}
+                  {json?.projects?.[0]?.name ||
+                    (() => {
+                      try {
+                        return extractRepository(json.projects[0].repository)
+                          .repository;
+                      } catch (error) {
+                        return '***';
+                      }
+                    })()}
+                </strong>
+                ".
               </span>
             </p>
             <p>
