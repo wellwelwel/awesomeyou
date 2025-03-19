@@ -17,7 +17,7 @@ const Footer = (): ReactNode => {
             <strong>Awesome You</strong>
           </Link>{' '}
           não possui nenhum vínculo com o{' '}
-          <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE'>
+          <SafeLink to='https://github.com/'>
             <strong>GitHub</strong>
           </SafeLink>
           , sendo um projeto <em>open source</em> feito da comunidade para a
@@ -25,7 +25,7 @@ const Footer = (): ReactNode => {
         </p>
         <p>
           Os dados vêm de APIs públicas e das próprias informações fornecidas
-          pelos usuários ao incluirem projetos e mantenedores.
+          pelos contribuidores ao incluirem projetos e mantenedores.
         </p>
         <p>
           Você pode encontrar nosso código fonte e contribuir através do{' '}

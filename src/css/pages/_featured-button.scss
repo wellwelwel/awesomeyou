@@ -7,9 +7,9 @@ $color-text: #dfeafa;
   @include flex(row, center, center);
   gap: 10px;
   width: 150px;
-  height: 40px;
+  height: 45px;
   border: 2px solid #ffffff36;
-  border-radius: 20px;
+  border-radius: 10px;
   font-family: var(--ifm-font-family-base);
   font-size: 14px;
   font-weight: 600;
@@ -21,8 +21,8 @@ $color-text: #dfeafa;
   background-clip: border-box, padding-box;
   background-position: 0 0;
   box-shadow:
-    0 0 10px $color-glow,
-    0 0 10px $color-glow;
+    0 0 7.5px $color-glow,
+    0 0 7.5px $color-glow;
   transition:
     border-color 0.25s cubic-bezier(0.75, -1.5, 0.2, 0.9),
     gap 0.25s cubic-bezier(0.75, -1.5, 0.2, 0.9);

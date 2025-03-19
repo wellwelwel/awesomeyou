@@ -300,7 +300,7 @@ const Projects = (): ReactNode => {
           </header>
           <menu>
             <div>
-              <h4>Países</h4>
+              <h4>Origem</h4>
               <div>
                 <button
                   className='active'
@@ -308,21 +308,21 @@ const Projects = (): ReactNode => {
                   onClick={(e) => filterByCountry(e, false)}
                 >
                   <Earth />
-                  Todos
+                  Todas
                 </button>
                 <button
                   data-filter='country'
                   onClick={(e) => filterByCountry(e, 1)}
                 >
                   <House />
-                  Brasil
+                  Brasileira
                 </button>
                 <button
                   data-filter='country'
                   onClick={(e) => filterByCountry(e, 0)}
                 >
                   <Plane />
-                  Estrangeiros
+                  Estrangeira
                 </button>
               </div>
             </div>

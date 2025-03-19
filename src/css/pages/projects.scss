@@ -172,7 +172,6 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 25px;
       margin-top: 10px;
-      animation: fadeIn 0.25s ease-in forwards;
 
       @media (max-width: 630px) {
         padding-inline: 0;

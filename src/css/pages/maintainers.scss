@@ -10,7 +10,6 @@
       @include flex(row, stretch, center, wrap);
       gap: 20px;
       margin-top: 30px;
-      animation: fadeIn 0.25s ease-in forwards;
 
       & > section {
         position: relative;
@@ -99,8 +98,6 @@
         }
 
         & > main {
-          // flex-grow: 1;
-
           .bio {
             font-size: 13px;
           }

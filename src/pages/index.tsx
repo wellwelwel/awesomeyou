@@ -21,6 +21,26 @@ import {
   UsersRound,
 } from 'lucide-react';
 import { ReactTyped } from 'react-typed';
+import PeopleA from '@site/content/assets/img/people/A.svg';
+import PeopleB from '@site/content/assets/img/people/B.svg';
+import PeopleC from '@site/content/assets/img/people/C.svg';
+import PeopleD from '@site/content/assets/img/people/D.svg';
+import PeopleE from '@site/content/assets/img/people/E.svg';
+import PeopleF from '@site/content/assets/img/people/F.svg';
+import PeopleI from '@site/content/assets/img/people/I.svg';
+import PeopleJ from '@site/content/assets/img/people/J.svg';
+import PeopleK from '@site/content/assets/img/people/K.svg';
+import PeopleL from '@site/content/assets/img/people/L.svg';
+import PeopleM from '@site/content/assets/img/people/M.svg';
+import PeopleN from '@site/content/assets/img/people/N.svg';
+import PeopleO from '@site/content/assets/img/people/O.svg';
+import PeopleP from '@site/content/assets/img/people/P.svg';
+import PeopleQ from '@site/content/assets/img/people/Q.svg';
+import PeopleR from '@site/content/assets/img/people/R.svg';
+import PeopleS from '@site/content/assets/img/people/S.svg';
+import PeopleT from '@site/content/assets/img/people/T.svg';
+import PeopleU from '@site/content/assets/img/people/U.svg';
+import PeopleV from '@site/content/assets/img/people/V.svg';
 import { ResumedMaintaners } from '@site/src/@types/maintainers';
 import { ResumedProject } from '@site/src/@types/projects';
 import { Name } from '@site/src/components/Name';
@@ -92,65 +112,172 @@ export default (): ReactNode => {
     };
   }, [sortProjects, sortMaintainers]);
 
+  useEffect(() => {
+    let remainingNumbers: number[] = [];
+
+    const shuffleArray = () => {
+      remainingNumbers = Array.from({ length: 20 }, (_, i) => i + 1);
+
+      for (let i = remainingNumbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [remainingNumbers[i], remainingNumbers[j]] = [
+          remainingNumbers[j],
+          remainingNumbers[i],
+        ];
+      }
+    };
+
+    const container = document.querySelector('.feat');
+    if (!container) return;
+
+    const children = Array.from(container.querySelectorAll('span'));
+
+    for (const item of children)
+      item.style.order = String(Math.floor(Math.random() * 20));
+
+    shuffleArray();
+
+    const highlightInterval = setInterval(() => {
+      document.querySelector(`.feat .on`)?.classList.remove('on');
+
+      if (remainingNumbers.length === 0) shuffleArray();
+
+      const nextNumber = remainingNumbers.pop() as number;
+
+      document
+        .querySelector(`.feat span:nth-child(${nextNumber}) svg`)
+        ?.classList.add('on');
+    }, 750);
+
+    return () => {
+      clearInterval(highlightInterval);
+    };
+  }, []);
+
   return (
     <Layout
       title='Home'
       description='Descubra projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.'
     >
       <div id='home'>
-        <main>
+        <main id='call'>
           <header>
-            <h1>
-              <div>
-                <Name name='Awesome Brazilian' />
-              </div>
-              <div>
-                <Name name='< open source >' />
-              </div>
-              <div>
-                <Name name='People' />
-              </div>
-            </h1>
-            <small>
-              <ReactTyped
-                strings={[
-                  'Awesome You &#x1F499;', // 💙
-                  'Awesome You &#x1F49A;', // 💚
-                  'Awesome You &#x1F49B;', // 💛
-                ]}
-                smartBackspace={false}
-                typeSpeed={50}
-                backSpeed={25}
-                backDelay={2000}
-                loop={true}
-                fadeOut={true}
-              />
-            </small>
-            <small>
-              Awesome You é uma iniciativa que traz o lado humano do{' '}
-              <em>open source</em>, te apresentando projetos incríveis criados e
-              mantidos por desenvolvedores brasileiros.
-            </small>
-            <menu>
-              <section>
-                <Link to='projects' className='btn-split'>
-                  <span className='btn-content'>
-                    <span className='text'>Projetos</span>
-                  </span>
-                  <span className='btn-dropdown'>
-                    <Code />
-                  </span>
-                </Link>
-                <Link to='maintainers' className='btn-split'>
-                  <span className='btn-dropdown'>
-                    <UsersRound />
-                  </span>
-                  <span className='btn-content'>
-                    <span className='text'>Pessoas</span>
-                  </span>
-                </Link>
-              </section>
-            </menu>
+            <aside>
+              <h1>
+                <div>
+                  <Name name='Awesome Brazilian' />
+                </div>
+                <div>
+                  <Name name='< open source >' />
+                </div>
+                <div>
+                  <Name name='People' />
+                </div>
+              </h1>
+              <small>
+                <ReactTyped
+                  strings={[
+                    'Awesome You &#x1F499;', // 💙
+                    'Awesome You &#x1F49A;', // 💚
+                    'Awesome You &#x1F49B;', // 💛
+                  ]}
+                  smartBackspace={false}
+                  typeSpeed={50}
+                  backSpeed={25}
+                  backDelay={2000}
+                  loop={true}
+                  fadeOut={true}
+                />
+              </small>
+              <small>
+                Awesome You é uma iniciativa que traz o lado humano do{' '}
+                <em>open source</em>, te apresentando projetos incríveis criados
+                e mantidos por desenvolvedores brasileiros.
+              </small>
+              <menu>
+                <section>
+                  <Link to='projects' className='btn-split'>
+                    <span className='btn-content'>
+                      <span className='text'>Projetos</span>
+                    </span>
+                    <span className='btn-dropdown'>
+                      <Code />
+                    </span>
+                  </Link>
+                  <Link to='maintainers' className='btn-split'>
+                    <span className='btn-dropdown'>
+                      <UsersRound />
+                    </span>
+                    <span className='btn-content'>
+                      <span className='text'>Pessoas</span>
+                    </span>
+                  </Link>
+                </section>
+              </menu>
+            </aside>
+            <div className='feat'>
+              <span>
+                <PeopleA />
+              </span>
+              <span>
+                <PeopleB />
+              </span>
+              <span>
+                <PeopleC />
+              </span>
+              <span>
+                <PeopleD />
+              </span>
+              <span>
+                <PeopleE />
+              </span>
+              <span>
+                <PeopleF />
+              </span>
+              <span>
+                <PeopleI />
+              </span>
+              <span>
+                <PeopleJ />
+              </span>
+              <span>
+                <PeopleK />
+              </span>
+              <span>
+                <PeopleL />
+              </span>
+              <span>
+                <PeopleM />
+              </span>
+              <span>
+                <PeopleN />
+              </span>
+              <span>
+                <PeopleO />
+              </span>
+              <span>
+                <PeopleP />
+              </span>
+              <span>
+                <PeopleQ />
+              </span>
+              <span>
+                <PeopleR />
+              </span>
+              <span>
+                <PeopleS />
+              </span>
+              <span>
+                <PeopleT />
+              </span>
+              <span>
+                <PeopleU />
+              </span>
+              <span>
+                <PeopleV />
+              </span>
+            </div>
           </header>
           <main id='cards'>
             <h2>
@@ -159,85 +286,74 @@ export default (): ReactNode => {
             <div className='show cards'>
               <Link to='projects'>
                 <header>
-                  <Code />
-                  Projetos
+                  <div className='left projects'>
+                    <Code />
+                  </div>
+                  Explore Projetos
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Conheça projetos open source criados e mantidos por
-                  brasileiros.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
 
               <Link to='maintainers'>
                 <header>
-                  <UsersRound />
-                  Pessoas
+                  <div className='left maintainers'>
+                    <UsersRound />
+                  </div>
+                  Conheça Pessoas Mantenedoras
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Conheça pessoas mantenedoras por trás de projetos incríveis.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
 
               <Link to='learn'>
                 <header>
-                  <GraduationCap />
+                  <div className='left learn'>
+                    <GraduationCap />
+                  </div>
                   Aprenda Programação
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Encontre repositórios que ensinam desde conteúdos básicos a
-                  conceitos avançados.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
 
               <Link to='lists'>
                 <header>
-                  <List />
+                  <div className='left lists'>
+                    <List />
+                  </div>
                   Conheça Listas Incríveis
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Por que parar por aqui? Veja listas criadas por brasileiros
-                  com repositórios incríveis.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
 
               <Link to='calculator'>
                 <header>
-                  <Calculator />
+                  <div className='left calculator'>
+                    <Calculator />
+                  </div>
                   Descubra seu Score
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Seja por diversão, meta ou apenas curiosidade, descubra o
-                  impacto do seu projeto.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
 
               <Link to='new'>
                 <header>
-                  <PackagePlus />
-                  Submeta seu Projeto
+                  <div className='left new'>
+                    <PackagePlus />
+                  </div>
+                  Submeter Projetos
+                  <div className='right'>
+                    <ChevronRight />
+                  </div>
                 </header>
-                <main>
-                  Você tem ou conhece um projeto inovador que pode receber
-                  contribuições da comunidade? Torne ele parte dessa iniciativa.
-                </main>
-                <footer>
-                  <ChevronRight />
-                </footer>
               </Link>
             </div>
           </main>
@@ -332,13 +448,15 @@ export default (): ReactNode => {
             <small>
               <p>
                 Já viu repositórios que listam outros repositórios e sempre
-                começam com "Awesome [Linguagem]", "Awesome Made by [País]" e
+                começam com <em>"Awesome [Linguagem, País, Framework]"</em> e
                 assim vai?
               </p>
-              <p>Aqui quem é "Awesome" é você 😌</p>
+              <p>
+                Aqui quem é <em>"Awesome"</em> é <strong>[você]</strong> ✨
+              </p>
             </small>
           </main>
-          <main className='show' id='team'>
+          {/* <main className='show' id='team'>
             <h2>
               Quem está por trás da <strong>Awesome You</strong>?
             </h2>
@@ -395,7 +513,7 @@ export default (): ReactNode => {
               Nosso trabalho vai além de ser voluntário, nós simplesmente amamos
               o que fazemos 💙
             </footer>
-          </main>
+          </main> */}
         </main>
       </div>
     </Layout>
