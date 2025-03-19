@@ -21,7 +21,7 @@
     "clear": "docusaurus clear",
     "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i && npm run update",
     "prepreview": "npm run build && tsx tools/host.mts",
-    "preview": "docusaurus serve",
+    "preview": "docusaurus serve --port 6060",
     "typecheck": "tsc",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",

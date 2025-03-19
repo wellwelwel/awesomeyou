@@ -17,7 +17,10 @@ import {
   GraduationCap,
   List,
   PackagePlus,
+  Pickaxe,
   Shapes,
+  Sparkles,
+  Star,
   UsersRound,
 } from 'lucide-react';
 import { ReactTyped } from 'react-typed';
@@ -281,7 +284,11 @@ export default (): ReactNode => {
           </header>
           <main id='cards'>
             <h2>
-              <strong>Re</strong> Descubra o <em>open source</em> ✨
+              <strong>re</strong>
+              <span>
+                Descubra o <em>open source</em>
+              </span>{' '}
+              <Sparkles />
             </h2>
             <div className='show cards'>
               <Link to='projects'>
@@ -358,7 +365,10 @@ export default (): ReactNode => {
             </div>
           </main>
           <main className='show' id='projects'>
-            <h2>Apoie projetos criados por brasileiros 🏡</h2>
+            <h2>
+              <span>Apoie projetos criados por pessoas brasileiras</span>{' '}
+              <Star />
+            </h2>
             <small onClick={() => sortProjects(data.projects)}>
               Gerar Novamente <Dices />
             </small>
@@ -408,7 +418,9 @@ export default (): ReactNode => {
             </footer>
           </main>
           <main className='show' id='maintainers'>
-            <h2>Conheça mantenedores brasileiros 👋</h2>
+            <h2>
+              <span>Conheça pessoas mantenedoras</span> <Pickaxe />
+            </h2>
             <small onClick={() => sortMaintainers(data.maintainers)}>
               Gerar Novamente <Dices />
             </small>
@@ -443,7 +455,7 @@ export default (): ReactNode => {
           </main>
           <main className='show' id='about'>
             <h2>
-              Por que "<strong>Awesome You</strong>"?
+              Por que "<span>Awesome You</span>"?
             </h2>
             <small>
               <p>
