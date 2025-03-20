@@ -541,7 +541,7 @@ export default (): ReactNode => {
                 <h3>Identidade Visual</h3>
                 <p>
                   O uso, modificação ou redistribuição de elementos gráficos,
-                  identidade visual, logotipos e ilustrações do{' '}
+                  identidade visual, logotipos e ilustrações da{' '}
                   <strong>Awesome You</strong> sem a devida atribuição constitui
                   uma violação da licença{' '}
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE-assets'>
