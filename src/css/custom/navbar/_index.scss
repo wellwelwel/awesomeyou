@@ -22,6 +22,15 @@
   a {
     @include flex(row, center);
     gap: 5px;
+    background: linear-gradient(
+      94.23deg,
+      #2846de 12.41%,
+      #288cff 52.55%,
+      #009dff 89.95%
+    );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
     transition:
       color 0.25s,
       transform 0.1s;

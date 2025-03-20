@@ -1,35 +1,24 @@
 import { FC, ReactNode } from 'react';
-import Details from '@theme/Details';
+import { Plus } from 'lucide-react';
 
 export type FAQProps = {
+  title: ReactNode;
   children: ReactNode;
   open?: boolean;
-  title: ReactNode;
 };
 
-/**
- * Usage example:
- *
- * ```mdx
- * <FAQ title='Title'>
- *
- * > Some markdown (**MDX**) content.
- *
- * </FAQ>
- * ```
- */
-export const FAQ: FC<FAQProps> = ({ children, open, title }) => {
+export const FAQ: FC<FAQProps> = ({ title, children, open }) => {
   return (
-    <Details
-      open={open}
-      className='faq'
-      summary={
-        <summary>
-          <h2>{title}</h2>
-        </summary>
-      }
-    >
-      <section>{children}</section>
-    </Details>
+    <div className={(() => (open ? 'faq open' : 'faq'))()}>
+      <h2
+        onClick={(e) => e.currentTarget.parentElement!.classList.toggle('open')}
+      >
+        <span>{title}</span>
+        <Plus className='arrow' />
+      </h2>
+      <div className='wrapper'>
+        <span>{children}</span>
+      </div>
+    </div>
   );
 };
