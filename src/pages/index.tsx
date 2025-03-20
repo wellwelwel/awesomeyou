@@ -555,7 +555,7 @@ export default (): ReactNode => {
                 </p>
                 <p>
                   O uso de elementos gráficos, identidade visual, logotipos e
-                  ilustrações do <strong>Awesome You</strong> não deve, sob
+                  ilustrações da <strong>Awesome You</strong> não deve, sob
                   nenhuma circunstância, sugerir uma afiliação, parceria oficial
                   ou endosso por parte do projeto, salvo autorização expressa da
                   equipe original.
@@ -590,7 +590,7 @@ export default (): ReactNode => {
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/graphs/contributors'>
                     <strong>contribuidores</strong>
                   </SafeLink>{' '}
-                  fazem parte do projeto.
+                  fazem parte do projeto 🤝
                 </p>
                 <p>
                   Para discussões, ideias, reportar erros, iniciar discussões e
@@ -603,7 +603,7 @@ export default (): ReactNode => {
                 <p>
                   Se precisar entrar em contato de forma privada com alguém do
                   nosso time de voluntários, fique à vontade para nos chamar
-                  através da rede social de sua preferência 🤝
+                  através da rede social de sua preferência:
                 </p>
               </small>
               <div className='team'>

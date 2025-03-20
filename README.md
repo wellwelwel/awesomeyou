@@ -6,6 +6,12 @@
 
 ---
 
+## ✨ Apoiando
+
+Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</strong>, assim como todos os projetos que você descobrir através da nossa iniciativa.
+
+---
+
 ## 🤝 Contribuindo
 
 Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.

@@ -810,6 +810,18 @@
                       border-color: #f0f9ff;
                     }
                   }
+
+                  @media (max-width: 630px) {
+                    width: 100%;
+
+                    &:nth-child(even) {
+                      flex-direction: row-reverse;
+
+                      header {
+                        flex-direction: row-reverse;
+                      }
+                    }
+                  }
                 }
               }
 
@@ -824,6 +836,10 @@
                 border: 1px solid #b9e2ff;
                 font-weight: 500;
                 font-size: 13px;
+
+                @media (max-width: 630px) {
+                  text-align: center;
+                }
               }
             }
           }
