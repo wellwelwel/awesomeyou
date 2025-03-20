@@ -1,8 +1,6 @@
 # Sistema de Pontos
 
-A iniciativa vai além de uma lista:
-
-- Diferente da metrificação por **100** ou **1.000** estrelas de um repositório, a métrica visa valorizar e humanizar o trabalho de mantenedores brasileiros no ecossistema _open source_, equilibrando impacto, consistência e popularidade de forma justa.
+Diferente da metrificação por popularidade (**100** ou **1.000** estrelas de um repositório), o sistema de pontos visa valorizar e humanizar o trabalho de mantenedores brasileiros no ecossistema _open source_, equilibrando criação de comunidade, impacto, consistência e popularidade de forma justa.
 
 Projetos que atinjam **250** pontos ou mais podem entrar na iniciativa, desde que respeitem as [regras](https://github.com/wellwelwel/awesomeyou/issues/2).
 
@@ -29,7 +27,7 @@ Projeto com alto impacto, mas baixa popularidade:
 
 Projetos podem ser adotados por projetos maiores como dependências diretas, se tornando críticos para o funcionamento do seu respectivo ecossistema, _você mesmo pode usá-los nesse exato momento, mas não sabe que eles existem._
 
-Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **250** estrelas e **0** Issues abertas ou **250** estrelas adicionais para cada ano sem manutenção, garantindo o equilíbrio entre relevância, impacto e popularidade.
+Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **250** estrelas e **0** Issues abertas ou **250** estrelas adicionais para cada ano sem manutenção, garantindo o equilíbrio da pontuação.
 
 </details>
 
@@ -37,7 +35,7 @@ Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter
 
 ## Tipos de Pontuação
 
-- As pontuações são calculadas diariamente e projetos que não baterem no mínimo **250** pontos serão removidos, garantindo a qualidade e relevância dos projetos.
+- As pontuações são calculadas diariamente e projetos que não baterem no mínimo **250** pontos precisão ser removidos, garantindo a qualidade e relevância dos projetos de forma contínua.
 - A comunidade pode votar para remover um projeto mesmo que ele possua uma boa pontuação. Para isso, abra uma Issue justificando suas motivações e, se até um mês ela alcançar até 10 upvotes (👍) a mais que downvotes (👎), um dos mantenedores irá remover o projeto. Caso contrário, a Issue será fechada como não planejada e o projeto será mantido.
 
 <details>
@@ -59,7 +57,7 @@ As pontuações por senso de comunidade envolvem números de contribuidores com 
 
 <br />
 
-As pontuações com base em impacto são baseadas na quantidade de dependentes diretos do repositório e em números de instalações ou downloads ou instalações:
+As pontuações com base em impacto são baseadas na quantidade de dependentes diretos do repositório e em números de instalações ou downloads:
 
 - Cada **10** dependentes diretos equivalem a **4** pontos, limitado a 50% da pontuação acumulada.
 - Métricas que podem ser medidas mensalmente valem **3** pontos a cada **1.000** downloads mensais.
@@ -69,7 +67,7 @@ As pontuações com base em impacto são baseadas na quantidade de dependentes d
 
 - Instalações e downloads podem ser feitos por _bots_ ou automações e não dependem de uma pessoa real.
 - Esses números podem ser facilmente manipulados, mesmo quando não é a intenção (como em múltiplas matrizes recursivas em testes automatizados — CI/CD).
-- Como cada cenário envolve métricas muito difíceis de serem validadas humanamente e muito improváveis de serem automatizadas, esse foi um valor considerado equilibrado justo.
+- Como cada cenário envolve métricas muito difíceis de serem validadas humanamente e muito improváveis de serem automatizadas, esse foi um valor considerado justo.
 
 **Por que downloads totais valem menos que downloads mensais?**
 
@@ -85,11 +83,11 @@ As pontuações com base em impacto são baseadas na quantidade de dependentes d
 
 Baixa manutenção pode penalizar a pontuação, assim como uma boa manutenção de um projeto pode aumentar ainda mais a pontuação:
 
-- Cada Issues aberta penaliza **1** ponto.
+- Cada Issue aberta penaliza **1** ponto.
 - Cada Issue fechada/resolvida equivale a **2** pontos, limitado a 50% da pontuação acumulada.
-- Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **250** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2500** pontos a menos.
+- Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **250** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2.500** pontos.
 
-Isso ajuda a filtrar projetos com altas pontuações que não são mais mantidos e não possuem expectativa de dar suporte aos issues abertos, mas sem penalizar de forma injusta projetos estáveis que não precisam de manutenção recorrente.
+Isso ajuda a filtrar projetos com altas pontuações que não são mais mantidos e não possuem expectativa de dar suporte aos usuários, mas sem penalizar de forma injusta projetos estáveis que não precisam de manutenção recorrente.
 
 </details>
 

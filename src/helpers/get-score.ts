@@ -30,16 +30,6 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
 };
 
 /**
- * - Each star equals 1 point.
- * - Each fork equals 2 points.
- * - Each commit contributor equals 5 points.
- * - Each interval of 2,000 total downloads equals 2 points.
- * - Each interval of 1,000 downloads per month equals 3 points.
- * - Each issue closed equals 2 points, limited to 50% of the current accumulated score.
- * - Each 10 direct repository dependents equals 4 points, limited to 50% of the current accumulated score.
- * - Each issue opened penalizes 1 point.
- * - From two years onwards, each year without maintenance (commits) penalizes 250 points progressively and for each Issue opened, it penalizes 2,500 points.
- *
  * **Note:** order matters.
  */
 export const getScore = (options: {

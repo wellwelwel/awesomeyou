@@ -27,7 +27,7 @@
 
 ---
 
-## Live e Podcast _(em breve)_
+## Lives e Podcast _(em breve)_
 
 - Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar do nosso futuro Podcast (que será publicado em vídeo no **YouTube**). <sup>1</sup>
   - Não há nenhuma obrigação e aceitar o convite (ou não) fica a critério do prórpio convidado.

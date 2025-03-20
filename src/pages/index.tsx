@@ -566,13 +566,6 @@ export default (): ReactNode => {
                   O nome "Awesome You" é uma identidade protegida e não deve ser
                   utilizado para nomear ou representar projetos terceiros.
                 </p>
-
-                <h3>Uso Comercial</h3>
-                <p>
-                  Não há restrições quanto ao uso comercial, desde que todos os
-                  requisitos de licenciamento mencionados acima sejam
-                  integralmente cumpridos.
-                </p>
               </small>
             </FAQ>
 
