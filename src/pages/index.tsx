@@ -116,20 +116,29 @@ export default (): ReactNode => {
   }, [sortProjects, sortMaintainers]);
 
   useEffect(() => {
-    let remainingNumbers: number[] = [];
+    let remainingNumbers: number[];
 
     const shuffleArray = () => {
-      remainingNumbers = Array.from({ length: 20 }, (_, i) => i + 1);
-
-      for (let i = remainingNumbers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [remainingNumbers[i], remainingNumbers[j]] = [
-          remainingNumbers[j],
-          remainingNumbers[i],
-        ];
-      }
+      remainingNumbers = randomize(Array.from({ length: 20 }, (_, i) => i + 1));
     };
+
+    const randomizeCircles = () => {
+      if (remainingNumbers.length === 0) shuffleArray();
+
+      const nextNumber = remainingNumbers.pop() as number;
+      const current = document.querySelector(`.feat .on`);
+
+      setTimeout(() => {
+        current?.classList.remove('on');
+      }, 500);
+
+      document
+        .querySelector(`.feat span:nth-child(${nextNumber}) svg`)
+        ?.classList.add('on');
+    };
+
+    shuffleArray();
+    randomizeCircles();
 
     const container = document.querySelector('.feat');
     if (!container) return;
@@ -139,19 +148,7 @@ export default (): ReactNode => {
     for (const item of children)
       item.style.order = String(Math.floor(Math.random() * 20));
 
-    shuffleArray();
-
-    const highlightInterval = setInterval(() => {
-      document.querySelector(`.feat .on`)?.classList.remove('on');
-
-      if (remainingNumbers.length === 0) shuffleArray();
-
-      const nextNumber = remainingNumbers.pop() as number;
-
-      document
-        .querySelector(`.feat span:nth-child(${nextNumber}) svg`)
-        ?.classList.add('on');
-    }, 750);
+    const highlightInterval = setInterval(randomizeCircles, 1000);
 
     return () => {
       clearInterval(highlightInterval);
@@ -283,13 +280,12 @@ export default (): ReactNode => {
             </div>
           </header>
           <main id='cards'>
-            <h2>
-              <strong>re</strong>
-              <span>
-                Descubra o <em>open source</em>
-              </span>{' '}
-              <Sparkles />
-            </h2>
+            <header>
+              <h2>
+                <strong>re</strong>
+                <span>Descubra o open source</span> <Sparkles />
+              </h2>
+            </header>
             <div className='show cards'>
               <Link to='projects'>
                 <header>
@@ -365,13 +361,15 @@ export default (): ReactNode => {
             </div>
           </main>
           <main className='show' id='projects'>
-            <h2>
-              <span>Apoie projetos criados por pessoas brasileiras</span>{' '}
-              <Star />
-            </h2>
-            <small onClick={() => sortProjects(data.projects)}>
-              Gerar Novamente <Dices />
-            </small>
+            <header>
+              <h2>
+                <span>Apoie projetos criados por pessoas brasileiras</span>{' '}
+                <Star />
+              </h2>
+              <small onClick={() => sortProjects(data.projects)}>
+                Regerar <Dices />
+              </small>
+            </header>
             <div className='cards'>
               {data.projects.slice(0, 3).map((project, i) => (
                 <div
@@ -418,12 +416,14 @@ export default (): ReactNode => {
             </footer>
           </main>
           <main className='show' id='maintainers'>
-            <h2>
-              <span>Conheça pessoas mantenedoras</span> <Pickaxe />
-            </h2>
-            <small onClick={() => sortMaintainers(data.maintainers)}>
-              Gerar Novamente <Dices />
-            </small>
+            <header>
+              <h2>
+                <span>Conheça pessoas mantenedoras</span> <Pickaxe />
+              </h2>
+              <small onClick={() => sortMaintainers(data.maintainers)}>
+                Regerar <Dices />
+              </small>
+            </header>
             <div className='cards'>
               {data.maintainers.slice(0, 3).map((maintainer, i) => (
                 <div
