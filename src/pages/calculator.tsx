@@ -120,10 +120,9 @@ export default (): ReactNode => {
             </h1>
             <small>
               <p>
-                Esse cálculo não é uma forma de validar se um projeto é bom ou
-                não. Cada projeto possui seus propósitos e diferentes formas de
-                impacto. Nós apenas usamos métricas passíveis de automação para
-                garantir a relevância dos projetos dentro da iniciativa.
+                Seja por diversão, meta ou até mesmo por curiosidade, você pode
+                calcular a pontuação do seu repositório dinamicamente e sem
+                compromisso através da nossa calculadora.
               </p>
               <br />
               <Link to='/new'>

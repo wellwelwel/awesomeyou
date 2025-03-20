@@ -57,7 +57,7 @@ O cálculo da pontuação inclui:
 - 🛠️ **Manutenção** através de Issues abertas e fechadas.
 - 👴🏼 **Atividade** através de _commits_.
 
-Você pode consultar detalhadamente como sistema de pontos funciona [aqui](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/1) e também averiguar a fórmula diretamente no [código](./src/helpers/get-score.ts) de forma totalmente transparente.
+Você pode consultar detalhadamente como o sistema de pontos funciona [aqui](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/4) e também averiguar a fórmula diretamente no [código](./src/helpers/get-score.ts) de forma totalmente transparente.
 
 ---
 
