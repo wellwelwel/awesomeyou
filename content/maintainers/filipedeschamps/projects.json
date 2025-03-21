@@ -17,6 +17,25 @@
       "categories": ["api"],
       "madeInBrazil": true,
       "isAuthor": true
+    },
+    {
+      "name": "CEP Promise",
+      "repository": "https://github.com/BrasilAPI/cep-promise",
+      "languages": ["javascript", "typescript"],
+      "description": "Busca por CEP integrado diretamente aos serviços dos Correios, ViaCEP e outros (Node.js e Browser)",
+      "categories": ["tool"],
+      "npm": "cep-promise",
+      "madeInBrazil": true,
+      "isAuthor": true
+    },
+    {
+      "name": "Doom Fire Algorithm Playground",
+      "repository": "https://github.com/filipedeschamps/doom-fire-algorithm",
+      "languages": ["javascript"],
+      "description": "Playground for the fire effect from DOOM. Really simple algorithm and all experiments are welcome!",
+      "categories": ["educational"],
+      "madeInBrazil": true,
+      "isAuthor": true
     }
   ]
 }
