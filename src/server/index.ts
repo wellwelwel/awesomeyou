@@ -20,7 +20,7 @@ const regex = {
 const isValidParam = (param: undefined | string): boolean => {
   if (typeof param === 'undefined') return true;
   if (typeof param !== 'string') return false;
-  if (!(param.length >= 2 && param.length <= 64)) return false;
+  if (!(param.trim().length >= 2 && param.length <= 64)) return false;
   if (regex.packageName.test(param)) return false;
 
   return true;
@@ -37,7 +37,7 @@ const sanitizeParam = (param: unknown): undefined | string => {
 export default {
   async fetch(request: Request, env: Env) {
     if (request.method !== 'POST')
-      return new Response('Method Not Allowed.', {
+      return new Response('Método não permitido.', {
         status: 405,
       });
 
@@ -45,12 +45,12 @@ export default {
     const isProduction = env.ENVIRONMENT === 'production';
 
     if (!origin || typeof origin !== 'string')
-      return new Response('Method Not Allowed.', {
+      return new Response('Método não permitido.', {
         status: 405,
       });
 
     if (isProduction && !ALLOWED_ORIGINS.has(origin))
-      return new Response('Access Denied.', {
+      return new Response('Acesso negado.', {
         status: 403,
       });
 
@@ -58,11 +58,12 @@ export default {
       'Access-Control-Allow-Origin': isProduction ? origin : '*',
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Content-Type': 'application/json; charset=utf-8',
     });
 
-    const response = (response: unknown) =>
+    const response = (response: unknown, status = 200) =>
       new Response(JSON.stringify(response), {
-        status: 200,
+        status,
         headers,
       });
 
@@ -71,34 +72,25 @@ export default {
       const { repositoryURL: repositoryRaw, ...body } = JSON.parse(rawBody);
 
       if (typeof repositoryRaw !== 'string')
-        return new Response('Repositório inválido.', {
-          status: 400,
-        });
+        return response({ message: 'Repositório inválido.' }, 400);
 
       if (!isValidParam(body.npm))
-        return new Response('Pacote npm inválido.', {
-          status: 400,
-        });
+        return response({ message: 'Pacote npm inválido.' }, 400);
 
       if (!isValidParam(body.homebrew))
-        return new Response('Pacote Homebrew inválido.', {
-          status: 400,
-        });
+        return response({ message: 'Pacote Homebrew inválido.' }, 400);
 
       if (!isValidParam(body.pypi))
-        return new Response('Pacote PyPi inválido.', {
-          status: 400,
-        });
+        return response({ message: 'Pacote PyPi inválido.' }, 400);
 
       if (!isValidParam(body.chocolatey))
-        return new Response('Pacote Chocolatey inválido.', {
-          status: 400,
-        });
+        return response({ message: 'Pacote Chocolatey inválido.' }, 400);
 
       if (!isValidParam(body.vscode))
-        return new Response('ID do Visual Code Studio Marketplace inválido.', {
-          status: 400,
-        });
+        return response(
+          { message: 'ID do Visual Code Studio Marketplace inválido.' },
+          400
+        );
 
       const repositoryURL = repositoryRaw.trim();
       const npm = sanitizeParam(body.npm);

@@ -96,7 +96,7 @@ export default (): ReactNode => {
                 </Link>
               </p>
               <br />
-              <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/1'>
+              <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/4'>
                 Você pode contribuir para melhorar o sistema de pontos{' '}
                 <ExternalLink />
               </SafeLink>

@@ -73,6 +73,7 @@ export default (): ReactNode => {
         repositoryURL.current = `https://github.com/${validatedURL}`;
 
         toast.dismiss();
+        setStats(null);
 
         setTimeout(() => {
           scoreRef.current?.classList.add('active');
@@ -83,28 +84,34 @@ export default (): ReactNode => {
           return;
         }
 
-        LRU.set(
-          key,
-          await (
-            await fetch(API, {
-              method: 'POST',
-              body: JSON.stringify({
-                repositoryURL: repositoryURL.current,
-                npm,
-                homebrew,
-                pypi,
-                chocolatey,
-                vscode,
-              }),
-            })
-          ).json()
-        );
+        const response = await fetch(API, {
+          method: 'POST',
+          body: JSON.stringify({
+            repositoryURL: repositoryURL.current,
+            npm,
+            homebrew,
+            pypi,
+            chocolatey,
+            vscode,
+          }),
+        });
 
+        const data = await response.json();
+
+        if (!response.ok) {
+          setTimeout(() => {
+            toast.error(data.message);
+          }, 250);
+
+          return;
+        }
+
+        LRU.set(key, data);
         setStats(LRU.get(key)!);
       } catch (error) {
-        error instanceof Error && console.log(error.message);
-
-        toast.error('Não foi possível acessar a API.');
+        setTimeout(() => {
+          error instanceof Error && toast.error(error.message);
+        }, 250);
       }
     });
   };
@@ -235,7 +242,7 @@ export default (): ReactNode => {
             <div className='score'>
               {stats && (
                 <>
-                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/1'>
+                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/issues/4'>
                     Acredita que essa pontuação deveria ser diferente? Sugira
                     melhorias e ideias para aprimorar as automações
                     <ExternalLink />
