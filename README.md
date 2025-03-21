@@ -21,7 +21,7 @@ Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** di
 > [!TIP]
 >
 > - Você não precisa ser o autor ou o mantenedor do projeto para incluí-lo 💡
-> - Sinta-se à vontade para conversar em português 🏡
+> - Sinta-se à vontade para conversar em português 🏠
 
 ---
 
