@@ -9,6 +9,7 @@ import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
   const location = useLocation();
+  const isHome = location.pathname !== '/';
   const toTop = (element: Element) => {
     element.scrollTo({
       top: 0,
@@ -52,6 +53,7 @@ const Navbar = (): ReactNode => {
       <header className='main-header'>
         <Link to='/'>
           <Logo className='logo' />
+          {isHome && <span>Home</span>}
         </Link>
         <aside>
           <Link to='/projects'>
