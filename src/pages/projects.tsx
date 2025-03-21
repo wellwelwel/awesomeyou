@@ -246,22 +246,17 @@ const Projects = (): ReactNode => {
             <h1>
               <Name name="<Brazil class='Projetos' />" />
             </h1>
-            <small>
-              Uma lista inteligente para você conhecer projetos{' '}
-              <em>open source</em> criados e mantidos por desenvolvedores{' '}
-              brasileiros.
+
+            <small className='baloon'>
+              <div className='float'>
+                <Dices />
+              </div>
+              <span>
+                Conheça novos projetos criados e mantidos por brasileiros toda
+                vez que voltar aqui.
+              </span>
             </small>
           </header>
-
-          <small className='baloon'>
-            <div className='float'>
-              <Dices />
-            </div>
-            <span>
-              Conheça novos projetos criados e mantidos por brasileiros toda vez
-              que voltar aqui.
-            </span>
-          </small>
 
           <FAQ
             title={

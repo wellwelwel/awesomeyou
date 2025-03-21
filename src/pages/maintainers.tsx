@@ -180,7 +180,7 @@ const MaintainersIndex: React.FC = () => {
                         return (
                           <SafeLink
                             key={index}
-                            to={project.repository}
+                            to={`${project.repository}/commits?author=${maintainer.username}`}
                             className='project'
                           >
                             <span>

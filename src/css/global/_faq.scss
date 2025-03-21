@@ -59,11 +59,13 @@
     opacity: 0;
     width: 100%;
     margin: 0;
+    border-top: 1px solid transparent;
     transition:
       grid-template-rows 0.1s,
       margin-top 0.1s,
+      padding-top 0.1s,
       opacity 0.25s ease,
-      padding-top 0.1s;
+      border-color 0.25s ease;
 
     & > span {
       @include flex(column);
@@ -99,7 +101,7 @@
       opacity: 1;
       padding-top: 10px;
       margin-top: 12.5px;
-      border-top: 1px solid #b3d3ff;
+      border-color: #b3d3ff;
     }
   }
 }
