@@ -570,6 +570,10 @@
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+
+                @media (max-width: 820px) {
+                  max-width: unset;
+                }
               }
 
               svg {
