@@ -102,7 +102,9 @@ export default (): ReactNode => {
 
         setStats(LRU.get(key)!);
       } catch (error) {
-        error instanceof Error && toast.error(error.message);
+        error instanceof Error && console.log(error.message);
+
+        toast.error('Não foi possível acessar a API.');
       }
     });
   };

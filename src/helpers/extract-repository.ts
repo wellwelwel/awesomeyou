@@ -1,21 +1,30 @@
 export const extractRepository = (
   url: string
 ): { organization: string; repository: string } => {
+  const input = String(url).trim();
+
   const limit = Object.freeze({
     domain: 'https://www.github.com/'.length,
     organization: 39,
     repository: 100,
   });
 
-  if (url.length > limit.domain + limit.organization + limit.repository)
-    throw new Error('Invalid GitHub repository URL length.');
+  const length = {
+    input: input.length,
+    max: limit.domain + limit.organization + limit.repository,
+  };
 
-  const match = url.match(
+  if (length.input > length.max)
+    throw new Error(
+      `O tamanho máximo da URL foi excedido (${length.input}/${length.max}).`
+    );
+
+  const match = input.match(
     /^https?:\/\/github\.com\/([^\/]+)\/([^\/]+)(?:\/|$)/
   );
 
   if (!match || !match[1] || !match[2])
-    throw new Error('Invalid GitHub repository URL format.');
+    throw new Error('A URL do repositório é inválida.');
 
   const result = {
     organization: match[1],
@@ -24,12 +33,12 @@ export const extractRepository = (
 
   if (result.organization.length > limit.organization)
     throw new Error(
-      "Organization name exceeds GitHub's limit of 39 characters."
+      `O nome da organização excedeu o tamanho de caracteres (${result.organization.length}/${limit.organization}).`
     );
 
   if (result.repository.length > limit.repository)
     throw new Error(
-      "Repository name exceeds GitHub's limit of 100 characters."
+      `O nome do repositório excedeu o tamanho de caracteres (${result.repository.length}/${limit.repository}).`
     );
 
   return result;

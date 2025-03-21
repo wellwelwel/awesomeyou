@@ -1,10 +1,15 @@
 import type { categories } from '@site/src/configs/categories';
 import type { languages } from '@site/src/configs/languages';
 
+export type StatsPropos = {
+  value: number;
+  label: string;
+};
+
 export type ProjectOptions = {
-  name?: string;
-  description: string;
   repository: string;
+  description: string;
+  name?: string;
   message?: string;
   languages?: (keyof typeof languages)[];
   categories?: (keyof typeof categories)[];
@@ -32,51 +37,18 @@ export type MergedProjects = ProcessedProjects & {
 
 export type ProjectStats = {
   license: string;
-  stars: {
-    value: number;
-    label: string;
-  };
-  forks: {
-    value: number;
-    label: string;
-  };
-  issues: {
-    value: number;
-    label: string;
-  };
-  closedIssues: {
-    value: number;
-    label: string;
-  };
-  contributors: {
-    value: number;
-    label: string;
-  };
+  stars: StatsPropos;
+  forks: StatsPropos;
+  issues: StatsPropos;
+  closedIssues: StatsPropos;
+  contributors: StatsPropos;
   commits: string;
-  npm: {
-    value: number;
-    label: string;
-  };
-  homebrew: {
-    value: number;
-    label: string;
-  };
-  pypi: {
-    value: number;
-    label: string;
-  };
-  vscode?: {
-    value: number;
-    label: string;
-  };
-  chocolatey?: {
-    value: number;
-    label: string;
-  };
-  repositoryDependents?: {
-    value: number;
-    label: string;
-  };
+  npm: StatsPropos;
+  homebrew: StatsPropos;
+  pypi: StatsPropos;
+  vscode?: StatsPropos;
+  chocolatey?: StatsPropos;
+  repositoryDependents?: StatsPropos;
 };
 
 export type ScoreSimulator = ProjectStats & {

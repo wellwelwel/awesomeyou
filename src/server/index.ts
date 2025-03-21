@@ -10,13 +10,28 @@ const ALLOWED_ORIGINS = new Set([
 
 const cache = {
   stats: createLRU({ max: 1000 }),
+  // rateLimit: createLRU({ max: 1000 }),
 };
 
-const isValidParam = (param: unknown): boolean => {
-  if (typeof param === 'undefined') return true;
-  if (typeof param === 'string' && param.length <= 64) return true;
+const regex = {
+  packageName: /[^a-z0-9-_.@\/]/gi,
+};
 
-  return false;
+const isValidParam = (param: undefined | string): boolean => {
+  if (typeof param === 'undefined') return true;
+  if (typeof param !== 'string') return false;
+  if (!(param.length >= 2 && param.length <= 64)) return false;
+  if (regex.packageName.test(param)) return false;
+
+  return true;
+};
+
+const sanitizeParam = (param: unknown): undefined | string => {
+  if (typeof param !== 'string') return undefined;
+
+  const input = param.trim().replace(regex.packageName, '');
+
+  return !input ? undefined : input;
 };
 
 export default {
@@ -53,46 +68,51 @@ export default {
 
     try {
       const rawBody = await request.text();
-      const { repositoryURL, npm, homebrew, pypi, chocolatey, vscode } =
-        JSON.parse(rawBody);
+      const { repositoryURL: repositoryRaw, ...body } = JSON.parse(rawBody);
 
-      if (typeof repositoryURL !== 'string')
-        return new Response('Invalid repository URL.', {
+      if (typeof repositoryRaw !== 'string')
+        return new Response('Repositório inválido.', {
           status: 400,
         });
 
-      if (!isValidParam(npm))
-        return new Response('Invalid npm package.', {
+      if (!isValidParam(body.npm))
+        return new Response('Pacote npm inválido.', {
           status: 400,
         });
 
-      if (!isValidParam(homebrew))
-        return new Response('Invalid Homebrew package.', {
+      if (!isValidParam(body.homebrew))
+        return new Response('Pacote Homebrew inválido.', {
           status: 400,
         });
 
-      if (!isValidParam(pypi))
-        return new Response('Invalid PyPi package.', {
+      if (!isValidParam(body.pypi))
+        return new Response('Pacote PyPi inválido.', {
           status: 400,
         });
 
-      if (!isValidParam(chocolatey))
-        return new Response('Invalid Chocolatey package.', {
+      if (!isValidParam(body.chocolatey))
+        return new Response('Pacote Chocolatey inválido.', {
           status: 400,
         });
 
-      if (!isValidParam(vscode))
-        return new Response('Invalid Visual Code Studio Marketplace ID.', {
+      if (!isValidParam(body.vscode))
+        return new Response('ID do Visual Code Studio Marketplace inválido.', {
           status: 400,
         });
 
-      let key = repositoryURL.trim();
+      const repositoryURL = repositoryRaw.trim();
+      const npm = sanitizeParam(body.npm);
+      const homebrew = sanitizeParam(body.homebrew);
+      const pypi = sanitizeParam(body.pypi);
+      const chocolatey = sanitizeParam(body.chocolatey);
+      const vscode = sanitizeParam(body.vscode);
 
-      if (typeof npm === 'string') key += `:${npm.trim()}`;
-      if (typeof homebrew === 'string') key += `:${homebrew.trim()}`;
-      if (typeof pypi === 'string') key += `:${pypi.trim()}`;
-      if (typeof chocolatey === 'string') key += `:${chocolatey.trim()}`;
-      if (typeof vscode === 'string') key += `:${vscode.trim()}`;
+      let key = repositoryURL;
+      if (typeof npm === 'string') key += `:${npm}`;
+      if (typeof homebrew === 'string') key += `:${homebrew}`;
+      if (typeof pypi === 'string') key += `:${pypi}`;
+      if (typeof chocolatey === 'string') key += `:${chocolatey}`;
+      if (typeof vscode === 'string') key += `:${vscode}`;
 
       const { organization, repository } = extractRepository(repositoryURL);
 
@@ -102,7 +122,7 @@ export default {
             await processProject(
               {
                 description: '', // unused
-                repository: repositoryURL.trim(),
+                repository: repositoryURL,
                 npm,
                 homebrew,
                 pypi,
@@ -146,7 +166,7 @@ export default {
     } catch (error) {
       if (env.ENVIRONMENT !== 'production') console.error(error);
 
-      return new Response('Internal Error.', {
+      return new Response('Ops! Erro interno.', {
         status: 500,
         headers,
       });

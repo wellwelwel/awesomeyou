@@ -6,7 +6,7 @@
       "repository": "https://github.com/cobrateam/splinter",
       "languages": ["python"],
       "description": "Python test framework for web applications.",
-      "categories": ["test", "ci"],
+      "categories": ["test", "tool"],
       "pypi": "splinter",
       "madeInBrazil": true,
       "isAuthor": true
