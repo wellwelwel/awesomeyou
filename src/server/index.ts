@@ -1,10 +1,10 @@
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { processProject } from '@site/src/helpers/generate-stats';
 import { getScore } from '@site/src/helpers/get-score';
-import { cache } from './cache.js';
-import { ALLOWED_ORIGINS } from './origins.js';
-import { checkRateLimit, RATE_LIMIT } from './rate-limit.js';
-import { isValidParam, sanitizeParam } from './validations.js';
+import { cache } from './configs/cache.js';
+import { ALLOWED_ORIGINS } from './configs/origins.js';
+import { checkRateLimit, RATE_LIMIT } from './configs/rate-limit.js';
+import { isValidParam, sanitizeParam } from './helpers/validations.js';
 
 export default {
   async fetch(request: Request, env: Env) {
