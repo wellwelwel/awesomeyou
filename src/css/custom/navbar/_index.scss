@@ -22,24 +22,35 @@
   a {
     @include flex(row, center);
     gap: 5px;
-    background: linear-gradient(
-      94.23deg,
-      #2846de 12.41%,
-      #288cff 52.55%,
-      #009dff 89.95%
-    );
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
     font-size: 14px;
-    transition:
-      color 0.25s,
-      transform 0.1s;
+    transition: transform 0.1s;
 
     &:hover {
       color: #035ddd;
       stroke: #035ddd !important;
       transform: scale(1.025);
+    }
+
+    & > span {
+      background: linear-gradient(
+        94.23deg,
+        #2846de 12.41%,
+        #288cff 52.55%,
+        #009dff 89.95%
+      );
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      &.home {
+        opacity: 0;
+        transition: opacity 0.5s;
+        will-change: opacity;
+
+        &.show {
+          animation: fadeIn 0.5s forwards;
+        }
+      }
     }
   }
 

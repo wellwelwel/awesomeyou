@@ -9,7 +9,7 @@ import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
   const location = useLocation();
-  const isHome = location.pathname !== '/';
+  const isHome = location.pathname === '/';
   const toTop = (element: Element) => {
     element.scrollTo({
       top: 0,
@@ -53,14 +53,21 @@ const Navbar = (): ReactNode => {
       <header className='main-header'>
         <Link to='/'>
           <Logo className='logo' />
-          {isHome && <span>Home</span>}
+          <span
+            className={(() => {
+              if (isHome) return 'home';
+              return 'home show';
+            })()}
+          >
+            Home
+          </span>
         </Link>
         <aside>
           <Link to='/projects'>
-            <Code /> Projetos
+            <Code /> <span>Projetos</span>
           </Link>
           <Link to='/maintainers'>
-            <UsersRound /> Pessoas
+            <UsersRound /> <span>Pessoas</span>
           </Link>
           <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
             <Github />
