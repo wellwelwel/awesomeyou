@@ -91,6 +91,8 @@ nav {
         }
 
         & > p {
+          padding-inline: 2.5px;
+          margin-top: 20px;
           color: var(--ifm-color-primary-darkest);
         }
 
@@ -287,7 +289,7 @@ nav {
               transition: transform 0.325s cubic-bezier(0.75, -0.25, 0.2, 0.9);
             }
 
-            + section {
+            & > section {
               position: absolute;
               left: 20px;
               right: 20px;
@@ -371,7 +373,7 @@ nav {
                 transform: translateY(-1px) rotate(180deg);
               }
 
-              + section {
+              & > section {
                 transform: scaleY(1);
                 opacity: 1;
               }

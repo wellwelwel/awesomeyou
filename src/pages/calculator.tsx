@@ -1,6 +1,7 @@
 import type { ScoreSimulator } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
 import { startTransition, useRef, useState } from 'react';
+import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import { createLRU } from 'lru.min';
 import {
@@ -34,8 +35,6 @@ import { API } from '@site/src/configs/api';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 
 import '@site/src/css/pages/calculator.scss';
-
-import Link from '@docusaurus/Link';
 
 export default (): ReactNode => {
   const [stats, setStats] = useState<ScoreSimulator | null>(null);
@@ -128,6 +127,8 @@ export default (): ReactNode => {
               <Name name='<Descubra seu Score />' />
             </h1>
             <small>
+              <p>Como seu projeto impacta o mundo real?</p>
+              <br />
               <p>
                 Seja por diversão, meta ou até mesmo por curiosidade, você pode
                 calcular a pontuação do seu repositório dinamicamente e sem

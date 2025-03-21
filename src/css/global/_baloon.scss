@@ -1,0 +1,49 @@
+@use 'mixins' as *;
+
+.baloon {
+  position: relative;
+  @include flex(column, center);
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #aae1ff38;
+  border-radius: 10px;
+  color: #104c76;
+  border: 1px solid #b9e2ff;
+  text-align: center;
+  font-weight: 500;
+  animation: fadeIn 0.25s ease forwards;
+
+  p {
+    font-size: 13px;
+  }
+
+  .float {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    @include flex(row, center, center);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #a2d8ff;
+    box-shadow: 0 0 7.5px #00000014;
+    background-color: #fff;
+    animation: fadeIn 0.75s ease forwards;
+
+    svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.5px;
+      animation: colorChange 10s ease-in-out infinite;
+    }
+  }
+
+  p {
+    + p {
+      margin-top: 7.5px;
+    }
+  }
+}

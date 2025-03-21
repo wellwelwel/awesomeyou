@@ -43,126 +43,55 @@
       @include flex(row, center);
       gap: 5px;
       margin: 0;
+      margin-top: 10px;
       font-family: var(--ifm-font-family-featured);
       font-size: 14px;
       font-weight: 700;
-      user-select: none;
       color: var(--title-color-1);
-      cursor: pointer;
 
       svg {
         width: 16px;
         height: 16px;
-        transition: color 0.15s;
       }
 
       svg,
       span {
         color: #2e8cf2;
       }
-
-      &.active {
-        svg {
-          transform: rotate(180deg);
-        }
-
-        + menu {
-          grid-template-rows: 1fr;
-
-          & > .container {
-            opacity: 1;
-          }
-        }
-      }
-
-      &.counter {
-        margin-top: 10px;
-      }
-
-      &:hover {
-        svg {
-          color: #23c59a;
-        }
-      }
     }
 
-    & > menu {
-      display: grid;
-      grid-template-rows: 0fr;
-      gap: 7.5px;
-      transition: 0.25s grid-template-rows;
+    .faq {
+      .wrapper {
+        & > span {
+          & > menu {
+            padding: 0 10px;
 
-      & > .container {
-        overflow: hidden;
-        @include flex(column);
-        gap: 15px;
-        padding: 0;
-        opacity: 0;
-        transition: opacity 0.35s ease;
-      }
+            & > .container {
+              overflow: hidden;
+              @include flex(column);
+              padding: 0;
+              gap: 25px;
+            }
 
-      & > div {
-        @include flex(column);
-        gap: 7.5px;
+            & > div {
+              @include flex(column);
+              gap: 10px;
 
-        h4 {
-          width: 100%;
-          margin: 0;
-          font-size: 13px;
-          font-weight: 600;
-          color: #0057c2;
-        }
+              h4 {
+                width: 100%;
+                margin: 0;
+                font-size: 13px;
+                font-weight: 600;
+                color: #0057c2;
+              }
 
-        small {
-          position: relative;
-          @include flex(column, center);
-          gap: 10px;
-          width: 100%;
-          padding: 20px;
-          margin-top: 20px;
-          margin-bottom: 10px;
-          background-color: #aae1ff38;
-          border-radius: 10px;
-          color: #104c76;
-          border: 1px solid #b9e2ff;
-          text-align: center;
-          font-weight: 500;
-          animation: fadeIn 0.25s ease forwards;
-
-          p {
-            font-size: 13px;
-          }
-
-          .float {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            padding: 10px;
-            border-radius: 50%;
-            border: 1px solid #a2d8ff;
-            box-shadow: 0 0 7.5px #00000014;
-            background-color: #fff;
-            animation: fadeIn 0.75s ease forwards;
-
-            svg {
-              width: 20px;
-              height: 20px;
-              stroke-width: 2.5px;
-              animation: colorChange 10s ease-in-out infinite;
+              div {
+                @include flex(row, center, flex-start, wrap);
+                gap: 7.5px;
+                width: 100%;
+              }
             }
           }
-
-          p {
-            + p {
-              margin-top: 7.5px;
-            }
-          }
-        }
-
-        div {
-          @include flex(row, center, flex-start, wrap);
-          gap: 7.5px;
-          width: fit-content;
         }
       }
     }

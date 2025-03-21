@@ -4,12 +4,15 @@ import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
-  ChevronRight,
+  Dices,
   ExternalLink,
   Github,
+  Heart,
   MapPin,
   Network,
+  Sparkles,
 } from 'lucide-react';
+import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
@@ -73,7 +76,7 @@ const MaintainersIndex: React.FC = () => {
 
   useEffect(() => {
     setMaintainers(randomize([...rawMaintainers]));
-  }, []);
+  }, [setMaintainers]);
 
   return (
     <Layout
@@ -86,9 +89,30 @@ const MaintainersIndex: React.FC = () => {
             <h1>
               <Name name="<Brazil class='Pessoas' />" />
             </h1>
-            <small>
-              Conheça novos mantenedores brasileiros toda vez que voltar aqui.
+
+            <small className='baloon'>
+              <div className='float'>
+                <Dices />
+              </div>
+              <span>
+                Conheça novos mantenedores brasileiros toda vez que voltar aqui.
+              </span>
             </small>
+
+            <FAQ
+              title={
+                <>
+                  <Heart /> Como você pode apoiar mantenedores?
+                </>
+              }
+              open
+            >
+              <small>
+                Tudo pode começar com uma simples estrela nos repositórios que
+                eles mantêm, contribuindo com os projetos, usando,
+                compartilhando e, inclusive, patrocinando 🙌
+              </small>
+            </FAQ>
           </header>
 
           <main>
@@ -105,44 +129,47 @@ const MaintainersIndex: React.FC = () => {
                           loading='lazy'
                           alt={`${maintainer.username} profile avatar`}
                         />
-                        <h2>
-                          <span>
-                            <span className='group-name'>
-                              <Name name={maintainer.info.name} />{' '}
-                            </span>
-                            {maintainer.info?.location ? (
-                              <strong>
-                                <MapPin /> {maintainer.info?.location}
-                              </strong>
-                            ) : null}
-                          </span>
-                          <ChevronRight />
-                        </h2>
                       </Link>
-                    </header>
-
-                    {maintainer.info.bio && (
                       <main>
-                        <p className='bio'>{maintainer.info.bio}</p>
-                      </main>
-                    )}
+                        <Link to={`/maintainers/${maintainer.username}`}>
+                          <h2>
+                            <span>
+                              <span className='group-name'>
+                                <Name name={maintainer.info.name} />{' '}
+                              </span>
+                              {maintainer.info?.location ? (
+                                <strong>
+                                  <MapPin /> {maintainer.info?.location}
+                                </strong>
+                              ) : null}
+                            </span>
+                            <Sparkles />
+                          </h2>
+                        </Link>
 
-                    <main>
-                      <div className='links'>
-                        <SafeLink
-                          to={`https://github.com/${maintainer.username}`}
-                        >
-                          <Github /> @{maintainer.username}
-                        </SafeLink>
-                        {maintainer.info.blog && (
-                          <SafeLink
-                            to={`https://${normalizeURL(maintainer.info.blog)}`}
-                          >
-                            <Network /> {normalizeURL(maintainer.info.blog)}
-                          </SafeLink>
+                        {maintainer.info.bio && (
+                          <section>
+                            <p className='bio'>{maintainer.info.bio}</p>
+                          </section>
                         )}
-                      </div>
-                    </main>
+
+                        <div className='links'>
+                          <SafeLink
+                            to={`https://github.com/${maintainer.username}`}
+                          >
+                            <Github /> <span>@{maintainer.username}</span>
+                          </SafeLink>
+                          {maintainer.info.blog && (
+                            <SafeLink
+                              to={`https://${normalizeURL(maintainer.info.blog)}`}
+                            >
+                              <Network />{' '}
+                              <span>{normalizeURL(maintainer.info.blog)}</span>
+                            </SafeLink>
+                          )}
+                        </div>
+                      </main>
+                    </header>
 
                     <footer>
                       {maintainer.projects.map((project, index) => {

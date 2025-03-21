@@ -43,7 +43,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   categories: currentCategories,
   madeInBrazil,
   message,
-  score,
+  // score,
 }) => {
   const repositoryData = extractRepository(repositoryURL);
   const refs = {
@@ -379,14 +379,12 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             </h3>
             <menu>
               {maintainers.map((maintainer) => (
-                <>
-                  <Link
-                    key={`maintainer:${projectName}:${maintainer}`}
-                    to={`/maintainers/${maintainer}`}
-                  >
-                    {maintainersInfos[maintainer]?.name || maintainer}
-                    <ArrowUpDown />
-                  </Link>
+                <Link
+                  key={`maintainer:${projectName}:${maintainer}`}
+                  to={`/maintainers/${maintainer}`}
+                >
+                  {maintainersInfos[maintainer]?.name || maintainer}
+                  <ArrowUpDown />
                   {maintainersInfos[maintainer]?.name ? (
                     <section>
                       <header>
@@ -423,7 +421,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       </footer>
                     </section>
                   ) : null}
-                </>
+                </Link>
               ))}
             </menu>
           </div>

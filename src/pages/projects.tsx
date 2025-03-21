@@ -6,20 +6,23 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import Layout from '@theme/Layout';
 import {
-  ChevronDown,
+  ArrowDownWideNarrow,
   Code,
   Dices,
   Earth,
   Flame,
   House,
   Plane,
+  SlidersHorizontal,
   Sprout,
 } from 'lucide-react';
 import { Name } from '@site/src//components/Name';
+import { FAQ } from '@site/src/components/FAQ';
 import { Project } from '@site/src/components/Project';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
@@ -31,56 +34,14 @@ import { sortObjectByValues } from '@site/src/helpers/sort-object';
 
 import '@site/src/css/pages/projects.scss';
 
-const activeCategoryFilter = new Set<string>('');
-const activeLanguageFilter = new Set<string>('');
-
-export const tips = {
-  default: (
-    <small key='1'>
-      <div className='float'>
-        <Dices />
-      </div>
-      <span>
-        <p>
-          Conheça novos projetos criados e mantidos por brasileiros toda vez que
-          voltar aqui.
-        </p>
-      </span>
-    </small>
-  ),
-  greater: (
-    <small key='2'>
-      <div className='float'>
-        <Flame />
-      </div>
-      <span>
-        Projetos com grande impacto e reconhecimento se destacam por sua ampla
-        adoção, popularidade e pela força de sua comunidade, especialmente
-        quando somados entre si.
-      </span>
-    </small>
-  ),
-  less: (
-    <small key='3'>
-      <div className='float'>
-        <Sprout />
-      </div>
-      <span>
-        Descubra e incentive projetos inovadores! Ao contribuir com projetos em
-        constante crescimento, você tem a oportunidade de participar da história
-        e amadurecimento de novas ideias e tecnologias.
-      </span>
-    </small>
-  ),
-} as const;
-
 const Projects = (): ReactNode => {
   const [allProjects, setAllProjects] = useState<MergedProjects[]>([]);
   const [scores, setScores] = useState<Record<string, number> | null>(null);
-  const [tip, setTip] = useState<keyof typeof tips>('default');
   const projectsByMaintainers = useMemo(() => projects(), []);
   const projectsLength = allProjects.length;
   const [visibleCount, setVisibleCount] = useState(projectsLength);
+  const { current: activeCategoryFilter } = useRef(new Set<string>(''));
+  const { current: activeLanguageFilter } = useRef(new Set<string>(''));
 
   const mergedProjects = useMemo(
     () =>
@@ -113,10 +74,6 @@ const Projects = (): ReactNode => {
     });
     return categorySet;
   }, [allProjects]);
-
-  const showFilters = (event: MouseEvent<HTMLHeadingElement>) => {
-    event.currentTarget.classList.toggle('active');
-  };
 
   const filter = useCallback(
     (
@@ -228,7 +185,6 @@ const Projects = (): ReactNode => {
         for (const project of allElements)
           project.style.removeProperty('order');
 
-        setTip('default');
         return;
       }
 
@@ -245,10 +201,8 @@ const Projects = (): ReactNode => {
       });
 
       if (sortByScore === 0) {
-        setTip('greater');
         itemsToSort.sort((a, b) => b.score - a.score);
       } else {
-        setTip('less');
         itemsToSort.sort((a, b) => a.score - b.score);
       }
 
@@ -298,114 +252,138 @@ const Projects = (): ReactNode => {
               brasileiros.
             </small>
           </header>
-          <menu>
-            <div>
-              <h4>Origem</h4>
-              <div>
-                <button
-                  className='active'
-                  data-filter='country'
-                  onClick={(e) => filterByCountry(e, false)}
-                >
-                  <Earth />
-                  Todas
-                </button>
-                <button
-                  data-filter='country'
-                  onClick={(e) => filterByCountry(e, 1)}
-                >
-                  <House />
-                  Brasileira
-                </button>
-                <button
-                  data-filter='country'
-                  onClick={(e) => filterByCountry(e, 0)}
-                >
-                  <Plane />
-                  Estrangeira
-                </button>
-              </div>
-            </div>
 
-            <div>
-              <h4>Ordem</h4>
-              <div>
-                <button
-                  className='active'
-                  data-filter='order'
-                  onClick={(e) => sortProjectsByScore(e, false)}
-                >
-                  <Dices /> Padrão
-                </button>
-                <button
-                  data-filter='order'
-                  onClick={(e) => sortProjectsByScore(e, 0)}
-                >
-                  <Flame /> Impacto
-                </button>
-                <button
-                  data-filter='order'
-                  onClick={(e) => sortProjectsByScore(e, 1)}
-                >
-                  <Sprout /> Ajude a Construir
-                </button>
-              </div>
+          <small className='baloon'>
+            <div className='float'>
+              <Dices />
             </div>
-            <div>{tips[tip]}</div>
-          </menu>
-          <h3 onClick={showFilters}>
-            Filtros <ChevronDown />
-          </h3>
-          <menu>
-            <div className='container'>
+            <span>
+              Conheça novos projetos criados e mantidos por brasileiros toda vez
+              que voltar aqui.
+            </span>
+          </small>
+
+          <FAQ
+            title={
+              <>
+                <ArrowDownWideNarrow /> Exibição
+              </>
+            }
+          >
+            <menu>
               <div>
-                <h4>Linguagens</h4>
+                <h4>Ordem</h4>
                 <div>
                   <button
                     className='active'
-                    data-filter='language'
-                    onClick={(e) => filter(e, 'language', '')}
+                    data-filter='order'
+                    onClick={(e) => sortProjectsByScore(e, false)}
                   >
-                    Todas
+                    <Dices /> Fisher-Yates
                   </button>
-                  {Object.entries(sortObjectByValues(languages))
-                    .filter(([key]) => usedLanguages.has(key))
-                    .map(([key, name]) => (
-                      <button
-                        key={`filter:languages:${key}`}
-                        data-filter='language'
-                        onClick={(e) => filter(e, 'language', key)}
-                      >
-                        {name}
-                      </button>
-                    ))}
-                </div>
-              </div>
-              <div>
-                <h4>Categorias</h4>
-                <div>
                   <button
-                    className='active'
-                    data-filter='category'
-                    onClick={(e) => filter(e, 'category', '')}
+                    data-filter='order'
+                    onClick={(e) => sortProjectsByScore(e, 0)}
                   >
-                    Todas
+                    <Flame /> Impacto
                   </button>
-                  {Object.entries(sortObjectByValues(categories))
-                    .filter(([key]) => usedCategories.has(key))
-                    .map(([key, name]) => (
-                      <button
-                        key={`filter:categories:${key}`}
-                        data-filter='category'
-                        onClick={(e) => filter(e, 'category', key)}
-                      >
-                        {name}
-                      </button>
-                    ))}
+                  <button
+                    data-filter='order'
+                    onClick={(e) => sortProjectsByScore(e, 1)}
+                  >
+                    <Sprout /> Ajude a Construir
+                  </button>
                 </div>
               </div>
-            </div>
-          </menu>
+            </menu>
+          </FAQ>
+
+          <FAQ
+            title={
+              <>
+                <SlidersHorizontal /> Filtros
+              </>
+            }
+          >
+            <menu>
+              <div className='container'>
+                <div>
+                  <h4>Países</h4>
+                  <div>
+                    <button
+                      className='active'
+                      data-filter='country'
+                      onClick={(e) => filterByCountry(e, false)}
+                    >
+                      <Earth />
+                      Todos
+                    </button>
+                    <button
+                      data-filter='country'
+                      onClick={(e) => filterByCountry(e, 1)}
+                    >
+                      <House />
+                      Brasil
+                    </button>
+                    <button
+                      data-filter='country'
+                      onClick={(e) => filterByCountry(e, 0)}
+                    >
+                      <Plane />
+                      Estrangeiros
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <h4>Linguagens</h4>
+                  <div>
+                    <button
+                      className='active'
+                      data-filter='language'
+                      onClick={(e) => filter(e, 'language', '')}
+                    >
+                      Todas
+                    </button>
+                    {Object.entries(sortObjectByValues(languages))
+                      .filter(([key]) => usedLanguages.has(key))
+                      .map(([key, name]) => (
+                        <button
+                          key={`filter:languages:${key}`}
+                          data-filter='language'
+                          onClick={(e) => filter(e, 'language', key)}
+                        >
+                          {name}
+                        </button>
+                      ))}
+                  </div>
+                </div>
+                <div>
+                  <h4>Categorias</h4>
+                  <div>
+                    <button
+                      className='active'
+                      data-filter='category'
+                      onClick={(e) => filter(e, 'category', '')}
+                    >
+                      Todas
+                    </button>
+                    {Object.entries(sortObjectByValues(categories))
+                      .filter(([key]) => usedCategories.has(key))
+                      .map(([key, name]) => (
+                        <button
+                          key={`filter:categories:${key}`}
+                          data-filter='category'
+                          onClick={(e) => filter(e, 'category', key)}
+                        >
+                          {name}
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </menu>
+          </FAQ>
+
           <h3 className='counter'>
             <Code /> Exibindo <span className='length'>{visibleCount}</span>{' '}
             Projetos

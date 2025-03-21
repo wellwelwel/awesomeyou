@@ -4,7 +4,7 @@
     {
       "name": "Dracula Theme",
       "repository": "https://github.com/dracula/dracula-theme",
-      "description": "One theme. All platforms.",
+      "description": "🧛🏻‍♂️ One theme. All platforms.",
       "categories": ["theme"],
       "madeInBrazil": true,
       "vscode": "dracula-theme.theme-dracula",
@@ -13,7 +13,7 @@
     {
       "name": "React Email",
       "repository": "https://github.com/resend/react-email",
-      "description": "Build and send emails using React.",
+      "description": "💌 Build and send emails using React.",
       "npm": "@react-email/components",
       "categories": ["tool", "frontend"],
       "languages": ["typescript", "javascript"],

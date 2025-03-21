@@ -8,13 +8,12 @@
 - O projeto precisa ser documentado para que qualquer pessoa possa usá-lo.
 - O projeto precisa ter uma licença _open source_ transparente. <sup>3</sup>
 - O projeto deve ter pelo menos um brasileiro mantenedor, independentemente do país do autor e do projeto.
-- O nome e descrição do projeto não devem incluir símbolos ou emojis a fim de manter consistência visual entre os projetos.
-- A descrição deve sempre finalizar com uma pontuação (ponto final, exclamação ou interrogação).
+- O nome do projeto não deve incluir símbolos ou emojis.
 - Se você não faz parte do projeto que está incluindo, a descrição deve ser exatamente como descrita no repositório do projeto original, removendo apenas símbolos e emojis.
 - Nenhuma informação deve conter ofensas, _palavrões_ ou conteúdos impróprios para menores de idade, seja no nome, descrição ou mensagem de apoio (CTA).
   - O nome pode ter até 50 caracteres.
   - A descrição pode ter até 200 caracteres.
-  - A mensagem de apoio (CTA) não restringe emojis ou símbolos e pode ter até **120** caracteres.
+  - A mensagem de apoio (CTA) pode ter até **120** caracteres.
 - O projeto deve obter a partir de [**250** pontos](https://github.com/wellwelwel/awesomeyou/issues/4) para passar nos testes automatizados.
 - O projeto não pode ser de uso pessoal, independentemente da pontuação adquirida.
 - Mesmo ultrapassando a pontuação mínima requerida, ao não cumprir qualquer uma das regras acima, o projeto pode ser recusado pelos membros.
@@ -30,7 +29,7 @@
 ## Lives e Podcast _(em breve)_
 
 - Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar do nosso futuro Podcast (que será publicado em vídeo no **YouTube**). <sup>1</sup>
-  - Não há nenhuma obrigação e aceitar o convite (ou não) fica a critério do prórpio convidado.
+  - Não há nenhuma obrigação e aceitar ou não o convite fica a critério do prórpio convidado.
 - Ao aceitar o convite para o Podcast, você:
   - reconhece que sua participação é voluntária e autoriza o uso da sua imagem, nome e voz, captados em vídeos durante o evento, para fins de divulgação e promoção do Podcast em qualquer meio de comunicação, incluindo redes sociais, websites e materiais impressos.
   - concorda que o conteúdo apresentado no Podcast poderá ser utilizado para fins educacionais e de divulgação do Podcast.

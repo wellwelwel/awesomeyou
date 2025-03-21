@@ -1,33 +1,105 @@
-details {
-  &.faq {
-    background-color: var(--faq-background);
-    border-color: var(--faq-border-color);
+@use 'mixins' as *;
 
-    p,
-    li {
-      code {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: none;
-        padding-inline: 5px;
-        font-weight: 500;
+.faq {
+  @include flex(column);
+  width: 100%;
+  padding: 12.5px 20px;
+  background-color: #ffffff60;
+  border: 1px solid #acccff95;
+  border-radius: 10px;
+  transition: background-color 0.25s;
+
+  h2 {
+    @include flex(row, center, space-between);
+    gap: 10px;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+
+    span {
+      @include flex(row, center);
+      gap: 10px;
+      background: linear-gradient(
+        94.23deg,
+        #2846de 12.41%,
+        #506dff 52.55%,
+        #009dff 89.95%
+      ) !important;
+      -webkit-text-fill-color: transparent !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+
+      svg {
+        stroke: #009dff !important;
+        width: 18px !important;
+        height: 18px !important;
+        transform: none !important;
       }
     }
 
-    pre {
-      code {
-        border: 0.0625rem solid var(--faq-code-border-color);
+    .arrow {
+      min-width: 20px;
+      min-height: 20px;
+      width: 20px;
+      height: 20px;
+      stroke: #1bac66;
+      transform: none !important;
+      transition:
+        transform 0.25s cubic-bezier(0.75, -0.5, 0.2, 0.9),
+        stroke 0.25s;
+    }
+  }
+
+  .wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    width: 100%;
+    margin: 0;
+    transition:
+      grid-template-rows 0.1s,
+      margin-top 0.1s,
+      opacity 0.25s ease,
+      padding-top 0.1s;
+
+    & > span {
+      @include flex(column);
+      width: 100%;
+      overflow: hidden;
+    }
+
+    small {
+      width: 100%;
+      padding: 10px 15px;
+      text-align: left;
+
+      strong {
+        font-weight: 600;
       }
     }
   }
-}
 
-[data-theme='dark'] {
-  details {
-    &.faq {
-      --docusaurus-details-decoration-color: #7230d6;
-      --faq-background: #151518;
-      --faq-border-color: #36284b;
-      --faq-code-border-color: #38225a;
+  &:hover {
+    background-color: #ffffff91;
+  }
+
+  &.open {
+    h2 {
+      .arrow {
+        transform: rotate(45deg) !important;
+        stroke: #fe0061;
+      }
+    }
+
+    .wrapper {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      padding-top: 10px;
+      margin-top: 12.5px;
+      border-top: 1px solid #b3d3ff;
     }
   }
 }

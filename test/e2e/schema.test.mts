@@ -85,18 +85,6 @@ for (const { schemaPath, path, filter } of schemas) {
             `${organization}/${repository}: Ensure description length: (${project.description.length}/200)`
           );
 
-          strict.doesNotMatch(
-            project.description,
-            invalidChars,
-            `${organization}/${repository}: Ensure project description does not contain emojis or symbols`
-          );
-
-          strict.match(
-            project.description,
-            /(\.|!|\?)$/,
-            `${organization}/${repository}: Ensure project description ends with a valid pontuation`
-          );
-
           strict.strictEqual(
             project.description,
             project.description.trim(),

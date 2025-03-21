@@ -12,12 +12,16 @@ import {
   Calculator,
   ChevronRight,
   Code,
+  Construction,
   Dices,
   ExternalLink,
   GraduationCap,
   Headset,
+  Heart,
+  Lightbulb,
   List,
   PackagePlus,
+  Scale,
   Shapes,
   SmilePlus,
   Sparkles,
@@ -463,7 +467,14 @@ export default (): ReactNode => {
               </h2>
             </header>
 
-            <FAQ title='Como você pode apoiar a iniciativa?' open>
+            <FAQ
+              title={
+                <>
+                  <Heart /> Como você pode apoiar a iniciativa?
+                </>
+              }
+              open
+            >
               <small>
                 Você pode nos apoiar com uma simples{' '}
                 <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
@@ -476,7 +487,7 @@ export default (): ReactNode => {
             <FAQ
               title={
                 <>
-                  Por que "<span>Awesome You</span>"?
+                  <Lightbulb /> Por que "Awesome You"?
                 </>
               }
             >
@@ -498,7 +509,7 @@ export default (): ReactNode => {
             <FAQ
               title={
                 <>
-                  Posso utilizar o código-fonte da <strong>Awesome You</strong>?
+                  <Scale /> Posso utilizar o código-fonte da Awesome You?
                 </>
               }
             >
@@ -572,7 +583,7 @@ export default (): ReactNode => {
             <FAQ
               title={
                 <>
-                  Quem está por trás da <strong>Awesome You</strong>?
+                  <Construction /> Quem está por trás da Awesome You?
                 </>
               }
             >

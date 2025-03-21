@@ -172,7 +172,6 @@ export default (): ReactNode => {
                   placeholder='Ex.: Meu Projeto'
                   type='text'
                   name='name'
-                  required
                   onChange={(e) => updateJSON(e, 'name')}
                 />
                 <small>
@@ -191,7 +190,6 @@ export default (): ReactNode => {
                   placeholder='Ex.: Deixe uma estrela para mostrar seu apoio.'
                   type='text'
                   name='message'
-                  required
                   onChange={(e) => updateJSON(e, 'message')}
                 />
                 <small>
@@ -291,7 +289,6 @@ export default (): ReactNode => {
                   <input
                     type='checkbox'
                     name='madeInBrazil'
-                    required
                     onChange={(e) => updateJSON(e, 'madeInBrazil', true)}
                   />
                   Quem criou o projeto é brasileiro? <sup>?</sup>
@@ -305,7 +302,6 @@ export default (): ReactNode => {
                   <input
                     type='checkbox'
                     name='isAuthor'
-                    required
                     onChange={(e) => updateJSON(e, 'isAuthor', true)}
                   />
                   <ins>{maintainer}</ins> criou esse projeto? <sup>?</sup>

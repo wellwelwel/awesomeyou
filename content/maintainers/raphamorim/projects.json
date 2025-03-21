@@ -5,7 +5,7 @@
       "name": "Rio",
       "repository": "https://github.com/raphamorim/rio",
       "languages": ["rust"],
-      "description": "Rio is a modern terminal built to run everywhere.",
+      "description": "A hardware-accelerated GPU terminal emulator focusing to run in desktops and browsers.",
       "categories": ["app"],
       "homebrew": "rio",
       "chocolatey": "rio-terminal",
