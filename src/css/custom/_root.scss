@@ -13,6 +13,7 @@ body {
     content: '';
     position: fixed;
     inset: 0;
+    z-index: -1;
     background-image: radial-gradient(
       ellipse farthest-corner at 10px 10px,
       var(--background-dots-pattern-color),
@@ -20,6 +21,7 @@ body {
       transparent 50%
     );
     background-size: 10px 10px;
+    pointer-events: none;
   }
 
   #__docusaurus {
