@@ -4,13 +4,13 @@ import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
-  Dices,
   ExternalLink,
   Github,
   Heart,
   MapPin,
   Network,
   Sparkles,
+  UsersRound,
 } from 'lucide-react';
 import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
@@ -92,7 +92,7 @@ const MaintainersIndex: React.FC = () => {
 
             <small className='baloon'>
               <div className='float'>
-                <Dices />
+                <UsersRound />
               </div>
               <span>
                 Conheça novos mantenedores brasileiros toda vez que voltar aqui.

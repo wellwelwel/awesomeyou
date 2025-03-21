@@ -34,6 +34,7 @@ import '@site/src/css/pages/projects.scss';
 
 type ProjectsProps = {
   title: ReactNode;
+  icon: ReactNode;
   description: ReactNode;
   projects: MergedProjects[];
   excludeFilters?: (keyof typeof categories)[];
@@ -41,6 +42,7 @@ type ProjectsProps = {
 
 const Projects: FC<ProjectsProps> = ({
   title,
+  icon,
   description,
   projects,
   excludeFilters,
@@ -252,9 +254,7 @@ const Projects: FC<ProjectsProps> = ({
             </h1>
 
             <small className='baloon'>
-              <div className='float'>
-                <Dices />
-              </div>
+              <div className='float'>{icon}</div>
               <span>{description}</span>
             </small>
           </header>

@@ -9,6 +9,7 @@ import {
   Award,
   Bug,
   BugOff,
+  Calculator,
   ChevronRight,
   CircleAlert,
   CircleHelp,
@@ -126,9 +127,15 @@ export default (): ReactNode => {
             <h1>
               <Name name='<Descubra seu Score />' />
             </h1>
+
+            <small className='baloon'>
+              <div className='float'>
+                <Calculator />
+              </div>
+              <span>Como seu projeto impacta o mundo real?</span>
+            </small>
+
             <small>
-              <p>Como seu projeto impacta o mundo real?</p>
-              <br />
               <p>
                 Seja por diversão, meta ou até mesmo por curiosidade, você pode
                 calcular a pontuação do seu repositório dinamicamente e sem

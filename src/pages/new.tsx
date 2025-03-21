@@ -19,6 +19,7 @@ import {
   LetterText,
   MessageCircleHeart,
   PackageCheck,
+  PackagePlus,
   Utensils,
   WandSparkles,
 } from 'lucide-react';
@@ -81,6 +82,12 @@ export default (): ReactNode => {
             <h1>
               <Name name='<Novo Projeto + />' />
             </h1>
+            <small className='baloon'>
+              <div className='float'>
+                <PackagePlus />
+              </div>
+              <span>Faça parte da nossa história.</span>
+            </small>
             <small>
               <p>
                 Para manter a relevância dos projetos dentro da iniciativa e dos
