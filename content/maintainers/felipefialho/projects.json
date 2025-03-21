@@ -4,7 +4,7 @@
     {
       "name": "Vagas",
       "repository": "https://github.com/frontendbr/vagas",
-      "description": "Espaço para divulgação de vagas para front-enders.",
+      "description": "🔬 Espaço para divulgação de vagas para front-enders.",
       "categories": ["list", "career", "frontend"],
       "madeInBrazil": true,
       "isAuthor": true
@@ -20,7 +20,7 @@
     {
       "name": "Awesome Made by Brazilians",
       "repository": "https://github.com/felipefialho/awesome-made-by-brazilians",
-      "description": "A collection of amazing open source projects built by brazilian developers.",
+      "description": "🇧🇷 A collection of amazing open source projects built by brazilian developers.",
       "categories": ["list"],
       "madeInBrazil": true,
       "isAuthor": true
