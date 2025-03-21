@@ -1,38 +1,10 @@
-import { createLRU } from 'lru.min';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { processProject } from '@site/src/helpers/generate-stats';
 import { getScore } from '@site/src/helpers/get-score';
-
-const ALLOWED_ORIGINS = new Set([
-  'https://awesomeyou.io',
-  'https://www.awesomeyou.io',
-]);
-
-const cache = {
-  stats: createLRU({ max: 1000 }),
-  // rateLimit: createLRU({ max: 1000 }),
-};
-
-const regex = {
-  packageName: /[^a-z0-9-_.@\/]/gi,
-};
-
-const isValidParam = (param: undefined | string): boolean => {
-  if (typeof param === 'undefined') return true;
-  if (typeof param !== 'string') return false;
-  if (!(param.trim().length >= 2 && param.length <= 64)) return false;
-  if (regex.packageName.test(param)) return false;
-
-  return true;
-};
-
-const sanitizeParam = (param: unknown): undefined | string => {
-  if (typeof param !== 'string') return undefined;
-
-  const input = param.trim().replace(regex.packageName, '');
-
-  return !input ? undefined : input;
-};
+import { cache } from './cache.js';
+import { ALLOWED_ORIGINS } from './origins.js';
+import { checkRateLimit, RATE_LIMIT } from './rate-limit.js';
+import { isValidParam, sanitizeParam } from './validations.js';
 
 export default {
   async fetch(request: Request, env: Env) {
@@ -41,6 +13,7 @@ export default {
         status: 405,
       });
 
+    const rateLimit = checkRateLimit(request);
     const origin = request.headers.get('Origin');
     const isProduction = env.ENVIRONMENT === 'production';
 
@@ -59,6 +32,8 @@ export default {
       'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Content-Type': 'application/json; charset=utf-8',
+      'X-RateLimit-Limit': String(RATE_LIMIT.MAX_REQUESTS),
+      'X-RateLimit-Remaining': String(rateLimit.remaining),
     });
 
     const response = (response: unknown, status = 200) =>
@@ -68,6 +43,15 @@ export default {
       });
 
     try {
+      if (!rateLimit.available)
+        return response(
+          {
+            message:
+              'Limite de requisições excedido. Tente novamente mais tarde.',
+          },
+          429
+        );
+
       const rawBody = await request.text();
       const { repositoryURL: repositoryRaw, ...body } = JSON.parse(rawBody);
 
