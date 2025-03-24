@@ -9,23 +9,17 @@ import { isValidParam, sanitizeParam } from './helpers/validations.js';
 export default {
   async fetch(request: Request, env: Env) {
     if (request.method !== 'POST')
-      return new Response('Método não permitido.', {
-        status: 405,
-      });
+      return new Response('Método não permitido.', { status: 405 });
 
     const rateLimit = checkRateLimit(request);
     const origin = request.headers.get('Origin');
     const isProduction = env.ENVIRONMENT === 'production';
 
     if (!origin || typeof origin !== 'string')
-      return new Response('Método não permitido.', {
-        status: 405,
-      });
+      return new Response('Método não permitido.', { status: 405 });
 
     if (isProduction && !ALLOWED_ORIGINS.has(origin))
-      return new Response('Acesso negado.', {
-        status: 403,
-      });
+      return new Response('Acesso negado.', { status: 403 });
 
     const headers = Object.freeze({
       'Access-Control-Allow-Origin': isProduction ? origin : '*',
@@ -37,10 +31,7 @@ export default {
     });
 
     const response = (response: unknown, status = 200) =>
-      new Response(JSON.stringify(response), {
-        status,
-        headers,
-      });
+      new Response(JSON.stringify(response), { status, headers });
 
     try {
       if (!rateLimit.available)
@@ -55,7 +46,10 @@ export default {
       const rawBody = await request.text();
       const { repositoryURL: repositoryRaw, ...body } = JSON.parse(rawBody);
 
-      if (typeof repositoryRaw !== 'string')
+      if (
+        typeof repositoryRaw !== 'string' ||
+        repositoryRaw.indexOf('?') !== -1
+      )
         return response({ message: 'Repositório inválido.' }, 400);
 
       if (!isValidParam(body.npm))
@@ -142,10 +136,7 @@ export default {
     } catch (error) {
       if (env.ENVIRONMENT !== 'production') console.error(error);
 
-      return new Response('Ops! Erro interno.', {
-        status: 500,
-        headers,
-      });
+      return response({ message: 'Ops! Erro interno.' }, 500);
     }
   },
 };
