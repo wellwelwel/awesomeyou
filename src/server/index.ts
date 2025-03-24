@@ -131,10 +131,10 @@ export default {
             )
           );
     } catch (error) {
-      if (env.ENVIRONMENT !== 'production') console.error(error);
-
       if (error instanceof Error && error.cause === 400)
         return response({ message: error.message }, 400);
+
+      if (env.ENVIRONMENT !== 'production') console.error(error);
 
       return response({ message: 'Ops! Erro interno.' }, 500);
     }
