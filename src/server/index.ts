@@ -46,10 +46,7 @@ export default {
       const rawBody = await request.text();
       const { repositoryURL: repositoryRaw, ...body } = JSON.parse(rawBody);
 
-      if (
-        typeof repositoryRaw !== 'string' ||
-        repositoryRaw.indexOf('?') !== -1
-      )
+      if (typeof repositoryRaw !== 'string')
         return response({ message: 'Repositório inválido.' }, 400);
 
       if (!isValidParam(body.npm))
@@ -135,6 +132,9 @@ export default {
           );
     } catch (error) {
       if (env.ENVIRONMENT !== 'production') console.error(error);
+
+      if (error instanceof Error && error.cause === 400)
+        return response({ message: error.message }, 400);
 
       return response({ message: 'Ops! Erro interno.' }, 500);
     }

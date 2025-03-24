@@ -33,13 +33,28 @@ export const extractRepository = (
 
   if (result.organization.length > limit.organization)
     throw new Error(
-      `O nome da organização excedeu o tamanho de caracteres (${result.organization.length}/${limit.organization}).`
+      `O nome da organização excedeu o tamanho de caracteres (${result.organization.length}/${limit.organization}).`,
+      {
+        cause: 400,
+      }
     );
 
   if (result.repository.length > limit.repository)
     throw new Error(
-      `O nome do repositório excedeu o tamanho de caracteres (${result.repository.length}/${limit.repository}).`
+      `O nome do repositório excedeu o tamanho de caracteres (${result.repository.length}/${limit.repository}).`,
+      {
+        cause: 400,
+      }
     );
+
+  if (
+    result.repository.indexOf('/') !== -1 ||
+    result.repository.indexOf('#') !== -1 ||
+    result.repository.indexOf('?') !== -1
+  )
+    throw new Error(`Verifique a URL do repositório.`, {
+      cause: 400,
+    });
 
   return result;
 };
