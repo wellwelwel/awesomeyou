@@ -11,10 +11,18 @@ export const getRepoDepsManually = async (
     );
 
     const text = await response.text();
-    const downloadsMatch = text.match(/([\d,]+)\s{1,}Repositories/);
+    const lines = text.split('\n');
 
-    if (downloadsMatch && downloadsMatch[1]) {
-      const downloads = Number(downloadsMatch[1].replace(/,/g, ''));
+    for (let line = 0; line < lines.length; line++) {
+      const currentLine = lines[line].trim();
+
+      if (!/^[\d,]+$/.test(currentLine)) continue;
+      if (
+        !(line + 1 < lines.length && lines[line + 1].trim() === 'Repositories')
+      )
+        continue;
+
+      const downloads = Number(currentLine.replace(/,/g, ''));
 
       return {
         value: downloads,
