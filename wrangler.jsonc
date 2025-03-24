@@ -2,6 +2,7 @@
   "name": "awesomeyou",
   "main": "index.js",
   "compatibility_date": "2025-03-10",
+  "no_bundle": true,
   "vars": {
     "ENVIRONMENT": "production"
   }
