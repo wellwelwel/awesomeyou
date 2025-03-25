@@ -132,6 +132,8 @@ nav {
       }
 
       .social {
+        flex-grow: 1;
+        @include flex(column);
         width: 100%;
 
         & > * {
@@ -177,9 +179,9 @@ nav {
           gap: 5px;
           margin-top: 15px;
           margin-bottom: 7.5px;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 600;
-          color: #3648d6;
+          color: #0770e0;
 
           svg {
             width: 16px;
@@ -187,6 +189,19 @@ nav {
 
           ~ h3 {
             margin-top: 15px;
+          }
+        }
+
+        & > h3 {
+          flex-grow: 1;
+          @include flex(row, flex-end, flex-start);
+
+          & > span {
+            @include flex(row, center, flex-start);
+            gap: 5px;
+            width: 100%;
+            padding-top: 15px;
+            border-top: 1px solid #d1e7ff;
           }
         }
 
@@ -275,18 +290,27 @@ nav {
         }
 
         & > menu {
-          @include flex(row, center, flex-start);
+          @include flex(row, flex-end, flex-start);
           gap: 7.5px;
 
           a {
             @include flex(row, center, flex-start);
-            gap: 5px;
-            font-size: 13px;
 
-            & > svg {
-              width: 12px;
-              transform: translateY(-1px);
-              transition: transform 0.325s cubic-bezier(0.75, -0.25, 0.2, 0.9);
+            + a {
+              margin-left: -15px;
+            }
+
+            & > img {
+              width: 36px;
+              height: 36px;
+              object-fit: cover;
+              object-position: center;
+              border-radius: 50%;
+              border: 2px solid transparent;
+              transition:
+                transform 0.25s,
+                opacity 0.25s ease-out,
+                border-color 0.25s ease-in;
             }
 
             & > section {
@@ -368,8 +392,9 @@ nav {
             &:hover {
               color: #0770e0;
 
-              & > svg {
-                transform: translateY(-1px) rotate(180deg);
+              & > img {
+                z-index: 1;
+                transform: scale(1.05);
               }
 
               & > section {
@@ -378,7 +403,18 @@ nav {
               }
             }
           }
+
+          &:has(a:hover) a:not(:hover) {
+            & > img {
+              opacity: 0.5;
+              will-change: opacity;
+            }
+          }
         }
+      }
+
+      & > footer {
+        flex-grow: 0;
       }
     }
   }

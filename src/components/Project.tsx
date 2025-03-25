@@ -5,7 +5,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import {
   Activity,
-  ArrowUpDown,
   Bug,
   BugOff,
   Code,
@@ -28,6 +27,7 @@ import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { randomize } from '@site/src/helpers/radomizer';
 
 export const Project: FC<MergedProjects & { score?: number }> = ({
   name,
@@ -375,16 +375,21 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             </>
 
             <h3>
-              <UsersRound /> Mantenedores Brasileiros
+              <span>
+                <UsersRound /> Mantenedores Brasileiros
+              </span>
             </h3>
             <menu>
-              {maintainers.map((maintainer) => (
+              {randomize(maintainers).map((maintainer) => (
                 <Link
                   key={`maintainer:${projectName}:${maintainer}`}
                   to={`/maintainers/${maintainer}`}
                 >
-                  {maintainersInfos[maintainer]?.name || maintainer}
-                  <ArrowUpDown />
+                  <img
+                    src={`https://avatars.githubusercontent.com/${maintainer}`}
+                    loading='lazy'
+                    alt={`${projectName} profile avatar`}
+                  />
                   {maintainersInfos[maintainer]?.name ? (
                     <section>
                       <header>
