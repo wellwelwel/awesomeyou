@@ -49,6 +49,8 @@ const config: Config = {
           'awesome',
           'project',
           'projects',
+          'list',
+          'lists',
 
           // Portuguse (BR)
           'código aberto',
@@ -59,6 +61,8 @@ const config: Config = {
           'incríveis',
           'projeto',
           'projetos',
+          'lista',
+          'listas',
         ].join(', '),
       },
     ],
