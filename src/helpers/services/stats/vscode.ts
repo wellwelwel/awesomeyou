@@ -62,5 +62,5 @@ export const vscodeDownloads = async (vscode: string) => {
     };
   }
 
-  return setResult(results.value.replace(/month/, 'mês'));
+  return setResult(results.value);
 };

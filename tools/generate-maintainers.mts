@@ -37,11 +37,13 @@ for (const file of files) {
   const username = dirname(file).split('/').pop()!;
   const base = `./content/assets/json/maintainers/${username}`;
   const filePath = `${base}/infos.json`;
-  const { remaining, timeUntilReset } = await checkRateLimit();
-  const currentDate = getCurrentDate();
 
   if (!(await shouldUpdateFile(filePath, 7))) continue;
+
   console.log('Creating infos for', username);
+
+  const { remaining, timeUntilReset } = await checkRateLimit();
+  const currentDate = getCurrentDate();
 
   if (remaining <= 1) {
     const waitTimeMs = timeUntilReset * 1000;
@@ -60,4 +62,6 @@ for (const file of files) {
       )
     );
   });
+
+  await sleep(100);
 }

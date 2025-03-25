@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
-import { listFiles } from 'poku';
+import { listFiles, sleep } from 'poku';
 import { ProjectOptions } from '@site/src/@types/projects';
 import {
   getCurrentDate,
@@ -9,6 +9,13 @@ import {
 
 const require = createRequire(import.meta.url);
 const { mergeRepositories } = require('@site/src/helpers/merge-projects');
+const { extractRepository } =
+  require('@site/src/helpers/extract-repository') as {
+    extractRepository: (url: string) => {
+      organization: string;
+      repository: string;
+    };
+  };
 const { processProject } = require('@site/src/helpers/generate-stats') as {
   processProject: (
     options: ProjectOptions,
@@ -40,19 +47,23 @@ for (const parsedContent of parsedContents) {
   );
 
   for (const project of projects) {
-    processProject(project, async ({ organization, repository, results }) => {
-      const currentDate = getCurrentDate();
-      const key = `${organization}/${repository}`;
-      const base = `./content/assets/json/projects/${key}`;
-      const filePath = `${base}/stats.json`;
+    const { organization, repository } = extractRepository(project.repository);
+    const currentDate = getCurrentDate();
+    const key = `${organization}/${repository}`;
+    const base = `./content/assets/json/projects/${key}`;
+    const filePath = `${base}/stats.json`;
 
-      if (!(await shouldUpdateFile(filePath))) return;
+    if (!(await shouldUpdateFile(filePath))) continue;
+
+    processProject(project, async ({ results }) => {
+      console.log('Creating stats for', key);
 
       const content = { ...results, updatedAt: currentDate };
-      console.log('Creating stats for', key);
 
       await mkdir(base, { recursive: true });
       await writeFile(`${base}/stats.json`, JSON.stringify(content, null, 0));
     });
+
+    await sleep(100);
   }
 }
