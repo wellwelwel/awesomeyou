@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+title: Awesome You
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Weslley
+    website: 'https://weslley.io'
+    affiliation: Founder
+repository-code: 'https://github.com/wellwelwel/awesomeyou'
+url: 'https://awesomeyou.io/'
+abstract: Awesome You — How does your project impact the real world?
+keywords:
+  - open source
+  - open-source
+  - awesome
+  - brazil
+  - brazilian
+  - brazilians
+  - initiative
+  - list
+  - lists
+  - código aberto
+  - código-aberto
+  - incrível
+  - brasil
+  - brasileiro
+  - brasileiros
+  - iniciativa
+  - lista
+  - listas
+license: AGPL-3.0-only
