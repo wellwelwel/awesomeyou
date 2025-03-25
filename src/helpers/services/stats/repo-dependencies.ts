@@ -22,7 +22,7 @@ export const getRepoDepsManually = async (
       )
         continue;
 
-      const downloads = Number(currentLine.replace(/,/g, ''));
+      const downloads = Number(currentLine.replace(/,/g, '')) || 0;
 
       return {
         value: downloads,

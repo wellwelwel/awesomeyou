@@ -4,7 +4,7 @@ import {
 } from '@site/src/helpers/services/stats/set-result';
 
 export const vscodeDownloads = async (vscode: string) => {
-  const getDownloadsManually = async () => {
+  const getDownloadsManually = async (): Promise<number> => {
     try {
       // Require CORS
       const response = await fetch(
@@ -12,12 +12,33 @@ export const vscodeDownloads = async (vscode: string) => {
       );
 
       const text = await response.text();
-      const downloadsMatch = text.match(/([\d,]+) installs/);
+      const lines = text.split('\n');
 
-      if (downloadsMatch && downloadsMatch[1]) {
-        const downloads = downloadsMatch[1].replace(/,/g, '');
+      for (let line = 0; line < lines.length; line++) {
+        const currentLine = lines[line].trim();
 
-        return Number(downloads);
+        if (!currentLine.includes('data-reactroot')) continue;
+
+        const marker = ' installs';
+        const markerIndex = currentLine.indexOf(marker);
+
+        if (markerIndex === -1) break;
+
+        let startIndex = markerIndex;
+
+        while (
+          startIndex > 0 &&
+          ((currentLine[startIndex - 1] >= '0' &&
+            currentLine[startIndex - 1] <= '9') ||
+            currentLine[startIndex - 1] === ',')
+        )
+          startIndex--;
+
+        const formatedNumber = currentLine
+          .substring(startIndex, markerIndex)
+          .trim();
+
+        return Number(formatedNumber.replace(/,/g, '')) || 0;
       }
 
       return 0;
