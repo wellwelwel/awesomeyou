@@ -162,12 +162,14 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                 ) : (
                   ''
                 );
-              const totalDownloads =
-                (stats.chocolatey?.value || 0) +
+
+              const monthDownloads =
                 (stats.homebrew?.value || 0) +
                 (stats.npm?.value || 0) +
-                (stats.pypi?.value || 0) +
-                (stats.vscode?.value || 0);
+                (stats.pypi?.value || 0);
+
+              const totalDownloads =
+                (stats.chocolatey?.value || 0) + (stats.vscode?.value || 0);
 
               const score = getScore({
                 chocolatey: stats.chocolatey?.value,
@@ -235,12 +237,21 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                           repositórios públicos dependem diretamente dele
                         </>
                       )}
-                      {totalDownloads > 0 && (
+                      {monthDownloads > 0 && (
                         <>
                           , além de possuir mais de{' '}
+                          <strong>{localeNumber(monthDownloads)}</strong>
+                          {monthDownloads > 1000000 ? ' de ' : ''} downloads
+                          públicos por mês
+                        </>
+                      )}
+                      {totalDownloads > 0 && (
+                        <>
+                          {monthDownloads > 0 ? ' e ' : ', além de possuir'}{' '}
+                          mais de{' '}
                           <strong>{localeNumber(totalDownloads)}</strong>
                           {totalDownloads > 1000000 ? ' de ' : ''} downloads
-                          públicos
+                          públicos totais
                         </>
                       )}{' '}
                       e {stats.stars.value > 1000 ? ' mais de ' : ' '}
