@@ -5,23 +5,33 @@ import React, { memo } from 'react';
 import Layout from '@theme/Layout';
 import {
   Award,
+  BookOpenCheck,
+  Bot,
+  CloudSun,
   Code,
   Cross,
+  Eraser,
   ExternalLink,
   Fingerprint,
   Flame,
   FlameKindling,
+  Ghost,
   Github,
   Heart,
   HeartHandshake,
   Lightbulb,
   MapPin,
+  MessageSquareShare,
   Network,
+  Rocket,
   Scale,
+  ScanSearch,
   Share2,
   SmilePlus,
+  Sparkles,
   Sprout,
   Star,
+  StarHalf,
   Trophy,
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
@@ -34,12 +44,20 @@ import { FAQ } from './FAQ';
 const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
   const { username, bio, blog, location, name, projects } = data;
   const ifPlural = projects.length > 1 && 's';
+  const fomatter = new Intl.ListFormat('pt-BR', {
+    style: 'long',
+    type: 'conjunction',
+  });
+  const description = `Conheça ${name}, uma pessoa brasileira mantenedora de projetos open source, como ${fomatter.format(
+    projects.map((project) => {
+      const { repository } = extractRepository(project.repository);
+
+      return project.name || repository;
+    })
+  )}.`;
 
   return (
-    <Layout
-      title={name}
-      description={`Conheça ${name}, uma pessoa brasileira mantenedora de projetos open source.`}
-    >
+    <Layout title={name} description={description}>
       <div id='maintainer'>
         <main>
           <header>
@@ -47,20 +65,23 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               Conheça{' '}
               <ins>
                 <Name name={name} />
-              </ins>
+              </ins>{' '}
+              <img src={'/img/hi.gif'} loading='lazy' />
             </h1>
             <small className='baloon'>
               <div className='float'>
                 <Fingerprint />
               </div>
               <span>
-                {' '}
                 <img
                   src={`https://avatars.githubusercontent.com/${username}`}
                   loading='eager'
                   alt={`${username} profile avatar`}
-                />{' '}
-                {bio}
+                />
+                <span>
+                  <p className='name'>{name}</p>
+                  <p>{bio}</p>
+                </span>
               </span>
               <footer>
                 <div className='links'>
@@ -85,54 +106,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               </footer>
             </small>
           </header>
-          <div className='faqs'>
-            <FAQ
-              title={
-                <>
-                  <SmilePlus /> Como você pode apoiar mantenedores?
-                </>
-              }
-            >
-              <small>
-                <p>
-                  <Star />{' '}
-                  <span>
-                    Incentive deixando uma <ins>estrela</ins> nos projetos que
-                    você gosta, especialmente nos que você usa.
-                  </span>
-                </p>
-                <p>
-                  <Share2 />{' '}
-                  <span>
-                    <ins>Compartilhe</ins> projetos que {name} mantém com a sua
-                    rede e como eles já te ajudaram.
-                  </span>
-                </p>
-                <p>
-                  <HeartHandshake />{' '}
-                  <span>
-                    <ins>Ajude outros usuários</ins> respondendo dúvidas no
-                    repositório.
-                  </span>
-                </p>
-                <p>
-                  <Cross />{' '}
-                  <span>
-                    <ins>Contribua</ins> com os projetos.
-                  </span>
-                </p>
-                <p>
-                  <Heart />{' '}
-                  <span>
-                    <SafeLink to={`https://github.com/sponsors/${username}`}>
-                      Patrocine
-                    </SafeLink>{' '}
-                    mantenedores.
-                  </span>
-                </p>
-              </small>
-            </FAQ>
-          </div>
+
           <main className='projects'>
             <h2>
               <Code /> {projects.length} projeto{ifPlural} cadastrado
@@ -248,17 +222,24 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                       com <strong>{stats.contributors.label}</strong>{' '}
                       contribuidor
                       {stats.contributors.value > 1 && 'es'}
-                      {stats.repositoryDependents.value > 0 &&
-                        `, ${stats.repositoryDependents.value > 1000 ? 'mais de ' : ''}`}
-                      <strong>{stats.repositoryDependents.label}</strong>
-                      {stats.repositoryDependents.value > 1000000
-                        ? ' de '
-                        : ' '}
-                      repositórios públicos dependem diretamente dele
+                      {stats.repositoryDependents.value > 0 && (
+                        <>
+                          ,{' '}
+                          {stats.repositoryDependents.value > 1000
+                            ? 'mais de '
+                            : ''}
+                          <strong>{stats.repositoryDependents.label}</strong>
+                          {stats.repositoryDependents.value > 1000000
+                            ? ' de '
+                            : ' '}
+                          repositórios públicos dependem diretamente dele
+                        </>
+                      )}
                       {totalDownloads > 0 && `, além de possuir mais de `}
                       <strong>{localeNumber(totalDownloads)}</strong>
                       {totalDownloads > 1000000 ? ' de ' : ''} downloads
-                      públicos e <strong>{stats.stars.label}</strong> estrelas.
+                      públicos e {stats.stars.value > 1000 ? ' mais de ' : ' '}
+                      <strong>{stats.stars.label}</strong> estrelas.
                     </p>
                   </main>
                   <footer>
@@ -291,6 +272,151 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               );
             })}
           </main>
+
+          <div className='faqs'>
+            <h2>
+              <Rocket /> Ajude a fazer acontecer!
+            </h2>
+
+            <FAQ
+              open
+              title={
+                <>
+                  <SmilePlus /> Como você pode apoiar mantenedores?
+                </>
+              }
+            >
+              <small>
+                <p>
+                  <Star />{' '}
+                  <span>
+                    Incentive deixando uma <ins>estrela</ins> nos projetos que
+                    você gosta, especialmente nos que você usa.
+                  </span>
+                </p>
+                <p>
+                  <Share2 />{' '}
+                  <span>
+                    <ins>Compartilhe</ins> projetos que {name} mantém com a sua
+                    rede e como eles já te ajudaram.
+                  </span>
+                </p>
+                <p>
+                  <HeartHandshake />{' '}
+                  <span>
+                    <ins>Ajude outros usuários</ins> respondendo dúvidas no
+                    repositório dos projetos.
+                  </span>
+                </p>
+                <p>
+                  <Cross />{' '}
+                  <span>
+                    <ins>Contribua</ins> com os projetos.
+                  </span>
+                </p>
+                <p>
+                  <Heart />{' '}
+                  <span>
+                    <SafeLink to={`https://github.com/sponsors/${username}`}>
+                      Patrocine
+                    </SafeLink>{' '}
+                    mantenedores.
+                  </span>
+                </p>
+              </small>
+            </FAQ>
+            <FAQ
+              title={
+                <>
+                  <MessageSquareShare /> Mas afinal, por que apoiar?
+                </>
+              }
+            >
+              <small>
+                <p>
+                  <Ghost />{' '}
+                  <span>
+                    Já imaginou como seria se o open source não existisse?
+                  </span>
+                </p>
+                <p>
+                  <Eraser />{' '}
+                  <span>
+                    Imagine desde linguagens de programação a livrarias que você
+                    usa desaparecendo ou se tornando pagas e o impacto que isso
+                    teria.
+                  </span>
+                </p>
+                <p>
+                  <StarHalf />{' '}
+                  <span>
+                    Às vezes, mesmo uma simples estrela pode colocar um sorriso
+                    no rosto de quem cria projetos que você usa de graça.
+                  </span>
+                </p>
+                <p>
+                  <Sprout />{' '}
+                  <span>
+                    Aliás, se fosse você quem criasse um projeto inovador,
+                    aposto que gostaria que apoiassem seu trabalho, certo?
+                  </span>
+                </p>
+                <p>
+                  <CloudSun />{' '}
+                  <span>
+                    Apoiar das mais diversas formas quem cria projetos open
+                    source, motiva o crescimento e a evolução contínua desse
+                    ecossistema incrível (e todos saem ganhando).
+                  </span>
+                </p>
+              </small>
+            </FAQ>
+            <FAQ
+              title={
+                <>
+                  <MessageSquareShare /> Qual o propósito dessa página?
+                </>
+              }
+            >
+              <small>
+                <p>
+                  <Bot />{' '}
+                  <span>
+                    Todo conteúdo gerado nessa página é estático, facilitando a
+                    leitura e interpretação por sistemas de busca (crawlers),
+                    direcionando cada mantenedor brasileiro cadastrado na
+                    Awesome You através de um{' '}
+                    <SafeLink to='https://awesomeyou.io/sitemap.xml'>
+                      sitemap.xml
+                    </SafeLink>{' '}
+                    inteligente.
+                  </span>
+                </p>
+                <p>
+                  <ScanSearch />{' '}
+                  <span>
+                    A intenção é ajudar sistemas de buscas encontrarem
+                    facilmente projetos, por exemplo, ao pesquisar por "Quais
+                    linguagens de programação foram criadas por brasileiros?"
+                  </span>
+                </p>
+                <p>
+                  <Sparkles />{' '}
+                  <span>
+                    A mesma ideia vale para Inteligências Artificiais,
+                    inclusive, logo também suportaremos os novos padrões{' '}
+                    <strong>llms.txt</strong>.
+                  </span>
+                </p>
+                <p>
+                  <BookOpenCheck />{' '}
+                  <span>
+                    Exemplo: "<strong>{description}</strong>".
+                  </span>
+                </p>
+              </small>
+            </FAQ>
+          </div>
         </main>
       </div>
     </Layout>

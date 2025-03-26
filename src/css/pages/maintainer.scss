@@ -28,11 +28,16 @@
             text-shadow: 1px 1px 2.5px #ffffff70;
           }
         }
+
+        img {
+          height: 36px;
+          transform: translateY(2.5px);
+        }
       }
 
       & > small {
         & > span {
-          @include flex(row, center);
+          @include flex(row);
           gap: 10px;
           width: 100%;
           text-align: left;
@@ -46,6 +51,16 @@
             border-radius: 10px;
             border: 2px solid #e5f4ff;
             box-shadow: 0 0 7.5px #00000014;
+          }
+
+          .name {
+            margin-bottom: 2.5px;
+            font-family: var(--ifm-font-family-featured);
+            font-weight: 800;
+
+            + p {
+              font-size: 13px;
+            }
           }
         }
 
@@ -79,6 +94,10 @@
     }
 
     .faqs {
+      & > h2 {
+        margin-bottom: 20px !important;
+      }
+
       .faq {
         .wrapper {
           p {
@@ -109,6 +128,10 @@
             }
           }
         }
+
+        + .faq {
+          margin-top: 15px;
+        }
       }
     }
 
@@ -119,32 +142,6 @@
         @include flex(column);
         gap: 20px;
         width: 100%;
-
-        h2 {
-          @include flex(row, center);
-          gap: 10px;
-          margin-bottom: 10px;
-          font-family: var(--ifm-font-family-featured);
-          font-size: 18px;
-          font-weight: 700;
-          background: linear-gradient(
-            94.23deg,
-            #4c6afe 12.41%,
-            #45c1ff 52.55%,
-            #00bdff 89.95%
-          ) !important;
-          -webkit-text-fill-color: transparent !important;
-          -webkit-background-clip: text !important;
-          background-clip: text !important;
-
-          svg {
-            width: 19px;
-            height: 19px;
-            min-width: 19px;
-            min-height: 19px;
-            color: #45c1ff;
-          }
-        }
 
         & > small {
           margin-top: -15px;
@@ -313,6 +310,35 @@
           @media (max-width: 820px) {
             filter: none;
           }
+        }
+      }
+    }
+
+    & > .faqs,
+    & > main {
+      & > h2 {
+        @include flex(row, center);
+        gap: 10px;
+        margin-bottom: 10px;
+        font-family: var(--ifm-font-family-featured);
+        font-size: 18px;
+        font-weight: 700;
+        background: linear-gradient(
+          94.23deg,
+          #4c6afe 12.41%,
+          #45c1ff 52.55%,
+          #00bdff 89.95%
+        ) !important;
+        -webkit-text-fill-color: transparent !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+
+        svg {
+          width: 19px;
+          height: 19px;
+          min-width: 19px;
+          min-height: 19px;
+          color: #45c1ff;
         }
       }
     }
