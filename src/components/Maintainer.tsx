@@ -5,6 +5,7 @@ import React, { memo } from 'react';
 import Layout from '@theme/Layout';
 import {
   Award,
+  Code,
   Cross,
   ExternalLink,
   Fingerprint,
@@ -13,7 +14,6 @@ import {
   Github,
   Heart,
   HeartHandshake,
-  LandPlot,
   Lightbulb,
   MapPin,
   Network,
@@ -92,7 +92,6 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                   <SmilePlus /> Como você pode apoiar mantenedores?
                 </>
               }
-              open
             >
               <small>
                 <p>
@@ -136,8 +135,8 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
           </div>
           <main className='projects'>
             <h2>
-              <LandPlot /> {projects.length} projeto{ifPlural} cadastrado
-              {ifPlural} na Awesome You{' '}
+              <Code /> {projects.length} projeto{ifPlural} cadastrado
+              {ifPlural}
             </h2>
             {projects.length > 1 && (
               <small>
@@ -244,15 +243,22 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                       .
                     </p>
                     <p>
-                      O repositório do projeto no{' '}
+                      — O repositório do projeto no{' '}
                       <SafeLink to={project.repository}>GitHub</SafeLink> conta{' '}
-                      com {stats.contributors.label} contribuidor
+                      com <strong>{stats.contributors.label}</strong>{' '}
+                      contribuidor
                       {stats.contributors.value > 1 && 'es'}
                       {stats.repositoryDependents.value > 0 &&
-                        `, ${stats.repositoryDependents.value > 1000 ? 'mais de ' : ''}${stats.repositoryDependents.label} repositórios públicos dependem diretamente dele`}
-                      {totalDownloads > 0 &&
-                        `, além de possuir mais de ${localeNumber(totalDownloads)}${totalDownloads > 1000000 ? ' de ' : ''} downloads públicos`}{' '}
-                      e possui {stats.stars.label} estrelas.
+                        `, ${stats.repositoryDependents.value > 1000 ? 'mais de ' : ''}`}
+                      <strong>{stats.repositoryDependents.label}</strong>
+                      {stats.repositoryDependents.value > 1000000
+                        ? ' de '
+                        : ' '}
+                      repositórios públicos dependem diretamente dele
+                      {totalDownloads > 0 && `, além de possuir mais de `}
+                      <strong>{localeNumber(totalDownloads)}</strong>
+                      {totalDownloads > 1000000 ? ' de ' : ''} downloads
+                      públicos e <strong>{stats.stars.label}</strong> estrelas.
                     </p>
                   </main>
                   <footer>
