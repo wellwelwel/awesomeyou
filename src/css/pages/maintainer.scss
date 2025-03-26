@@ -36,6 +36,12 @@
       }
 
       & > small {
+        color: #416db5;
+
+        &.baloon {
+          margin-top: 35px;
+        }
+
         & > span {
           @include flex(row);
           gap: 10px;

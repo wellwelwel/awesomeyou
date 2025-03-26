@@ -5,7 +5,6 @@ import React, { memo } from 'react';
 import Layout from '@theme/Layout';
 import {
   Award,
-  BookOpenCheck,
   Bot,
   CloudSun,
   Code,
@@ -68,6 +67,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               </ins>{' '}
               <img src={'/img/hi.gif'} loading='lazy' />
             </h1>
+            <small>{description}</small>
             <small className='baloon'>
               <div className='float'>
                 <Fingerprint />
@@ -235,10 +235,15 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                           repositórios públicos dependem diretamente dele
                         </>
                       )}
-                      {totalDownloads > 0 && `, além de possuir mais de `}
-                      <strong>{localeNumber(totalDownloads)}</strong>
-                      {totalDownloads > 1000000 ? ' de ' : ''} downloads
-                      públicos e {stats.stars.value > 1000 ? ' mais de ' : ' '}
+                      {totalDownloads > 0 && (
+                        <>
+                          , além de possuir mais de{' '}
+                          <strong>{localeNumber(totalDownloads)}</strong>
+                          {totalDownloads > 1000000 ? ' de ' : ''} downloads
+                          públicos
+                        </>
+                      )}{' '}
+                      e {stats.stars.value > 1000 ? ' mais de ' : ' '}
                       <strong>{stats.stars.label}</strong> estrelas.
                     </p>
                   </main>
@@ -397,21 +402,16 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                   <span>
                     A intenção é ajudar sistemas de buscas encontrarem
                     facilmente projetos, por exemplo, ao pesquisar por "Quais
-                    linguagens de programação foram criadas por brasileiros?"
+                    linguagens de programação foram criadas por brasileiros?" ou
+                    "Quais brasileiros fazem parte de X projeto?".
                   </span>
                 </p>
                 <p>
                   <Sparkles />{' '}
                   <span>
-                    A mesma ideia vale para Inteligências Artificiais,
+                    A mesma ideia vale para Inteligências Artificiais e,
                     inclusive, logo também suportaremos os novos padrões{' '}
                     <strong>llms.txt</strong>.
-                  </span>
-                </p>
-                <p>
-                  <BookOpenCheck />{' '}
-                  <span>
-                    Exemplo: "<strong>{description}</strong>".
                   </span>
                 </p>
               </small>
