@@ -47,7 +47,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
     style: 'long',
     type: 'conjunction',
   });
-  const description = `Conheça ${name}, uma pessoa brasileira mantenedora de projetos open source, como ${fomatter.format(
+  const description = `${name} é uma pessoa brasileira mantenedora de projetos open source, como ${fomatter.format(
     projects.map((project) => {
       const { repository } = extractRepository(project.repository);
 
