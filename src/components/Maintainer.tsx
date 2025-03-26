@@ -242,14 +242,13 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                           , além de possuir mais de{' '}
                           <strong>{localeNumber(monthDownloads)}</strong>
                           {monthDownloads > 1000000 ? ' de ' : ''} downloads
-                          públicos por mês
+                          públicos mensais
                         </>
                       )}
                       {totalDownloads > 0 && (
                         <>
-                          {monthDownloads > 0 ? ' e ' : ', além de possuir'}{' '}
-                          mais de{' '}
-                          <strong>{localeNumber(totalDownloads)}</strong>
+                          {monthDownloads > 0 ? ',' : ', além de possuir'} mais
+                          de <strong>{localeNumber(totalDownloads)}</strong>
                           {totalDownloads > 1000000 ? ' de ' : ''} downloads
                           públicos totais
                         </>
