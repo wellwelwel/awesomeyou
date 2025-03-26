@@ -287,7 +287,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               open
               title={
                 <>
-                  <SmilePlus /> Como você pode apoiar mantenedores?
+                  <SmilePlus /> Como você pode apoiar?
                 </>
               }
             >
