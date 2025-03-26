@@ -1,100 +1,202 @@
-import type { ProjectOptions } from '@site/src/@types/projects';
-import React from 'react';
+import '@site/src/css/pages/maintainer.scss';
+
+import type { ProcessedMaintainer } from '@site/plugins/maintainers-page';
+import React, { memo } from 'react';
 import Layout from '@theme/Layout';
-import { ProcessedMaintainer } from '@site/plugins/maintainers-page';
+import {
+  Cross,
+  ExternalLink,
+  Fingerprint,
+  Github,
+  Heart,
+  HeartHandshake,
+  LandPlot,
+  MapPin,
+  Network,
+  Share2,
+  SmilePlus,
+  Star,
+} from 'lucide-react';
 import { Name } from '@site/src/components/Name';
-import { SafeLink } from '@site/src/components/SafeLink';
+import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
+import { extractRepository } from '../helpers/extract-repository';
+import { FAQ } from './FAQ';
 
-interface MaintainerPageProps {
-  data: ProcessedMaintainer;
-}
-
-const MaintainerPage: React.FC<MaintainerPageProps> = ({ data }) => {
-  const { username, projects } = data;
+const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
+  const { username, bio, blog, location, name, projects } = data;
 
   return (
-    <Layout title={''} description='Lista de projetos open source do Brasil'>
-      <main style={{ padding: '2rem', zIndex: 1 }}>
-        <header>
-          <img
-            src={`https://avatars.githubusercontent.com/${username}`}
-            loading='eager'
-            alt={`${username} profile avatar`}
-          />
-          <h1>
-            👋 Conheça <Name name={username} />
-          </h1>
-        </header>
+    <Layout
+      title={name}
+      description={`Conheça ${name}, uma pessoa brasileira mantenedora de projetos open source.`}
+    >
+      <div id='maintainer'>
+        <main>
+          <header>
+            <h1>
+              <Name name={`Conheça ${name}`} />
+            </h1>
+            <small className='baloon'>
+              <div className='float'>
+                <Fingerprint />
+              </div>
+              <span>
+                {' '}
+                <img
+                  src={`https://avatars.githubusercontent.com/${username}`}
+                  loading='eager'
+                  alt={`${username} profile avatar`}
+                />{' '}
+                {bio}
+              </span>
+              <footer>
+                <div className='links'>
+                  {' '}
+                  <SafeLink to={`https://github.com/${username}`}>
+                    <Github />
+                    {username}
+                  </SafeLink>
+                  {blog ? (
+                    <SafeLink to={`https://${normalizeURL(blog)}`}>
+                      <Network />
+                      {normalizeURL(blog)}
+                    </SafeLink>
+                  ) : null}
+                </div>
 
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
-          {projects.map((project: ProjectOptions, index: number) => (
-            <li
-              key={index}
-              style={{
-                marginBottom: '2rem',
-                borderBottom: '1px solid #ccc',
-                paddingBottom: '1rem',
-              }}
+                {location ? (
+                  <div>
+                    <MapPin /> {location}
+                  </div>
+                ) : null}
+              </footer>
+            </small>
+          </header>
+          <div className='faqs'>
+            <FAQ
+              title={
+                <>
+                  <SmilePlus /> Como você pode apoiar mantenedores?
+                </>
+              }
+              open
             >
-              <h2>{project.name || '...'}</h2>
-              <p>{project.description}</p>
-              <p>
-                <strong>Repositório:</strong>{' '}
-                <SafeLink to={project.repository}>
-                  {project.repository}
-                </SafeLink>
-              </p>
-              {project.languages && project.languages.length > 0 && (
+              <small>
                 <p>
-                  <strong>Linguagens:</strong> {project.languages.join(', ')}
+                  <Star />{' '}
+                  <span>
+                    Incentive deixando uma <strong>estrela</strong> nos projetos
+                    que você gosta, especialmente se usa algum deles.
+                  </span>
                 </p>
-              )}
-              {project.categories && project.categories.length > 0 && (
                 <p>
-                  <strong>Categorias:</strong> {project.categories.join(', ')}
+                  <Share2 />{' '}
+                  <span>
+                    Compartilhe os projetos que {name} mantém com a sua rede,
+                    mostrando como eles já te ajudaram.
+                  </span>
                 </p>
-              )}
-              {project.npm && (
                 <p>
-                  <strong>NPM:</strong>{' '}
-                  <SafeLink to={`https://www.npmjs.com/package/${project.npm}`}>
-                    {project.npm}
-                  </SafeLink>
+                  <HeartHandshake />{' '}
+                  <span>
+                    Ajude outros usuários respondendo dúvidas no repositório.
+                  </span>
                 </p>
-              )}
-              {project.pypi && (
                 <p>
-                  <strong>PyPI:</strong>{' '}
-                  <SafeLink to={`https://pypi.org/project/${project.pypi}`}>
-                    {project.pypi}
-                  </SafeLink>
+                  <Cross /> <span>Contribua com os projetos.</span>
                 </p>
-              )}
-              {project.homebrew && (
                 <p>
-                  <strong>Homebrew:</strong>{' '}
-                  <SafeLink
-                    to={`https://formulae.brew.sh/formula/${project.homebrew}`}
-                  >
-                    {project.homebrew}
-                  </SafeLink>
+                  <Heart />{' '}
+                  <span>
+                    <SafeLink to={`https://github.com/sponsors/${username}`}>
+                      Patrocine
+                    </SafeLink>{' '}
+                    os mantenedores.
+                  </span>
                 </p>
-              )}
-              <p>
-                <strong>Foi criado por um autor brasileiro?</strong>{' '}
-                {project.madeInBrazil ? 'Sim' : 'Não'}
-              </p>
-              {project.message && (
-                <p>
-                  <em>{project.message}</em>
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
-      </main>
+              </small>
+            </FAQ>
+          </div>
+          <main className='projects'>
+            <h2>
+              <LandPlot /> {projects.length} projetos cadastrados na Awesome
+              You{' '}
+            </h2>
+            {projects.map((project, i) => {
+              const { organization, repository } = extractRepository(
+                project.repository
+              );
+
+              const isAuthor = project.isAuthor ? 'criou' : 'mantém';
+              const isLaguange =
+                project.categories?.includes('language') &&
+                'a linguagem de programação';
+              const isTestRunner =
+                project.categories?.includes('test') &&
+                !project.categories?.includes('tool') &&
+                !project.categories?.includes('plugin') &&
+                'o test runner';
+              const category = isLaguange || isTestRunner || 'o projeto';
+              const isBrazilian = project.madeInBrazil
+                ? isLaguange
+                  ? ' brasileira'
+                  : ' brasileiro'
+                : '';
+              const usesOrganization =
+                project.isAuthor && organization !== username ? (
+                  <>
+                    {' '}
+                    através da organização{' '}
+                    <SafeLink to={`https://github.com/${organization}`}>
+                      {organization}
+                    </SafeLink>{' '}
+                  </>
+                ) : (
+                  ''
+                );
+
+              return (
+                <section key={`project:${i}`} className='project'>
+                  <header>
+                    <SafeLink to={project.repository}>
+                      <span>
+                        <img
+                          src={`https://avatars.githubusercontent.com/${organization}`}
+                          loading='lazy'
+                          alt={`${organization} profile avatar`}
+                        />
+                        <span className='name'>
+                          <p>{project.name ? project.name : repository}</p>
+                          <p>{project.description}</p>
+                        </span>
+                      </span>
+                      <ExternalLink />
+                    </SafeLink>
+                  </header>
+                  <main>
+                    <p>
+                      {name} {isAuthor} {category}
+                      {isBrazilian}{' '}
+                      <strong>{project.name || repository}</strong>
+                      {usesOrganization} e já realizou{' '}
+                      <SafeLink
+                        to={`${project.repository}/commits?author=${username}`}
+                      >
+                        {Number(project.commits).toLocaleString('pt-BR')}{' '}
+                        commits
+                      </SafeLink>{' '}
+                      no repositório do projeto.
+                    </p>
+                  </main>
+                  {/* <footer></footer> */}
+                </section>
+              );
+            })}
+          </main>
+        </main>
+      </div>
     </Layout>
   );
 };
 
-export default MaintainerPage;
+export default memo(MaintainerPage);

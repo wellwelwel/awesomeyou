@@ -1,3 +1,5 @@
+import '@site/src/css/pages/home.scss';
+
 import type { ReactNode } from 'react';
 import {
   startTransition,
@@ -51,15 +53,12 @@ import PeopleU from '@site/content/assets/img/people/U.svg';
 import PeopleV from '@site/content/assets/img/people/V.svg';
 import { ResumedMaintaners } from '@site/src/@types/maintainers';
 import { ResumedProject } from '@site/src/@types/projects';
+import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { randomize } from '@site/src/helpers/radomizer';
-
-import '@site/src/css/pages/home.scss';
-
-import { FAQ } from '../components/FAQ';
 
 export default (): ReactNode => {
   const projectSort = useRef(0);

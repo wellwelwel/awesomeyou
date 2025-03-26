@@ -306,11 +306,10 @@ nav {
               object-fit: cover;
               object-position: center;
               border-radius: 50%;
-              border: 2px solid transparent;
+              box-shadow: 1px 1px 2.5px #0770e03c;
               transition:
-                transform 0.25s,
-                opacity 0.25s ease-out,
-                border-color 0.25s ease-in;
+                transform 0.15s,
+                opacity 0.5s ease;
             }
 
             & > section {

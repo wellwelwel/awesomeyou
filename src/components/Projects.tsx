@@ -1,3 +1,5 @@
+import '@site/src/css/pages/projects.scss';
+
 import type { MergedProjects } from '@site/src/@types/projects';
 import type { FC, MouseEvent, ReactNode } from 'react';
 import {
@@ -29,8 +31,6 @@ import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { randomize } from '@site/src/helpers/radomizer';
 import { sortObjectByValues } from '@site/src/helpers/sort-object';
-
-import '@site/src/css/pages/projects.scss';
 
 type ProjectsProps = {
   title: ReactNode;

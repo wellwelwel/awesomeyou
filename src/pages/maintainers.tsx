@@ -1,3 +1,5 @@
+import '@site/src/css/pages/maintainers.scss';
+
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { ProjectOptions } from '@site/src/@types/projects';
 import React, { memo, useEffect, useState } from 'react';
@@ -18,12 +20,10 @@ import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { randomize } from '@site/src/helpers/radomizer';
 
-import '@site/src/css/pages/maintainers.scss';
-
 interface Maintainer {
   username: string;
-  projects: ProjectOptions[];
   info: MaintainerInfo;
+  projects: ProjectOptions[];
 }
 
 const loadMaintainers = (): Maintainer[] => {

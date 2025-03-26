@@ -1,3 +1,5 @@
+import '@site/src/css/pages/new.scss';
+
 import type { ReactNode } from 'react';
 import type { ProjectOptions, RawProject } from '../@types/projects';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -26,8 +28,6 @@ import {
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-
-import '@site/src/css/pages/new.scss';
 
 export default (): ReactNode => {
   const scoreRef = useRef<HTMLDivElement>(null);

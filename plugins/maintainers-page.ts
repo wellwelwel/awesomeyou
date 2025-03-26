@@ -1,13 +1,15 @@
-import type { ProjectOptions } from '@site/src/@types/projects';
+import type { MaintainerInfo } from '@site/src/@types/maintainers';
+import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
 import { readdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Plugin } from '@docusaurus/types';
+import { extractRepository } from '../src/helpers/extract-repository.js';
+import { commitsByMaintainer } from '../src/helpers/services/stats/commits-by-maintainer.js';
 
-export interface ProcessedMaintainer {
+export type ProcessedMaintainer = MaintainerInfo & {
   username: string;
-  name: string;
-  projects: ProjectOptions[];
-}
+  projects: (ProjectOptions & { commits: number })[];
+};
 
 const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
   const maintainersDir = resolve('./content/maintainers');
@@ -21,7 +23,7 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
   for (const username of maintainerDirs) {
     const projectsFile = join(maintainersDir, username, 'projects.json');
     const fileContents = await readFile(projectsFile, 'utf8');
-    const projectsData = JSON.parse(fileContents);
+    const projectsData: RawProject = JSON.parse(fileContents);
     const maintainerInfos = JSON.parse(
       await readFile(
         `./content/assets/json/maintainers/${username}/infos.json`,
@@ -29,12 +31,28 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
       )
     );
 
-    if (projectsData && Array.isArray(projectsData.projects))
+    if (projectsData && Array.isArray(projectsData.projects)) {
+      const resolvedProjects = await Promise.all(
+        projectsData.projects.map(async (project) => {
+          const { organization, repository } = extractRepository(
+            project.repository
+          );
+
+          return {
+            ...project,
+            commits: (
+              await commitsByMaintainer(organization, repository, username)
+            ).value,
+          };
+        })
+      );
+
       maintainers.push({
-        name: maintainerInfos.name,
+        ...maintainerInfos,
         username,
-        projects: projectsData.projects,
+        projects: resolvedProjects,
       });
+    }
   }
 
   return maintainers;

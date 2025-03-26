@@ -1,3 +1,5 @@
+import '@site/src/css/pages/calculator.scss';
+
 import type { ScoreSimulator } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
 import { startTransition, useRef, useState } from 'react';
@@ -34,8 +36,6 @@ import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { API } from '@site/src/configs/api';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-
-import '@site/src/css/pages/calculator.scss';
 
 export default (): ReactNode => {
   const [stats, setStats] = useState<ScoreSimulator | null>(null);
