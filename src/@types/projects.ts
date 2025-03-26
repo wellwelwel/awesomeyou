@@ -43,12 +43,12 @@ export type ProjectStats = {
   closedIssues: StatsPropos;
   contributors: StatsPropos;
   commits: string;
-  npm: StatsPropos;
-  homebrew: StatsPropos;
-  pypi: StatsPropos;
+  repositoryDependents: StatsPropos;
+  npm?: StatsPropos;
+  homebrew?: StatsPropos;
+  pypi?: StatsPropos;
   vscode?: StatsPropos;
   chocolatey?: StatsPropos;
-  repositoryDependents?: StatsPropos;
 };
 
 export type ScoreSimulator = ProjectStats & {

@@ -53,7 +53,7 @@ for (const parsedContent of parsedContents) {
     const base = `./content/assets/json/projects/${key}`;
     const filePath = `${base}/stats.json`;
 
-    if (!(await shouldUpdateFile(filePath, -1))) continue;
+    if (!(await shouldUpdateFile(filePath, 1))) continue;
 
     processProject(project, async ({ results }) => {
       console.log('Creating stats for', key);
