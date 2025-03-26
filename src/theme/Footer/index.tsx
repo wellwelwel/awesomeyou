@@ -20,8 +20,8 @@ const Footer = (): ReactNode => {
           <SafeLink to='https://github.com/'>
             <strong>GitHub</strong>
           </SafeLink>
-          , sendo um projeto <em>open source</em> feito da comunidade para a
-          comunidade.
+          , sendo um projeto <em>open source</em> independente feito pela
+          comunidade para a comunidade.
         </p>
         <p>
           Os dados vêm de APIs públicas e das próprias informações fornecidas

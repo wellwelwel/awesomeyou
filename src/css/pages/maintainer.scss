@@ -5,12 +5,30 @@
   @extend %page;
   max-width: 1110px;
 
+  a {
+    transition: color 0.15s;
+
+    &:hover {
+      color: #203c71;
+    }
+  }
+
   & > main {
     gap: 30px;
     width: 100%;
 
     & > header {
       width: 100%;
+
+      h1 {
+        ins {
+          text-decoration-color: #ffffff40;
+
+          & > span {
+            text-shadow: 1px 1px 2.5px #ffffff70;
+          }
+        }
+      }
 
       & > small {
         & > span {
@@ -32,10 +50,11 @@
         }
 
         footer {
-          @include flex(row, center, space-between);
+          @include flex(row, center, space-between, wrap);
           gap: 15px;
           width: 100%;
-          padding-top: 20px;
+          padding-top: 17.5px;
+          margin-top: 10px;
           border-top: 1px solid #b0d6ff;
 
           .links {
@@ -51,6 +70,8 @@
             svg {
               width: 14px;
               height: 14px;
+              min-width: 14px;
+              min-height: 14px;
             }
           }
         }
@@ -90,14 +111,6 @@
     & > main {
       width: 100%;
 
-      a {
-        transition: color 0.2s;
-
-        &:hover {
-          color: var(--title-color-2);
-        }
-      }
-
       &.projects {
         @include flex(column);
         gap: 15px;
@@ -105,7 +118,7 @@
 
         h2 {
           @include flex(row, center);
-          gap: 7.5px;
+          gap: 10px;
           margin-bottom: 10px;
           font-family: var(--ifm-font-family-featured);
           font-size: 18px;
@@ -121,8 +134,10 @@
           background-clip: text !important;
 
           svg {
-            width: 18px;
-            height: 18px;
+            width: 19px;
+            height: 19px;
+            min-width: 19px;
+            min-height: 19px;
             color: #45c1ff;
           }
         }
@@ -146,7 +161,7 @@
 
           header {
             a {
-              @include flex(row, stretch, space-between);
+              @include flex(row, center, space-between);
               gap: 10px;
               color: var(--title-color-1);
               word-break: keep-all;
@@ -181,13 +196,18 @@
               }
 
               & > svg {
+                width: 20px;
+                height: 20px;
+                min-width: 20px;
+                min-height: 20px;
+                align-self: flex-start;
                 transition:
                   transform 0.1s,
                   color 0.2s;
               }
 
               &:hover {
-                color: var(--title-color-2);
+                color: #007bff;
 
                 & > svg {
                   transform: translate(1.5px, -1.5px);
@@ -199,6 +219,8 @@
 
           main {
             p {
+              color: #2b3856;
+
               a {
                 font-weight: 600;
               }

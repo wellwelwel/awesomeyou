@@ -24,6 +24,7 @@ import { FAQ } from './FAQ';
 
 const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
   const { username, bio, blog, location, name, projects } = data;
+  const ifPlural = projects.length > 1 && 's';
 
   return (
     <Layout
@@ -34,7 +35,10 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         <main>
           <header>
             <h1>
-              <Name name={`Conheça ${name}`} />
+              Conheça{' '}
+              <ins>
+                <Name name={name} />
+              </ins>
             </h1>
             <small className='baloon'>
               <div className='float'>
@@ -86,14 +90,14 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                   <Star />{' '}
                   <span>
                     Incentive deixando uma <strong>estrela</strong> nos projetos
-                    que você gosta, especialmente se usa algum deles.
+                    que você gosta, especialmente nos que você usa.
                   </span>
                 </p>
                 <p>
                   <Share2 />{' '}
                   <span>
-                    Compartilhe os projetos que {name} mantém com a sua rede,
-                    mostrando como eles já te ajudaram.
+                    <ins>Compartilhe</ins> projetos que {name} mantém com a sua
+                    rede e como eles já te ajudaram.
                   </span>
                 </p>
                 <p>
@@ -111,7 +115,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                     <SafeLink to={`https://github.com/sponsors/${username}`}>
                       Patrocine
                     </SafeLink>{' '}
-                    os mantenedores.
+                    mantenedores.
                   </span>
                 </p>
               </small>
@@ -119,8 +123,8 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
           </div>
           <main className='projects'>
             <h2>
-              <LandPlot /> {projects.length} projetos cadastrados na Awesome
-              You{' '}
+              <LandPlot /> {projects.length} projeto{ifPlural} cadastrado
+              {ifPlural} na Awesome You{' '}
             </h2>
             {projects.map((project, i) => {
               const { organization, repository } = extractRepository(
@@ -131,14 +135,25 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               const isLaguange =
                 project.categories?.includes('language') &&
                 'a linguagem de programação';
+              const isTheme = project.categories?.includes('theme') && 'o tema';
+              const isList = project.categories?.includes('list') && 'a lista';
+              const isEducational =
+                project.categories?.includes('educational') &&
+                'o projeto educacional';
               const isTestRunner =
                 project.categories?.includes('test') &&
                 !project.categories?.includes('tool') &&
                 !project.categories?.includes('plugin') &&
                 'o test runner';
-              const category = isLaguange || isTestRunner || 'o projeto';
+              const category =
+                isLaguange ||
+                isTheme ||
+                isList ||
+                isEducational ||
+                isTestRunner ||
+                'o projeto';
               const isBrazilian = project.madeInBrazil
-                ? isLaguange
+                ? isLaguange || isList
                   ? ' brasileira'
                   : ' brasileiro'
                 : '';
@@ -146,7 +161,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                 project.isAuthor && organization !== username ? (
                   <>
                     {' '}
-                    através da organização{' '}
+                    sob a organização{' '}
                     <SafeLink to={`https://github.com/${organization}`}>
                       {organization}
                     </SafeLink>{' '}
@@ -185,10 +200,16 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                         {Number(project.commits).toLocaleString('pt-BR')}{' '}
                         commits
                       </SafeLink>{' '}
-                      no repositório do projeto.
+                      no repositório do projeto no{' '}
+                      <SafeLink to={project.repository}>GitHub</SafeLink>
+                      {project.stats.contributors.value > 1 &&
+                        `, que conta com ${project.stats.contributors.label} contribuidores`}
+                      .
                     </p>
                   </main>
-                  {/* <footer></footer> */}
+                  {/* <footer>
+                    <p></p>
+                  </footer> */}
                 </section>
               );
             })}

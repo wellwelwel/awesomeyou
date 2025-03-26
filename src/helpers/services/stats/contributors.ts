@@ -6,7 +6,7 @@ export const contributors = async (
 ) => {
   const results = await (
     await fetch(
-      `https://img.shields.io/github/contributors/${organization}/${repository}.json`
+      `https://img.shields.io/github/contributors-anon/${organization}/${repository}.json`
     )
   ).json();
 

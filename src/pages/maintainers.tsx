@@ -11,7 +11,6 @@ import {
   Heart,
   MapPin,
   Network,
-  Sparkles,
   UsersRound,
 } from 'lucide-react';
 import { FAQ } from '@site/src/components/FAQ';
@@ -143,7 +142,6 @@ const MaintainersIndex: React.FC = () => {
                                 </strong>
                               ) : null}
                             </span>
-                            <Sparkles />
                           </h2>
                         </Link>
 

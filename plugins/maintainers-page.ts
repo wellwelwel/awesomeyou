@@ -1,5 +1,9 @@
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
-import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
+import type {
+  ProjectOptions,
+  ProjectStats,
+  RawProject,
+} from '@site/src/@types/projects';
 import { readdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { Plugin } from '@docusaurus/types';
@@ -8,7 +12,7 @@ import { commitsByMaintainer } from '../src/helpers/services/stats/commits-by-ma
 
 export type ProcessedMaintainer = MaintainerInfo & {
   username: string;
-  projects: (ProjectOptions & { commits: number })[];
+  projects: (ProjectOptions & { commits: number; stats: ProjectStats })[];
 };
 
 const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
@@ -38,14 +42,23 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
             project.repository
           );
 
+          const statsContents = await readFile(
+            `./content/assets/json/projects/${organization}/${repository}/stats.json`,
+            'utf8'
+          );
+          const stats: ProjectStats = JSON.parse(statsContents);
+
           return {
             ...project,
             commits: (
               await commitsByMaintainer(organization, repository, username)
             ).value,
+            stats,
           };
         })
       );
+
+      resolvedProjects.sort((a, b) => b.commits - a.commits);
 
       maintainers.push({
         ...maintainerInfos,
