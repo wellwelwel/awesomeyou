@@ -42,6 +42,28 @@
           margin-top: 35px;
         }
 
+        &.quoted {
+          @include flex(row, flex-start);
+          gap: 10px;
+          margin-top: 15px;
+
+          svg {
+            transform: rotate(-180deg) translateY(5px);
+            color: #0062ff;
+          }
+
+          & > span {
+            background: linear-gradient(
+              94.23deg,
+              #0062ff 12.41%,
+              #00a6ff 89.95%
+            );
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+          }
+        }
+
         & > span {
           @include flex(row);
           gap: 10px;

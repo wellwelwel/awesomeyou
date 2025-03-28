@@ -22,6 +22,7 @@ import {
   MapPin,
   MessageSquareShare,
   Network,
+  Quote,
   Rocket,
   Scale,
   ScanSearch,
@@ -61,13 +62,15 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         <main>
           <header>
             <h1>
-              Conheça{' '}
+              Quem é{' '}
               <ins>
                 <Name name={name} />
-              </ins>{' '}
-              <img src={'/img/hi.gif'} loading='lazy' />
+              </ins>
+              ? <img src={'/img/hi.gif'} loading='lazy' />
             </h1>
-            <small>{description}</small>
+            <small className='quoted'>
+              <Quote /> <span>{description}</span>
+            </small>
             <small className='baloon'>
               <div className='float'>
                 <Fingerprint />
