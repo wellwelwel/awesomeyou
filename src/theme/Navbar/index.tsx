@@ -96,10 +96,10 @@ const Navbar = (): ReactNode => {
           </header>
           <main>
             <Link to='/projects'>
-              <Code /> Explore Projetos
+              <Code /> Projetos
             </Link>
             <Link to='/maintainers'>
-              <UsersRound /> Conheça Pessoas Mantenedoras
+              <UsersRound /> Pessoas
             </Link>
             <Link to='/learn'>
               <GraduationCap /> Aprenda Programação

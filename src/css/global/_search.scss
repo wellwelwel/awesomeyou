@@ -1,0 +1,50 @@
+@use 'mixins' as *;
+
+.d-n-search {
+  display: none !important;
+}
+
+.search {
+  position: relative;
+  @include flex(row, center);
+  gap: 10px;
+
+  svg {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 10px;
+    color: #96beff;
+  }
+
+  input {
+    font-family: var(--ifm-font-family-base);
+    border: 1px solid #acccff95;
+    border-radius: 7.5px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    padding-left: 35px;
+    letter-spacing: 0.75px;
+    word-spacing: 0.5px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #ffffff80;
+    color: #43608f;
+
+    @media (max-width: 630px) {
+      font-size: 16px;
+    }
+
+    &::placeholder {
+      color: #3b72ca;
+      opacity: 0.5;
+      font-size: 12px;
+    }
+
+    &:focus {
+      border-color: none;
+      outline: 1px dotted #96beff;
+    }
+  }
+}

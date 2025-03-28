@@ -2,7 +2,6 @@ import '@site/src/css/pages/maintainers.scss';
 
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { ProjectOptions } from '@site/src/@types/projects';
-import type { ChangeEvent } from 'react';
 import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -21,6 +20,7 @@ import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
 import { randomize } from '@site/src/helpers/radomizer';
+import { search } from '@site/src/helpers/search';
 
 interface Maintainer {
   username: string;
@@ -76,24 +76,6 @@ const MaintainersIndex: React.FC = () => {
   const rawMaintainers = loadMaintainers();
   const [maintainers, setMaintainers] = useState<Maintainer[]>([]);
 
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = normalizeChars(e.target.value);
-    const cards = Array.from(document.querySelectorAll('.card[data-search]'));
-
-    for (const card of cards) {
-      const dataSearch = normalizeChars(
-        card.getAttribute('data-search')?.toLowerCase() || ''
-      );
-
-      if (searchTerm === '' || dataSearch.includes(searchTerm)) {
-        card.classList.remove('d-n');
-        continue;
-      }
-
-      card.classList.add('d-n');
-    }
-  };
-
   useEffect(() => {
     setMaintainers(randomize([...rawMaintainers]));
   }, [setMaintainers]);
@@ -135,7 +117,7 @@ const MaintainersIndex: React.FC = () => {
             </FAQ>
           </header>
 
-          <div className='search' onChange={handleSearch}>
+          <div className='search' onChange={search}>
             <Search />
             <input
               type='search'
@@ -157,11 +139,12 @@ const MaintainersIndex: React.FC = () => {
                       [
                         maintainer.info.name,
                         ...maintainer.projects.map((project) => {
-                          if (project.name) return project.name;
-
                           const { repository } = extractRepository(
                             project.repository
                           );
+
+                          if (project.name)
+                            return `${project.name}${repository}`;
 
                           return repository;
                         }),

@@ -1,7 +1,7 @@
 import '@site/src/css/pages/projects.scss';
 
 import type { MergedProjects } from '@site/src/@types/projects';
-import type { FC, MouseEvent, ReactNode } from 'react';
+import type { ChangeEvent, FC, MouseEvent, ReactNode } from 'react';
 import {
   memo,
   startTransition,
@@ -20,6 +20,7 @@ import {
   Flame,
   House,
   Plane,
+  Search,
   SlidersHorizontal,
   Sprout,
 } from 'lucide-react';
@@ -31,6 +32,7 @@ import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { randomize } from '@site/src/helpers/radomizer';
 import { sortObjectByValues } from '@site/src/helpers/sort-object';
+import { search } from '../helpers/search';
 
 type ProjectsProps = {
   title: ReactNode;
@@ -53,6 +55,7 @@ const Projects: FC<ProjectsProps> = ({
   const [visibleCount, setVisibleCount] = useState(projectsLength);
   const { current: activeCategoryFilter } = useRef(new Set<string>(''));
   const { current: activeLanguageFilter } = useRef(new Set<string>(''));
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const usedLanguages = useMemo(() => {
     const languageSet = new Set<string>();
@@ -92,6 +95,8 @@ const Projects: FC<ProjectsProps> = ({
         .forEach((btn) => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
 
+      if (searchRef.current) searchRef.current.value = '';
+
       if (type === 'language') {
         activeLanguageFilter.clear();
         if (value) activeLanguageFilter.add(value);
@@ -103,6 +108,8 @@ const Projects: FC<ProjectsProps> = ({
       const allElements = Array.from(
         document.querySelectorAll('[data-repository]')
       );
+
+      for (const element of allElements) element.classList.remove('d-n-search');
 
       let visibleItems = 0;
 
@@ -144,9 +151,13 @@ const Projects: FC<ProjectsProps> = ({
         .forEach((btn) => btn.classList.remove('active'));
       event.currentTarget.classList.add('active');
 
+      if (searchRef.current) searchRef.current.value = '';
+
       const allElements = Array.from(
         document.querySelectorAll('[data-repository]')
       );
+
+      for (const element of allElements) element.classList.remove('d-n-search');
 
       let visibleItems = 0;
 
@@ -235,6 +246,21 @@ const Projects: FC<ProjectsProps> = ({
       controller.abort();
     };
   }, [setScores]);
+
+  const handleSearch = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      search(e);
+
+      setVisibleCount(
+        Array.from(
+          document.querySelectorAll(
+            '[data-repository]:not(.d-n-search):not(.d-n):not(.d-n2)'
+          )
+        ).length
+      );
+    },
+    [search, setVisibleCount]
+  );
 
   useEffect(() => {
     setAllProjects(randomize(projects));
@@ -380,10 +406,21 @@ const Projects: FC<ProjectsProps> = ({
             </menu>
           </FAQ>
 
+          <div className='search' onChange={handleSearch}>
+            <Search />
+            <input
+              ref={searchRef}
+              type='search'
+              name='search'
+              placeholder='Pesquise pelo nome do projeto ou mantenedor'
+            />
+          </div>
+
           <h3 className='counter'>
             <Code /> Exibindo <span className='length'>{visibleCount}</span>{' '}
             Projetos
           </h3>
+
           <div className='container'>
             {allProjects.map((project, i) => {
               const { organization, repository } = extractRepository(
