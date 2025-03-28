@@ -5,24 +5,40 @@
   position: fixed;
   inset: 0;
   z-index: 3;
-  @include flex(column, flex-end, center);
+  @include flex(column, flex-end);
   overflow: auto;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: opacity 0.25s;
   will-change: opacity;
   background-color: #d6edffbe;
   backdrop-filter: blur(15px);
+
+  @media (max-width: 630px) {
+    align-items: center;
+  }
 
   .content {
     @include flex(column, flex-end);
     flex-grow: 1;
     width: 100%;
 
+    @media (max-width: 630px) {
+      align-items: center;
+    }
+
     > header {
       @include flex(row, center, space-between);
       width: 100%;
       padding: 12.5px 20px;
+
+      a {
+        svg {
+          width: 20px;
+          height: 20px;
+          transform: translateY(2.5px);
+        }
+      }
 
       .close-sidebar {
         @include flex(row, center);
@@ -31,14 +47,17 @@
         cursor: pointer;
 
         svg {
+          width: 20px;
+          height: 20px;
           stroke: #ff4e95;
+          transform: translateY(-1px);
           transition: transform 0.1s;
         }
 
         &:hover {
           svg {
-            color: #12ff75;
             transform: scale(1.05);
+            color: #12ff75;
           }
         }
       }
@@ -52,10 +71,12 @@
       width: 420px;
       transform-origin: right;
       transform: scaleX(0);
-      transition:
-        opacity 0.2s,
-        transform 0.15s cubic-bezier(0.75, -0.25, 0.2, 0.9);
+      transition: transform 0.1s cubic-bezier(0.5, -0.5, 0.2, 0.9);
       will-change: trasform;
+
+      @media (max-width: 630px) {
+        width: 100%;
+      }
 
       a {
         @include flex(row, center);

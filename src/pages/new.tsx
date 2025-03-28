@@ -7,6 +7,8 @@ import Link from '@docusaurus/Link';
 import CodeBlock from '@theme/CodeBlock';
 import Layout from '@theme/Layout';
 import {
+  ArrowUp10,
+  Blocks,
   ChevronRight,
   CircleAlert,
   CircleHelp,
@@ -16,18 +18,21 @@ import {
   GitGraph,
   Github,
   GitPullRequestCreateArrow,
+  GraduationCap,
   HousePlus,
   IdCard,
   LetterText,
   MessageCircleHeart,
   PackageCheck,
   PackagePlus,
+  Shapes,
   Utensils,
   WandSparkles,
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { FAQ } from '../components/FAQ';
 
 export default (): ReactNode => {
   const scoreRef = useRef<HTMLDivElement>(null);
@@ -109,6 +114,9 @@ export default (): ReactNode => {
               </SafeLink>
             </small>
             <form>
+              <h2>
+                <Blocks /> Essenciais
+              </h2>
               <label>
                 <span>
                   <Github />
@@ -168,6 +176,10 @@ export default (): ReactNode => {
                   <CircleAlert /> Descrição do projeto (obrigatório).
                 </small>
               </label>
+
+              <h2>
+                <Shapes /> Personalização
+              </h2>
               <label>
                 <span>
                   <IdCard />
@@ -178,7 +190,7 @@ export default (): ReactNode => {
                 <input
                   placeholder='Ex.: Meu Projeto'
                   type='text'
-                  name='name'
+                  name='project-name'
                   onChange={(e) => updateJSON(e, 'name')}
                 />
                 <small>
@@ -205,6 +217,36 @@ export default (): ReactNode => {
                   (opcional).
                 </small>
               </label>
+              <label className='span'>
+                <span>
+                  <input
+                    type='checkbox'
+                    name='madeInBrazil'
+                    onChange={(e) => updateJSON(e, 'madeInBrazil', true)}
+                  />
+                  Quem criou o projeto é brasileiro? <sup>?</sup>
+                </span>
+                <small>
+                  <CircleHelp /> Marque essa opção se a resposta for "sim".
+                </small>
+              </label>
+              <label className='span'>
+                <span>
+                  <input
+                    type='checkbox'
+                    name='isAuthor'
+                    onChange={(e) => updateJSON(e, 'isAuthor', true)}
+                  />
+                  <ins>{maintainer}</ins> criou esse projeto? <sup>?</sup>
+                </span>
+                <small>
+                  <CircleHelp /> Marque essa opção se a resposta for "sim".
+                </small>
+              </label>
+
+              <h2>
+                <ArrowUp10 /> Números
+              </h2>
               <label>
                 <span>
                   <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
@@ -291,125 +333,103 @@ export default (): ReactNode => {
                   Marketplace, caso exista (opcional).
                 </small>
               </label>
-              <label className='span'>
-                <span>
-                  <input
-                    type='checkbox'
-                    name='madeInBrazil'
-                    onChange={(e) => updateJSON(e, 'madeInBrazil', true)}
-                  />
-                  Quem criou o projeto é brasileiro? <sup>?</sup>
-                </span>
-                <small>
-                  <CircleHelp /> Marque essa opção se a resposta for "sim".
-                </small>
-              </label>
-              <label className='span'>
-                <span>
-                  <input
-                    type='checkbox'
-                    name='isAuthor'
-                    onChange={(e) => updateJSON(e, 'isAuthor', true)}
-                  />
-                  <ins>{maintainer}</ins> criou esse projeto? <sup>?</sup>
-                </span>
-                <small>
-                  <CircleHelp /> Marque essa opção se a resposta for "sim".
-                </small>
-              </label>
-
-              <CodeBlock
-                language='json'
-                title={`./content/maintainers/${maintainer}/projects.json`}
-              >
-                {`${JSON.stringify(json, null, 2)}\n\n`}
-              </CodeBlock>
             </form>
           </header>
           <main ref={scoreRef}></main>
         </main>
         <main>
-          <header>
-            <h1>
-              <Name name='<Instruções />' />
-            </h1>
-          </header>
-          <main>
-            <p>
-              <Utensils />
-              <span>
-                Faça um{' '}
-                <strong>
-                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/fork'>
-                    fork do repositório awesomeyou
-                  </SafeLink>
-                </strong>
-                .
-              </span>
-            </p>
-            <p>
-              <GitBranchPlus />
-              <span>
-                Baixe seu fork localmente e crie uma nova <em>branch</em>.
-              </span>
-            </p>
-            <p>
-              <FileCode2 />
-              <span>
-                Crie o arquivo{' '}
-                <code>
-                  ./content/maintainers/<ins>{maintainer}</ins>/projects.json
-                </code>{' '}
-                e cole o conteúdo da primeira etapa.
-              </span>
-            </p>
-            <p>
-              <PackageCheck />
-              <span>
-                Instale as dependências do projeto com o comando{' '}
-                <code>npm ci</code>.
-              </span>
-            </p>
-            <p>
-              <WandSparkles />
-              <span>
-                Aplique a formatação com o comando <code>npm run lint:fix</code>
-                .
-              </span>
-            </p>
-            <p>
-              <GitGraph />
-              <span>
-                Crie o <em>commit</em> com suas modificações.
-              </span>
-            </p>
-            <p>
-              <GitPullRequestCreateArrow />
-              <span>
-                Abra uma <strong>Pull Request</strong> com o título "
-                <strong>
-                  docs: add{' '}
-                  {json?.projects?.[0]?.name ||
-                    (() => {
-                      try {
-                        return extractRepository(json.projects[0].repository)
-                          .repository;
-                      } catch (error) {
-                        return '***';
-                      }
-                    })()}
-                </strong>
-                ".
-              </span>
-            </p>
-            <p>
-              <HousePlus />
-              <span>
-                Fique à vontade para falar do seu projeto e conversar em
-                português.
-              </span>
-            </p>
-          </main>
+          <FAQ
+            open
+            title={
+              <>
+                <GraduationCap /> Instruções
+              </>
+            }
+          >
+            <small>
+              <div>
+                <Utensils />{' '}
+                <span>
+                  Faça um{' '}
+                  <strong>
+                    <SafeLink to='https://github.com/wellwelwel/awesomeyou/fork'>
+                      fork do repositório <ins>awesomeyou</ins>
+                    </SafeLink>
+                  </strong>
+                  .
+                </span>
+              </div>
+              <div>
+                <GitBranchPlus />{' '}
+                <span>
+                  Baixe seu <em>fork</em> localmente e crie uma nova{' '}
+                  <em>branch</em>.
+                </span>
+              </div>
+              <div>
+                <FileCode2 />{' '}
+                <span>
+                  Crie o arquivo{' '}
+                  <code>
+                    ./content/maintainers/<ins>{maintainer}</ins>/projects.json
+                  </code>{' '}
+                  e cole o conteúdo a seguir:
+                  <CodeBlock
+                    language='json'
+                    title={`./content/maintainers/${maintainer}/projects.json`}
+                  >
+                    {`${JSON.stringify(json, null, 2)}\n\n`}
+                  </CodeBlock>
+                </span>
+              </div>
+              <div>
+                <PackageCheck />{' '}
+                <span>
+                  Instale as dependências do projeto com o comando{' '}
+                  <code>npm ci</code>.
+                </span>
+              </div>
+              <div>
+                <WandSparkles />{' '}
+                <span>
+                  Aplique a formatação com o comando{' '}
+                  <code>npm run lint:fix</code>.
+                </span>
+              </div>
+              <div>
+                <GitGraph />{' '}
+                <span>
+                  Crie o <em>commit</em> com suas modificações.
+                </span>
+              </div>
+              <div>
+                <GitPullRequestCreateArrow />{' '}
+                <span>
+                  Abra uma <strong>Pull Request</strong> com o título "
+                  <strong>
+                    docs: add{' '}
+                    {json?.projects?.[0]?.name ||
+                      (() => {
+                        try {
+                          return extractRepository(json.projects[0].repository)
+                            .repository;
+                        } catch (error) {
+                          return '***';
+                        }
+                      })()}
+                  </strong>
+                  ".
+                </span>
+              </div>
+              <div>
+                <HousePlus />{' '}
+                <span>
+                  Fique à vontade para falar do seu projeto e conversar em
+                  português.
+                </span>
+              </div>
+            </small>
+          </FAQ>
         </main>
       </div>
     </Layout>

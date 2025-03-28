@@ -508,80 +508,6 @@ export default (): ReactNode => {
             <FAQ
               title={
                 <>
-                  <Scale /> Posso utilizar o código-fonte da Awesome You?
-                </>
-              }
-            >
-              <small className='mono'>
-                <h3>Código Fonte</h3>
-                <p>
-                  Desde que sejam cumpridos os requisitos estabelecidos pela
-                  licença{' '}
-                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE'>
-                    <strong>
-                      GNU Affero General Public License v3.0 (AGPL-3.0)
-                    </strong>
-                  </SafeLink>
-                  , sim.
-                </p>
-                <p>
-                  Isso significa que, caso utilize, modifique ou distribua nosso
-                  código-fonte, você deve:
-                </p>
-                <ul>
-                  <li>
-                    Manter o código-fonte relacionado igualmente aberto, sob a
-                    mesma licença e disponível ao público.
-                  </li>
-                  <li>
-                    Incluir os devidos créditos, mencionando nossa homepage:{' '}
-                    <strong>https://awesomeyou.io</strong> no seu projeto.
-                  </li>
-                </ul>
-                <p>
-                  O uso do código-fonte de forma proprietária é uma infração
-                  direta, independentemente de a <strong>Awesome You</strong>{' '}
-                  ser devidamente mencionada.
-                </p>
-                <p>
-                  O descumprimento dessas condições constitui uma violação da
-                  licença e pode resultar em medidas legais.
-                </p>
-
-                <h3>Identidade Visual</h3>
-                <p>
-                  O uso, modificação ou redistribuição de elementos gráficos,
-                  identidade visual, logotipos e ilustrações da{' '}
-                  <strong>Awesome You</strong> sem a devida atribuição constitui
-                  uma violação da licença{' '}
-                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE-assets'>
-                    <strong>
-                      Creative Commons Attribution 4.0 (CC-BY-4.0)
-                    </strong>
-                  </SafeLink>{' '}
-                  e pode estar sujeito a medidas legais para garantir o
-                  cumprimento dos direitos autorais e dos termos de
-                  licenciamento aplicáveis.
-                </p>
-                <p>
-                  O uso de elementos gráficos, identidade visual, logotipos e
-                  ilustrações da <strong>Awesome You</strong> não deve, sob
-                  nenhuma circunstância, sugerir uma afiliação, parceria oficial
-                  ou endosso por parte do projeto, salvo autorização expressa da
-                  equipe original.
-                </p>
-
-                <h3>Nome</h3>
-                <p>
-                  O nome "Awesome You" é uma identidade protegida e não deve ser
-                  utilizado para nomear ou representar projetos terceiros.
-                </p>
-              </small>
-            </FAQ>
-
-            <FAQ
-              title={
-                <>
                   <Construction /> Quem está por trás da Awesome You?
                 </>
               }
@@ -647,6 +573,80 @@ export default (): ReactNode => {
                 Nosso trabalho vai além de ser voluntário, nós simplesmente
                 amamos o que fazemos 💙
               </footer>
+            </FAQ>
+
+            <FAQ
+              title={
+                <>
+                  <Scale /> Legal
+                </>
+              }
+            >
+              <small className='mono'>
+                <h3>Código Fonte</h3>
+                <p>
+                  Desde que sejam cumpridos os requisitos estabelecidos pela
+                  licença{' '}
+                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE'>
+                    <strong>
+                      GNU Affero General Public License v3.0 (AGPL-3.0)
+                    </strong>
+                  </SafeLink>
+                  , sim.
+                </p>
+                <p>
+                  Isso significa que, caso utilize, modifique ou distribua nosso
+                  código-fonte, você deve:
+                </p>
+                <ul>
+                  <li>
+                    Manter o código-fonte relacionado igualmente aberto, sob a
+                    mesma licença e disponível ao público.
+                  </li>
+                  <li>
+                    Incluir os devidos créditos, mencionando nossa homepage:{' '}
+                    <strong>https://awesomeyou.io</strong> no seu projeto.
+                  </li>
+                </ul>
+                <p>
+                  O uso do código-fonte de forma proprietária é uma infração
+                  direta, independentemente de a <strong>Awesome You</strong>{' '}
+                  ser devidamente mencionada.
+                </p>
+                <p>
+                  O descumprimento dessas condições constitui uma violação da
+                  licença e pode resultar em medidas legais.
+                </p>
+
+                <h3>Identidade Visual</h3>
+                <p>
+                  O uso, modificação ou redistribuição de elementos gráficos,
+                  identidade visual, logotipos e ilustrações da{' '}
+                  <strong>Awesome You</strong> sem a devida atribuição constitui
+                  uma violação da licença{' '}
+                  <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE-assets'>
+                    <strong>
+                      Creative Commons Attribution 4.0 (CC-BY-4.0)
+                    </strong>
+                  </SafeLink>{' '}
+                  e pode estar sujeito a medidas legais para garantir o
+                  cumprimento dos direitos autorais e dos termos de
+                  licenciamento aplicáveis.
+                </p>
+                <p>
+                  O uso de elementos gráficos, identidade visual, logotipos e
+                  ilustrações da <strong>Awesome You</strong> não deve, sob
+                  nenhuma circunstância, sugerir uma afiliação, parceria oficial
+                  ou endosso por parte do projeto, salvo autorização expressa da
+                  equipe.
+                </p>
+
+                <h3>Nome</h3>
+                <p>
+                  O nome "Awesome You" é uma identidade protegida e não deve ser
+                  utilizado para nomear ou representar projetos terceiros.
+                </p>
+              </small>
             </FAQ>
           </main>
         </main>

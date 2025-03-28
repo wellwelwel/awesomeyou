@@ -10,3 +10,9 @@ svg {
     pointer-events: none;
   }
 }
+
+input {
+  &:focus {
+    outline: 1px dotted #81b1ff;
+  }
+}
