@@ -2,6 +2,7 @@ import '@site/src/css/pages/maintainers.scss';
 
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { ProjectOptions } from '@site/src/@types/projects';
+import type { ChangeEvent } from 'react';
 import React, { memo, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
@@ -11,12 +12,14 @@ import {
   Heart,
   MapPin,
   Network,
+  Search,
   UsersRound,
 } from 'lucide-react';
 import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { normalizeChars } from '@site/src/helpers/normalize-chars';
 import { randomize } from '@site/src/helpers/radomizer';
 
 interface Maintainer {
@@ -73,6 +76,24 @@ const MaintainersIndex: React.FC = () => {
   const rawMaintainers = loadMaintainers();
   const [maintainers, setMaintainers] = useState<Maintainer[]>([]);
 
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = normalizeChars(e.target.value);
+    const cards = Array.from(document.querySelectorAll('.card[data-search]'));
+
+    for (const card of cards) {
+      const dataSearch = normalizeChars(
+        card.getAttribute('data-search')?.toLowerCase() || ''
+      );
+
+      if (searchTerm === '' || dataSearch.includes(searchTerm)) {
+        card.classList.remove('d-n');
+        continue;
+      }
+
+      card.classList.add('d-n');
+    }
+  };
+
   useEffect(() => {
     setMaintainers(randomize([...rawMaintainers]));
   }, [setMaintainers]);
@@ -114,13 +135,39 @@ const MaintainersIndex: React.FC = () => {
             </FAQ>
           </header>
 
+          <div className='search' onChange={handleSearch}>
+            <Search />
+            <input
+              type='search'
+              name='search'
+              placeholder='Pesquise pelo nome ou pelo projeto'
+            />
+          </div>
+
           <main>
             <div className='cards'>
               {maintainers?.map((maintainer) => {
                 if (maintainer?.projects?.length === 0) return null;
 
                 return (
-                  <section className='card' key={maintainer.username}>
+                  <section
+                    className='card'
+                    key={maintainer.username}
+                    data-search={normalizeChars(
+                      [
+                        maintainer.info.name,
+                        ...maintainer.projects.map((project) => {
+                          if (project.name) return project.name;
+
+                          const { repository } = extractRepository(
+                            project.repository
+                          );
+
+                          return repository;
+                        }),
+                      ].join()
+                    )}
+                  >
                     <header>
                       <Link to={`/maintainers/${maintainer.username}`}>
                         <img

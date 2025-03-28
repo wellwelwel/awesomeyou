@@ -33,13 +33,23 @@
           height: 36px;
           transform: translateY(2.5px);
         }
+
+        @media (max-width: 820px) {
+          width: 100%;
+          text-align: left;
+          font-size: 26px;
+
+          img {
+            height: 24px;
+          }
+        }
       }
 
       & > small {
         color: #416db5;
 
         &.baloon {
-          margin-top: 35px;
+          margin-top: 30px;
         }
 
         &.quoted {
@@ -48,6 +58,8 @@
           margin-top: 15px;
 
           svg {
+            width: 18px;
+            height: 18px;
             transform: rotate(-180deg) translateY(5px);
             color: #0062ff;
           }
