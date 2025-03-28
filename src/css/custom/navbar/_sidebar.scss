@@ -1,0 +1,98 @@
+@use 'sass:meta' as *;
+@use '../../global/mixins' as *;
+
+#sidebar {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  @include flex(column, flex-end, center);
+  overflow: auto;
+  pointer-events: none;
+  transform-origin: right;
+  transform: scaleX(0);
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.1s cubic-bezier(0.75, -0.25, 0.2, 0.9);
+  will-change: opacity, trasform;
+  background-color: #d6edffbe;
+  backdrop-filter: blur(15px);
+
+  &.on {
+    opacity: 1;
+    transform: scaleX(1);
+    pointer-events: all;
+  }
+
+  .content {
+    @include flex(column);
+    flex-grow: 1;
+
+    > header {
+      @include flex(row, center, flex-end);
+      padding: 12.5px 20px;
+
+      .close-sidebar {
+        @include flex(row, center);
+        background-color: unset;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          stroke: #ff4e95;
+          transition: transform 0.1s;
+        }
+
+        &:hover {
+          svg {
+            color: #12ff75;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+
+    > main {
+      flex-grow: 1;
+      @include flex(column);
+      gap: 20px;
+      padding: 20px 40px;
+
+      a {
+        @include flex(row, center);
+        gap: 10px;
+        padding: 20px 30px;
+        border-radius: 25px;
+        border: 1px solid #acccff95;
+        box-shadow: 0 0 5px #445cc619;
+        background-color: #ffffff80;
+        font-size: 13px;
+        font-weight: 600;
+        transition:
+          border 0.25s,
+          transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+        color: #3c4d97;
+
+        svg {
+          height: 24px;
+          width: 24px;
+          filter: drop-shadow(0 0 2.5px #2b79ff20);
+          color: #388eff;
+          transition:
+            color 0.25s,
+            transform 0.25s;
+        }
+
+        &:hover {
+          border-color: #9cc2ffc9;
+          transform: scale(1.01);
+
+          svg {
+            color: #0099ff;
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}

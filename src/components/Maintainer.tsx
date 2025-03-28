@@ -313,7 +313,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                   <Share2 />{' '}
                   <span>
                     <ins>Compartilhe</ins> projetos que {name} mantém com a sua
-                    rede e como eles já te ajudaram.
+                    rede e conte como eles já te ajudaram.
                   </span>
                 </p>
                 <p>

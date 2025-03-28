@@ -1,15 +1,25 @@
 import type { ReactNode } from 'react';
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
-import { Code, Github, UsersRound } from 'lucide-react';
+import {
+  Calculator,
+  Code,
+  CopyX,
+  Github,
+  GraduationCap,
+  Home,
+  List,
+  Menu,
+  PackagePlus,
+  UsersRound,
+} from 'lucide-react';
 import { Toaster } from 'sonner';
-import Logo from '@site/content/assets/img/logo.svg';
 import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
+  const sidebar = useRef<HTMLElement>(null);
   const location = useLocation();
-  const isHome = location.pathname === '/';
   const toTop = (element: Element) => {
     element.scrollTo({
       top: 0,
@@ -52,15 +62,7 @@ const Navbar = (): ReactNode => {
       />
       <header className='main-header'>
         <Link to='/'>
-          <Logo className='logo' />
-          <span
-            className={(() => {
-              if (isHome) return 'home';
-              return 'home show';
-            })()}
-          >
-            Home
-          </span>
+          <Home className='logo' />
         </Link>
         <aside>
           <Link to='/projects'>
@@ -72,8 +74,53 @@ const Navbar = (): ReactNode => {
           <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
             <Github />
           </SafeLink>
+          <button
+            onClick={() => sidebar.current?.classList.add('on')}
+            className='trigger-sidebar'
+          >
+            <Menu />
+          </button>
         </aside>
       </header>
+      <aside
+        ref={sidebar}
+        id='sidebar'
+        onClick={() => sidebar.current?.classList.remove('on')}
+      >
+        <div className='content'>
+          <header>
+            <button
+              onClick={() => sidebar.current?.classList.remove('on')}
+              className='close-sidebar'
+            >
+              <CopyX />
+            </button>
+          </header>
+          <main>
+            <Link to='/'>
+              <Home /> Página Inicial
+            </Link>
+            <Link to='/projects'>
+              <Code /> Explore Projetos
+            </Link>
+            <Link to='/maintainers'>
+              <UsersRound /> Conheça Pessoas Mantenedoras
+            </Link>
+            <Link to='/learn'>
+              <GraduationCap /> Aprenda Programação
+            </Link>
+            <Link to='/lists'>
+              <List /> Conheça Listas Incríveis
+            </Link>
+            <Link to='/calculator'>
+              <Calculator /> Descruba seu Score
+            </Link>
+            <Link to='/new'>
+              <PackagePlus /> Submeter Projetos
+            </Link>
+          </main>
+        </div>
+      </aside>
     </>
   );
 };
