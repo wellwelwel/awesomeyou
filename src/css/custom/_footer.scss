@@ -2,6 +2,7 @@
 
 footer {
   position: relative;
+  z-index: 1;
   @include flex(column, flex-start, center);
   gap: 10px;
   width: 100%;
@@ -52,6 +53,36 @@ footer {
 
     + p {
       margin-top: 5px;
+    }
+  }
+
+  #float {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 0;
+    @include flex(row, center);
+    padding: 7.5px;
+    border-radius: 10px;
+    border: 1px solid #0062ff;
+    background-color: #0084ff;
+    opacity: 0.75;
+    transition: opacity 0.25s;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.hide {
+      opacity: 0;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      color: #fff;
+      filter: drop-shadow(0 0 2.5px #0f1e39);
     }
   }
 }

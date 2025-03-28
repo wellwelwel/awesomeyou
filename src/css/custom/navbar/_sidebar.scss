@@ -8,28 +8,20 @@
   @include flex(column, flex-end, center);
   overflow: auto;
   pointer-events: none;
-  transform-origin: right;
-  transform: scaleX(0);
   opacity: 0;
-  transition:
-    opacity 0.2s,
-    transform 0.1s cubic-bezier(0.75, -0.25, 0.2, 0.9);
-  will-change: opacity, trasform;
+  transition: opacity 0.2s;
+  will-change: opacity;
   background-color: #d6edffbe;
   backdrop-filter: blur(15px);
 
-  &.on {
-    opacity: 1;
-    transform: scaleX(1);
-    pointer-events: all;
-  }
-
   .content {
-    @include flex(column);
+    @include flex(column, flex-end);
     flex-grow: 1;
+    width: 100%;
 
     > header {
-      @include flex(row, center, flex-end);
+      @include flex(row, center, space-between);
+      width: 100%;
       padding: 12.5px 20px;
 
       .close-sidebar {
@@ -54,13 +46,21 @@
 
     > main {
       flex-grow: 1;
-      @include flex(column);
+      @include flex(column, flex-end);
       gap: 20px;
       padding: 20px 40px;
+      width: 420px;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition:
+        opacity 0.2s,
+        transform 0.15s cubic-bezier(0.75, -0.25, 0.2, 0.9);
+      will-change: trasform;
 
       a {
         @include flex(row, center);
         gap: 10px;
+        width: 100%;
         padding: 20px 30px;
         border-radius: 25px;
         border: 1px solid #acccff95;
@@ -70,7 +70,7 @@
         font-weight: 600;
         transition:
           border 0.25s,
-          transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+          transform 0.15s;
         color: #3c4d97;
 
         svg {
@@ -85,13 +85,24 @@
 
         &:hover {
           border-color: #9cc2ffc9;
-          transform: scale(1.01);
+          transform: scale(1.02);
 
           svg {
             color: #0099ff;
             transform: scale(1.05);
           }
         }
+      }
+    }
+  }
+
+  &.on {
+    opacity: 1;
+    pointer-events: all;
+
+    .content {
+      > main {
+        transform: scaleX(1);
       }
     }
   }

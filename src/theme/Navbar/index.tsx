@@ -12,6 +12,7 @@ import {
   List,
   Menu,
   PackagePlus,
+  Star,
   UsersRound,
 } from 'lucide-react';
 import { Toaster } from 'sonner';
@@ -65,12 +66,6 @@ const Navbar = (): ReactNode => {
           <Home className='logo' />
         </Link>
         <aside>
-          <Link to='/projects'>
-            <Code /> <span>Projetos</span>
-          </Link>
-          <Link to='/maintainers'>
-            <UsersRound /> <span>Pessoas</span>
-          </Link>
           <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
             <Github />
           </SafeLink>
@@ -89,6 +84,9 @@ const Navbar = (): ReactNode => {
       >
         <div className='content'>
           <header>
+            <Link to='/'>
+              <Home />
+            </Link>
             <button
               onClick={() => sidebar.current?.classList.remove('on')}
               className='close-sidebar'
@@ -97,9 +95,6 @@ const Navbar = (): ReactNode => {
             </button>
           </header>
           <main>
-            <Link to='/'>
-              <Home /> Página Inicial
-            </Link>
             <Link to='/projects'>
               <Code /> Explore Projetos
             </Link>
@@ -118,6 +113,9 @@ const Navbar = (): ReactNode => {
             <Link to='/new'>
               <PackagePlus /> Submeter Projetos
             </Link>
+            <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
+              <Star /> Comunidade no GitHub
+            </SafeLink>
           </main>
         </div>
       </aside>
