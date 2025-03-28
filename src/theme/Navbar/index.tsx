@@ -66,12 +66,18 @@ const Navbar = (): ReactNode => {
           <Home className='logo' />
         </Link>
         <aside>
-          <SafeLink to='https://github.com/wellwelwel/awesomeyou'>
+          <SafeLink
+            to='https://github.com/wellwelwel/awesomeyou'
+            title='GitHub do Projeto'
+            aria-label='GitHub do Projeto'
+          >
             <Github />
           </SafeLink>
           <button
             onClick={() => sidebar.current?.classList.add('on')}
             className='trigger-sidebar'
+            title='Abrir menu'
+            aria-label='Abrir menu'
           >
             <Menu />
           </button>
@@ -90,6 +96,8 @@ const Navbar = (): ReactNode => {
             <button
               onClick={() => sidebar.current?.classList.remove('on')}
               className='close-sidebar'
+              title='Fechar menu'
+              aria-label='Fechar menu'
             >
               <CopyX />
             </button>

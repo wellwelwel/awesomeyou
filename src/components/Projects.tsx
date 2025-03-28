@@ -20,6 +20,7 @@ import {
   Flame,
   House,
   Plane,
+  Quote,
   Search,
   SlidersHorizontal,
   Sprout,
@@ -42,6 +43,14 @@ type ProjectsProps = {
   excludeFilters?: (keyof typeof categories)[];
 };
 
+const tips = {
+  default:
+    'Por padrão, os projetos são exibidos em ordem aleatória, assim você sempre descobrirá novos projetos ao voltar aqui.',
+  greater:
+    'Projetos com grande impacto se destacam por sua ampla adoção, popularidade e pela força de sua comunidade, especialmente quando somados entre si.',
+  less: 'Descubra e incentive projetos inovadores! Ao contribuir com projetos em crescimento, você tem a oportunidade de participar do amadurecimento de novas ideias e tecnologias.',
+};
+
 const Projects: FC<ProjectsProps> = ({
   title,
   icon,
@@ -56,6 +65,7 @@ const Projects: FC<ProjectsProps> = ({
   const { current: activeCategoryFilter } = useRef(new Set<string>(''));
   const { current: activeLanguageFilter } = useRef(new Set<string>(''));
   const searchRef = useRef<HTMLInputElement>(null);
+  const [tip, setTip] = useState<keyof typeof tips>('default');
 
   const usedLanguages = useMemo(() => {
     const languageSet = new Set<string>();
@@ -188,6 +198,10 @@ const Projects: FC<ProjectsProps> = ({
     ) => {
       if (!scores) return;
 
+      if (sortByScore === 0) setTip('greater');
+      else if (sortByScore === 1) setTip('less');
+      else setTip('default');
+
       document
         .querySelectorAll('button[data-filter="order"]')
         .forEach((btn) => btn.classList.remove('active'));
@@ -305,15 +319,15 @@ const Projects: FC<ProjectsProps> = ({
                   </button>
                   <button
                     data-filter='order'
-                    onClick={(e) => sortProjectsByScore(e, 0)}
-                  >
-                    <Flame /> Impacto
-                  </button>
-                  <button
-                    data-filter='order'
                     onClick={(e) => sortProjectsByScore(e, 1)}
                   >
                     <Sprout /> Ajude a Construir
+                  </button>
+                  <button
+                    data-filter='order'
+                    onClick={(e) => sortProjectsByScore(e, 0)}
+                  >
+                    <Flame /> Maior Impacto
                   </button>
                 </div>
               </div>
@@ -420,6 +434,10 @@ const Projects: FC<ProjectsProps> = ({
             <Code /> Exibindo <span className='length'>{visibleCount}</span>{' '}
             Projetos
           </h3>
+
+          <small className='quoted'>
+            <Quote /> <span>{tips[tip || 'default']}</span>
+          </small>
 
           <div className='container'>
             {allProjects.map((project, i) => {

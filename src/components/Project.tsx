@@ -5,19 +5,24 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import {
   Activity,
+  Award,
   Bug,
   BugOff,
   Code,
   Dna,
   ExternalLink,
+  Flame,
+  FlameKindling,
   HeartHandshake,
   MapPin,
   Network,
   Rocket,
   Scale,
   Shapes,
+  Sprout,
   Star,
   StarHalf,
+  Trophy,
   UsersRound,
   UtensilsCrossed,
   Wrench,
@@ -44,7 +49,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
   categories: currentCategories,
   madeInBrazil,
   message,
-  // score,
+  score,
 }) => {
   const repositoryData = extractRepository(repositoryURL);
   const refs = {
@@ -146,8 +151,8 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
       data-search={normalizeChars(
         [
           repository,
-          name,
-          Object.values(maintainersInfos).map((info) => info.name),
+          name || '',
+          ...Object.values(maintainersInfos).map((info) => info.name),
         ].join()
       )}
       data-repository={repositoryURL}
@@ -225,6 +230,30 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <>
               <table ref={refs.impact.table} className='active'>
                 <tbody>
+                  {score ? (
+                    <tr>
+                      <td>
+                        <span>Score:</span>
+                      </td>
+                      <td>
+                        {score > 1_000_000 ? (
+                          <Trophy />
+                        ) : score > 100_000 ? (
+                          <Award />
+                        ) : score > 10_000 ? (
+                          <Flame />
+                        ) : score > 1_000 ? (
+                          <FlameKindling />
+                        ) : (
+                          <Sprout />
+                        )}
+                        <span className='score'>
+                          {Number(score).toLocaleString('pt-BR')}
+                        </span>
+                      </td>
+                    </tr>
+                  ) : null}
+
                   <tr>
                     <td>Contribuidores:</td>
                     <td>

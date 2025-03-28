@@ -83,7 +83,14 @@ const Footer = (): ReactNode => {
             .
           </p>
         </section>
-        <button ref={float} id='float' className='hide' onClick={toTop}>
+        <button
+          ref={float}
+          id='float'
+          className='hide'
+          onClick={toTop}
+          title='Voltar para o topo'
+          aria-label='Voltar para o topo'
+        >
           <ChevronUp />
         </button>
       </footer>

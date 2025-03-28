@@ -96,6 +96,28 @@
       }
     }
 
+    .quoted {
+      @include flex(row, flex-start);
+      gap: 10px;
+      margin-top: 15px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        min-width: 18px;
+        min-height: 18px;
+        transform: rotate(-180deg) translateY(5px);
+        color: #0062ff;
+      }
+
+      & > span {
+        background: linear-gradient(94.23deg, #0062ff 12.41%, #00a6ff 89.95%);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    }
+
     & > .container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
