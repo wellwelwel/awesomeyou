@@ -744,8 +744,12 @@
               padding-inline: 10px;
 
               .cards {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                width: 100%;
+
                 a {
-                  width: fit-content;
+                  width: 100%;
                   flex-direction: row;
                   align-items: center;
                   padding: 5px;
@@ -768,18 +772,10 @@
                       border-color: #f0f9ff;
                     }
                   }
+                }
 
-                  @media (max-width: 630px) {
-                    width: 100%;
-
-                    &:nth-child(even) {
-                      flex-direction: row-reverse;
-
-                      header {
-                        flex-direction: row-reverse;
-                      }
-                    }
-                  }
+                @media (max-width: 630px) {
+                  grid-template-columns: repeat(2, 1fr);
                 }
               }
 

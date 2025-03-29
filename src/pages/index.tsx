@@ -567,6 +567,26 @@ export default (): ReactNode => {
                       <span>Lucas Santos</span>
                     </header>
                   </SafeLink>
+                  <SafeLink to='https://linktr.ee/wheslleyrimar'>
+                    <header>
+                      <img
+                        loading='lazy'
+                        src='/img/team/1734113677336.jpeg'
+                        alt='Wheslley Rimar Bezerra'
+                      />
+                      <span>Wheslley Rimar Bezerra</span>
+                    </header>
+                  </SafeLink>
+                  <SafeLink to='https://linktr.ee/omatheusmesmo'>
+                    <header>
+                      <img
+                        loading='lazy'
+                        src='/img/team/1663505481247.jpeg'
+                        alt='Matheus Oliveira'
+                      />
+                      <span>Matheus Oliveira</span>
+                    </header>
+                  </SafeLink>
                 </div>
               </div>
               <footer>
@@ -578,21 +598,21 @@ export default (): ReactNode => {
             <FAQ
               title={
                 <>
-                  <Scale /> Legal
+                  <Scale /> Licença e Atribuição
                 </>
               }
             >
               <small className='mono'>
                 <h3>Código Fonte</h3>
                 <p>
-                  Desde que sejam cumpridos os requisitos estabelecidos pela
-                  licença{' '}
+                  O código fonte da <strong>Awesome You</strong> é distribuído
+                  sob a licença{' '}
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE'>
                     <strong>
                       GNU Affero General Public License v3.0 (AGPL-3.0)
                     </strong>
                   </SafeLink>
-                  , sim.
+                  .
                 </p>
                 <p>
                   Isso significa que, caso utilize, modifique ou distribua nosso
