@@ -37,7 +37,6 @@ body {
     @include load-css('navbar');
     @include load-css('markdown');
     @include load-css('table');
-    @include load-css('article');
 
     & > {
       @include load-css('footer');

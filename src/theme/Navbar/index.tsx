@@ -63,7 +63,7 @@ const Navbar = (): ReactNode => {
       />
       <header className='main-header'>
         <Link to='/'>
-          <Home className='logo' />
+          <Home className='logo' /> Awesome You
         </Link>
         <aside>
           <SafeLink

@@ -1,7 +1,7 @@
 import '@site/src/css/pages/new.scss';
 
+import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
-import type { ProjectOptions, RawProject } from '../@types/projects';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from '@docusaurus/Link';
 import CodeBlock from '@theme/CodeBlock';
@@ -9,11 +9,13 @@ import Layout from '@theme/Layout';
 import {
   ArrowUp10,
   Blocks,
+  Bot,
   ChevronRight,
   CircleAlert,
   CircleHelp,
   ExternalLink,
   FileCode2,
+  FileDiff,
   GitBranchPlus,
   GitGraph,
   Github,
@@ -25,14 +27,18 @@ import {
   MessageCircleHeart,
   PackageCheck,
   PackagePlus,
+  Pencil,
   Shapes,
+  User,
+  UserRoundPen,
+  UsersRound,
   Utensils,
   WandSparkles,
 } from 'lucide-react';
+import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-import { FAQ } from '../components/FAQ';
 
 export default (): ReactNode => {
   const scoreRef = useRef<HTMLDivElement>(null);
@@ -115,13 +121,13 @@ export default (): ReactNode => {
             </small>
             <form>
               <h2>
-                <Blocks /> Essenciais
+                <User /> Quem é a pessoa mantenedora?
               </h2>
               <label>
                 <span>
                   <Github />
                   <span>
-                    Username do Mantenedor <em>*</em>
+                    Username do GitHub <em>*</em>
                   </span>
                 </span>
                 <input
@@ -140,6 +146,9 @@ export default (): ReactNode => {
                   no GitHub (obrigatório).
                 </small>
               </label>
+              <h2>
+                <Blocks /> Projetos
+              </h2>
               <label>
                 <span>
                   <Github />
@@ -348,7 +357,7 @@ export default (): ReactNode => {
           >
             <small>
               <div>
-                <Utensils />{' '}
+                <Utensils />
                 <span>
                   Faça um{' '}
                   <strong>
@@ -360,50 +369,50 @@ export default (): ReactNode => {
                 </span>
               </div>
               <div>
-                <GitBranchPlus />{' '}
+                <GitBranchPlus />
                 <span>
                   Baixe seu <em>fork</em> localmente e crie uma nova{' '}
                   <em>branch</em>.
                 </span>
               </div>
               <div>
-                <FileCode2 />{' '}
+                <FileCode2 />
                 <span>
                   Crie o arquivo{' '}
                   <code>
-                    ./content/maintainers/<ins>{maintainer}</ins>/projects.json
+                    content/maintainers/<ins>{maintainer}</ins>/projects.json
                   </code>{' '}
                   e cole o conteúdo a seguir:
                   <CodeBlock
                     language='json'
-                    title={`./content/maintainers/${maintainer}/projects.json`}
+                    title={`content/maintainers/${maintainer}/projects.json`}
                   >
                     {`${JSON.stringify(json, null, 2)}\n\n`}
                   </CodeBlock>
                 </span>
               </div>
               <div>
-                <PackageCheck />{' '}
+                <PackageCheck />
                 <span>
                   Instale as dependências do projeto com o comando{' '}
-                  <code>npm ci</code>.
+                  <code>npm ci</code> (opcional).
                 </span>
               </div>
               <div>
-                <WandSparkles />{' '}
+                <WandSparkles />
                 <span>
                   Aplique a formatação com o comando{' '}
-                  <code>npm run lint:fix</code>.
+                  <code>npm run lint:fix</code> (opcional).
                 </span>
               </div>
               <div>
-                <GitGraph />{' '}
+                <GitGraph />
                 <span>
                   Crie o <em>commit</em> com suas modificações.
                 </span>
               </div>
               <div>
-                <GitPullRequestCreateArrow />{' '}
+                <GitPullRequestCreateArrow />
                 <span>
                   Abra uma <strong>Pull Request</strong> com o título "
                   <strong>
@@ -422,10 +431,60 @@ export default (): ReactNode => {
                 </span>
               </div>
               <div>
-                <HousePlus />{' '}
+                <HousePlus />
                 <span>
                   Fique à vontade para falar do seu projeto e conversar em
                   português.
+                </span>
+              </div>
+            </small>
+          </FAQ>
+          <FAQ
+            title={
+              <>
+                <UsersRound /> Como cadastrar múltiplas pessoas no mesmo
+                projeto?
+              </>
+            }
+          >
+            <small>
+              <div>
+                <GitPullRequestCreateArrow />
+                <span>
+                  Cada pessoa deve ser cadastrada individualmente, cada uma em
+                  um <em>Pull Request</em> próprio.
+                </span>
+              </div>
+              <div>
+                <Bot />
+                <span>
+                  O sistema associa múltiplas pessoas automaticamente em
+                  projetos já cadastrados.
+                </span>
+              </div>
+            </small>
+          </FAQ>
+          <FAQ
+            title={
+              <>
+                <Pencil /> Atualizando projetos
+              </>
+            }
+          >
+            <small>
+              <div>
+                <FileDiff />
+                <span>
+                  Você pode simular um novo cadastro, então copiar e colar
+                  apenas as novas informações, assim como editar o{' '}
+                  <code>.json</code> manualmente.
+                </span>
+              </div>
+              <div>
+                <UserRoundPen />
+                <span>
+                  O mesmo se aplica ao atualizar a mini bio da pessoa
+                  mantenedora.
                 </span>
               </div>
             </small>

@@ -315,8 +315,11 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                 <p>
                   <Share2 />{' '}
                   <span>
-                    <ins>Compartilhe</ins> projetos que {name} mantém com a sua
-                    rede e conte como eles já te ajudaram.
+                    <ins>Compartilhe</ins> projetos que{' '}
+                    <SafeLink to={`https://github.com/${username}`}>
+                      {name}
+                    </SafeLink>{' '}
+                    mantém com a sua rede e conte como eles já te ajudaram.
                   </span>
                 </p>
                 <p>
@@ -329,7 +332,11 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
                 <p>
                   <Cross />{' '}
                   <span>
-                    <ins>Contribua</ins> com os projetos.
+                    <ins>Contribua</ins> com os projetos que{' '}
+                    <SafeLink to={`https://github.com/${username}`}>
+                      {name}
+                    </SafeLink>{' '}
+                    mantém.
                   </span>
                 </p>
                 <p>
