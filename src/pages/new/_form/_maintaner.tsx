@@ -40,11 +40,12 @@ export const Maintainer: FC = () => {
           </span>
         </span>
         <input
-          placeholder=''
+          placeholder='Em breve'
           type='text'
           name='maintainer'
           maxLength={200}
-          required
+          readOnly
+          disabled
         />
         <small>
           <CircleHelp /> Você pode escrever uma mini bio em português de até 200

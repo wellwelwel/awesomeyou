@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useCallback, useContext } from 'react';
 import { Blocks, Eraser, PackagePlus, Pencil, Plus, X } from 'lucide-react';
 import { toast } from 'sonner';
-import { Context } from '@site/src/contexts/New';
+import { Context, displayModal } from '@site/src/contexts/New';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { Maintainer } from './_maintaner';
 import { Project } from './_project';
@@ -15,6 +15,7 @@ export const Form: FC = () => {
   const [currentProject, setCurrentProject] = useCurrentProject;
 
   const resetCurrentProject = useCallback(() => {
+    displayModal(false);
     modalRef.current?.classList.remove('show');
     setCurrentProject(undefined);
   }, [modalRef.current, setCurrentProject]);
@@ -73,6 +74,7 @@ export const Form: FC = () => {
         projects: [...prev.projects, currentProject],
       }));
 
+    toast.success('Projeto adicionado.');
     resetCurrentProject();
   }, [currentProject, setJSON]);
 
@@ -98,6 +100,7 @@ export const Form: FC = () => {
         };
       });
 
+    toast.info('Projeto removido.');
     resetCurrentProject();
   }, [currentProject, setJSON]);
 

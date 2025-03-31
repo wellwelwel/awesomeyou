@@ -53,6 +53,14 @@
         gap: 7.5px;
         width: 100%;
 
+        input[type='checkbox'] {
+          cursor: pointer;
+        }
+
+        label {
+          user-select: none;
+        }
+
         h2 {
           @include flex(row, center);
           gap: 7.5px;
@@ -248,17 +256,83 @@
             }
           }
         }
+
+        .multiple {
+          @include flex(row, center, flex-start, wrap);
+          gap: 7.5px;
+          margin-top: 5px;
+
+          label {
+            flex-grow: 1;
+            text-align: center;
+            width: fit-content;
+
+            span {
+              justify-content: center;
+              min-width: fit-content;
+              padding: 4px 12.5px;
+              border-radius: 5px;
+              text-align: center;
+              font-size: 12px;
+              color: #4b72c6;
+              accent-color: #0095ff;
+              transition:
+                background-color 0.25s,
+                border-color 0.25s,
+                color 0.25s;
+
+              input {
+                display: none;
+              }
+
+              svg {
+                color: #a9c3ff;
+              }
+
+              &.on {
+                background-color: #3c8aff;
+                border-color: #0095ff;
+                color: #ebf1ff;
+              }
+            }
+
+            &:hover {
+              span {
+                background-color: #fff;
+                border-color: #0095ff;
+
+                &.on {
+                  background-color: #3c8aff;
+                  border-color: #0940af;
+                  color: #fff;
+                }
+              }
+            }
+
+            &:active {
+              span {
+                &,
+                .on {
+                  background-color: #2054ff !important;
+                  color: #fff !important;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 3;
-      padding: 20px;
-      background-color: #e0eefff4;
+      z-index: 1;
+      padding-block: 40px;
+      padding-inline: 20px;
+      background-color: #f5fdffdd;
       overflow: auto;
       display: none;
+      backdrop-filter: blur(10px);
 
       @media (max-width: 630px) {
         padding: 0;
@@ -268,20 +342,20 @@
         @include flex(column, center, center);
         animation: fadeIn 0.2s ease forwards;
 
-        @media (max-width: 630px) {
+        @media (max-height: 1120px) {
           justify-content: flex-start;
-          padding-top: 49px;
         }
       }
 
       .content {
-        max-width: 1060px;
-        padding: 25px;
+        max-width: 1200px;
+        padding: 40px;
         border-radius: 10px;
         border: 1px solid #b3dfff;
-        box-shadow: 0 0 15px #00000020;
-        background-color: #f5fdfff9;
+        box-shadow: 0 0 15px #7b8ccd20;
+        background-color: #f5fdffd5;
         animation: showIn 0.2s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+        backdrop-filter: blur(10px);
 
         @media (max-width: 630px) {
           border-radius: 0;

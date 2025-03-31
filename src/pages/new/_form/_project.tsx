@@ -3,6 +3,7 @@ import type { ChangeEvent, FC } from 'react';
 import { useCallback, useContext } from 'react';
 import {
   ArrowUp10,
+  Binary,
   CircleAlert,
   CircleHelp,
   Code,
@@ -10,9 +11,15 @@ import {
   IdCard,
   LetterText,
   MessageCircleHeart,
+  Palette,
   Shapes,
+  SquareDashedMousePointer,
 } from 'lucide-react';
+import { categories } from '@site/src/configs/categories';
+import { languages } from '@site/src/configs/languages';
 import { Context } from '@site/src/contexts/New';
+import { extractRepository } from '@site/src/helpers/extract-repository';
+import { sortObjectByValues } from '@site/src/helpers/sort-object';
 
 const initialState: ProjectOptions = {
   repository: '',
@@ -33,6 +40,14 @@ export const Project: FC = () => {
   const [maintainer] = useMaintainer;
   const [currentProject, setCurrentProject] = useCurrentProject;
   const project = { ...initialState, ...currentProject };
+  const repositoryName: string = (() => {
+    try {
+      const { repository } = extractRepository(project.repository);
+      return repository;
+    } catch (error) {
+      return 'Ex.: Meu Projeto';
+    }
+  })();
 
   const updateProject = useCallback(
     (
@@ -58,7 +73,7 @@ export const Project: FC = () => {
   return (
     <>
       <h2>
-        <Code /> Projeto
+        <Binary /> Projeto
       </h2>
       <label>
         <span>
@@ -128,7 +143,7 @@ export const Project: FC = () => {
       </label>
 
       <h2>
-        <Shapes /> Personalização
+        <Palette /> Personalização
       </h2>
       <label>
         <span>
@@ -138,7 +153,7 @@ export const Project: FC = () => {
           </span>
         </span>
         <input
-          placeholder='Ex.: Meu Projeto'
+          placeholder={repositoryName}
           type='text'
           name='project-name'
           value={project.name}
@@ -168,6 +183,55 @@ export const Project: FC = () => {
           usarem, contribuírem e apoiarem seu projeto (opcional).
         </small>
       </label>
+
+      <h2>
+        <Code /> Selecione até duas linguagens (em breve)
+      </h2>
+      <div className='multiple'>
+        {Object.entries(sortObjectByValues(languages)).map(
+          ([key, language]) => (
+            <label key={key} className='span'>
+              <span>
+                <input
+                  type='checkbox'
+                  name='languages'
+                  disabled
+                  onChange={(e) =>
+                    e.currentTarget.parentElement?.classList[
+                      e.currentTarget.checked ? 'add' : 'remove'
+                    ]('on')
+                  }
+                />{' '}
+                <SquareDashedMousePointer /> {language}
+              </span>
+            </label>
+          )
+        )}
+      </div>
+
+      <h2>
+        <Shapes /> Selecione até três categorias (em breve)
+      </h2>
+      <div className='multiple'>
+        {Object.entries(sortObjectByValues(categories)).map(
+          ([key, category]) => (
+            <label key={key} className='span'>
+              <span>
+                <input
+                  type='checkbox'
+                  name='categories'
+                  onChange={(e) =>
+                    e.currentTarget.parentElement?.classList[
+                      e.currentTarget.checked ? 'add' : 'remove'
+                    ]('on')
+                  }
+                />{' '}
+                <SquareDashedMousePointer /> {category}
+              </span>
+            </label>
+          )
+        )}
+      </div>
 
       <h2>
         <ArrowUp10 /> Downloads e Instalações

@@ -2,6 +2,16 @@
 
 @include load-css('reset');
 
+html {
+  &.in-modal {
+    .main-header,
+    .main-footer {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
 body {
   min-height: calc(100vh - 55px);
   min-height: calc(100dvh - 55px);

@@ -16,7 +16,6 @@ export const categories = Object.freeze({
   frontend: 'Frontend',
   backend: 'Backend',
   observability: 'Observabilidade',
-  machinelearning: 'Machine Learning',
   ai: 'Inteligência Artificial',
   ui: 'UI/UX',
   frameworks: 'Livrarias e Frameworks',

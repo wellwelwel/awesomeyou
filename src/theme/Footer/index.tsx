@@ -43,7 +43,7 @@ const Footer = (): ReactNode => {
 
   return (
     <>
-      <footer>
+      <footer className='main-footer'>
         <h4>
           <MessageCircleWarning /> Awesome You
         </h4>

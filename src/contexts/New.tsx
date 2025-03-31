@@ -24,6 +24,13 @@ type ContextType = {
   ];
 };
 
+export const displayModal = (status: boolean) => {
+  const html = document.querySelector('html');
+  if (!html) return;
+
+  status ? html.classList.add('in-modal') : html.classList.remove('in-modal');
+};
+
 export const Context = createContext<ContextType>(Object.create(null));
 
 export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -42,6 +49,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
         return;
       }
 
+      displayModal(true);
       modalRef.current?.classList.add('show');
 
       if (!repositoryURL) {
