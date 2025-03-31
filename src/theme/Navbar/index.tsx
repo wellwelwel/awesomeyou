@@ -20,6 +20,7 @@ import { SafeLink } from '@site/src/components/SafeLink';
 
 const Navbar = (): ReactNode => {
   const sidebar = useRef<HTMLElement>(null);
+  const header = useRef<HTMLButtonElement>(null);
   const location = useLocation();
   const toTop = (element: Element) => {
     element.scrollTo({
@@ -28,6 +29,29 @@ const Navbar = (): ReactNode => {
       behavior: 'instant',
     });
   };
+
+  useEffect(() => {
+    const doc = document.querySelector('#__docusaurus');
+    if (!doc) return;
+
+    const checkScroll = () => {
+      const scrollTop = doc.scrollTop;
+
+      if (scrollTop > 55) {
+        header.current?.classList.add('show-bg');
+        return;
+      }
+
+      header.current?.classList.remove('show-bg');
+    };
+
+    checkScroll();
+    doc.addEventListener('scroll', checkScroll);
+
+    return () => {
+      doc.removeEventListener('scroll', checkScroll);
+    };
+  }, [header.current]);
 
   useEffect(() => {
     const doc = document.querySelector('#__docusaurus');
@@ -61,7 +85,7 @@ const Navbar = (): ReactNode => {
         position='top-right'
         closeButton={true}
       />
-      <header className='main-header'>
+      <header ref={header} className='main-header'>
         <Link to='/'>
           <Home className='logo' /> Awesome You
         </Link>

@@ -426,7 +426,7 @@ const Projects: FC<ProjectsProps> = ({
               ref={searchRef}
               type='search'
               name='search'
-              placeholder='Pesquise pelo nome do projeto ou mantenedor'
+              placeholder='Pesquise pelo nome do projeto ou de quem os mantém'
             />
           </div>
 

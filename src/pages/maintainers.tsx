@@ -122,7 +122,7 @@ const MaintainersIndex: React.FC = () => {
             <input
               type='search'
               name='search'
-              placeholder='Pesquise pelo nome ou pelo projeto'
+              placeholder='Pesquise pelo nome do projeto ou de quem os mantém'
             />
           </div>
 

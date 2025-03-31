@@ -23,7 +23,7 @@ export const Update: FC = () => {
         <div>
           <UserRoundPen />
           <span>
-            O mesmo se aplica ao atualizar a mini bio da pessoa mantenedora.
+            O mesmo se aplica ao atualizar a mini bio de quem matém os projetos.
           </span>
         </div>
       </small>

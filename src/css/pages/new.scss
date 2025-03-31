@@ -256,7 +256,7 @@
       inset: 0;
       z-index: 3;
       padding: 20px;
-      background-color: #fffffff8;
+      background-color: #e0eefff4;
       overflow: auto;
       display: none;
 
@@ -276,11 +276,11 @@
 
       .content {
         max-width: 1060px;
-        padding: 20px 25px;
+        padding: 25px;
         border-radius: 10px;
         border: 1px solid #b3dfff;
-        box-shadow: 0 0 5px #0123462f;
-        background-color: #ffffff89;
+        box-shadow: 0 0 15px #00000020;
+        background-color: #f5fdfff9;
         animation: showIn 0.2s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
 
         @media (max-width: 630px) {
