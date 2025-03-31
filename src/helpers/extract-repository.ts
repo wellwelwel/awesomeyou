@@ -1,13 +1,13 @@
+export const limit = Object.freeze({
+  domain: 'https://www.github.com/'.length,
+  organization: 39,
+  repository: 100,
+});
+
 export const extractRepository = (
   url: string
 ): { organization: string; repository: string } => {
   const input = String(url).trim();
-
-  const limit = Object.freeze({
-    domain: 'https://www.github.com/'.length,
-    organization: 39,
-    repository: 100,
-  });
 
   const length = {
     input: input.length,

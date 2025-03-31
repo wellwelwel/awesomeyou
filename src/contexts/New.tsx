@@ -1,76 +1,81 @@
 import {
-  ChangeEvent,
   createContext,
   Dispatch,
   FC,
   ReactNode,
+  RefObject,
   SetStateAction,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
+import { toast } from 'sonner';
 import { ProjectOptions, RawProject } from '@site/src/@types/projects';
 
 type ContextType = {
+  modalRef: RefObject<HTMLDivElement | null>;
   useMaintainer: [string, Dispatch<SetStateAction<string>>];
   useJSON: [RawProject, Dispatch<SetStateAction<RawProject>>];
-  updateJSON: (
-    e: ChangeEvent<HTMLInputElement>,
-    field: keyof ProjectOptions,
-    isBoolean?: boolean
-  ) => void;
+  openProject: (project?: string) => void;
+  useCurrentProject: [
+    ProjectOptions | undefined,
+    Dispatch<SetStateAction<ProjectOptions | undefined>>,
+  ];
 };
 
-export const Context = createContext<ContextType>(
-  Object.create(null) as ContextType
-);
+export const Context = createContext<ContextType>(Object.create(null));
 
 export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
-  const useMaintainer = useState('***');
-  const useJSON = useState({} as RawProject);
+  const useMaintainer = useState<string>('***');
+  const useJSON = useState<RawProject>(Object.create(null));
+  const useCurrentProject = useState<ProjectOptions | undefined>(undefined);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [maintainer] = useMaintainer;
+  const [, setCurrentProject] = useCurrentProject;
+  const [json] = useJSON;
 
-  const updateJSON = useCallback(
-    (
-      e: ChangeEvent<HTMLInputElement>,
-      field: keyof ProjectOptions,
-      isBoolean?: boolean
-    ) => {
-      const value =
-        e.currentTarget?.value.trim().length > 0
-          ? e.currentTarget?.value.trim()
-          : undefined;
-      const checked = e.currentTarget?.checked ? true : undefined;
+  const openProject = useCallback(
+    (repositoryURL?: string) => {
+      if (!maintainer || maintainer === '***') {
+        toast.error('Defina o username de que mantém os projetos.');
+        return;
+      }
 
-      useJSON[1]((prev) => ({
-        ...prev,
-        projects: [
-          {
-            ...prev.projects[0],
-            [field]: isBoolean ? checked : value,
-          },
-        ],
-      }));
+      modalRef.current?.classList.add('show');
+
+      if (!repositoryURL) {
+        setCurrentProject(undefined);
+        return;
+      }
+
+      const project = json.projects?.find(
+        (project) => project.repository === repositoryURL
+      );
+
+      setCurrentProject(project);
     },
-    []
+    [maintainer, json, setCurrentProject]
   );
 
   useEffect(() => {
-    useJSON[1]((prev) => {
-      return {
-        ...prev,
-        $schema: '../../../schemas/projects.json',
-        projects: [
-          {
-            repository: '',
-            description: '',
-          },
-        ],
-      };
-    });
+    useJSON[1]((prev) => ({
+      ...prev,
+      $schema: '../../../schemas/projects.json',
+      projects: [],
+    }));
   }, [useJSON[1]]);
 
   return (
-    <Context.Provider value={{ useMaintainer, useJSON, updateJSON }}>
+    <Context.Provider
+      value={{
+        modalRef,
+        useMaintainer,
+        useJSON,
+        useCurrentProject,
+        openProject,
+      }}
+    >
       {children}
     </Context.Provider>
   );
