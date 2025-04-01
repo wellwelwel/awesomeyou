@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Awesome You</h1>
-  <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
+  <h4>🇧🇷 Como seu projeto impacta o mundo real? (🚧 WIP)</h4>
   <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
 </div>
 

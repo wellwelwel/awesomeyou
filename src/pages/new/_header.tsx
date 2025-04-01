@@ -17,9 +17,9 @@ export const Header: FC = () => (
     </small>
     <small>
       <p>
-        Para manter a relevância dos projetos dentro da iniciativa e dos seus
-        respectivos mantenedores, os projetos precisam atingir pelo menos{' '}
-        <strong>250 pontos</strong>. Consulte as{' '}
+        Para manter a relevância dos projetos dentro da iniciativa, eles
+        precisam atingir individualmente, pelo menos <strong>250 pontos</strong>
+        . Consulte as{' '}
         <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/docs/RULES.md'>
           Regras <ExternalLink />
         </SafeLink>{' '}
