@@ -4,10 +4,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 
 > Legenda:
 > 
-> 🇧🇷 Foi criado no Brasil?
+> 🇧🇷 Foi criado por um brasileiro?
+> 👤 Mantenedores Brasileiros
 > 🏷️ Categorias
-> 💻 Linguagem
+> 💻 Linguagem de Programação
 > ✍️ Autor
 
-## Projetos
 <!-- projects:start --><!-- projects:end -->

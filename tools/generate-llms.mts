@@ -77,22 +77,20 @@ for (const { name, username, projects } of maintainers) {
 
       sentencesByProject
         .get(key)!
-        .push(
-          `\n### [${projectName.trim()}](${project.repository})\n\n${project.description.slice(0, 50).trim()}${project.description.length > 50 ? '...' : ''}\n`
-        );
+        .push(`\n## [${projectName.trim()}](${project.repository})\n`);
 
       sentencesByProject
         .get(key)!
-        .push(`🇧🇷: ${project.madeInBrazil ? '✅' : '❌'}`);
+        .push(`🇧🇷 ${project.madeInBrazil ? '✅' : '❌'}`);
 
       if (!project.madeInBrazil || projectMaintainers.length > 1)
         sentencesByProject
           .get(key)!
-          .push(`👤: ${format.list(projectMaintainers)}`);
+          .push(`👤 ${format.list(projectMaintainers)}`);
 
       if (project.categories && project.categories.length > 0)
         sentencesByProject.get(key)!.push(
-          `🏷️: ${format.list(
+          `🏷️ ${format.list(
             project.categories.slice(0, 2).map((c) => {
               const isTestRunner =
                 c === 'test' &&
@@ -104,13 +102,17 @@ for (const { name, username, projects } of maintainers) {
           )}`
         );
 
-      if (project.languages && project.languages.length > 0)
+      if (
+        !project?.categories?.includes('language') &&
+        project.languages &&
+        project.languages.length > 0
+      )
         sentencesByProject
           .get(key)!
-          .push(`💻: ${languages[project.languages[0]]}`);
+          .push(`💻 ${languages[project.languages[0]]}`);
     }
 
-    if (project.isAuthor) sentencesByProject.get(key)!.push(`✍️: ${name}`);
+    if (project.isAuthor) sentencesByProject.get(key)!.push(`✍️ ${name}`);
   }
 }
 
@@ -121,7 +123,7 @@ const readme = commentMark(base, {
     .sort(([a], [b]) => normalizeChars(a).localeCompare(normalizeChars(b)))
     .map(([, sentences]) => sentences.join('\n'))
     .join('\n'),
-}).replace(/<!-- (maintainers|projects):(start|end) -->(\n)?/g, '');
+}).replace(/<!-- (projects):(start|end) -->(\n)?/g, '');
 
 // Atualmente não existe uma padronização para o nome ou extensão do arquivo que LLMs irão adotar.
 writeFile('./build/llms.md', readme, 'utf8');
