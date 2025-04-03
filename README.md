@@ -4,7 +4,7 @@
   <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que valoriza o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
   <hr />
   <h4>🚧 Construindo em Público</h4>
-  <p>Acompanhe o nascimento de uma comunidade.</p>
+  <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
 </div>
 
 ---

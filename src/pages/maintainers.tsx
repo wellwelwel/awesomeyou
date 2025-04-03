@@ -2,7 +2,7 @@ import '@site/src/css/pages/maintainers.scss';
 
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { ProjectOptions } from '@site/src/@types/projects';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, startTransition, useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
@@ -117,12 +117,13 @@ const MaintainersIndex: React.FC = () => {
             </FAQ>
           </header>
 
-          <div className='search' onChange={search}>
+          <div className='search'>
             <Search />
             <input
               type='search'
               name='search'
               placeholder='Pesquise pelo nome do projeto ou de quem os mantém'
+              onChange={(e) => startTransition(() => search(e))}
             />
           </div>
 

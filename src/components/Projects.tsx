@@ -263,15 +263,17 @@ const Projects: FC<ProjectsProps> = ({
 
   const handleSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      search(e);
+      startTransition(() => {
+        search(e);
 
-      setVisibleCount(
-        Array.from(
-          document.querySelectorAll(
-            '[data-repository]:not(.d-n-search):not(.d-n):not(.d-n2)'
-          )
-        ).length
-      );
+        setVisibleCount(
+          Array.from(
+            document.querySelectorAll(
+              '[data-repository]:not(.d-n-search):not(.d-n):not(.d-n2)'
+            )
+          ).length
+        );
+      });
     },
     [search, setVisibleCount]
   );

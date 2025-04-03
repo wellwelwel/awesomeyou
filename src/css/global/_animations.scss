@@ -47,3 +47,19 @@
     opacity: 0;
   }
 }
+
+@keyframes progress {
+  0% {
+    width: calc(100% - 20px);
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 0%;
+    opacity: 1;
+  }
+}

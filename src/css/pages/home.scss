@@ -48,20 +48,15 @@
 
     &#call {
       & > header {
+        position: relative;
         max-width: 1020px;
         width: 100%;
-        margin-bottom: 40px;
-        position: relative;
         z-index: 1;
         @include flex(row, flex-start, space-between);
         gap: 50px;
 
         @media (max-width: 820px) {
           flex-direction: column;
-        }
-
-        @media (max-width: 630px) {
-          margin-bottom: 0;
         }
 
         aside {
@@ -119,7 +114,7 @@
           small {
             margin-top: 7.5px;
             font-size: 14px;
-            font-weight: 300;
+            font-weight: 600;
             color: #3e5977;
             letter-spacing: 0.25px;
             text-shadow: 1px 1px 2px var(--title-shadow-color);
@@ -128,9 +123,8 @@
               margin: 0;
             }
 
-            [data-testid] {
-              font-size: 14px;
-              font-weight: 500;
+            + small {
+              font-weight: 400;
             }
           }
 
@@ -168,46 +162,104 @@
         }
 
         .feat {
+          position: relative;
           display: grid;
           grid-template-columns: repeat(5, 1fr);
           gap: 15px;
           width: 100%;
 
-          svg {
-            opacity: 1;
-            pointer-events: all;
-            transform: scale(0.95);
-            transition: transform 1s;
-            animation: fadeIn 1.25s ease forwards;
+          & > span {
+            position: relative;
+            transition: opacity 0.5s;
 
-            circle {
-              fill: #d6edff !important;
-              transition: fill 1s;
+            &::after {
+              content: '💡';
+              position: absolute;
+              @include flex(row, center, center);
+              text-align: center;
+              width: 32px;
+              height: 32px;
+              top: -5px;
+              right: -10px;
+              background-color: #fff;
+              border-radius: 50%;
+              pointer-events: none;
+              transform: scale(0);
+              opacity: 0;
+              transition:
+                opacity 0.25s cubic-bezier(0.75, -0.5, 0.2, 0.9),
+                transform 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9);
+
+              @media (max-width: 630px) {
+                right: -5px;
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+              }
+            }
+
+            svg {
+              opacity: 1;
               pointer-events: all;
-              will-change: fill;
+              transform: scale(0.95);
+              transition: transform 1s;
+              animation: fadeIn 1.25s ease forwards;
+
+              circle {
+                fill: #d6edff !important;
+                transition: fill 1s;
+                pointer-events: all;
+                will-change: fill;
+              }
             }
 
             &:hover {
-              transform: scale(1.05);
+              &::after {
+                opacity: 1;
+                transform: scale(1);
+              }
 
-              circle {
-                fill: #5ff164 !important;
+              svg {
+                transform: scale(1.05);
+
+                circle {
+                  fill: #5ff164 !important;
+                }
               }
             }
 
             &.on {
-              transform: scale(1);
-
-              circle {
-                fill: #00a1fe80 !important;
+              &::after {
+                opacity: 1;
+                transform: scale(1);
               }
 
-              &:hover {
-                transform: scale(1.1);
+              svg {
+                transform: scale(1);
 
                 circle {
-                  fill: #ffe100 !important;
+                  fill: #00a1fe80 !important;
                 }
+
+                &:hover {
+                  transform: scale(1.1);
+
+                  circle {
+                    fill: #ffe100 !important;
+                  }
+                }
+              }
+            }
+          }
+
+          &:has(span:hover) span:not(:hover) {
+            & {
+              opacity: 0.5;
+              will-change: opacity;
+
+              &::after {
+                opacity: 0;
+                transform: scale(0);
               }
             }
           }
@@ -222,6 +274,68 @@
               svg {
                 min-width: 48px;
               }
+            }
+          }
+        }
+
+        + small {
+          position: relative;
+          @include flex(row, center);
+          gap: 20px;
+          width: 100%;
+          max-width: 100%;
+          border-radius: 10px;
+          padding: 20px;
+          border: 1px solid #00a6ff45;
+          background-color: #d0e2ff48;
+          text-align: left;
+          font-size: 14px;
+          font-weight: 600;
+          color: #30435d;
+
+          @media (max-width: 820px) {
+            height: 100px;
+          }
+
+          .bar {
+            position: absolute;
+            bottom: -10px;
+            border-radius: 20px;
+            left: 10px;
+            height: 2.5px;
+            background-color: #0091ff15;
+            transition: width 5s cubic-bezier(0.75, 0.5, 0.2, 0);
+            animation: progress 5s cubic-bezier(0.75, 0.5, 0.2, 0) forwards;
+
+            &.static {
+              width: calc(100% - 20px) !important;
+              opacity: 0.5 !important;
+            }
+          }
+
+          svg {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            min-height: 18px;
+            transform: rotate(-180deg);
+            color: #00a6ff;
+            align-self: flex-start;
+          }
+
+          & > span {
+            background: linear-gradient(
+              94.23deg,
+              #0062ff 12.41%,
+              #00a6ff 89.95%
+            );
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            [data-testid] {
+              font-size: 14px;
+              font-weight: 500;
             }
           }
         }

@@ -30,35 +30,14 @@ import {
   Star,
   UsersRound,
 } from 'lucide-react';
-import { ReactTyped } from 'react-typed';
-import PeopleA from '@site/content/assets/img/people/A.svg';
-import PeopleB from '@site/content/assets/img/people/B.svg';
-import PeopleC from '@site/content/assets/img/people/C.svg';
-import PeopleD from '@site/content/assets/img/people/D.svg';
-import PeopleE from '@site/content/assets/img/people/E.svg';
-import PeopleF from '@site/content/assets/img/people/F.svg';
-import PeopleI from '@site/content/assets/img/people/I.svg';
-import PeopleJ from '@site/content/assets/img/people/J.svg';
-import PeopleK from '@site/content/assets/img/people/K.svg';
-import PeopleL from '@site/content/assets/img/people/L.svg';
-import PeopleM from '@site/content/assets/img/people/M.svg';
-import PeopleN from '@site/content/assets/img/people/N.svg';
-import PeopleO from '@site/content/assets/img/people/O.svg';
-import PeopleP from '@site/content/assets/img/people/P.svg';
-import PeopleQ from '@site/content/assets/img/people/Q.svg';
-import PeopleR from '@site/content/assets/img/people/R.svg';
-import PeopleS from '@site/content/assets/img/people/S.svg';
-import PeopleT from '@site/content/assets/img/people/T.svg';
-import PeopleU from '@site/content/assets/img/people/U.svg';
-import PeopleV from '@site/content/assets/img/people/V.svg';
 import { ResumedMaintaners } from '@site/src/@types/maintainers';
 import { ResumedProject } from '@site/src/@types/projects';
 import { FAQ } from '@site/src/components/FAQ';
-import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { randomize } from '@site/src/helpers/radomizer';
+import { Header } from './_index/_header';
 
 export default (): ReactNode => {
   const projectSort = useRef(0);
@@ -121,46 +100,6 @@ export default (): ReactNode => {
     };
   }, [sortProjects, sortMaintainers]);
 
-  useEffect(() => {
-    let remainingNumbers: number[];
-
-    const shuffleArray = () => {
-      remainingNumbers = randomize(Array.from({ length: 20 }, (_, i) => i + 1));
-    };
-
-    const randomizeCircles = () => {
-      if (remainingNumbers.length === 0) shuffleArray();
-
-      const nextNumber = remainingNumbers.pop() as number;
-      const current = document.querySelector(`.feat .on`);
-
-      setTimeout(() => {
-        current?.classList.remove('on');
-      }, 500);
-
-      document
-        .querySelector(`.feat span:nth-child(${nextNumber}) svg`)
-        ?.classList.add('on');
-    };
-
-    shuffleArray();
-    randomizeCircles();
-
-    const container = document.querySelector('.feat');
-    if (!container) return;
-
-    const children = Array.from(container.querySelectorAll('span'));
-
-    for (const item of children)
-      item.style.order = String(Math.floor(Math.random() * 20));
-
-    const highlightInterval = setInterval(randomizeCircles, 1000);
-
-    return () => {
-      clearInterval(highlightInterval);
-    };
-  }, []);
-
   return (
     <Layout
       title='Home'
@@ -168,123 +107,7 @@ export default (): ReactNode => {
     >
       <div id='home'>
         <main id='call'>
-          <header>
-            <aside>
-              <h1>
-                <div>
-                  <Name name='Awesome Brazilian' />
-                </div>
-                <div>
-                  <Name name='< open source >' />
-                </div>
-                <div>
-                  <Name name='People' />
-                </div>
-              </h1>
-              <small>
-                <ReactTyped
-                  strings={[
-                    'Awesome You &#x1F499;', // 💙
-                    'Awesome You &#x1F49A;', // 💚
-                    'Awesome You &#x1F49B;', // 💛
-                  ]}
-                  smartBackspace={false}
-                  typeSpeed={50}
-                  backSpeed={25}
-                  backDelay={2000}
-                  loop={true}
-                  fadeOut={true}
-                />
-              </small>
-              <small>
-                Awesome You é uma iniciativa que valoriza o lado humano do{' '}
-                <em>open source</em>, te apresentando projetos incríveis criados
-                e mantidos por desenvolvedores brasileiros.
-              </small>
-              <menu>
-                <section>
-                  <Link to='projects' className='btn-split'>
-                    <span className='btn-content'>
-                      <span className='text'>Projetos</span>
-                    </span>
-                    <span className='btn-dropdown'>
-                      <Code />
-                    </span>
-                  </Link>
-                  <Link to='maintainers' className='btn-split'>
-                    <span className='btn-dropdown'>
-                      <UsersRound />
-                    </span>
-                    <span className='btn-content'>
-                      <span className='text'>Pessoas</span>
-                    </span>
-                  </Link>
-                </section>
-              </menu>
-            </aside>
-            <div className='feat'>
-              <span>
-                <PeopleA />
-              </span>
-              <span>
-                <PeopleB />
-              </span>
-              <span>
-                <PeopleC />
-              </span>
-              <span>
-                <PeopleD />
-              </span>
-              <span>
-                <PeopleE />
-              </span>
-              <span>
-                <PeopleF />
-              </span>
-              <span>
-                <PeopleI />
-              </span>
-              <span>
-                <PeopleJ />
-              </span>
-              <span>
-                <PeopleK />
-              </span>
-              <span>
-                <PeopleL />
-              </span>
-              <span>
-                <PeopleM />
-              </span>
-              <span>
-                <PeopleN />
-              </span>
-              <span>
-                <PeopleO />
-              </span>
-              <span>
-                <PeopleP />
-              </span>
-              <span>
-                <PeopleQ />
-              </span>
-              <span>
-                <PeopleR />
-              </span>
-              <span>
-                <PeopleS />
-              </span>
-              <span>
-                <PeopleT />
-              </span>
-              <span>
-                <PeopleU />
-              </span>
-              <span>
-                <PeopleV />
-              </span>
-            </div>
-          </header>
+          <Header />
           <main id='cards'>
             <header>
               <h2>
