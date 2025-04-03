@@ -27,14 +27,14 @@ export const Support: FC = () => {
     >
       <small>
         <p>
-          <Star />{' '}
+          <Star />
           <span>
             Incentive deixando uma <ins>estrela</ins> nos projetos que você
             gosta, especialmente nos que você usa.
           </span>
         </p>
         <p>
-          <Share2 />{' '}
+          <Share2 />
           <span>
             <ins>Compartilhe</ins> projetos que{' '}
             <SafeLink to={`https://github.com/${username}`}>{name}</SafeLink>{' '}
@@ -42,14 +42,14 @@ export const Support: FC = () => {
           </span>
         </p>
         <p>
-          <HeartHandshake />{' '}
+          <HeartHandshake />
           <span>
             <ins>Ajude outros usuários</ins> respondendo dúvidas no repositório
             dos projetos.
           </span>
         </p>
         <p>
-          <Cross />{' '}
+          <Cross />
           <span>
             <ins>Contribua</ins> com os projetos que{' '}
             <SafeLink to={`https://github.com/${username}`}>{name}</SafeLink>{' '}
@@ -57,7 +57,7 @@ export const Support: FC = () => {
           </span>
         </p>
         <p>
-          <Heart />{' '}
+          <Heart />
           <span>
             <SafeLink to={`https://github.com/sponsors/${username}`}>
               Patrocine

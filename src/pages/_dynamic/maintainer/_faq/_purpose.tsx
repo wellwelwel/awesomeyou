@@ -14,7 +14,7 @@ export const Purpose: FC = () => {
     >
       <small>
         <p>
-          <Bot />{' '}
+          <Bot />
           <span>
             Todo conteúdo gerado nessa página é estático, facilitando a leitura
             e interpretação por sistemas de busca (crawlers), direcionando cada
@@ -26,7 +26,7 @@ export const Purpose: FC = () => {
           </span>
         </p>
         <p>
-          <ScanSearch />{' '}
+          <ScanSearch />
           <span>
             A intenção é ajudar sistemas de buscas encontrarem facilmente
             projetos, por exemplo, ao pesquisar por "Quais linguagens de
@@ -35,7 +35,7 @@ export const Purpose: FC = () => {
           </span>
         </p>
         <p>
-          <Sparkles />{' '}
+          <Sparkles />
           <span>
             A mesma ideia vale para Inteligências Artificiais e, inclusive, logo
             também suportaremos os novos padrões <strong>llms.txt</strong>.

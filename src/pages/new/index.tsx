@@ -3,7 +3,7 @@ import '@site/src/css/pages/new.scss';
 import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import { Provider } from '@site/src/contexts/New';
-import { FAQS } from './_faq/_faq';
+import { FAQS } from './_faq';
 import { Form } from './_form';
 import { Header } from './_header';
 

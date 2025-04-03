@@ -8,16 +8,13 @@ import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { Provider } from '@site/src/contexts/Maintainer';
 import { extractRepository } from '@site/src/helpers/extract-repository';
-import { FAQS } from './_faq/_faq';
+import { format } from '@site/src/helpers/formatter';
+import { FAQS } from './_faq';
 import { Header } from './_header';
 import { Projects } from './_projects';
 
 const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
   const { username, name, projects: projectsRaw } = data;
-  const fomatter = new Intl.ListFormat('pt-BR', {
-    style: 'long',
-    type: 'conjunction',
-  });
   const projects = projectsRaw.map((project) => {
     const { repository, organization } = extractRepository(project.repository);
     return {
@@ -27,10 +24,25 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
     };
   });
   const projectsNames = projects.map((project) => project.name);
+  const projectsResume = format.list(projectsNames);
   const projectsOrganizations = projects.map((project) => project.organization);
-  const projectsResume = fomatter.format(projectsNames);
   const description = `${name} é uma pessoa brasileira mantenedora de projetos open source, como ${projectsResume}.`;
   const title = `Quem é ${name}?`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name,
+    url: `https://awesomeyou.io/maintainers/${username}/`,
+    sameAs: [`https://github.com/${username}`],
+    knowsAbout: 'Open Source',
+    jobTitle: 'Mantenedor',
+    affiliation: projects.map((project) => ({
+      '@type': 'Organization',
+      name: project.name,
+      description: project.description,
+      url: project.repository,
+    })),
+  };
   const keywords = Array.from(
     new Set([
       'open source',
@@ -72,21 +84,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         />
         <meta name='keywords' content={keywords.join(', ')} />
         <script type='application/ld+json' data-rh='true'>
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Person',
-            name,
-            url: `https://awesomeyou.io/maintainers/${username}/`,
-            sameAs: [`https://github.com/${username}`],
-            knowsAbout: 'Open Source',
-            jobTitle: 'Mantenedor',
-            affiliation: projects.map((project) => ({
-              '@type': 'Organization',
-              name: project.name,
-              description: project.description,
-              url: project.repository,
-            })),
-          })}
+          {JSON.stringify(ld)}
         </script>
       </Head>
       <Provider

@@ -26,7 +26,7 @@ export const Project: FC<Props> = (project) => {
   const { name, username } = maintainer;
   const { stats, organization } = project;
   const isAuthor = project.isAuthor ? 'criou' : 'mantém';
-  const isLaguange =
+  const isLanguage =
     project.categories?.includes('language') && 'a linguagem de programação';
   const isTheme = project.categories?.includes('theme') && 'o tema';
   const isList = project.categories?.includes('list') && 'a lista';
@@ -38,14 +38,14 @@ export const Project: FC<Props> = (project) => {
     !project.categories?.includes('plugin') &&
     'o test runner';
   const category =
-    isLaguange ||
+    isLanguage ||
     isTheme ||
     isList ||
     isEducational ||
     isTestRunner ||
     'o projeto';
   const isBrazilian = project.madeInBrazil
-    ? isLaguange || isList
+    ? isLanguage || isList
       ? ' brasileira'
       : ' brasileiro'
     : '';

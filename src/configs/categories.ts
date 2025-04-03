@@ -4,7 +4,7 @@ export const categories = Object.freeze({
   database: 'Banco de Dados',
   ci: 'CI/CD',
   devops: 'DevOps',
-  language: 'Linguagens de Programação',
+  language: 'Linguagem de Programação',
   performance: 'Performance',
   test: 'Testes',
   theme: 'Temas',

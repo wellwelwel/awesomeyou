@@ -20,32 +20,32 @@ export const Why: FC = () => {
     >
       <small>
         <p>
-          <Ghost />{' '}
+          <Ghost />
           <span>Já imaginou como seria se o open source não existisse?</span>
         </p>
         <p>
-          <Eraser />{' '}
+          <Eraser />
           <span>
             Imagine desde linguagens de programação a livrarias que você usa
             desaparecendo ou se tornando pagas e o impacto que isso teria.
           </span>
         </p>
         <p>
-          <StarHalf />{' '}
+          <StarHalf />
           <span>
             Às vezes, mesmo uma simples estrela pode colocar um sorriso no rosto
             de quem cria projetos que você usa de graça.
           </span>
         </p>
         <p>
-          <Sprout />{' '}
+          <Sprout />
           <span>
             Aliás, se fosse você quem criasse um projeto inovador, aposto que
             gostaria que apoiassem seu trabalho, certo?
           </span>
         </p>
         <p>
-          <CloudSun />{' '}
+          <CloudSun />
           <span>
             Apoiar das mais diversas formas quem cria projetos open source,
             motiva o crescimento e a evolução contínua desse ecossistema

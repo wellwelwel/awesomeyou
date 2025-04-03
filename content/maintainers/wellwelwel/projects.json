@@ -4,9 +4,9 @@
     {
       "name": "Poku",
       "repository": "https://github.com/wellwelwel/poku",
-      "message": "🐷 Que tal deixar uma estrela no repositório pra apoiar nosso porquinho test runner brasileiro?",
       "languages": ["typescript", "javascript"],
-      "description": "🐷 Poku torna testes fáceis para Node.js, Bun, Deno e você ao mesmo tempo.",
+      "description": "🐷 Poku é um test runner que torna testes fáceis para Node.js, Bun, Deno e você ao mesmo tempo.",
+      "message": "🐷 Que tal deixar uma estrela no repositório pra apoiar nosso porquinho test runner brasileiro?",
       "npm": "poku",
       "categories": ["test", "ci", "cli", "backend"],
       "madeInBrazil": true,
