@@ -77,10 +77,12 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         <meta
           property='og:image'
           content={`https://avatars.githubusercontent.com/${username}`}
+          data-rh='true'
         />
         <meta
           property='twitter:image'
           content={`https://avatars.githubusercontent.com/${username}`}
+          data-rh='true'
         />
         <meta name='keywords' content={keywords.join(', ')} />
         <script type='application/ld+json' data-rh='true'>

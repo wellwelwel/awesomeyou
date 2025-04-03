@@ -33,7 +33,7 @@ import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
-import { randomize } from '@site/src/helpers/radomizer';
+import { randomize } from '@site/src/helpers/randomizer';
 
 export const Project: FC<MergedProjects & { score?: number }> = ({
   name,

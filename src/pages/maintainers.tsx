@@ -19,7 +19,7 @@ import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
-import { randomize } from '@site/src/helpers/radomizer';
+import { randomize } from '@site/src/helpers/randomizer';
 import { search } from '@site/src/helpers/search';
 
 interface Maintainer {

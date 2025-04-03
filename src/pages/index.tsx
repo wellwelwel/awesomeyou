@@ -36,7 +36,7 @@ import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
-import { randomize } from '@site/src/helpers/radomizer';
+import { randomize } from '@site/src/helpers/randomizer';
 import { Header } from './_index/_header';
 
 export default (): ReactNode => {

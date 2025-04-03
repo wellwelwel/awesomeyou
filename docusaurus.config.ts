@@ -37,6 +37,7 @@ const config: Config = {
   ],
   staticDirectories: ['./content/assets'],
   themeConfig: {
+    image: 'img/social.png',
     metadata: [
       {
         name: 'keywords',

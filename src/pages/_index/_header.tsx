@@ -24,13 +24,12 @@ import PeopleT from '@site/content/assets/img/people/T.svg';
 import PeopleU from '@site/content/assets/img/people/U.svg';
 import PeopleV from '@site/content/assets/img/people/V.svg';
 import { Name } from '@site/src/components/Name';
-import { randomize } from '@site/src/helpers/radomizer';
+import { randomize } from '@site/src/helpers/randomizer';
 
 let remainingNumbers: number[];
 
 const curiosities = [
-  'A amioria das linguagens de programação são open source',
-  'O impacto do open source é maior que a node_modules',
+  'Sabia que a maioria das linguagens de programação são open source?',
   'Seu apoio pode começar com uma simples estrela',
   'Acredita-se que primeiro software open source, chamado A-2 System, foi desenvolvido em 1953',
   'O impacto do open source vai além de código: comunidades, inovações e colaborações',
@@ -38,8 +37,9 @@ const curiosities = [
   'Consegue imaginar como seria um mundo sem open source?',
   'Gigantes como Google, Microsoft e Facebook mantêm diversos projetos open source',
   'Muitas startups e empresas baseiam seus produtos em software open source',
+  'O impacto do open source é maior que a node_modules',
   'E se o Git não fosse open source?',
-  'Se existe algo proprietário, com certeza há uma alternativa open source',
+  'Se existe uma tecnologia proprietária, com certeza há uma alternativa open source',
   'Contribuir com o open source é uma excelente forma de aprendizado e crescimento profissional',
   'Até fontes que designers usam podem ser open source',
   'Um filme utilizando um software de edição de vídeo open source ganhou o Oscar em 2025',

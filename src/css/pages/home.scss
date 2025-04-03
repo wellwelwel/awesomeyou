@@ -181,7 +181,8 @@
               height: 32px;
               top: -5px;
               right: -10px;
-              background-color: #fff;
+              background-color: #fff7e7;
+              border: 1px solid #ffd16d;
               border-radius: 50%;
               pointer-events: none;
               transform: scale(0);
@@ -216,11 +217,11 @@
             &:hover {
               &::after {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1.02);
               }
 
               svg {
-                transform: scale(1.05);
+                transform: scale(1.06);
 
                 circle {
                   fill: #5ff164 !important;
