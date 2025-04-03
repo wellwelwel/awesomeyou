@@ -93,7 +93,7 @@ export default function pluginDynamicMaintainers(
 
         addRoute({
           path: `/maintainers/${maintainer.username}`,
-          component: '@site/src/components/Maintainer.tsx',
+          component: '@site/src/pages/_dynamic/maintainer/index.tsx',
           exact: true,
           modules: { data: dataPath },
         });

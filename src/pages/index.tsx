@@ -197,7 +197,7 @@ export default (): ReactNode => {
                 />
               </small>
               <small>
-                Awesome You é uma iniciativa que traz o lado humano do{' '}
+                Awesome You é uma iniciativa que valoriza o lado humano do{' '}
                 <em>open source</em>, te apresentando projetos incríveis criados
                 e mantidos por desenvolvedores brasileiros.
               </small>

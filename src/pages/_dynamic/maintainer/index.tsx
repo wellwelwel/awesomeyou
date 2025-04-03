@@ -2,6 +2,7 @@ import '@site/src/css/pages/maintainer.scss';
 
 import type { ProcessedMaintainer } from '@site/plugins/maintainers-page';
 import React, { memo } from 'react';
+import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';
 import {
   Award,
@@ -34,34 +35,97 @@ import {
   StarHalf,
   Trophy,
 } from 'lucide-react';
+import { FAQ } from '@site/src/components/FAQ';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
+import { categories } from '@site/src/configs/categories';
+import { languages } from '@site/src/configs/languages';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { getScore } from '@site/src/helpers/get-score';
 import { localeNumber } from '@site/src/helpers/services/stats/set-result';
-import { FAQ } from './FAQ';
 
 const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
-  const { username, bio, blog, location, name, projects } = data;
-  const ifPlural = projects.length > 1 && 's';
+  const { username, bio, blog, location, name, projects: projectsRaw } = data;
+  const ifPlural = projectsRaw.length > 1 && 's';
   const fomatter = new Intl.ListFormat('pt-BR', {
     style: 'long',
     type: 'conjunction',
   });
-  const description = `${name} é uma pessoa brasileira mantenedora de projetos open source, como ${fomatter.format(
-    projects.map((project) => {
-      const { repository } = extractRepository(project.repository);
-
-      return project.name || repository;
-    })
-  )}.`;
+  const projects = projectsRaw.map((project) => {
+    const { repository, organization } = extractRepository(project.repository);
+    return {
+      ...project,
+      name: project.name || repository,
+      organization,
+    };
+  });
+  const projectsNames = projects.map((project) => project.name);
+  const projectsOrganizations = projects.map((project) => project.organization);
+  const projectsResume = fomatter.format(projectsNames);
+  const description = `${name} é uma pessoa brasileira mantenedora de projetos open source, como ${projectsResume}.`;
+  const title = `Quem é ${name}?`;
+  const keywords = Array.from(
+    new Set([
+      'open source',
+      'open-source',
+      'brazilian',
+      'brazilians',
+      'project',
+      'projects',
+      'código aberto',
+      'código-aberto',
+      'brasileiro',
+      'brasileiros',
+      'projeto',
+      'projetos',
+      'GitHub',
+      name,
+      username,
+      ...projectsNames,
+      ...projectsOrganizations,
+      ...projects.flatMap((project) =>
+        project.categories ? project.categories.map((c) => categories[c]) : []
+      ),
+      ...projects.flatMap((project) =>
+        project.languages ? project.languages.map((l) => languages[l]) : []
+      ),
+    ])
+  ).sort();
 
   return (
-    <Layout title={name} description={description}>
+    <Layout title={title} description={description}>
+      <Head>
+        <meta
+          property='og:image'
+          content={`https://avatars.githubusercontent.com/${username}`}
+        />
+        <meta
+          property='twitter:image'
+          content={`https://avatars.githubusercontent.com/${username}`}
+        />
+        <meta name='keywords' content={keywords.join(', ')} />
+        <script type='application/ld+json' data-rh='true'>
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name,
+            url: `https://awesomeyou.io/maintainers/${username}/`,
+            sameAs: [`https://github.com/${username}`],
+            knowsAbout: 'Open Source',
+            jobTitle: 'Mantenedor',
+            affiliation: projects.map((project) => ({
+              '@type': 'Organization',
+              name: project.name,
+              description: project.description,
+              url: project.repository,
+            })),
+          })}
+        </script>
+      </Head>
       <div id='maintainer'>
         <main>
           <header>
-            <h1>
+            <h1 aria-label={title}>
               Quem é{' '}
               <ins>
                 <Name name={name} />
@@ -122,11 +186,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
               </small>
             )}
             {projects.map((project, i) => {
-              const { organization, repository } = extractRepository(
-                project.repository
-              );
-              const { stats } = project;
-
+              const { stats, repository, organization } = project;
               const isAuthor = project.isAuthor ? 'criou' : 'mantém';
               const isLaguange =
                 project.categories?.includes('language') &&

@@ -1,18 +1,21 @@
 <div align="center">
   <h1>Awesome You</h1>
-  <h4>🇧🇷 Como seu projeto impacta o mundo real? (🚧 WIP)</h4>
-  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que traz o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
+  <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
+  <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que valoriza o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
+  <hr />
+  <h4>🚧 Construindo em Público</h4>
+  <p>Acompanhe o nascimento de uma comunidade.</p>
 </div>
 
 ---
 
-## ✨ Apoiando
+## ✨ Como Apoiar?
 
 Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</strong>, assim como todos os projetos que você descobrir através da nossa iniciativa.
 
 ---
 
-## 🤝 Contribuindo
+## 🤝 Contribua
 
 Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
 
@@ -35,15 +38,15 @@ Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_
 
 Nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo que apenas projetos que se mantenham relevantes permaneçam na lista e abrindo espaço para projetos inovadores que não sejam necessariamente populares.
 
-### O lado humano do _open source_
+### O Lado Humano da Iniciativa Open Source
 
-Ao invés de apenas catalogar projetos, nós valorizamos o trabalho dos mantenedores e abrimos espaço para bate papos técnicos através do nosso futuro Podcast, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e LLMs ao vincular projetos com seus respectivos mantenedores brasileiros. <sup>1</sup>
+Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mantém projetos open source e abrimos espaço para bate papos técnicos, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e **LLMs** ao vincular projetos com pessoas brasileiras que os mantêm. <sup>1</sup>
 
 > [!NOTE]
 >
-> <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados.
+> <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada um, mas não os vinculam.
 >
-> Através de arquivos estáticos (via **SSG**) e um [sitemap](https://github.com/wellwelwel/awesomeyou/blob/gh-pages/sitemap.xml) inteligente que mapeia cada mantenedor aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
+> Através de arquivos estáticos (via **SSG**) e um [sitemap](https://github.com/wellwelwel/awesomeyou/blob/gh-pages/sitemap.xml) inteligente que mapeia cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
 
 ---
 
