@@ -7,7 +7,7 @@ import { SafeLink } from '@site/src/components/SafeLink';
 export const Header: FC = () => {
   return (
     <header>
-      <h1>
+      <h1 aria-label='Novo Projeto'>
         <Name name='<Novo Projeto + />' />
       </h1>
       <small className='baloon'>

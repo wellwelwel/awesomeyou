@@ -88,7 +88,7 @@ const MaintainersIndex: React.FC = () => {
       <div id='maintainers'>
         <main>
           <header className='show'>
-            <h1>
+            <h1 aria-label='Pessoas'>
               <Name name="<Brazil class='Pessoas' />" />
             </h1>
 

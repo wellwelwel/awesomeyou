@@ -113,7 +113,7 @@ export const Header: FC = () => {
     <>
       <header>
         <aside>
-          <h1>
+          <h1 aria-label='Como seu projeto impacta o mundo real?'>
             <div>
               <Name name='Como seu projeto impacta o' />
             </div>

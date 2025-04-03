@@ -14,6 +14,15 @@ export const Purpose: FC = () => {
     >
       <small>
         <p>
+          <ScanSearch />
+          <span>
+            Ajudar sistemas de buscas vincularem facilmente projetos aos seus
+            respectivos mantenedores brasileiros, por exemplo, ao pesquisar por
+            "Quais linguagens de programação foram criadas por brasileiros?" ou
+            "Quais brasileiros fazem parte de X projeto?".
+          </span>
+        </p>
+        <p>
           <Bot />
           <span>
             Todo conteúdo gerado nessa página é estático, facilitando a leitura
@@ -22,23 +31,14 @@ export const Purpose: FC = () => {
             <SafeLink to='https://awesomeyou.io/sitemap.xml'>
               sitemap.xml
             </SafeLink>{' '}
-            inteligente.
-          </span>
-        </p>
-        <p>
-          <ScanSearch />
-          <span>
-            A intenção é ajudar sistemas de buscas encontrarem facilmente
-            projetos, por exemplo, ao pesquisar por "Quais linguagens de
-            programação foram criadas por brasileiros?" ou "Quais brasileiros
-            fazem parte de X projeto?".
+            dinâmico e um schema <em>JSON-LD</em> estratégico.
           </span>
         </p>
         <p>
           <Sparkles />
           <span>
-            A mesma ideia vale para Inteligências Artificiais e, inclusive, logo
-            também suportaremos os novos padrões <strong>llms.txt</strong>.
+            A mesma ideia vale para Inteligências Artificiais com os novo padrão{' '}
+            <SafeLink to='https://awesomeyou.io/llms.txt'>llms.txt</SafeLink>.
           </span>
         </p>
       </small>

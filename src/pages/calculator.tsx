@@ -124,7 +124,7 @@ export default (): ReactNode => {
       <div id='calculator'>
         <main>
           <header>
-            <h1>
+            <h1 aria-label='Descubra seu Score'>
               <Name name='<Descubra seu Score />' />
             </h1>
 

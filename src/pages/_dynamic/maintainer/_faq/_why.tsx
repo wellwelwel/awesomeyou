@@ -27,7 +27,7 @@ export const Why: FC = () => {
           <Eraser />
           <span>
             Imagine desde linguagens de programação a livrarias que você usa
-            desaparecendo ou se tornando pagas e o impacto que isso teria.
+            desaparecendo ou se tornando pagas.
           </span>
         </p>
         <p>
@@ -48,8 +48,7 @@ export const Why: FC = () => {
           <CloudSun />
           <span>
             Apoiar das mais diversas formas quem cria projetos open source,
-            motiva o crescimento e a evolução contínua desse ecossistema
-            incrível (e todos saem ganhando).
+            motiva o crescimento desse ecossistema incrível.
           </span>
         </p>
       </small>

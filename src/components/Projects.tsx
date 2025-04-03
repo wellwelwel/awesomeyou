@@ -36,7 +36,7 @@ import { sortObjectByValues } from '@site/src/helpers/sort-object';
 import { search } from '../helpers/search';
 
 type ProjectsProps = {
-  title: ReactNode;
+  title: string;
   icon: ReactNode;
   description: ReactNode;
   projects: MergedProjects[];
@@ -291,7 +291,7 @@ const Projects: FC<ProjectsProps> = ({
       <div id='projects'>
         <main>
           <header>
-            <h1>
+            <h1 aria-label={title}>
               <Name name={`<Brazil class='${title}' />`} />
             </h1>
 
