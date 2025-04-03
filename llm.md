@@ -4,269 +4,206 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 
 > Legenda:
 > 
-> 🇧🇷 Foi criado no Brasil?
+> 🇧🇷 Foi criado por um brasileiro?
+> 👤 Mantenedores Brasileiros
 > 🏷️ Categorias
-> 💻 Linguagem
+> 💻 Linguagem de Programação
 > ✍️ Autor
 
-## Projetos
 
-### [Awesome Go](https://github.com/avelino/awesome-go)
+## [Awesome Go](https://github.com/avelino/awesome-go)
 
-A curated list of awesome Go frameworks, libraries...
+🇧🇷 ✅
+🏷️ Listas
+💻 GO
+✍️ Avelino
 
-🇧🇷: ✅
-🏷️: Listas
-💻: GO
-✍️: Avelino
+## [Awesome Made by Brazilians](https://github.com/felipefialho/awesome-made-by-brazilians)
 
-### [Awesome Made by Brazilians](https://github.com/felipefialho/awesome-made-by-brazilians)
+🇧🇷 ✅
+🏷️ Listas
+✍️ Felipe Fialho
 
-🇧🇷 A collection of amazing open source projects...
+## [AWS SSL Profiles](https://github.com/mysqljs/aws-ssl-profiles)
 
-🇧🇷: ✅
-🏷️: Listas
-✍️: Felipe Fialho
+🇧🇷 ✅
+🏷️ Produtividade e Plug-ins
+💻 TypeScript
+✍️ Weslley Araújo
 
-### [AWS SSL Profiles](https://github.com/mysqljs/aws-ssl-profiles)
+## [Bend](https://github.com/HigherOrderCO/Bend)
 
-📜 Centralização de certificados AWS RDS (SSL) par...
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ Victor Taelin
 
-🇧🇷: ✅
-🏷️: Produtividade e Plug-ins
-💻: TypeScript
-✍️: Weslley Araújo
+## [Brasil API](https://github.com/BrasilAPI/BrasilAPI)
 
-### [Bend](https://github.com/HigherOrderCO/Bend)
+🇧🇷 ✅
+👤 Filipe Deschamps e Luciano Pellacani
+🏷️ API
+💻 JavaScript
+✍️ Filipe Deschamps
 
-A massively parallel, high-level programming langu...
+## [Bun](https://github.com/oven-sh/bun)
 
-🇧🇷: ✅
-🏷️: Linguagem de Programação
-💻: Rust
-✍️: Victor Taelin
+🇧🇷 ❌
+👤 Ciro Spaciari
+🏷️ Linguagem de Programação
 
-### [Brasil API](https://github.com/BrasilAPI/BrasilAPI)
+## [CEP Promise](https://github.com/BrasilAPI/cep-promise)
 
-Vamos transformar o Brasil em uma API?
+🇧🇷 ✅
+👤 Filipe Deschamps e Luciano Pellacani
+🏷️ Ferramentas
+💻 JavaScript
+✍️ Filipe Deschamps
 
-🇧🇷: ✅
-👤: Filipe Deschamps e Luciano Pellacani
-🏷️: API
-💻: JavaScript
-✍️: Filipe Deschamps
+## [Corcel](https://github.com/corcel/corcel)
 
-### [Bun](https://github.com/oven-sh/bun)
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 PHP
+✍️ Junior Grossi
 
-Incredibly fast JavaScript runtime, bundler, test...
+## [Devise](https://github.com/heartcombo/devise)
 
-🇧🇷: ❌
-👤: Ciro Spaciari
-🏷️: Linguagem de Programação
-💻: Zig
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 Ruby
+✍️ José Valim
 
-### [CEP Promise](https://github.com/BrasilAPI/cep-promise)
+## [Doom Fire Algorithm Playground](https://github.com/filipedeschamps/doom-fire-algorithm)
 
-Busca por CEP integrado diretamente aos serviços d...
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais
+💻 JavaScript
+✍️ Filipe Deschamps
 
-🇧🇷: ✅
-👤: Filipe Deschamps e Luciano Pellacani
-🏷️: Ferramentas
-💻: JavaScript
-✍️: Filipe Deschamps
+## [Dracula Theme](https://github.com/dracula/dracula-theme)
 
-### [Corcel](https://github.com/corcel/corcel)
+🇧🇷 ✅
+🏷️ Temas
+✍️ Zeno Rocha
 
-Use WordPress backend with Laravel or any PHP appl...
+## [Elixir](https://github.com/elixir-lang/elixir)
 
-🇧🇷: ✅
-🏷️: Ferramentas
-💻: PHP
-✍️: Junior Grossi
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ José Valim
 
-### [Devise](https://github.com/heartcombo/devise)
+## [Front-end Challenges](https://github.com/felipefialho/frontend-challenges)
 
-Flexible authentication solution for Rails with Wa...
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais e Frontend
+✍️ Felipe Fialho
 
-🇧🇷: ✅
-🏷️: Ferramentas
-💻: Ruby
-✍️: José Valim
+## [GOT](https://github.com/khaosdoctor/gotql)
 
-### [Doom Fire Algorithm Playground](https://github.com/filipedeschamps/doom-fire-algorithm)
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 TypeScript
+✍️ Lucas Santos
 
-Playground for the fire effect from DOOM. Really s...
+## [HVM2](https://github.com/HigherOrderCO/HVM)
 
-🇧🇷: ✅
-🏷️: Conteúdos Educacionais
-💻: JavaScript
-✍️: Filipe Deschamps
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ Victor Taelin
 
-### [Dracula Theme](https://github.com/dracula/dracula-theme)
+## [lru.min](https://github.com/wellwelwel/lru.min)
 
-🧛🏻‍♂️ One theme. All platforms.
+🇧🇷 ✅
+🏷️ Performance e Backend
+💻 TypeScript
+✍️ Weslley Araújo
 
-🇧🇷: ✅
-🏷️: Temas
-✍️: Zeno Rocha
+## [LuaRocks](https://github.com/luarocks/luarocks)
 
-### [Elixir](https://github.com/elixir-lang/elixir)
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 Lua
+✍️ Hisham Muhammad
 
-Elixir is a dynamic, functional language for build...
+## [Lwan Web Server](https://github.com/lpereira/lwan)
 
-🇧🇷: ✅
-🏷️: Linguagem de Programação
-💻: Elixir
-✍️: José Valim
+🇧🇷 ✅
+🏷️ DevOps e Performance
+💻 C
+✍️ L. Pereira
 
-### [Front-end Challenges](https://github.com/felipefialho/frontend-challenges)
+## [MySQL2](https://github.com/sidorares/node-mysql2)
 
-A public list of open-source challenges from compa...
+🇧🇷 ❌
+👤 Weslley Araújo
+🏷️ Banco de Dados e Ferramentas
+💻 TypeScript
 
-🇧🇷: ✅
-🏷️: Conteúdos Educacionais e Frontend
-✍️: Felipe Fialho
+## [Node.js](https://github.com/nodejs/node)
 
-### [GOT](https://github.com/khaosdoctor/gotql)
+🇧🇷 ❌
+👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
+🏷️ Linguagem de Programação
 
-Write GraphQL queries as objects instead of string...
+## [Padrões de commits](https://github.com/iuricode/padroes-de-commits)
 
-🇧🇷: ✅
-🏷️: Ferramentas
-💻: TypeScript
-✍️: Lucas Santos
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais e Git
+✍️ Iuri Silva
 
-### [HVM2](https://github.com/HigherOrderCO/HVM)
+## [Poku](https://github.com/wellwelwel/poku)
 
-A massively parallel, optimal functional runtime i...
+🇧🇷 ✅
+🏷️ Test Runner e CI/CD
+💻 TypeScript
+✍️ Weslley Araújo
 
-🇧🇷: ✅
-🏷️: Linguagem de Programação
-💻: Rust
-✍️: Victor Taelin
+## [React Email](https://github.com/resend/react-email)
 
-### [lru.min](https://github.com/wellwelwel/lru.min)
+🇧🇷 ✅
+👤 Gabriel Miranda e Zeno Rocha
+🏷️ Ferramentas e Frontend
+💻 TypeScript
+✍️ Zeno Rocha
 
-🔥 Cache em memória baseado em LRU, extremamente r...
+## [Rio](https://github.com/raphamorim/rio)
 
-🇧🇷: ✅
-🏷️: Performance e Backend
-💻: TypeScript
-✍️: Weslley Araújo
+🇧🇷 ✅
+🏷️ Apps, Plataformas e Softwares
+💻 Rust
+✍️ Rapha Amorim
 
-### [LuaRocks](https://github.com/luarocks/luarocks)
+## [Socketify](https://github.com/cirospaciari/socketify.py)
 
-LuaRocks is the package manager for the Lua progra...
+🇧🇷 ✅
+🏷️ Performance e Ferramentas
+💻 Python
+✍️ Ciro Spaciari
 
-🇧🇷: ✅
-🏷️: Ferramentas
-💻: Lua
-✍️: Hisham Muhammad
+## [Splinter](https://github.com/cobrateam/splinter)
 
-### [Lwan Web Server](https://github.com/lpereira/lwan)
+🇧🇷 ✅
+🏷️ Testes e Ferramentas
+💻 Python
+✍️ Andrews Medina
 
-Lwan is a high-performance & scalable web server.
+## [tabnews.com.br](https://github.com/filipedeschamps/tabnews.com.br)
 
-🇧🇷: ✅
-🏷️: DevOps e Performance
-💻: C
-✍️: L. Pereira
+🇧🇷 ✅
+👤 Felipe Barso e Filipe Deschamps
+🏷️ Apps, Plataformas e Softwares
+💻 JavaScript
+✍️ Filipe Deschamps
 
-### [MySQL2](https://github.com/sidorares/node-mysql2)
+## [tsuru](https://github.com/tsuru/tsuru)
 
-⚡️ Cliente MySQL de alta performance para Node.js,...
+🇧🇷 ✅
+🏷️ Apps, Plataformas e Softwares
+💻 GO
+✍️ Andrews Medina
 
-🇧🇷: ❌
-👤: Weslley Araújo
-🏷️: Banco de Dados e Ferramentas
-💻: TypeScript
+## [Vagas](https://github.com/frontendbr/vagas)
 
-### [Node.js](https://github.com/nodejs/node)
-
-Node.js JavaScript runtime ✨🐢🚀✨
-
-🇧🇷: ❌
-👤: Erick Wendel, Lucas Santos e Rafael Gonzaga
-🏷️: Linguagem de Programação
-💻: C++
-
-### [Padrões de commits](https://github.com/iuricode/padroes-de-commits)
-
-Padrões de commits.
-
-🇧🇷: ✅
-🏷️: Conteúdos Educacionais e Git
-✍️: Iuri Silva
-
-### [Poku](https://github.com/wellwelwel/poku)
-
-🐷 Poku é um test runner que torna testes fáceis p...
-
-🇧🇷: ✅
-🏷️: Test Runner e CI/CD
-💻: TypeScript
-✍️: Weslley Araújo
-
-### [React Email](https://github.com/resend/react-email)
-
-Build and send emails using React.
-
-🇧🇷: ✅
-👤: Gabriel Miranda e Zeno Rocha
-🏷️: Ferramentas e Frontend
-💻: TypeScript
-✍️: Zeno Rocha
-
-### [Rio](https://github.com/raphamorim/rio)
-
-A hardware-accelerated GPU terminal emulator focus...
-
-🇧🇷: ✅
-🏷️: Apps, Plataformas e Softwares
-💻: Rust
-✍️: Rapha Amorim
-
-### [Socketify](https://github.com/cirospaciari/socketify.py)
-
-Bringing Http/Https and WebSockets High Performanc...
-
-🇧🇷: ✅
-🏷️: Performance e Ferramentas
-💻: Python
-✍️: Ciro Spaciari
-
-### [Splinter](https://github.com/cobrateam/splinter)
-
-Python test framework for web applications.
-
-🇧🇷: ✅
-🏷️: Testes e Ferramentas
-💻: Python
-✍️: Andrews Medina
-
-### [tabnews.com.br](https://github.com/filipedeschamps/tabnews.com.br)
-
-Conteúdos para quem trabalha com Programação e Tec...
-
-🇧🇷: ✅
-👤: Felipe Barso e Filipe Deschamps
-🏷️: Apps, Plataformas e Softwares
-💻: JavaScript
-✍️: Filipe Deschamps
-
-### [tsuru](https://github.com/tsuru/tsuru)
-
-Open source and extensible Platform as a Service (...
-
-🇧🇷: ✅
-🏷️: Apps, Plataformas e Softwares
-💻: GO
-✍️: Andrews Medina
-
-### [Vagas](https://github.com/frontendbr/vagas)
-
-🔬 Espaço para divulgação de vagas para front-ende...
-
-🇧🇷: ✅
-🏷️: Listas e Carreira
-✍️: Felipe Fialho
+🇧🇷 ✅
+🏷️ Listas e Carreira
+✍️ Felipe Fialho
