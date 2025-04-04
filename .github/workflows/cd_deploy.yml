@@ -6,6 +6,9 @@ on:
       - 'main'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -43,6 +46,7 @@ jobs:
       - name: Deploy — Server
         uses: peaceiris/actions-gh-pages@v4
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./server
           publish_branch: 'server'
           allow_empty_commit: false
@@ -51,6 +55,7 @@ jobs:
       - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           publish_branch: 'website'
           cname: awesomeyou.io
