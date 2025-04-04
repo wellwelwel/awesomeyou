@@ -51,8 +51,8 @@ jobs:
       - name: Checking Lint
         run: npm run lint
 
-      - name: Building Site
-        run: npm run build
-
       - name: Testing Projects
         run: npm test
+
+      - name: Building Site
+        run: npm run build

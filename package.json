@@ -7,7 +7,6 @@
     "url": "https://github.com/sponsors/wellwelwel"
   },
   "scripts": {
-    "docusaurus": "docusaurus",
     "prestart": "tsx tools/host.mts",
     "start": "concurrently \"npm run start:website\" \"npm run start:server\"",
     "start:website": "docusaurus start --host 0.0.0.0 --port 6060",
@@ -15,7 +14,7 @@
     "build:maintainers": "tsx --env-file-if-exists=.env tools/generate-maintainers.mts",
     "build:projects": "tsx tools/generate-stats.mts && tsx tools/generate-scores.mts",
     "build:server": "rollup -c && cp -f wrangler.prod.jsonc server/wrangler.jsonc",
-    "prebuild": "npm run build:projects && npm run build:maintainers && tsx tools/generate-resume.mts",
+    "prebuild": "tsx tools/generate-resume.mts",
     "build": "docusaurus build && npm run build:server",
     "postbuild": "tsx tools/modify-sitemap.mts && tsx tools/generate-llms.mts",
     "clear": "docusaurus clear",
@@ -28,7 +27,7 @@
     "update": "pu minor && npm i && (npm audit fix || true)",
     "postupdate": "npm run lint:fix",
     "purge": "tsx --env-file-if-exists=.env tools/purge-cache.mts",
-    "pretest": "npm run build:projects && docusaurus build",
+    "pretest": "npm run build:projects",
     "test": "poku -r=compact",
     "posttest": "npm run typecheck && npm run lint"
   },
