@@ -1,3 +1,4 @@
+import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
 import {
   createContext,
   Dispatch,
@@ -11,7 +12,6 @@ import {
   useState,
 } from 'react';
 import { toast } from 'sonner';
-import { ProjectOptions, RawProject } from '@site/src/@types/projects';
 
 type ContextType = {
   modalRef: RefObject<HTMLDivElement | null>;
@@ -34,7 +34,7 @@ export const displayModal = (status: boolean) => {
 export const Context = createContext<ContextType>(Object.create(null));
 
 export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
-  const useMaintainer = useState<string>('***');
+  const useMaintainer = useState<string>('');
   const useJSON = useState<RawProject>(Object.create(null));
   const useCurrentProject = useState<ProjectOptions | undefined>(undefined);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -44,7 +44,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const openProject = useCallback(
     (repositoryURL?: string) => {
-      if (!maintainer || maintainer === '***') {
+      if (!maintainer || maintainer === '') {
         toast.error('Defina o username de que mantém os projetos.');
         return;
       }

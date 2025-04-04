@@ -63,6 +63,7 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-parallax-tilt": "^1.7.288",
     "react-typed": "^2.0.12",
     "rollup": "^4.39.0",
     "sass": "^1.86.2",

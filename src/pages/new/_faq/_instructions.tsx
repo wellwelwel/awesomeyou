@@ -15,6 +15,7 @@ import {
 import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { Context } from '@site/src/contexts/New';
+import { deepTrim } from '@site/src/helpers/deep-trim';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 
 export const Instructions: FC = () => {
@@ -62,7 +63,7 @@ export const Instructions: FC = () => {
               language='json'
               title={`content/maintainers/${maintainer}/projects.json`}
             >
-              {`${JSON.stringify(json, null, 2)}\n\n`}
+              {`${JSON.stringify(deepTrim(json), null, 2)}\n\n`}
             </CodeBlock>
           </span>
         </div>

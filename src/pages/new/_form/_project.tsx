@@ -15,6 +15,7 @@ import {
   Shapes,
   SquareDashedMousePointer,
 } from 'lucide-react';
+import { toast } from 'sonner';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { Context } from '@site/src/contexts/New';
@@ -49,16 +50,67 @@ export const Project: FC = () => {
     }
   })();
 
+  const updateList = useCallback(
+    <T extends keyof ProjectOptions>(
+      e: ChangeEvent<HTMLInputElement>,
+      {
+        key,
+        limit,
+        error,
+        field,
+      }: { key: string; limit: number; error: string; field: T }
+    ) => {
+      const { checked, parentElement } = e.currentTarget;
+
+      const updateState = (prev: ProjectOptions): ProjectOptions => {
+        const currentList = (prev?.[field] as string[]) || [];
+
+        if (checked && currentList.length >= limit) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.currentTarget && (e.currentTarget.checked = false);
+          toast.warning(error);
+
+          return prev;
+        }
+
+        const newList = checked
+          ? [...currentList, key]
+          : currentList.filter((item) => item !== key);
+
+        return {
+          ...initialState,
+          ...(prev || Object.create(null)),
+          [field]: newList.length > 0 ? newList : undefined,
+        };
+      };
+
+      setCurrentProject((prev) => updateState(prev || Object.create(null)));
+
+      if (parentElement) {
+        if (!checked) {
+          parentElement.classList.remove('on');
+          return;
+        }
+
+        const previousCount =
+          (currentProject?.[field] as string[] | undefined)?.length || 0;
+        parentElement.classList[previousCount < limit ? 'add' : 'remove']('on');
+      }
+    },
+    [setCurrentProject, currentProject]
+  );
+
   const updateProject = useCallback(
     (
       e: ChangeEvent<HTMLInputElement>,
       field: keyof ProjectOptions,
       isBoolean?: boolean
     ) => {
+      e.stopPropagation();
+
       const value =
-        e.currentTarget?.value.trim().length > 0
-          ? e.currentTarget?.value.trim()
-          : '';
+        e.currentTarget?.value.trim().length > 0 ? e.currentTarget?.value : '';
       const checked = e.currentTarget?.checked;
 
       setCurrentProject((prev) => ({
@@ -185,51 +237,70 @@ export const Project: FC = () => {
       </label>
 
       <h2>
-        <Code /> Selecione até duas linguagens (em breve)
+        <Code /> Selecione até 2 linguagens
       </h2>
       <div className='multiple'>
         {Object.entries(sortObjectByValues(languages)).map(
-          ([key, language]) => (
-            <label key={key} className='span'>
-              <span>
-                <input
-                  type='checkbox'
-                  name='languages'
-                  disabled
-                  onChange={(e) =>
-                    e.currentTarget.parentElement?.classList[
-                      e.currentTarget.checked ? 'add' : 'remove'
-                    ]('on')
-                  }
-                />{' '}
-                <SquareDashedMousePointer /> {language}
-              </span>
-            </label>
-          )
+          ([key, language]) => {
+            const isChecked =
+              project?.languages?.includes(key as keyof typeof languages) ||
+              false;
+
+            return (
+              <label key={key} className='span'>
+                <span className={isChecked ? 'on' : undefined}>
+                  <input
+                    type='checkbox'
+                    name='languages'
+                    checked={isChecked}
+                    onChange={(e) =>
+                      updateList(e, {
+                        key,
+                        limit: 2,
+                        error: 'Você selecionou o máximo de linguagens.',
+                        field: 'languages',
+                      })
+                    }
+                  />
+                  <SquareDashedMousePointer /> {language}
+                </span>
+              </label>
+            );
+          }
         )}
       </div>
 
       <h2>
-        <Shapes /> Selecione até três categorias (em breve)
+        <Shapes /> Selecione até 4 categorias
       </h2>
       <div className='multiple'>
         {Object.entries(sortObjectByValues(categories)).map(
-          ([key, category]) => (
-            <label key={key} className='span'>
-              <span>
-                <input
-                  type='checkbox'
-                  name='categories'
-                  onChange={(e) =>
-                    e.currentTarget.parentElement?.classList[
-                      e.currentTarget.checked ? 'add' : 'remove'
-                    ]('on')
-                  }
-                />{' '}
-                <SquareDashedMousePointer /> {category}
-              </span>
-            </label>
-          )
+          ([key, category]) => {
+            const isChecked =
+              project?.categories?.includes(key as keyof typeof categories) ||
+              false;
+
+            return (
+              <label key={key} className='span'>
+                <span className={isChecked ? 'on' : undefined}>
+                  <input
+                    type='checkbox'
+                    name='categories'
+                    checked={isChecked}
+                    onChange={(e) =>
+                      updateList(e, {
+                        key,
+                        limit: 4,
+                        error: 'Você selecionou o máximo de categorias.',
+                        field: 'categories',
+                      })
+                    }
+                  />
+                  <SquareDashedMousePointer /> {category}
+                </span>
+              </label>
+            );
+          }
         )}
       </div>
 

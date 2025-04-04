@@ -1,8 +1,9 @@
 import type { FC } from 'react';
 import { useCallback, useContext } from 'react';
-import { Blocks, Eraser, PackagePlus, Pencil, Plus, X } from 'lucide-react';
+import { Blocks, Eraser, PackagePlus, Pencil, Plus, Undo2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Context, displayModal } from '@site/src/contexts/New';
+import { deepTrim } from '@site/src/helpers/deep-trim';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { Maintainer } from './_maintaner';
 import { Project } from './_project';
@@ -18,6 +19,13 @@ export const Form: FC = () => {
     displayModal(false);
     modalRef.current?.classList.remove('show');
     setCurrentProject(undefined);
+
+    for (const element of Array.from(
+      document.querySelectorAll('.multiple .on')
+    )) {
+      element.classList.remove('on');
+      element.querySelector('input')?.classList.remove('on');
+    }
   }, [modalRef.current, setCurrentProject]);
 
   const saveCurrentProject = useCallback(() => {
@@ -66,12 +74,12 @@ export const Form: FC = () => {
 
         updatedProjects[index] = currentProject;
 
-        return { ...prev, projects: updatedProjects };
+        return { ...prev, projects: deepTrim(updatedProjects) };
       });
     else
       setJSON((prev) => ({
         ...prev,
-        projects: [...prev.projects, currentProject],
+        projects: [...prev.projects, deepTrim(currentProject)],
       }));
 
     toast.success('Projeto adicionado.');
@@ -147,7 +155,7 @@ export const Form: FC = () => {
               className='delete'
               onClick={deleteCurrentProject}
             >
-              <X />
+              <Eraser />
               Excluir
             </button>
             <div>
@@ -156,7 +164,7 @@ export const Form: FC = () => {
                 className='cancel'
                 onClick={resetCurrentProject}
               >
-                <Eraser />
+                <Undo2 />
                 Cancelar
               </button>
               <button type='button' onClick={saveCurrentProject}>

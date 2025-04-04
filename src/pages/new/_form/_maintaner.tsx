@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import { useContext } from 'react';
-import { BookOpen, CircleAlert, CircleHelp, Github, User } from 'lucide-react';
+import { CircleAlert, Github, User } from 'lucide-react';
 import { Context } from '@site/src/contexts/New';
 
 export const Maintainer: FC = () => {
   const { useMaintainer } = useContext(Context);
-  const [, setMaintainer] = useMaintainer;
+  const [maintainer, setMaintainer] = useMaintainer;
 
   return (
     <>
@@ -25,31 +25,12 @@ export const Maintainer: FC = () => {
           name='maintainer'
           maxLength={39}
           required
-          onChange={(e) => setMaintainer(e.currentTarget.value.trim() || '***')}
+          value={maintainer}
+          onChange={(e) => setMaintainer(e.currentTarget.value.trim() || '')}
         />
         <small>
           <CircleAlert /> O username do perfil de quem mantém o projeto no
           GitHub (obrigatório).
-        </small>
-      </label>
-      <label>
-        <span>
-          <BookOpen />
-          <span>
-            Mini Bio <sup>?</sup>
-          </span>
-        </span>
-        <input
-          placeholder='Em breve'
-          type='text'
-          name='maintainer'
-          maxLength={200}
-          readOnly
-          disabled
-        />
-        <small>
-          <CircleHelp /> Você pode escrever uma mini bio em português de até 200
-          caracteres, caso contrário, será usada sua Bio do GitHub.
         </small>
       </label>
     </>

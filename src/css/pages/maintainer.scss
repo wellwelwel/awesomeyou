@@ -48,6 +48,10 @@
       & > small {
         color: #416db5;
 
+        & > div {
+          width: 100%;
+        }
+
         &.baloon {
           margin-top: 30px;
         }
@@ -76,7 +80,8 @@
           }
         }
 
-        & > span {
+        & > span,
+        & > div > span {
           @include flex(row);
           gap: 10px;
           width: 100%;
@@ -90,16 +95,31 @@
             object-position: center;
             border-radius: 10px;
             border: 2px solid #e5f4ff;
-            box-shadow: 0 0 7.5px #00000014;
+            box-shadow: 0 0 7.5px #1254a925;
+            transition: box-shadow 0.5s;
+
+            &:hover {
+              box-shadow: 0 0 5px #1254a975;
+            }
           }
 
-          .name {
-            margin-bottom: 2.5px;
-            font-family: var(--ifm-font-family-featured);
-            font-weight: 800;
+          p {
+            & > span {
+              transition: color 0.75s cubic-bezier(0.75, -0.5, 0.2, 0.9);
 
-            + p {
-              font-size: 13px;
+              &:hover {
+                color: #00a6ff;
+              }
+            }
+
+            &.name {
+              margin-bottom: 2.5px;
+              font-family: var(--ifm-font-family-featured);
+              font-weight: 800;
+
+              + p {
+                font-size: 13px;
+              }
             }
           }
         }
