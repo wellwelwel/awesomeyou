@@ -5,6 +5,7 @@
   <hr />
   <h4>🚧 Construindo em Público</h4>
   <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
+  <img src="./content/assets/img/social.png" width="480" />
 </div>
 
 ---
@@ -46,7 +47,7 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 >
 > <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada um, mas não os vinculam.
 >
-> Através de arquivos estáticos (via **SSG**), um [sitemap](https://awesomeyou.io/sitemap.xml), `JSON-LD` estratégicos e o novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeia cuidadosamente cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
+> Através de arquivos estáticos (via **SSG**), um [sitemap](https://awesomeyou.io/sitemap.xml), [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos e o novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeia cuidadosamente cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
 
 ---
 
