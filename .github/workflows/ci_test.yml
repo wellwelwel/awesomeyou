@@ -7,9 +7,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
-
 jobs:
   test:
     runs-on: ubuntu-latest

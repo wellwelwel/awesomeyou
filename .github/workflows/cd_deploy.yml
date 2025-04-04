@@ -6,9 +6,6 @@ on:
       - 'main'
   workflow_dispatch:
 
-env:
-  GITHUB_TOKEN: ${{ secrets.API_GITHUB }}
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -46,7 +43,6 @@ jobs:
       - name: Deploy — Server
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PAT }}
           publish_dir: ./server
           publish_branch: 'server'
           allow_empty_commit: false
@@ -55,7 +51,6 @@ jobs:
       - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PAT }}
           publish_dir: ./build
           publish_branch: 'website'
           cname: awesomeyou.io
