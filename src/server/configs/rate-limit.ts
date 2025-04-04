@@ -11,9 +11,9 @@ const getRateLimitKey = (request: Request): string => {
   const ip =
     request.headers.get('CF-Connecting-IP') ||
     request.headers.get('X-Forwarded-For') ||
-    'unknown';
+    'UNKNOWN';
 
-  return String(ip);
+  return String(ip).slice(0, 19);
 };
 
 export const RATE_LIMIT = {
