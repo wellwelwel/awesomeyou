@@ -46,7 +46,7 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 >
 > <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada um, mas não os vinculam.
 >
-> Através de arquivos estáticos (via **SSG**) e um [sitemap](https://github.com/wellwelwel/awesomeyou/blob/gh-pages/sitemap.xml) inteligente que mapeia cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
+> Através de arquivos estáticos (via **SSG**), um [sitemap](https://awesomeyou.io/sitemap.xml), `JSON-LD` estratégicos e o novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeia cuidadosamente cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
 
 ---
 
