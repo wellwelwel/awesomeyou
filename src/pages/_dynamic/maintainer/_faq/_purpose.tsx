@@ -37,7 +37,7 @@ export const Purpose: FC = () => {
         <p>
           <Sparkles />
           <span>
-            A mesma ideia vale para Inteligências Artificiais com os novo padrão{' '}
+            A mesma ideia vale para Inteligências Artificiais com o novo padrão{' '}
             <SafeLink to='https://awesomeyou.io/llms.txt'>llms.txt</SafeLink>.
           </span>
         </p>
