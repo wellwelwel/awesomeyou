@@ -49,7 +49,7 @@ const getGitHubUserName = async (username: string) => {
 const processMaintainers = async (): Promise<
   ProcessedMaintainer[] | undefined
 > => {
-  if (!(await shouldUpdateFile(filePath, 1))) return;
+  // if (!(await shouldUpdateFile(filePath, 1))) return;
 
   console.log('Caching maintainer infos');
 

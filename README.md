@@ -2,6 +2,20 @@
   <h1>Awesome You</h1>
   <h4>🇧🇷 Como seu projeto impacta o mundo real?</h4>
   <p><b><a href="https://awesomeyou.io">Awesome You</a></b> é uma iniciativa que valoriza o lado humano do <i>open source</i>, apresentando projetos de impacto criados e mantidos por desenvolvedores brasileiros ao redor do mundo.</p>
+  <h4 align="center">
+    <a href="https://awesomeyou.io/projects/">
+      ⭐️&nbsp;&nbsp;Projetos
+    </a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://awesomeyou.io/maintainers/">
+      👤&nbsp;&nbsp;Pessoas
+    </a>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://awesomeyou.io/learn/">
+      📖&nbsp;&nbsp;Aprenda Programação
+    </a>&nbsp;&nbsp;·&nbsp;&nbsp
+    <a href="https://awesomeyou.io/lists/">
+      📋&nbsp;&nbsp;Listas
+    </a>
+  </h4>
   <hr />
   <h4>🚧 Construindo em Público</h4>
   <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
