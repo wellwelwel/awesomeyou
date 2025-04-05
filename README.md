@@ -16,7 +16,7 @@
       📋&nbsp;&nbsp;Listas
     </a>
   </h4>
-  <img src="./.github/resources/banner.png" width="480" />
+  <a href="https://awesomeyou.io/"><img src="./.github/resources/banner.png" width="480" /></a>
   <hr />
   <h4>🚧 Construindo em Público</h4>
   <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
