@@ -19,7 +19,7 @@
   <hr />
   <h4>🚧 Construindo em Público</h4>
   <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
-  <img src="./content/assets/img/social.png" width="480" />
+  <img src="./.github/resources/banner.png" width="480" />
 </div>
 
 ---
