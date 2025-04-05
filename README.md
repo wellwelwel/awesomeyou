@@ -29,29 +29,35 @@ Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** di
 
 ---
 
-## 💡 Por que mais uma Lista?
+## 💡 Por que mais uma ~Lista~?
 
-Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) não é uma lista.
+Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) <ins>não</ins> é uma lista.
 
-### Relevância vs. Impacto vs. Popularidade
+### 📊 Relevância vs. Impacto vs. Popularidade vs. Comunidade
 
 Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_ ou do seu respectivo autor é a melhor maneira de medir a relevância e impacto de um projeto?
 
 Nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo que apenas projetos que se mantenham relevantes permaneçam na lista e abrindo espaço para projetos inovadores que não sejam necessariamente populares.
 
-### O Lado Humano da Iniciativa Open Source
+### 🧑‍💼 O Lado Humano da Iniciativa Open Source
 
 Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mantém projetos open source e abrimos espaço para bate papos técnicos, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e **LLMs** ao vincular projetos com pessoas brasileiras que os mantêm. <sup>1</sup>
 
 > [!NOTE]
 >
-> <sup>1</sup> Atualmente, ao pesquisar por "[categoria] criados por desenvolvedores brasileiros", dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada um, mas não os vinculam.
+> <sup>1</sup> Atualmente, ao pesquisar por _"[categoria] criados por desenvolvedores brasileiros"_, dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada resposta, mas não os vinculam.
 >
-> Através de arquivos estáticos (via **SSG**), um [sitemap](https://awesomeyou.io/sitemap.xml), [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos e o novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeia cuidadosamente cada pessoa aos seus respectivos projetos, nossa meta é que esses sistemas consigam vincular os mantenedores brasileiros aos seus respectivos projetos.
+> Por exemplo:
+>
+> - **A)** ✅ Quem é _[mantenedor open source]_
+> - **B)** ✅ O que é _[nome do projeto]_
+> - **C)** ❌ Quais _[categoria do projeto]_ fora criados ou são mantidos por brasileiros?
+>
+> Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
 
 ---
 
-## 🔟 Sistema de Pontos
+## ⚖️ Sistema de Pontos
 
 O cálculo da pontuação inclui:
 
@@ -65,7 +71,7 @@ Você pode consultar detalhadamente como o sistema de pontos funciona [aqui](./d
 
 ---
 
-## 🧮 Acompanhe a Pontuação do seu Projeto
+## 📈 Acompanhe a Pontuação do seu Projeto
 
 Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a pontuação do seu repositório dinamicamente e sem compromisso através da nossa [**calculadora**](https://awesomeyou.io/calculator/).
 

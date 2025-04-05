@@ -126,18 +126,16 @@ for (const file of files) {
     await sleep(waitTimeMs);
   }
 
-  await getGitHubUserName(username).then(
-    async ({ name, bio, location, blog }) => {
-      await mkdir(base, { recursive: true });
-      await writeFile(
-        filePath,
-        JSON.stringify(
-          { username, name, bio, location, blog, updatedAt: currentDate },
-          null,
-          0
-        )
-      );
-    }
+  const { name, bio, location, blog } = await getGitHubUserName(username);
+
+  await mkdir(base, { recursive: true });
+  await writeFile(
+    filePath,
+    JSON.stringify(
+      { username, name, bio, location, blog, updatedAt: currentDate },
+      null,
+      0
+    )
   );
 }
 
