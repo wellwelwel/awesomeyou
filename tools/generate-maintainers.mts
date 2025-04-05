@@ -140,10 +140,13 @@ for (const file of files) {
 }
 
 const processedMaintainers = await processMaintainers();
-const cache = {
-  maintainers: processedMaintainers,
-  updatedAt: currentDate,
-};
 
-await mkdir(base, { recursive: true });
-await writeFile(filePath, JSON.stringify(cache, null, 0));
+if (processedMaintainers) {
+  const cache = {
+    maintainers: processedMaintainers,
+    updatedAt: currentDate,
+  };
+
+  await mkdir(base, { recursive: true });
+  await writeFile(filePath, JSON.stringify(cache, null, 0));
+}
