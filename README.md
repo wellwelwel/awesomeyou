@@ -16,10 +16,10 @@
       📋&nbsp;&nbsp;Listas
     </a>
   </h4>
+  <img src="./.github/resources/banner.png" width="480" />
   <hr />
   <h4>🚧 Construindo em Público</h4>
   <p>Acompanhe o nascimento e crescimento de uma comunidade.</p>
-  <img src="./.github/resources/banner.png" width="480" />
 </div>
 
 ---
@@ -63,11 +63,11 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 >
 > Por exemplo:
 >
-> - **A)** ✅ Quem é _[mantenedor open source]_
-> - **B)** ✅ O que é _[nome do projeto]_
-> - **C)** ❌ Quais _[categoria do projeto]_ fora criados ou são mantidos por brasileiros?
+> - **A)** ✅ Quem é _[mantenedor open source]_?
+> - **B)** ✅ O que é _[nome do projeto]_?
+> - **C)** ❌ Quais _[categorias do projeto]_ foram criados ou são mantidos por brasileiros?
 >
-> Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt) que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
+> Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
 
 ---
 
