@@ -42,6 +42,15 @@
         stroke-width: 2.5px;
         animation: colorChange 10s ease-in-out infinite;
       }
+
+      &.egg {
+        cursor: pointer;
+        transition: transform 0.1s;
+
+        &:hover {
+          transform: scale(1.07);
+        }
+      }
     }
 
     p {

@@ -30,20 +30,26 @@
         gap: 20px;
         width: 100%;
         padding: 25px;
-        border-radius: 10px;
+        border-radius: 20px;
         background-color: #ffffff60;
         border: 1px solid #acccff95;
         box-shadow: 0 0 5px #445cc619;
         transition:
           transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9),
-          filter 0.25s ease-in-out;
+          filter 0.25s ease-in-out,
+          border-radius 0.25s;
 
         &:hover {
           transform: translateY(-5px);
+          border-radius: 10px !important;
 
           header {
             & > a {
               transform: scale(1.05);
+
+              img {
+                border-radius: 10% 10% 10% 10% / 10% 10% 10% 10%;
+              }
             }
           }
         }
@@ -55,11 +61,21 @@
           gap: 20px;
           width: 100%;
 
+          @media (max-width: 630px) {
+            flex-direction: column !important;
+            align-items: center;
+            text-align: center;
+          }
+
           & > a {
             @include flex(column);
             gap: 12.5px;
             transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
             color: var(--title-color-1);
+
+            @media (max-width: 630px) {
+              justify-content: center !important;
+            }
 
             img {
               min-width: 125px;
@@ -68,14 +84,25 @@
               object-fit: cover;
               object-position: center;
               border: 1px solid #acccff95;
-              border-radius: 10px;
+              border-radius: 60% 30% 60% 40% / 45% 30% 70% 50%;
               box-shadow: 0 0 5px #445cc62e;
+              transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
+              animation: baloon 1s cubic-bezier(0.75, -0.9, 0.2, 0.9) forwards;
+
+              &:hover {
+                transform: scale(1.05);
+              }
             }
           }
 
           & > main {
             flex-grow: 1;
             @include flex(column, flex-start, stretch);
+
+            @media (max-width: 630px) {
+              align-items: center !important;
+              justify-content: center !important;
+            }
 
             & > a {
               color: var(--title-color-1);
@@ -93,6 +120,10 @@
                   flex-grow: 1;
                   @include flex(column);
                   gap: 6px;
+
+                  @media (max-width: 630px) {
+                    align-items: center !important;
+                  }
 
                   .group-name {
                     span {
@@ -149,6 +180,7 @@
 
                 @media (max-width: 630px) {
                   max-width: 150px;
+                  justify-content: center;
                 }
 
                 &:hover {
@@ -175,7 +207,7 @@
             gap: 5px;
             padding: 7.5px 15px;
             border: 1px dotted #a6cce0a6;
-            border-radius: 5px;
+            border-radius: 10px;
             background-color: #edf5ff;
             color: #2e8cf2;
             font-size: 12px;
@@ -246,6 +278,10 @@
 
                   & > span {
                     align-items: flex-end;
+
+                    @media (max-width: 630px) {
+                      align-items: center;
+                    }
                   }
                 }
               }
@@ -254,6 +290,12 @@
             .links {
               a {
                 flex-direction: row-reverse;
+
+                @media (max-width: 630px) {
+                  flex-direction: row;
+                  justify-content: center;
+                  text-align: center;
+                }
               }
             }
           }

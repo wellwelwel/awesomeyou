@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useContext } from 'react';
 import { Fingerprint, Github, MapPin, Network, Quote } from 'lucide-react';
+import { toast } from 'sonner';
 import { Name } from '@site/src/components/Name';
 import { Parallax } from '@site/src/components/Parallax';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
@@ -9,6 +10,14 @@ import { Context } from '@site/src/contexts/Maintainer';
 export const Header: FC = () => {
   const { title, description, maintainer } = useContext(Context);
   const { name, username, blog, bio, location } = maintainer;
+
+  const egg = () => {
+    toast.info('Deixe sua Impressão ☝️', {
+      duration: 6000,
+      description:
+        'Ao deixar uma estrela em um repositório, você aparece no feed de quem criou o projeto.',
+    });
+  };
 
   return (
     <header>
@@ -29,11 +38,11 @@ export const Header: FC = () => {
           tiltMaxAngleY={0.35}
           perspective={1920}
         >
-          <div className='float'>
+          <div className='float egg' onClick={egg}>
             <Fingerprint />
           </div>
           <span>
-            <Parallax scale={1} tiltMaxAngleX={2.5} tiltMaxAngleY={2.5}>
+            <Parallax scale={1.02} tiltMaxAngleX={5} tiltMaxAngleY={5}>
               <img
                 src={`https://avatars.githubusercontent.com/${username}`}
                 loading='eager'
@@ -42,11 +51,7 @@ export const Header: FC = () => {
             </Parallax>
             <span>
               <p className='name'>{<Name name={name} />}</p>
-              {bio && (
-                <p>
-                  <Name name={bio} />
-                </p>
-              )}
+              {bio && <p>{bio}</p>}
             </span>
           </span>
           <footer>
