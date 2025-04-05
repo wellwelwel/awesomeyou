@@ -1,6 +1,5 @@
-import type { MergedProjects, RawProject } from '@site/src/@types/projects';
+import type { ProcessedProject } from '@site/src/@types/projects';
 import { categories } from '../configs/categories';
-import { mergeRepositories } from './merge-projects';
 
 type Options = {
   include?: (keyof typeof categories)[];
@@ -10,23 +9,18 @@ type Options = {
 export const projects = ({
   include = [],
   exclude = [],
-}: Options = {}): MergedProjects[] => {
+}: Options = {}): ProcessedProject[] => {
   const context = require.context(
-    '@site/content/maintainers',
+    '@site/content/assets/json/projects',
     true,
-    /projects\.json$/
+    /\.json$/
   );
 
-  const allProjects = context.keys().flatMap((key) => {
-    const maintainer = key.split('/')[1];
-    const projectsData: RawProject = context(key);
+  const allProjects = context
+    .keys()
+    .flatMap((key): ProcessedProject => context(key));
 
-    return projectsData.projects.map((project) => ({ ...project, maintainer }));
-  });
-
-  const mergedProjects = mergeRepositories(allProjects);
-
-  return mergedProjects.filter((project) => {
+  return allProjects.filter((project) => {
     if (!project.categories || project.categories.length === 0)
       return include.length === 0;
 

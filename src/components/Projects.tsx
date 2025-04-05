@@ -1,6 +1,6 @@
 import '@site/src/css/pages/projects.scss';
 
-import type { MergedProjects } from '@site/src/@types/projects';
+import type { ProcessedProject } from '@site/src/@types/projects';
 import type { ChangeEvent, FC, MouseEvent, ReactNode } from 'react';
 import {
   memo,
@@ -30,7 +30,6 @@ import { FAQ } from '@site/src/components/FAQ';
 import { Project } from '@site/src/components/Project';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
-import { extractRepository } from '@site/src/helpers/extract-repository';
 import { randomize } from '@site/src/helpers/randomizer';
 import { sortObjectByValues } from '@site/src/helpers/sort-object';
 import { search } from '../helpers/search';
@@ -39,7 +38,7 @@ type ProjectsProps = {
   title: string;
   icon: ReactNode;
   description: ReactNode;
-  projects: MergedProjects[];
+  projects: ProcessedProject[];
   excludeFilters?: (keyof typeof categories)[];
 };
 
@@ -58,14 +57,23 @@ const Projects: FC<ProjectsProps> = ({
   projects,
   excludeFilters,
 }) => {
-  const [allProjects, setAllProjects] = useState<MergedProjects[]>([]);
-  const [scores, setScores] = useState<Record<string, number> | null>(null);
+  const [allProjects, setAllProjects] = useState<ProcessedProject[]>([]);
   const projectsLength = allProjects.length;
   const [visibleCount, setVisibleCount] = useState(projectsLength);
   const { current: activeCategoryFilter } = useRef(new Set<string>(''));
   const { current: activeLanguageFilter } = useRef(new Set<string>(''));
   const searchRef = useRef<HTMLInputElement>(null);
   const [tip, setTip] = useState<keyof typeof tips>('default');
+
+  const scores = useMemo<Record<string, number>>(() => {
+    const currentScore = Object.create(null);
+
+    for (const project of projects)
+      currentScore[`${project.organization}/${project.repository}`] =
+        project.stats.score;
+
+    return currentScore;
+  }, []);
 
   const usedLanguages = useMemo(() => {
     const languageSet = new Set<string>();
@@ -231,11 +239,9 @@ const Projects: FC<ProjectsProps> = ({
         };
       });
 
-      if (sortByScore === 0) {
-        itemsToSort.sort((a, b) => b.score - a.score);
-      } else {
-        itemsToSort.sort((a, b) => a.score - b.score);
-      }
+      sortByScore === 0
+        ? itemsToSort.sort((a, b) => b.score - a.score)
+        : itemsToSort.sort((a, b) => a.score - b.score);
 
       itemsToSort.forEach(
         (item, index) => (item.element.style.order = String(index + 1))
@@ -243,23 +249,6 @@ const Projects: FC<ProjectsProps> = ({
     },
     [scores]
   );
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    startTransition(() => {
-      fetch(`/json/scores.json`, { signal }).then(async (response) => {
-        const results = await response.json();
-
-        setScores(results);
-      });
-    });
-
-    return () => {
-      controller.abort();
-    };
-  }, [setScores]);
 
   const handleSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -442,23 +431,9 @@ const Projects: FC<ProjectsProps> = ({
           </small>
 
           <div className='container'>
-            {allProjects.map((project, i) => {
-              const { organization, repository } = extractRepository(
-                project.repository
-              );
-
-              return (
-                <Project
-                  key={`project:${i}`}
-                  score={
-                    scores
-                      ? scores?.[`${organization}/${repository}`]
-                      : undefined
-                  }
-                  {...project}
-                />
-              );
-            })}
+            {allProjects.map((project, i) => (
+              <Project key={`project:${i}`} {...project} />
+            ))}
           </div>
         </main>
       </div>

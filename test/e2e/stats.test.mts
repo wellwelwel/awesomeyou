@@ -4,16 +4,16 @@ import { ProjectStats } from '@site/src/@types/projects';
 
 test('Ensure projects are the same length', async () => {
   const files = await listFiles('./content/assets/json/projects', {
-    filter: /stats\.json/,
+    filter: /\.json/,
   });
 
   const filesContent = await Promise.all(
-    files.map(async (file) => ({ file, stats: await readFile(file, 'utf8') }))
+    files.map(async (file) => ({ file, project: await readFile(file, 'utf8') }))
   );
 
   const contents = filesContent.map((fileContent) => ({
     file: fileContent.file,
-    stats: JSON.parse(fileContent.stats),
+    stats: JSON.parse(fileContent.project).stats,
   }));
 
   for (const content of contents) {
@@ -63,6 +63,11 @@ test('Ensure projects are the same length', async () => {
     strict(
       typeof stats.pypi === 'undefined' || typeof stats.pypi.value === 'number',
       `Ensure PyPi for ${content.file}`
+    );
+
+    strict(
+      stats.score >= 250,
+      `Ensure score for './${content.file}' — ${stats.score}/250`
     );
   }
 });

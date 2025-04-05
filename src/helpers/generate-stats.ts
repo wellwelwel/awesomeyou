@@ -1,5 +1,6 @@
 import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { getScore } from '@site/src/helpers/get-score';
 import { chocolateyDownloads } from '@site/src/helpers/services/stats/chocolatey';
 import { issuesClosed } from '@site/src/helpers/services/stats/closed-issues';
 import { commits } from '@site/src/helpers/services/stats/commits';
@@ -58,6 +59,21 @@ export const processProject = async (
   if (pypi) results.pypi = await pypiDownloads(pypi);
   if (vscode) results.vscode = await vscodeDownloads(vscode);
   if (chocolatey) results.chocolatey = await chocolateyDownloads(chocolatey);
+
+  results.score = getScore({
+    contributors: results?.contributors?.value,
+    forks: results?.forks?.value,
+    homebrew: results?.homebrew?.value,
+    npm: results?.npm?.value,
+    pypi: results?.pypi?.value,
+    vscode: results?.vscode?.value,
+    chocolatey: results?.chocolatey?.value,
+    stars: results?.stars?.value,
+    issues: results?.issues?.value,
+    closedIssues: results?.closedIssues?.value,
+    commits: results?.commits,
+    repositoryDependents: results.repositoryDependents?.value,
+  });
 
   return await cb({
     organization,

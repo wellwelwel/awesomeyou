@@ -1,3 +1,4 @@
+import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { categories } from '@site/src/configs/categories';
 import type { languages } from '@site/src/configs/languages';
 
@@ -27,14 +28,6 @@ export type RawProject = {
   projects: ProjectOptions[];
 };
 
-export type ProcessedProjects = ProjectOptions & {
-  maintainer: string;
-};
-
-export type MergedProjects = ProcessedProjects & {
-  maintainers: string[];
-};
-
 export type ProjectStats = {
   license: string;
   stars: StatsPropos;
@@ -49,6 +42,7 @@ export type ProjectStats = {
   pypi?: StatsPropos;
   vscode?: StatsPropos;
   chocolatey?: StatsPropos;
+  score: number;
 };
 
 export type ScoreSimulator = ProjectStats & {
@@ -64,4 +58,19 @@ export type ResumedProject = {
   description: string;
   language?: keyof typeof languages;
   category?: keyof typeof categories;
+};
+
+export type ProcessedProject = {
+  organization: string;
+  repository: string;
+  description: string;
+  url: string;
+  stats: ProjectStats;
+  maintainers: MaintainerInfo[];
+  languages?: (keyof typeof languages)[];
+  categories?: (keyof typeof categories)[];
+  madeInBrazil?: boolean;
+  name?: string;
+  message?: string;
+  updatedAt?: string;
 };

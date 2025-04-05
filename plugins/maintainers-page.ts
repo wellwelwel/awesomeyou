@@ -43,10 +43,10 @@ const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
           );
 
           const statsContents = await readFile(
-            `./content/assets/json/projects/${organization}/${repository}/stats.json`,
+            `./content/assets/json/projects/${organization}/${repository}.json`,
             'utf8'
           );
-          const stats: ProjectStats = JSON.parse(statsContents);
+          const stats: ProjectStats = JSON.parse(statsContents).stats;
 
           return {
             ...project,

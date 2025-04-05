@@ -1,7 +1,6 @@
-import type { MaintainerInfo } from '@site/src/@types/maintainers';
-import type { MergedProjects, ProjectStats } from '@site/src/@types/projects';
+import type { ProcessedProject } from '@site/src/@types/projects';
 import type { FC } from 'react';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import {
   Activity,
@@ -31,27 +30,22 @@ import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
-import { extractRepository } from '@site/src/helpers/extract-repository';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
 import { randomize } from '@site/src/helpers/randomizer';
 
-export const Project: FC<MergedProjects & { score?: number }> = ({
+export const Project: FC<ProcessedProject> = ({
   name,
   description,
-  repository: repositoryURL,
-  npm,
-  pypi,
-  homebrew,
-  vscode,
-  chocolatey,
   maintainers,
   languages: currentLanguages,
   categories: currentCategories,
   madeInBrazil,
   message,
-  score,
+  organization,
+  repository,
+  url,
+  stats,
 }) => {
-  const repositoryData = extractRepository(repositoryURL);
   const refs = {
     impact: {
       h3: useRef<HTMLTableElement>(null),
@@ -63,69 +57,31 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
     },
   };
 
-  if (
-    !repositoryData ||
-    !repositoryData.organization ||
-    !repositoryData.repository
-  )
-    return null;
+  if (!organization || !repository) return null;
 
-  const { organization, repository } = repositoryData;
+  const {
+    score,
+    npm,
+    homebrew,
+    pypi,
+    chocolatey,
+    vscode,
+    closedIssues,
+    commits,
+    contributors,
+    forks,
+    issues,
+    license,
+    repositoryDependents,
+    stars,
+  } = stats;
   const projectName = name || repository;
-  const [stats, setStats] = useState<ProjectStats>(Object.create(null));
-  const [maintainersInfos, setMaintainersInfos] = useState<
-    Record<string, MaintainerInfo>
-  >(Object.create(null));
-
-  const getStats = useCallback(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    fetch(`/json/projects/${organization}/${repository}/stats.json`, {
-      signal,
-    }).then(async (results) => {
-      const data = await results.json();
-
-      setStats(data);
-    });
-
-    return () => controller.abort();
-  }, [organization, repository]);
-
-  const getMaintainersInfos = useCallback(async () => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    const responses = await Promise.all(
-      maintainers.map((maintainer) =>
-        fetch(`/json/maintainers/${maintainer}/infos.json`, { signal })
-          .then((response) => (response.ok ? response.json() : null))
-          .then((data) => [
-            maintainer,
-            data ?? {
-              name: maintainer,
-              bio: '',
-              blog: '',
-              location: '',
-            },
-          ])
-      )
-    );
-
-    setMaintainersInfos((prev) => ({
-      ...prev,
-      ...Object.fromEntries(responses),
-    }));
-
-    return () => controller.abort();
-  }, [maintainers]);
 
   const changeTab = useCallback(
     (activate: 'impact' | 'activity') => {
       if (activate === 'impact') {
         refs.activity.h3.current?.classList.remove('active');
         refs.activity.table.current?.classList.remove('active');
-
         refs.impact.h3.current?.classList.add('active');
         refs.impact.table.current?.classList.add('active');
 
@@ -134,17 +90,11 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
 
       refs.impact.h3.current?.classList.remove('active');
       refs.impact.table.current?.classList.remove('active');
-
       refs.activity.h3.current?.classList.add('active');
       refs.activity.table.current?.classList.add('active');
     },
     [refs]
   );
-
-  useEffect(() => {
-    getMaintainersInfos();
-    getStats();
-  }, [getMaintainersInfos, getStats]);
 
   return (
     <nav
@@ -152,10 +102,10 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
         [
           repository,
           name || '',
-          ...Object.values(maintainersInfos).map((info) => info.name),
+          ...Object.values(maintainers).map((info) => info.name),
         ].join()
       )}
-      data-repository={repositoryURL}
+      data-repository={url}
       data-madeinbrazil={Number(madeInBrazil) || 0}
       {...currentCategories?.reduce((acc, category) => {
         const key = `data-${category}`;
@@ -174,7 +124,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
     >
       <main>
         <section>
-          <SafeLink to={repositoryURL} aria-label='Go to repository'>
+          <SafeLink to={url} aria-label='Go to repository'>
             <h2>
               <img
                 src={`https://avatars.githubusercontent.com/${organization}`}
@@ -187,7 +137,7 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                 </span>
                 <small>
                   <Scale />
-                  {stats?.license}
+                  {license}
                 </small>
               </span>
               <ExternalLink />
@@ -230,53 +180,51 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <>
               <table ref={refs.impact.table} className='active'>
                 <tbody>
-                  {score ? (
-                    <tr>
-                      <td>
-                        <span>Score:</span>
-                      </td>
-                      <td>
-                        {score > 1_000_000 ? (
-                          <Trophy />
-                        ) : score > 100_000 ? (
-                          <Award />
-                        ) : score > 10_000 ? (
-                          <Flame />
-                        ) : score > 1_000 ? (
-                          <FlameKindling />
-                        ) : (
-                          <Sprout />
-                        )}
-                        <span className='score'>
-                          {Number(score).toLocaleString('pt-BR')}
-                        </span>
-                      </td>
-                    </tr>
-                  ) : null}
+                  <tr>
+                    <td>
+                      <span>Score:</span>
+                    </td>
+                    <td>
+                      {score > 1_000_000 ? (
+                        <Trophy />
+                      ) : score > 100_000 ? (
+                        <Award />
+                      ) : score > 10_000 ? (
+                        <Flame />
+                      ) : score > 1_000 ? (
+                        <FlameKindling />
+                      ) : (
+                        <Sprout />
+                      )}
+                      <span className='score'>
+                        {Number(score).toLocaleString('pt-BR')}
+                      </span>
+                    </td>
+                  </tr>
 
                   <tr>
                     <td>Contribuidores:</td>
                     <td>
-                      <SafeLink to={`${repositoryURL}/graphs/contributors`}>
+                      <SafeLink to={`${url}/graphs/contributors`}>
                         <HeartHandshake />
-                        {stats?.contributors?.label}
+                        {contributors.label}
                       </SafeLink>
                     </td>
                   </tr>
 
-                  {stats?.repositoryDependents?.label !== '0' ? (
+                  {repositoryDependents.value > 0 && (
                     <tr>
                       <td>Dependentes:</td>
                       <td>
-                        <SafeLink to={`${repositoryURL}/network/dependents`}>
+                        <SafeLink to={`${url}/network/dependents`}>
                           <Dna />
-                          {stats?.repositoryDependents?.label}
+                          {repositoryDependents.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
-                  {npm ? (
+                  {npm?.value && (
                     <tr title='npm'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -284,13 +232,13 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       <td>
                         <SafeLink to={`https://www.npmjs.com/package/${npm}`}>
                           <img loading='lazy' src='/img/npm.svg' />
-                          {stats?.npm?.label}
+                          {npm.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
-                  {homebrew ? (
+                  {homebrew?.value && (
                     <tr title='Homebrew'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -300,13 +248,13 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           to={`https://formulae.brew.sh/formula/${homebrew}`}
                         >
                           <img loading='lazy' src='/img/homebrew.svg' />
-                          {stats?.homebrew?.label}
+                          {homebrew.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
-                  {pypi ? (
+                  {pypi?.value && (
                     <tr title='PyPi'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -314,13 +262,13 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                       <td>
                         <SafeLink to={`https://pypi.org/project/${pypi}/`}>
                           <img loading='lazy' src='/img/pypi.svg' />
-                          {stats?.pypi?.label}
+                          {pypi.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
-                  {chocolatey ? (
+                  {chocolatey?.value && (
                     <tr title='Chocolatey'>
                       <td>
                         <span>Downloads Totais:</span>
@@ -330,13 +278,13 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           to={`https://community.chocolatey.org/packages/${chocolatey}`}
                         >
                           <img loading='lazy' src='/img/chocolatey.svg' />
-                          {stats?.chocolatey?.label}
+                          {chocolatey.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
-                  {vscode ? (
+                  {vscode?.value && (
                     <tr title='Visual Studio Code Marketplace'>
                       <td>
                         <span>Downloads Totais:</span>
@@ -346,18 +294,18 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                           to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
                         >
                           <img loading='lazy' src='/img/vscode.svg' />
-                          {stats?.vscode?.label}
+                          {vscode.label}
                         </SafeLink>
                       </td>
                     </tr>
-                  ) : null}
+                  )}
 
                   <tr>
                     <td>Forks:</td>
                     <td>
-                      <SafeLink to={`${repositoryURL}/graphs/contributors`}>
+                      <SafeLink to={`${url}/graphs/contributors`}>
                         <UtensilsCrossed />
-                        {stats?.forks?.label}
+                        {forks.label}
                       </SafeLink>
                     </td>
                   </tr>
@@ -365,9 +313,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Estrelas:</td>
                     <td>
-                      <SafeLink to={`${repositoryURL}/stargazers`}>
+                      <SafeLink to={`${url}/stargazers`}>
                         <Star />
-                        {stats?.stars?.label}
+                        {stars.label}
                       </SafeLink>
                     </td>
                   </tr>
@@ -379,9 +327,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Issues abertas:</td>
                     <td>
-                      <SafeLink to={`${repositoryURL}/issues`}>
+                      <SafeLink to={`${url}/issues`}>
                         <Bug />
-                        {stats?.issues?.label}
+                        {issues.label}
                       </SafeLink>
                     </td>
                   </tr>
@@ -389,11 +337,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Issues fechadas:</td>
                     <td>
-                      <SafeLink
-                        to={`${repositoryURL}/issues?q=is:issue+is:closed`}
-                      >
+                      <SafeLink to={`${url}/issues?q=is:issue+is:closed`}>
                         <BugOff />
-                        {stats?.closedIssues?.label}
+                        {closedIssues.label}
                       </SafeLink>
                     </td>
                   </tr>
@@ -401,9 +347,9 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
                   <tr>
                     <td>Último commit:</td>
                     <td>
-                      <SafeLink to={`${repositoryURL}/commits`}>
+                      <SafeLink to={`${url}/commits`}>
                         <Wrench />
-                        {stats?.commits}
+                        {commits}
                       </SafeLink>
                     </td>
                   </tr>
@@ -419,56 +365,52 @@ export const Project: FC<MergedProjects & { score?: number }> = ({
             <menu>
               {randomize(maintainers).map((maintainer) => (
                 <Link
-                  key={`maintainer:${projectName}:${maintainer}`}
-                  to={`/maintainers/${maintainer}`}
+                  key={`maintainer:${projectName}:${maintainer.username}`}
+                  to={`/maintainers/${maintainer.username}`}
                 >
                   <img
-                    src={`https://avatars.githubusercontent.com/${maintainer}`}
+                    src={`https://avatars.githubusercontent.com/${maintainer.username}`}
                     loading='lazy'
                     alt={`${projectName} profile avatar`}
                   />
-                  {maintainersInfos[maintainer]?.name ? (
-                    <section>
-                      <header>
-                        <aside>
-                          <img
-                            src={`https://avatars.githubusercontent.com/${maintainer}`}
-                            loading='lazy'
-                            alt={`${projectName} profile avatar`}
-                          />
-                        </aside>
-                        <aside>
-                          <h4>
-                            {maintainersInfos[maintainer].name}{' '}
-                            <strong>({maintainer})</strong>
-                          </h4>
-                          {maintainersInfos[maintainer].bio ? (
-                            <div>{maintainersInfos[maintainer].bio}</div>
-                          ) : null}
-                        </aside>
-                      </header>
+                  <section>
+                    <header>
+                      <aside>
+                        <img
+                          src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                          loading='lazy'
+                          alt={`${projectName} profile avatar`}
+                        />
+                      </aside>
+                      <aside>
+                        <h4>
+                          {maintainer.name}{' '}
+                          <strong>({maintainer.username})</strong>
+                        </h4>
+                        {maintainer.bio ? <div>{maintainer.bio}</div> : null}
+                      </aside>
+                    </header>
 
-                      <footer>
-                        {maintainersInfos[maintainer].location ? (
-                          <div>
-                            <MapPin /> {maintainersInfos[maintainer].location}
-                          </div>
-                        ) : null}
-                        {maintainersInfos[maintainer].blog ? (
-                          <div>
-                            <Network />
-                            {normalizeURL(maintainersInfos[maintainer].blog)}
-                          </div>
-                        ) : null}
-                      </footer>
-                    </section>
-                  ) : null}
+                    <footer>
+                      {maintainer.location ? (
+                        <div>
+                          <MapPin /> {maintainer.location}
+                        </div>
+                      ) : null}
+                      {maintainer.blog ? (
+                        <div>
+                          <Network />
+                          {normalizeURL(maintainer.blog)}
+                        </div>
+                      ) : null}
+                    </footer>
+                  </section>
                 </Link>
               ))}
             </menu>
           </div>
           <footer>
-            <SafeLink to={repositoryURL}>
+            <SafeLink to={url}>
               <span>Apoie esse projeto</span> <StarHalf />
             </SafeLink>
             {message ? (
