@@ -1,6 +1,6 @@
 import '@site/src/css/pages/maintainer.scss';
 
-import type { ProcessedMaintainer } from '@site/plugins/maintainers-page';
+import type { ProcessedMaintainer } from '@site/src/@types/maintainers';
 import React, { memo } from 'react';
 import Head from '@docusaurus/Head';
 import Layout from '@theme/Layout';

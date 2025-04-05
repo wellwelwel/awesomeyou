@@ -86,14 +86,18 @@ export default (): ReactNode => {
 
         const response = await fetch(API, {
           method: 'POST',
-          body: JSON.stringify({
-            repositoryURL: repositoryURL.current,
-            npm,
-            homebrew,
-            pypi,
-            chocolatey,
-            vscode,
-          }),
+          body: JSON.stringify(
+            {
+              repositoryURL: repositoryURL.current,
+              npm,
+              homebrew,
+              pypi,
+              chocolatey,
+              vscode,
+            },
+            null,
+            0
+          ),
         });
 
         const data = await response.json();

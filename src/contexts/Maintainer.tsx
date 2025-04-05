@@ -1,6 +1,6 @@
 import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
+import type { ProcessedMaintainer } from '../@types/maintainers';
 import { createContext, FC, ReactNode } from 'react';
-import { ProcessedMaintainer } from '@site/plugins/maintainers-page';
 
 type ContextType = {
   title: string;

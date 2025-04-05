@@ -1,75 +1,7 @@
-import type { MaintainerInfo } from '@site/src/@types/maintainers';
-import type {
-  ProjectOptions,
-  ProjectStats,
-  RawProject,
-} from '@site/src/@types/projects';
-import { readdir, readFile } from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import type { ProcessedMaintainer } from '@site/src/@types/maintainers';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { Plugin } from '@docusaurus/types';
-import { extractRepository } from '../src/helpers/extract-repository.js';
-import { commitsByMaintainer } from '../src/helpers/services/stats/commits-by-maintainer.js';
-
-export type ProcessedMaintainer = MaintainerInfo & {
-  username: string;
-  projects: (ProjectOptions & { commits: number; stats: ProjectStats })[];
-};
-
-const getMaintainers = async (): Promise<ProcessedMaintainer[]> => {
-  const maintainersDir = resolve('./content/maintainers');
-  const dirents = await readdir(maintainersDir, { withFileTypes: true });
-  const maintainerDirs = dirents
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
-
-  const maintainers: ProcessedMaintainer[] = [];
-
-  for (const username of maintainerDirs) {
-    const projectsFile = join(maintainersDir, username, 'projects.json');
-    const fileContents = await readFile(projectsFile, 'utf8');
-    const projectsData: RawProject = JSON.parse(fileContents);
-    const maintainerInfos = JSON.parse(
-      await readFile(
-        `./content/assets/json/maintainers/${username}/infos.json`,
-        'utf8'
-      )
-    );
-
-    if (projectsData && Array.isArray(projectsData.projects)) {
-      const resolvedProjects = await Promise.all(
-        projectsData.projects.map(async (project) => {
-          const { organization, repository } = extractRepository(
-            project.repository
-          );
-
-          const statsContents = await readFile(
-            `./content/assets/json/projects/${organization}/${repository}.json`,
-            'utf8'
-          );
-          const stats: ProjectStats = JSON.parse(statsContents).stats;
-
-          return {
-            ...project,
-            commits: (
-              await commitsByMaintainer(organization, repository, username)
-            ).value,
-            stats,
-          };
-        })
-      );
-
-      resolvedProjects.sort((a, b) => b.commits - a.commits);
-
-      maintainers.push({
-        ...maintainerInfos,
-        username,
-        projects: resolvedProjects,
-      });
-    }
-  }
-
-  return maintainers;
-};
 
 export default function pluginDynamicMaintainers(
   _context: unknown,
@@ -78,8 +10,15 @@ export default function pluginDynamicMaintainers(
   return {
     name: 'docusaurus-plugin-dynamic-maintainers',
 
-    loadContent() {
-      return getMaintainers();
+    async loadContent() {
+      const content = JSON.parse(
+        await readFile(
+          'content/assets/json/maintainers/_cache/infos.json',
+          'utf8'
+        )
+      );
+
+      return content.maintainers;
     },
 
     async contentLoaded({ content, actions }) {
@@ -88,7 +27,7 @@ export default function pluginDynamicMaintainers(
       for (const maintainer of content) {
         const dataPath = await createData(
           `${maintainer.username}.json`,
-          JSON.stringify(maintainer, null, 2)
+          JSON.stringify(maintainer, null, 0)
         );
 
         addRoute({
