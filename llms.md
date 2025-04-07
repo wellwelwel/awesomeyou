@@ -77,6 +77,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Banco de Dados e Ferramentas
 💻 TypeScript
 
+## [Node.js](https://github.com/nodejs/node)
+
+🇧🇷 ❌
+👤 Rafael Gonzaga
+🏷️ Linguagem de Programação
+
 ## [Poku](https://github.com/wellwelwel/poku)
 
 🇧🇷 ✅
