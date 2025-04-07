@@ -4,9 +4,9 @@ Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuaç�
 
 > [!IMPORTANT]
 >
-> Obrigado por estar aqui e, naturalmente, seja respeitoso 🙋🏻‍♂️
+> Obrigado por estar aqui e, naturalmente, seja respeitoso:
 >
-> - [Código de Conduta](./CODE_OF_CONDUCT.md) 🧑‍⚖️
+> - [Código de Conduta](./CODE_OF_CONDUCT.md) 🤝
 
 ## Issues _(Bugs)_
 

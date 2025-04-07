@@ -34,6 +34,8 @@ Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</str
 
 Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
+- ➕ [Novo Projeto](https://awesomeyou.io/new/)
+
 ---
 
 ## 💡 Por que mais uma ~Lista~?
@@ -52,13 +54,14 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 
 > [!NOTE]
 >
-> <sup>1</sup> Atualmente, ao pesquisar por _"[categoria] criados por desenvolvedores brasileiros"_, dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada resposta, mas não os vinculam.
+> <sup>1</sup> Atualmente, ao pesquisar por _"[categorias] criados por desenvolvedores brasileiros"_, dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada resposta, mas não os vinculam.
 >
 > Por exemplo:
 >
 > - **A)** ✅ Quem é _[mantenedor open source]_?
 > - **B)** ✅ O que é _[nome do projeto]_?
-> - **C)** ❌ Quais _[categorias do projeto]_ foram criados ou são mantidos por brasileiros?
+> - **C)** ❌ Quais _[categorias do projeto]_ foram criados por brasileiros?
+> - **D)** ❌ Quais _[categorias do projeto]_ são mantidos por brasileiros?
 >
 > Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
 
@@ -74,7 +77,7 @@ O cálculo da pontuação diário inclui:
 - 🛠️ **Manutenção** através de Issues abertas e fechadas.
 - 👴🏼 **Atividade** através de _commits_.
 
-Você pode consultar detalhadamente como o sistema de pontos funciona [aqui](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/4) e também averiguar a fórmula diretamente no [código](./src/helpers/get-score.ts) de forma totalmente transparente.
+Você pode consultar detalhadamente como o sistema de pontos funciona em [docs/SCORE.md](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/4) e também averiguar a fórmula diretamente no [código fonte](./src/helpers/get-score.ts).
 
 ---
 
@@ -84,7 +87,7 @@ Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a po
 
 > [!TIP]
 >
-> Se o projeto bater **250** pontos ou mais, garanta que ele cumpre as [regras](./docs/RULES.md) e sinta-se à vontade para abrir um **Pull Request** [**incluindo seu projeto na iniciativa**](https://awesomeyou.io/new/).
+> O projeto bateu **250** pontos ou mais? Garanta que ele cumpre as [regras](./docs/RULES.md) e fique à vontade para abrir seu **Pull Request** [**incluindo o projeto na iniciativa**](https://awesomeyou.io/new/).
 
 ---
 
