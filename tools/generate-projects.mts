@@ -118,6 +118,8 @@ for (const maintainer of maintainers) {
 
 const projects = [...mappedProjects.values()];
 
+mkdir('static/assets/json/projects', { recursive: true });
+
 for (const project of projects) {
   const base = `static/assets/json/projects/${project.organization}`;
 
