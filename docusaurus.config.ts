@@ -39,7 +39,7 @@ const config: Config = {
   ],
   staticDirectories: ['./static'],
   themeConfig: {
-    image: 'img/social.png',
+    image: '/assets/img/social.png',
     metadata: [
       {
         name: 'keywords',
