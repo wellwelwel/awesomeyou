@@ -5,7 +5,7 @@
 
 @use '../global/mixins' as *;
 
-footer {
+.main-footer {
   position: relative;
   z-index: 1;
   @include flex(column, flex-start, center);
