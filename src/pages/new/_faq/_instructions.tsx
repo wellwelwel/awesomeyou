@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { FC } from 'react';
-import { useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import {
   FileCode2,
@@ -17,6 +17,9 @@ import {
   Utensils,
   WandSparkles,
 } from 'lucide-react';
+import babelPlugin from 'prettier/plugins/babel';
+import estreePlugin from 'prettier/plugins/estree';
+import prettier from 'prettier/standalone';
 import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { Context } from '@site/src/contexts/New';
@@ -27,6 +30,49 @@ export const Instructions: FC = () => {
   const { useMaintainer, useJSON } = useContext(Context);
   const [maintainer] = useMaintainer;
   const [json] = useJSON;
+  const [formattedJSON, setFormattedJSON] = useState('');
+
+  const formatJSON = useCallback(async () => {
+    if (!json?.$schema) return;
+
+    try {
+      const cleaned = JSON.stringify(deepTrim(json));
+
+      const formatted = await prettier.format(`(${cleaned})`, {
+        parser: 'json',
+        plugins: [babelPlugin, estreePlugin],
+        // same as .prettierrc file
+        printWidth: 80,
+        tabWidth: 2,
+        semi: true,
+        singleQuote: true,
+        quoteProps: 'as-needed',
+        jsxSingleQuote: true,
+        trailingComma: 'es5',
+        bracketSpacing: true,
+        bracketSameLine: false,
+        arrowParens: 'always',
+        proseWrap: 'preserve',
+        htmlWhitespaceSensitivity: 'css',
+        endOfLine: 'auto',
+        embeddedLanguageFormatting: 'auto',
+        singleAttributePerLine: false,
+      });
+
+      setFormattedJSON(
+        formatted
+          .trim()
+          .replace(/^\(\|\);$/g, '')
+          .trim()
+      );
+    } catch (error) {
+      setFormattedJSON(JSON.stringify(json, null, 2));
+    }
+  }, [setFormattedJSON, json]);
+
+  useEffect(() => {
+    formatJSON();
+  }, [formatJSON, json]);
 
   return (
     <FAQ
@@ -68,7 +114,7 @@ export const Instructions: FC = () => {
               language='json'
               title={`content/maintainers/${maintainer}/projects.json`}
             >
-              {`${JSON.stringify(deepTrim(json), null, 2)}\n\n`}
+              {`${formattedJSON}\n\n`}
             </CodeBlock>
           </span>
         </div>
