@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/filipedeschamps/tabnews.com.br",
+      "languages": ["javascript"],
+      "description": "Conteúdos para quem trabalha com Programação e Tecnologia.",
+      "categories": ["app"],
+      "madeInBrazil": true
+    }
+  ]
+}
