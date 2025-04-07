@@ -15,7 +15,7 @@ import { createRequire } from 'node:module';
 import { listFiles, sleep } from 'poku';
 import {
   getCurrentDate,
-  // shouldUpdateFile,
+  shouldUpdateFile,
 } from '@site/tools/helpers/dates.mjs';
 
 const require = createRequire(import.meta.url);
@@ -63,9 +63,9 @@ for (const maintainer of maintainers) {
     const { organization, repository } = extractRepository(project.repository);
     const key = `${organization}/${repository}`;
     const currentDate = getCurrentDate();
-    // const file = `content/assets/json/projects/${organization}/${repository}.json`;
+    const file = `content/assets/json/projects/${organization}/${repository}.json`;
 
-    // if (!(await shouldUpdateFile(file, 1))) continue;
+    if (!(await shouldUpdateFile(file, 1))) continue;
 
     const processedInfos = {
       bio: infos.bio?.trim() || undefined,
