@@ -40,8 +40,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [Brasil API](https://github.com/BrasilAPI/BrasilAPI)
 
 🇧🇷 ✅
+👤 Filipe Deschamps e Luciano Pellacani
 🏷️ API
 💻 JavaScript
+✍️ Filipe Deschamps
 
 ## [Bun](https://github.com/oven-sh/bun)
 
@@ -52,8 +54,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [CEP Promise](https://github.com/BrasilAPI/cep-promise)
 
 🇧🇷 ✅
+👤 Filipe Deschamps e Luciano Pellacani
 🏷️ Ferramentas
 💻 JavaScript
+✍️ Filipe Deschamps
 
 ## [Corcel](https://github.com/corcel/corcel)
 
@@ -68,6 +72,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Ferramentas
 💻 Ruby
 ✍️ José Valim
+
+## [Doom Fire Algorithm Playground](https://github.com/filipedeschamps/doom-fire-algorithm)
+
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais
+💻 JavaScript
+✍️ Filipe Deschamps
 
 ## [Dracula Theme](https://github.com/dracula/dracula-theme)
 
@@ -172,8 +183,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [tabnews.com.br](https://github.com/filipedeschamps/tabnews.com.br)
 
 🇧🇷 ✅
+👤 Felipe Barso e Filipe Deschamps
 🏷️ Apps, Plataformas e Softwares
 💻 JavaScript
+✍️ Filipe Deschamps
 
 ## [tsuru](https://github.com/tsuru/tsuru)
 
