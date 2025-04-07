@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "LuaRocks",
+      "repository": "https://github.com/luarocks/luarocks",
+      "description": "LuaRocks is the package manager for the Lua programming language.",
+      "languages": ["lua"],
+      "categories": ["tool"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    }
+  ]
+}

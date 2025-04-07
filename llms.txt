@@ -75,6 +75,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 TypeScript
 ✍️ Weslley Araújo
 
+## [LuaRocks](https://github.com/luarocks/luarocks)
+
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 Lua
+✍️ Hisham Muhammad
+
 ## [Lwan Web Server](https://github.com/lpereira/lwan)
 
 🇧🇷 ✅
