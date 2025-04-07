@@ -8,7 +8,7 @@ import type {
   ProjectOptions,
 } from '@site/src/@types/projects';
 import type { ChangeEvent, FC } from 'react';
-import { useCallback, useContext, useRef } from 'react';
+import { useCallback, useContext } from 'react';
 import {
   ArrowUp10,
   Binary,
@@ -46,11 +46,10 @@ const initialState: ProjectOptions = {
 };
 
 export const Project: FC = () => {
-  const { useMaintainer, useCurrentProject } = useContext(Context);
+  const { useMaintainer, useCurrentProject, showSteps } = useContext(Context);
   const [maintainer] = useMaintainer;
   const [currentProject, setCurrentProject] = useCurrentProject;
   const project = { ...initialState, ...currentProject };
-  const showSteps = useRef(false);
   const repositoryName: string = (() => {
     try {
       const { repository } = extractRepository(project.repository);
@@ -59,6 +58,51 @@ export const Project: FC = () => {
       return 'Ex.: Meu Projeto';
     }
   })();
+
+  const setRepository = useCallback(
+    async (e: ChangeEvent<HTMLInputElement>) => {
+      try {
+        const repositoryURL = e.currentTarget.value.trim();
+        const { organization, repository } = extractRepository(repositoryURL);
+
+        showSteps.current = true;
+
+        try {
+          const path = `/assets/json/projects/${organization}/${repository}.json`;
+          const existingData: ProcessedProject = await (
+            await fetch(path)
+          ).json();
+
+          toast.info('Projeto encontrado na iniciativa', {
+            description: `Mantenedores: ${format.list(existingData.maintainers.map((maitainer) => maitainer.name))}.`,
+            duration: 6000,
+          });
+
+          setCurrentProject((prev) => ({
+            ...initialState,
+            ...(prev || Object.create(null)),
+            repository: repositoryURL,
+            description: existingData.description,
+            name: existingData.name || '',
+            categories: existingData.categories || [],
+            languages: existingData.languages || [],
+            madeInBrazil: existingData.madeInBrazil || false,
+            message: existingData.message || '',
+            chocolatey: existingData.chocolatey || '',
+            homebrew: existingData.homebrew || '',
+            npm: existingData.npm || '',
+            pypi: existingData.pypi || '',
+            vscode: existingData.vscode || '',
+          }));
+        } catch {}
+      } catch (error) {
+        showSteps.current = false;
+
+        if (error instanceof Error) toast.error(error.message);
+      }
+    },
+    []
+  );
 
   const updateProject = useCallback(
     async (
@@ -69,49 +113,7 @@ export const Project: FC = () => {
       e.stopPropagation();
       toast.dismiss();
 
-      const setRepository = async () => {
-        try {
-          const repositoryURL = e.currentTarget.value.trim();
-          const { organization, repository } = extractRepository(repositoryURL);
-
-          showSteps.current = true;
-
-          try {
-            const path = `/assets/json/projects/${organization}/${repository}.json`;
-            const existingData: ProcessedProject = await (
-              await fetch(path)
-            ).json();
-
-            toast.info('Projeto encontrado na iniciativa', {
-              description: `Mantenedores: ${format.list(existingData.maintainers.map((maitainer) => maitainer.name))}.`,
-              duration: 6000,
-            });
-
-            setCurrentProject((prev) => ({
-              ...initialState,
-              ...(prev || Object.create(null)),
-              repository: repositoryURL,
-              description: existingData.description,
-              name: existingData.name || '',
-              categories: existingData.categories || [],
-              languages: existingData.languages || [],
-              madeInBrazil: existingData.madeInBrazil || false,
-              message: existingData.message || '',
-              chocolatey: existingData.chocolatey || '',
-              homebrew: existingData.homebrew || '',
-              npm: existingData.npm || '',
-              pypi: existingData.pypi || '',
-              vscode: existingData.vscode || '',
-            }));
-          } catch {}
-        } catch (error) {
-          showSteps.current = false;
-
-          if (error instanceof Error) toast.error(error.message);
-        }
-      };
-
-      if (field === 'repository') setRepository();
+      if (field === 'repository') setRepository(e);
 
       const value =
         e.currentTarget?.value.trim().length > 0 ? e.currentTarget?.value : '';

@@ -58,6 +58,8 @@ export const Maintainer: FC = () => {
   useEffect(() => {
     toast.dismiss();
 
+    if (maintainer.trim().length === 0) return;
+
     startTransition(async () => {
       try {
         const response = await fetch(

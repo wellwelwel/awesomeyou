@@ -25,14 +25,17 @@ export const Header: FC = () => {
         <p>
           Para manter a relevância dos projetos dentro da iniciativa, eles
           precisam atingir individualmente, pelo menos{' '}
-          <strong>250 pontos</strong>. Consulte as{' '}
+          <Link to='/calculator'>
+            <strong>250 pontos</strong>
+          </Link>
+          . Consulte as{' '}
           <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/docs/RULES.md'>
             Regras <ExternalLink />
           </SafeLink>{' '}
           e{' '}
           <Link to='/calculator'>
-            use nossa calculadora para descobrir o score do projeto{' '}
-            <ChevronRight />
+            use nossa <strong>calculadora</strong> para descobrir o score do
+            projeto <ChevronRight />
           </Link>
         </p>
         <br />

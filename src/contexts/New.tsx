@@ -27,6 +27,7 @@ type ContextType = {
     ProjectOptions | undefined,
     Dispatch<SetStateAction<ProjectOptions | undefined>>,
   ];
+  showSteps: RefObject<boolean>;
 };
 
 export const displayModal = (status: boolean) => {
@@ -46,6 +47,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
   const [maintainer] = useMaintainer;
   const [, setCurrentProject] = useCurrentProject;
   const [json] = useJSON;
+  const showSteps = useRef(false);
 
   const openProject = useCallback(
     (repositoryURL?: string) => {
@@ -60,6 +62,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
       modalRef.current?.classList.add('show');
 
       if (!repositoryURL) {
+        showSteps.current = false;
         setCurrentProject(undefined);
         return;
       }
@@ -69,8 +72,9 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
       );
 
       setCurrentProject(project);
+      showSteps.current = true;
     },
-    [maintainer, json, setCurrentProject]
+    [maintainer, json, setCurrentProject, showSteps.current]
   );
 
   useEffect(() => {
@@ -89,6 +93,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
         useJSON,
         useCurrentProject,
         openProject,
+        showSteps,
       }}
     >
       {children}

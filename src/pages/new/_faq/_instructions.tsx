@@ -32,6 +32,7 @@ export const Instructions: FC = () => {
   const [maintainer] = useMaintainer;
   const [json] = useJSON;
   const [formattedJSON, setFormattedJSON] = useState('');
+  const useS = json?.projects?.length > 0 ? 's' : '';
 
   const formatJSON = useCallback(async () => {
     if (!json?.$schema) return;
@@ -142,32 +143,36 @@ export const Instructions: FC = () => {
         <div>
           <GitPullRequestCreateArrow />
           <span>
-            Abra uma <strong>Pull Request</strong> com o título "
-            <strong>
-              feat: add{' '}
-              {json.projects &&
-                format.listEn(
-                  json.projects.map((project) => {
-                    if (project.name) return project.name;
+            Abra uma <strong>Pull Request</strong> com o título:{' '}
+            <code>
+              <strong>
+                feat: add{' '}
+                {json?.projects?.length > 0
+                  ? format.listEn(
+                      json.projects.map((project) => {
+                        if (project.name) return project.name;
 
-                    try {
-                      const { repository } = extractRepository(
-                        project.repository
-                      );
-                      return repository;
-                    } catch (error) {
-                      return '***';
-                    }
-                  })
-                )}
-            </strong>
-            ".
+                        try {
+                          const { repository } = extractRepository(
+                            project.repository
+                          );
+                          return repository;
+                        } catch (error) {
+                          return '***';
+                        }
+                      })
+                    )
+                  : '***'}
+              </strong>
+            </code>
+            .
           </span>
         </div>
         <div>
           <HousePlus />
           <span>
-            Fique à vontade para falar do seu projeto e conversar em português.
+            Aproveite o espaço para falar do
+            {useS} projeto{useS} e conversar em português com a gente.
           </span>
         </div>
       </small>

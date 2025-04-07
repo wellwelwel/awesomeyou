@@ -14,7 +14,7 @@ import { Maintainer } from './_maintaner';
 import { Project } from './_project';
 
 export const Form: FC = () => {
-  const { modalRef, useJSON, useCurrentProject, openProject } =
+  const { modalRef, useJSON, useCurrentProject, openProject, showSteps } =
     useContext(Context);
   const [json, setJSON] = useJSON;
   const { projects } = json;
@@ -24,6 +24,8 @@ export const Form: FC = () => {
     displayModal(false);
     modalRef.current?.classList.remove('show');
     setCurrentProject(undefined);
+
+    showSteps.current = false;
 
     for (const element of Array.from(
       document.querySelectorAll('.multiple .on')
