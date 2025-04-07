@@ -18,6 +18,18 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 TypeScript
 ✍️ Weslley Araújo
 
+## [Bend](https://github.com/HigherOrderCO/Bend)
+
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ Victor Taelin
+
+## [HVM2](https://github.com/HigherOrderCO/HVM)
+
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ Victor Taelin
+
 ## [lru.min](https://github.com/wellwelwel/lru.min)
 
 🇧🇷 ✅
