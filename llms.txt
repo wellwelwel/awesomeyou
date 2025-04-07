@@ -95,6 +95,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 👤 Rafael Gonzaga
 🏷️ Linguagem de Programação
 
+## [Padrões de commits](https://github.com/iuricode/padroes-de-commits)
+
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais e Git
+✍️ Iuri Silva
+
 ## [Poku](https://github.com/wellwelwel/poku)
 
 🇧🇷 ✅
