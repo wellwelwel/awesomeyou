@@ -30,7 +30,7 @@ Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** di
 
 ### Website
 
-Ao abrir uma **Pull Request**, descreva a solução proposta e o que ela resolve. Caso for uma alteração visual, por favor, compartilhe uma amostra visual.
+Ao abrir seu **Pull Request**, descreva a solução proposta e o que ela resolve. Caso for uma alteração visual, por favor, compartilhe uma amostra visual.
 
 Você precisará das seguintes ferramentas instaladas em seu sistema:
 
