@@ -115,7 +115,7 @@ Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a po
 
 > [!TIP]
 >
-> O projeto bateu **250** pontos ou mais? Garanta que ele cumpre as [regras](./docs/RULES.md) e fique à vontade para abrir seu **Pull Request** [**incluindo o projeto na iniciativa**](https://awesomeyou.io/new/).
+> O projeto bateu **200** pontos ou mais? Garanta que ele cumpre as [regras](./docs/RULES.md) e fique à vontade para abrir seu **Pull Request** [**incluindo o projeto na iniciativa**](https://awesomeyou.io/new/).
 
 ---
 

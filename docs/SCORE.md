@@ -2,13 +2,13 @@
 
 Diferente da metrificação por popularidade (**100** ou **1.000** estrelas de um repositório), o sistema de pontos visa valorizar e humanizar o trabalho de mantenedores brasileiros no ecossistema _open source_, equilibrando criação de comunidade, impacto, consistência e popularidade de forma justa.
 
-Projetos que atinjam **250** pontos ou mais podem entrar na iniciativa, desde que respeitem as [regras](https://github.com/wellwelwel/awesomeyou/issues/2).
+Projetos que atinjam **200** pontos ou mais podem entrar na iniciativa, desde que respeitem as [regras](https://github.com/wellwelwel/awesomeyou/issues/2).
 
 ## Por que essa barreira inicial existe?
 
 Majoritariamente, para garantir a qualidade e relevância dos projetos e seus respectivos mantenedores.
 
-Por exemplo, um projeto com poucas estrelas, mas que tenha contribuições de outras pessoas (senso de comunidade), _forks_, instalações ou downloads e sendo bem mantido, pode facilmente superar a barreira de **250** pontos, ao invés de ser medido unicamente por estrelas (popularidade).
+Por exemplo, um projeto com poucas estrelas, mas que tenha contribuições de outras pessoas (senso de comunidade), _forks_, instalações ou downloads e sendo bem mantido, pode facilmente superar a barreira de **200** pontos, ao invés de ser medido unicamente por estrelas (popularidade).
 
 <details>
 <summary><b>💡 EXEMPLOS</b></summary>
@@ -17,17 +17,17 @@ Por exemplo, um projeto com poucas estrelas, mas que tenha contribuições de ou
 
 Projeto com uma comunidade forte:
 
-- Com **15** contribuidores, **0** instalações ou downloads, **20** forks, **55** estrelas, **5** issues abertas e **45** issues fechadas conseguiria quebrar a barreira dos **250** pontos.
+- Com **15** contribuidores, **0** instalações ou downloads, **20** forks, **55** estrelas, **5** issues abertas e **45** issues fechadas conseguiria quebrar a barreira dos **200** pontos.
 
 Projeto com alto impacto, mas baixa popularidade:
 
-- Com **6** contribuidores, **20.000** instalações ou downloads mensais, **3** forks, **16** estrelas, **0** issues abertas, **28** issues fechadas e **250** dependências diretas do repositório conseguiria quebrar a barreira dos **250** pontos.
+- Com **6** contribuidores, **20.000** instalações ou downloads mensais, **3** forks, **16** estrelas, **0** issues abertas, **28** issues fechadas e **200** dependências diretas do repositório conseguiria quebrar a barreira dos **200** pontos.
 
 **Como é possível um projeto ter tantos downloads e não ser popular?**
 
 Projetos podem ser adotados por projetos maiores como dependências diretas, se tornando críticos para o funcionamento do seu respectivo ecossistema, _você mesmo pode usá-los nesse exato momento, mas não sabe que eles existem._
 
-Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **250** estrelas e **0** Issues abertas ou **250** estrelas adicionais para cada ano sem manutenção, garantindo o equilíbrio da pontuação.
+Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter no mínimo **200** estrelas e **0** Issues abertas ou **200** estrelas adicionais para cada ano sem manutenção, garantindo o equilíbrio da pontuação.
 
 </details>
 
@@ -35,7 +35,7 @@ Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter
 
 ## Tipos de Pontuação
 
-- As pontuações são calculadas diariamente e projetos que não baterem no mínimo **250** pontos precisão ser removidos, garantindo a qualidade e relevância dos projetos de forma contínua.
+- As pontuações são calculadas diariamente e projetos que não baterem no mínimo **200** pontos precisão ser removidos, garantindo a qualidade e relevância dos projetos de forma contínua.
 - A comunidade pode votar para remover um projeto mesmo que ele possua uma boa pontuação. Para isso, abra uma Issue justificando suas motivações e, se até um mês ela alcançar até 10 upvotes (👍) a mais que downvotes (👎), um dos mantenedores irá remover o projeto. Caso contrário, a Issue será fechada como não planejada e o projeto será mantido.
 
 <details>
@@ -85,7 +85,7 @@ Baixa manutenção pode penalizar a pontuação, assim como uma boa manutenção
 
 - Cada Issue aberta penaliza **1** ponto.
 - Cada Issue fechada/resolvida equivale a **2** pontos, limitado a 50% da pontuação acumulada.
-- Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **250** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2.500** pontos.
+- Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **200** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2.000** pontos.
 
 Isso ajuda a filtrar projetos com altas pontuações que não são mais mantidos e não possuem expectativa de dar suporte aos usuários, mas sem penalizar de forma injusta projetos estáveis que não precisam de manutenção recorrente.
 

@@ -14,7 +14,7 @@
   - O nome pode ter até 50 caracteres.
   - A descrição pode ter até 250 caracteres.
   - A mensagem de apoio (CTA) pode ter até **120** caracteres.
-- O projeto deve obter a partir de [**250** pontos](https://github.com/wellwelwel/awesomeyou/issues/4) para passar nos testes automatizados.
+- O projeto deve obter a partir de [**200** pontos](https://github.com/wellwelwel/awesomeyou/issues/4) para passar nos testes automatizados.
 - O projeto não pode ser de uso pessoal, independentemente da pontuação adquirida.
 - Mesmo ultrapassando a pontuação mínima requerida, ao não cumprir qualquer uma das regras acima, o projeto pode ser recusado pelos membros.
 

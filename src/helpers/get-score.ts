@@ -16,8 +16,8 @@ export const SCORE_FACTORS = Object.freeze({
   CLOSED_ISSUE_POINTS: 2,
   ISSUE_PENALTY: 1,
   MIN_INACTIVE_YEARS_FOR_PENALTY: 2,
-  INACTIVE_ISSUE_PENALTY: 2500,
-  INACTIVE_YEAR_BASE_PENALTY: 250,
+  INACTIVE_ISSUE_PENALTY: 2000,
+  INACTIVE_YEAR_BASE_PENALTY: 200,
 });
 
 export const calculatePenaltyFromActivity = (activityDate: string): number => {

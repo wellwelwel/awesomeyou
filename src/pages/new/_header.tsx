@@ -26,7 +26,7 @@ export const Header: FC = () => {
           Para manter a relevância dos projetos dentro da iniciativa, eles
           precisam atingir individualmente, pelo menos{' '}
           <Link to='/calculator'>
-            <strong>250 pontos</strong>
+            <strong>200 pontos</strong>
           </Link>
           . Consulte as{' '}
           <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/main/docs/RULES.md'>

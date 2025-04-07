@@ -71,8 +71,8 @@ test('Ensure projects are the same length', async () => {
     );
 
     strict(
-      stats.score >= 250,
-      `Ensure score for './${content.file}' — ${stats.score}/250`
+      stats.score >= 200,
+      `Ensure score for './${content.file}' — ${stats.score}/200`
     );
   }
 });
