@@ -29,4 +29,5 @@ export const categories = Object.freeze({
   list: 'Listas',
   template: 'Templates',
   git: 'Git',
+  mock: 'Mock',
 });

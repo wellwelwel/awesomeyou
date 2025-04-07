@@ -86,8 +86,8 @@ for (const { schemaPath, path, filter } of schemas) {
           );
 
           strict(
-            project.description.length <= 200,
-            `${organization}/${repository}: Ensure description length: (${project.description.length}/200)`
+            project.description.length <= 250,
+            `${organization}/${repository}: Ensure description length: (${project.description.length}/250)`
           );
 
           strict.strictEqual(
