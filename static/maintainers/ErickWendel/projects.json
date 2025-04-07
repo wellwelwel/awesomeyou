@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Node.js",
+      "repository": "https://github.com/nodejs/node",
+      "description": "Node.js JavaScript runtime ✨🐢🚀✨",
+      "categories": ["language"],
+      "languages": ["cpp"],
+      "homebrew": "node",
+      "chocolatey": "nodejs"
+    }
+  ]
+}
