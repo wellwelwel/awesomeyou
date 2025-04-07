@@ -149,11 +149,25 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 Rust
 ✍️ Rapha Amorim
 
+## [Splinter](https://github.com/cobrateam/splinter)
+
+🇧🇷 ✅
+🏷️ Testes e Ferramentas
+💻 Python
+✍️ Andrews Medina
+
 ## [tabnews.com.br](https://github.com/filipedeschamps/tabnews.com.br)
 
 🇧🇷 ✅
 🏷️ Apps, Plataformas e Softwares
 💻 JavaScript
+
+## [tsuru](https://github.com/tsuru/tsuru)
+
+🇧🇷 ✅
+🏷️ Apps, Plataformas e Softwares
+💻 GO
+✍️ Andrews Medina
 
 ## [Vagas](https://github.com/frontendbr/vagas)
 
