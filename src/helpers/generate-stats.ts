@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) https://awesomeyou.io and contributors. All rights reserved.
+ *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { getScore } from '@site/src/helpers/get-score';

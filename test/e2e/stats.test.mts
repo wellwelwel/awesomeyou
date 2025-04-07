@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) https://awesomeyou.io and contributors. All rights reserved.
+ *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
+ *--------------------------------------------------------------------------------------------*/
+
 import { readFile } from 'node:fs/promises';
 import { listFiles, strict, test } from 'poku';
 import { ProjectStats } from '@site/src/@types/projects';

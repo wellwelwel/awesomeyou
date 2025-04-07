@@ -1,7 +1,9 @@
-/**
- * Fisher-Yates is a shuffling algorithm that guarantees an impartial random order.
- * The algorithm efficiently goes through the list swapping each item for another random item.
- */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) https://awesomeyou.io and contributors. All rights reserved.
+ *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Using Fisher-Yates */
 export const randomize = <T>(list: T[]): T[] => {
   const listLength = list.length - 1;
 
