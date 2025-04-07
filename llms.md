@@ -50,3 +50,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
+
+## [Rio](https://github.com/raphamorim/rio)
+
+🇧🇷 ✅
+🏷️ Apps, Plataformas e Softwares
+💻 Rust
+✍️ Rapha Amorim
