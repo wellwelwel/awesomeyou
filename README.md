@@ -55,12 +55,6 @@ O site conta com:
 - ✅ Ordenação por impacto.
 - ✅ Permite múltiplas pessoas mantenedoras no mesmo projeto.
 
-### 📊 Relevância vs. Impacto vs. Popularidade vs. Comunidade
-
-Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_ ou do seu respectivo autor _(seguidores)_ é a melhor maneira de medir a relevância e impacto de um projeto?
-
-Ao invés da barreira das **100** ou **1.000** **estrelas**, que se baseiam unicamente em popularidade, nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo imparcialidade e abrimos espaço para projetos inovadores que causem impacto, mesmo que não sejam necessariamente populares.
-
 ### 🧑‍💼 O Lado Humano da Iniciativa Open Source
 
 Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mantém projetos open source e abrimos espaço para bate papos técnicos, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e **LLMs** ao vincular projetos com pessoas brasileiras que os mantêm. <sup>1</sup>
@@ -89,6 +83,12 @@ Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellw
 
 ## ⚖️ Sistema de Pontos
 
+Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_ ou do seu respectivo autor _(seguidores)_ é a melhor maneira de medir a relevância e impacto de um projeto?
+
+### 📊 Relevância vs. Impacto vs. Popularidade vs. Comunidade
+
+Ao invés da barreira das **100** ou **1.000** **estrelas** (que se baseiam unicamente em popularidade), nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo imparcialidade e abrindo espaço para projetos inovadores que causem impacto, mesmo que não sejam necessariamente populares.
+
 O cálculo diário da pontuação inclui:
 
 - 🧑‍🧑‍🧒‍🧒 **Criação de Comunidade** através de contribuições com _commits_ e _forks_.
@@ -97,7 +97,9 @@ O cálculo diário da pontuação inclui:
 - 🛠️ **Manutenção** através de Issues abertas e fechadas.
 - 👴🏼 **Atividade** através de _commits_.
 
-Você pode consultar detalhadamente como o sistema de pontos funciona em [docs/SCORE.md](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/4) e também averiguar a fórmula diretamente no [código fonte](./src/helpers/get-score.ts).
+> [!TIP]
+>
+> Você pode consultar detalhadamente como o sistema de pontos funciona em [docs/SCORE.md](./docs/SCORE.md), debatê-lo [aqui](https://github.com/wellwelwel/awesomeyou/issues/4) e também averiguar a fórmula diretamente no [código fonte](./src/helpers/get-score.ts).
 
 ---
 
