@@ -1,5 +1,0 @@
-User-agent: *
-Disallow:
-Allow: /
-Crawl-delay: 10
-Sitemap: https://awesomeyou.io/sitemap.xml
