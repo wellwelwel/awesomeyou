@@ -31,6 +31,19 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 PHP
 ✍️ Junior Grossi
 
+## [Devise](https://github.com/heartcombo/devise)
+
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 Ruby
+✍️ José Valim
+
+## [Elixir](https://github.com/elixir-lang/elixir)
+
+🇧🇷 ✅
+🏷️ Linguagem de Programação
+✍️ José Valim
+
 ## [HVM2](https://github.com/HigherOrderCO/HVM)
 
 🇧🇷 ✅
