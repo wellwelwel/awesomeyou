@@ -1,0 +1,22 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Brasil API",
+      "repository": "https://github.com/BrasilAPI/BrasilAPI",
+      "languages": ["javascript"],
+      "description": "Vamos transformar o Brasil em uma API?",
+      "categories": ["api"],
+      "madeInBrazil": true
+    },
+    {
+      "name": "CEP Promise",
+      "repository": "https://github.com/BrasilAPI/cep-promise",
+      "languages": ["javascript", "typescript"],
+      "description": "Busca por CEP integrado diretamente aos serviços dos Correios, ViaCEP e outros (Node.js e Browser)",
+      "categories": ["tool"],
+      "npm": "cep-promise",
+      "madeInBrazil": true
+    }
+  ]
+}
