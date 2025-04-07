@@ -118,6 +118,7 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [React Email](https://github.com/resend/react-email)
 
 🇧🇷 ✅
+👤 Gabriel Miranda e Zeno Rocha
 🏷️ Ferramentas e Frontend
 💻 TypeScript
 ✍️ Zeno Rocha
