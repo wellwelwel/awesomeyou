@@ -11,6 +11,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 > ✍️ Autor
 
 
+## [Awesome Made by Brazilians](https://github.com/felipefialho/awesome-made-by-brazilians)
+
+🇧🇷 ✅
+🏷️ Listas
+✍️ Felipe Fialho
+
 ## [AWS SSL Profiles](https://github.com/mysqljs/aws-ssl-profiles)
 
 🇧🇷 ✅
@@ -61,6 +67,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🇧🇷 ✅
 🏷️ Linguagem de Programação
 ✍️ José Valim
+
+## [Front-end Challenges](https://github.com/felipefialho/frontend-challenges)
+
+🇧🇷 ✅
+🏷️ Conteúdos Educacionais e Frontend
+✍️ Felipe Fialho
 
 ## [HVM2](https://github.com/HigherOrderCO/HVM)
 
@@ -129,3 +141,9 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Apps, Plataformas e Softwares
 💻 Rust
 ✍️ Rapha Amorim
+
+## [Vagas](https://github.com/frontendbr/vagas)
+
+🇧🇷 ✅
+🏷️ Listas e Carreira
+✍️ Felipe Fialho
