@@ -43,6 +43,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ API
 💻 JavaScript
 
+## [Bun](https://github.com/oven-sh/bun)
+
+🇧🇷 ❌
+👤 Ciro Spaciari
+🏷️ Linguagem de Programação
+
 ## [CEP Promise](https://github.com/BrasilAPI/cep-promise)
 
 🇧🇷 ✅
@@ -148,6 +154,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Apps, Plataformas e Softwares
 💻 Rust
 ✍️ Rapha Amorim
+
+## [Socketify](https://github.com/cirospaciari/socketify.py)
+
+🇧🇷 ✅
+🏷️ Performance e Ferramentas
+💻 Python
+✍️ Ciro Spaciari
 
 ## [Splinter](https://github.com/cobrateam/splinter)
 
