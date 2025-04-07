@@ -125,6 +125,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 C
 ✍️ L. Pereira
 
+## [moclojer](https://github.com/moclojer/moclojer)
+
+🇧🇷 ✅
+🏷️ Ferramentas e API
+💻 Clojure
+✍️ Avelino
+
 ## [MySQL2](https://github.com/sidorares/node-mysql2)
 
 🇧🇷 ❌
@@ -150,6 +157,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
+
+## [prestd](https://github.com/prest/prest)
+
+🇧🇷 ✅
+🏷️ Ferramentas e API
+💻 GO
+✍️ Avelino
 
 ## [React Email](https://github.com/resend/react-email)
 
