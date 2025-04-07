@@ -18,7 +18,7 @@
     "build": "docusaurus build && npm run build:server",
     "postbuild": "tsx tools/modify-sitemap.mts && tsx tools/generate-llms.mts",
     "clear": "docusaurus clear",
-    "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i && npm run update",
+    "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i",
     "prepreview": "npm run build && tsx tools/host.mts",
     "preview": "docusaurus serve --port 6060",
     "typecheck": "tsc",
@@ -35,7 +35,7 @@
     "posttest": "npm run typecheck && npm run lint"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250403.0",
+    "@cloudflare/workers-types": "^4.20250407.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
@@ -65,14 +65,14 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-parallax-tilt": "^1.7.288",
+    "react-parallax-tilt": "^1.7.289",
     "react-typed": "^2.0.12",
     "rollup": "^4.39.0",
-    "sass": "^1.86.2",
+    "sass": "^1.86.3",
     "sonner": "^2.0.3",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
-    "wrangler": "^4.7.0",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.7.2",
     "xml2js": "^0.6.2"
   },
   "browserslist": {
