@@ -34,7 +34,7 @@ Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</str
 
 Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
-- ➕ [Novo Projeto](https://awesomeyou.io/new/)
+➕ [Adicionando novos projetos](https://awesomeyou.io/new/).
 
 ---
 
