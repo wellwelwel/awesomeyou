@@ -1,12 +1,12 @@
-# Security Policy
+# Política de Segurança
 
-## Reporting a Vulnerability
+## Reportando uma Vulnerabilidade
 
-- Please, give detailed reports.
-- Include steps to reproduce the vulnerability, and if possible, a patch or workaround.
+- Por favor, forneça relatórios detalhados.
+- Inclua passos para reproduzir a vulnerabilidade e, se possível, um _patch_ ou solução alternativa.
 
-**Reporting:**
+**Relatório:**
 
 - https://github.com/wellwelwel/awesomeyou/security/advisories
 
-> Once the issue has been resolved, you will be attributed a part of the report.
+> Assim que o problema for resolvido, você receberá parte do crédito no relatório.
