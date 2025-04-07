@@ -42,28 +42,48 @@ Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
 Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) <ins>não é</ins> uma lista.
 
+- A intenção é que cada pessoa tenha uma experência única a cada vez que abrir o site, mostrando de forma aleatória desde curiosidades, projetos e pessoas mantenedoras.
+
+### 🧩 Recursos
+
+O site conta com:
+
+- ✅ Filtro por **Linguagens de Programação**, **Origens** e **Categorias**.
+- ✅ Pesquisa manual pelo nome do projeto ou das pessoas mantenedoras.
+- ✅ Exibição justa — de verdade — por aleatoriedade.
+- ✅ Ordenação por projetos em processo de crescimento.
+- ✅ Ordenação por impacto.
+- ✅ Permite múltiplas pessoas mantenedoras no mesmo projeto.
+
 ### 📊 Relevância vs. Impacto vs. Popularidade vs. Comunidade
 
-Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_ ou do seu respectivo autor é a melhor maneira de medir a relevância e impacto de um projeto?
+Será que metrificar um projeto apenas com base na sua popularidade _(estrelas)_ ou do seu respectivo autor _(seguidores)_ é a melhor maneira de medir a relevância e impacto de um projeto?
 
-Nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo que apenas projetos que se mantenham relevantes permaneçam na lista e abrindo espaço para projetos inovadores que não sejam necessariamente populares.
+Ao invés da barreira das **100** ou **1.000** **estrelas**, que se baseiam unicamente em popularidade, nós consideramos diversos fatores para criar um sistema justo e automatizado, garantindo imparcialidade e abrimos espaço para projetos inovadores que causem impacto, mesmo que não sejam necessariamente populares.
 
 ### 🧑‍💼 O Lado Humano da Iniciativa Open Source
 
 Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mantém projetos open source e abrimos espaço para bate papos técnicos, além de agrupar projetos de impacto de cada mantenedor dentro da iniciativa, aprimorando pesquisas por sistemas de buscas e **LLMs** ao vincular projetos com pessoas brasileiras que os mantêm. <sup>1</sup>
 
-> [!NOTE]
->
-> <sup>1</sup> Atualmente, ao pesquisar por _"[categorias] criados por desenvolvedores brasileiros"_, dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada resposta, mas não os vinculam.
->
-> Por exemplo:
->
-> - **A)** ✅ Quem é _[mantenedor open source]_?
-> - **B)** ✅ O que é _[nome do projeto]_?
-> - **C)** ❌ Quais _[categorias do projeto]_ foram criados por brasileiros?
-> - **D)** ❌ Quais _[categorias do projeto]_ são mantidos por brasileiros?
->
-> Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
+<details>
+<summary>
+🧠 Entenda Melhor
+</summary>
+
+<br />
+
+<sup>1</sup> Atualmente, ao pesquisar por _"[categorias dos projetos] criados(as) por desenvolvedores brasileiros"_, dificilmente os sistemas de buscas ou Inteligências Artificiais encontrarão resultados de maneira eficaz ou acurados, isso porque eles possuem os dados isolados de cada resposta, mas não os vinculam.
+
+Por exemplo:
+
+- **A)** ✅ Quem é _[mantenedor open source]_?
+- **B)** ✅ O que é _[nome do projeto]_?
+- **C)** ❌ Quais _[categorias do projeto]_ foram criados por brasileiros?
+- **D)** ❌ Quais _[categorias do projeto]_ são mantidos por brasileiros?
+
+Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
+
+</details>
 
 ---
 
