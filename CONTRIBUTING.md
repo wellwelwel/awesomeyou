@@ -61,6 +61,12 @@ Caso queira rodar a suíte de testes localmente, execute:
 npm test
 ```
 
+Para garantir a integridade da compilação do website, execute:
+
+```sh
+npm run build
+```
+
 > [!NOTE]
 >
 > - Por favor, não inclua uma nova _lib_ sem antes discutir a implementação em um Issue dedicado.
