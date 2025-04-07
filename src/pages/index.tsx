@@ -85,7 +85,7 @@ export default (): ReactNode => {
     const { signal } = controller;
 
     startTransition(() => {
-      fetch(`/json/resume/maintainers.json`, { signal }).then(
+      fetch(`/assets/json/resume/maintainers.json`, { signal }).then(
         async (response) => {
           const results = await response.json();
 
@@ -93,11 +93,13 @@ export default (): ReactNode => {
         }
       );
 
-      fetch(`/json/resume/projects.json`, { signal }).then(async (response) => {
-        const results = await response.json();
+      fetch(`/assets/json/resume/projects.json`, { signal }).then(
+        async (response) => {
+          const results = await response.json();
 
-        sortProjects(results);
-      });
+          sortProjects(results);
+        }
+      );
     });
 
     return () => {
@@ -369,7 +371,7 @@ export default (): ReactNode => {
                     <header>
                       <img
                         loading='lazy'
-                        src='/img/team/1738374865030.jpeg'
+                        src='/assets/img/team/1738374865030.jpeg'
                         alt='Weslley Araújo'
                       />
                       <span>Weslley Araújo</span>
@@ -379,7 +381,7 @@ export default (): ReactNode => {
                     <header>
                       <img
                         loading='lazy'
-                        src='/img/team/1734193593018.jpeg'
+                        src='/assets/img/team/1734193593018.jpeg'
                         alt='Larissa Azevedo'
                       />
                       <span>Larissa Azevedo</span>
@@ -389,7 +391,7 @@ export default (): ReactNode => {
                     <header>
                       <img
                         loading='lazy'
-                        src='/img/team/1675982740716.jpeg'
+                        src='/assets/img/team/1675982740716.jpeg'
                         alt='Lucas Santos'
                       />
                       <span>Lucas Santos</span>
@@ -399,7 +401,7 @@ export default (): ReactNode => {
                     <header>
                       <img
                         loading='lazy'
-                        src='/img/team/1734113677336.jpeg'
+                        src='/assets/img/team/1734113677336.jpeg'
                         alt='Wheslley Rimar Bezerra'
                       />
                       <span>Wheslley Rimar Bezerra</span>
@@ -409,7 +411,7 @@ export default (): ReactNode => {
                     <header>
                       <img
                         loading='lazy'
-                        src='/img/team/1663505481247.jpeg'
+                        src='/assets/img/team/1663505481247.jpeg'
                         alt='Matheus Oliveira'
                       />
                       <span>Matheus Oliveira</span>

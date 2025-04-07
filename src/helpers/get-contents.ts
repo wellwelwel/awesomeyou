@@ -16,7 +16,7 @@ export const projects = ({
   exclude = [],
 }: Options = {}): ProcessedProject[] => {
   const context = require.context(
-    '@site/content/assets/json/projects',
+    '@site/static/assets/json/projects',
     true,
     /\.json$/
   );

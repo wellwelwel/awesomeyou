@@ -5,7 +5,7 @@
 .DS_Store
 .env
 .wrangler
-/content/assets/json
+/static/assets/json
 t.mts
 /lib
 /server

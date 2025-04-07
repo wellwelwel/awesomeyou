@@ -1,7 +1,7 @@
 /build
 /.docusaurus
 /.cache-loader
-/content/assets/json
+/static/assets/json
 /lib
 /server
 /tools/resources/llms.md

@@ -16,14 +16,14 @@ import { listFiles } from 'poku';
 const require = createRequire(import.meta.url);
 const { extractRepository } = require('@site/src/helpers/extract-repository');
 
-const base = `./content/assets/json/resume`;
+const base = `./static/assets/json/resume`;
 const projectsPath = `${base}/projects.json`;
 const maintainersPath = `${base}/maintainers.json`;
 
 const maintaners: ResumedMaintaners[] = [];
 const projects: ResumedProject[] = [];
 
-const files = await listFiles('./content/maintainers', {
+const files = await listFiles('./static/maintainers', {
   filter: /projects\.json/,
 });
 
@@ -42,7 +42,7 @@ const parsedContents = filesContent.map(({ file, projects }) => ({
 for (const { maintainer, projects: rawProjects } of parsedContents) {
   const maintanerInfos: MaintainerInfo = JSON.parse(
     await readFile(
-      `content/assets/json/maintainers/${maintainer}/infos.json`,
+      `static/assets/json/maintainers/${maintainer}/infos.json`,
       'utf8'
     )
   );

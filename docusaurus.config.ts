@@ -37,7 +37,7 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-  staticDirectories: ['./content/assets'],
+  staticDirectories: ['./static'],
   themeConfig: {
     image: 'img/social.png',
     metadata: [

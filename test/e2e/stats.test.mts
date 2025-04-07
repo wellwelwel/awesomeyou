@@ -8,7 +8,7 @@ import { listFiles, strict, test } from 'poku';
 import { ProjectStats } from '@site/src/@types/projects';
 
 test('Ensure projects are the same length', async () => {
-  const files = await listFiles('./content/assets/json/projects', {
+  const files = await listFiles('./static/assets/json/projects', {
     filter: /\.json/,
   });
 

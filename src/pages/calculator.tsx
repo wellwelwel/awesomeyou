@@ -176,8 +176,8 @@ export default (): ReactNode => {
               </label>
               <label>
                 <span>
-                  <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
-                  <sup>?</sup>
+                  <img loading='lazy' src='/assets/img/npm.svg' alt='npm' />{' '}
+                  Pacote NPM <sup>?</sup>
                 </span>
                 <input placeholder='Ex.: poku' type='text' name='npm' />
                 <small>
@@ -186,7 +186,11 @@ export default (): ReactNode => {
               </label>
               <label>
                 <span>
-                  <img loading='lazy' src='/img/homebrew.svg' alt='npm' />{' '}
+                  <img
+                    loading='lazy'
+                    src='/assets/img/homebrew.svg'
+                    alt='npm'
+                  />{' '}
                   Pacote Homebrew<sup>?</sup>
                 </span>
                 <input placeholder='Ex.: elixir' type='text' name='homebrew' />
@@ -197,8 +201,8 @@ export default (): ReactNode => {
               </label>
               <label>
                 <span>
-                  <img loading='lazy' src='/img/pypi.svg' alt='PyPi' /> Pacote
-                  PyPi <sup>?</sup>
+                  <img loading='lazy' src='/assets/img/pypi.svg' alt='PyPi' />{' '}
+                  Pacote PyPi <sup>?</sup>
                 </span>
                 <input placeholder='Ex.: socketify' type='text' name='pypi' />
                 <small>
@@ -209,7 +213,7 @@ export default (): ReactNode => {
                 <span>
                   <img
                     loading='lazy'
-                    src='/img/chocolatey.svg'
+                    src='/assets/img/chocolatey.svg'
                     alt='Chocolatey'
                   />{' '}
                   Pacote Chocolatey <sup>?</sup>
@@ -228,7 +232,7 @@ export default (): ReactNode => {
                 <span>
                   <img
                     loading='lazy'
-                    src='/img/vscode.svg'
+                    src='/assets/img/vscode.svg'
                     alt='Visual Studio Code Marketplace'
                   />{' '}
                   Visual Studio Code ID <sup>?</sup>
@@ -349,7 +353,11 @@ export default (): ReactNode => {
                             <span>Downloads por Mês</span>
                           </td>
                           <td>
-                            <img loading='lazy' src='/img/npm.svg' alt='npm' />
+                            <img
+                              loading='lazy'
+                              src='/assets/img/npm.svg'
+                              alt='npm'
+                            />
                             {stats.npm.label}
                           </td>
                         </tr>
@@ -363,7 +371,7 @@ export default (): ReactNode => {
                           <td>
                             <img
                               loading='lazy'
-                              src='/img/homebrew.svg'
+                              src='/assets/img/homebrew.svg'
                               alt='Homebrew'
                             />
                             {stats.homebrew.label}
@@ -379,7 +387,7 @@ export default (): ReactNode => {
                           <td>
                             <img
                               loading='lazy'
-                              src='/img/pypi.svg'
+                              src='/assets/img/pypi.svg'
                               alt='PyPi'
                             />
                             {stats.pypi.label}
@@ -393,7 +401,10 @@ export default (): ReactNode => {
                             <span>Downloads Totais:</span>
                           </td>
                           <td>
-                            <img loading='lazy' src='/img/chocolatey.svg' />
+                            <img
+                              loading='lazy'
+                              src='/assets/img/chocolatey.svg'
+                            />
                             {stats.chocolatey.label}
                           </td>
                         </tr>
@@ -405,7 +416,7 @@ export default (): ReactNode => {
                             <span>Downloads Totais:</span>
                           </td>
                           <td>
-                            <img loading='lazy' src='/img/vscode.svg' />
+                            <img loading='lazy' src='/assets/img/vscode.svg' />
                             {stats.vscode.label}
                           </td>
                         </tr>

@@ -37,7 +37,7 @@ const { processProject } = require('@site/src/helpers/generate-stats') as {
   ) => Promise<void>;
 };
 
-const files = await listFiles('./content/maintainers/', {
+const files = await listFiles('./static/maintainers/', {
   filter: /projects\.json/,
 });
 
@@ -46,7 +46,7 @@ const maintainers: { infos: MaintainerInfo; raw: RawProject }[] =
     files.map(async (file) => ({
       infos: JSON.parse(
         await readFile(
-          `content/assets/json/maintainers/${file.split('/')[2]}/infos.json`,
+          `static/assets/json/maintainers/${file.split('/')[2]}/infos.json`,
           'utf8'
         )
       ),
@@ -63,7 +63,7 @@ for (const maintainer of maintainers) {
     const { organization, repository } = extractRepository(project.repository);
     const key = `${organization}/${repository}`;
     const currentDate = getCurrentDate();
-    const file = `content/assets/json/projects/${organization}/${repository}.json`;
+    const file = `static/assets/json/projects/${organization}/${repository}.json`;
 
     if (!(await shouldUpdateFile(file, 1))) continue;
 
@@ -119,7 +119,7 @@ for (const maintainer of maintainers) {
 const projects = [...mappedProjects.values()];
 
 for (const project of projects) {
-  const base = `content/assets/json/projects/${project.organization}`;
+  const base = `static/assets/json/projects/${project.organization}`;
 
   mkdir(base, { recursive: true }).then(() => {
     writeFile(

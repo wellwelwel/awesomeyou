@@ -31,7 +31,7 @@ export const Header: FC = () => {
         <ins>
           <Name name={name} />
         </ins>
-        ? <img src={'/img/hi.gif'} loading='lazy' />
+        ? <img src={'/assets/img/hi.gif'} loading='lazy' />
       </h1>
       <small className='quoted'>
         <Quote /> <span>{description}</span>

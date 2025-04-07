@@ -77,7 +77,7 @@ export const Project: FC = () => {
           showSteps.current = true;
 
           try {
-            const path = `/json/projects/${organization}/${repository}.json`;
+            const path = `/assets/json/projects/${organization}/${repository}.json`;
             const existingData: ProcessedProject = await (
               await fetch(path)
             ).json();
@@ -367,8 +367,8 @@ export const Project: FC = () => {
           </h2>
           <label>
             <span>
-              <img loading='lazy' src='/img/npm.svg' alt='npm' /> Pacote NPM{' '}
-              <sup>?</sup>
+              <img loading='lazy' src='/assets/img/npm.svg' alt='npm' /> Pacote
+              NPM <sup>?</sup>
             </span>
             <input
               placeholder='Ex.: gotql'
@@ -383,8 +383,8 @@ export const Project: FC = () => {
           </label>
           <label>
             <span>
-              <img loading='lazy' src='/img/homebrew.svg' alt='npm' /> Pacote
-              Homebrew
+              <img loading='lazy' src='/assets/img/homebrew.svg' alt='npm' />{' '}
+              Pacote Homebrew
               <sup>?</sup>
             </span>
             <input
@@ -400,8 +400,8 @@ export const Project: FC = () => {
           </label>
           <label>
             <span>
-              <img loading='lazy' src='/img/pypi.svg' alt='PyPi' /> Pacote PyPi{' '}
-              <sup>?</sup>
+              <img loading='lazy' src='/assets/img/pypi.svg' alt='PyPi' />{' '}
+              Pacote PyPi <sup>?</sup>
             </span>
             <input
               placeholder='Ex.: splinter'
@@ -416,7 +416,11 @@ export const Project: FC = () => {
           </label>
           <label>
             <span>
-              <img loading='lazy' src='/img/chocolatey.svg' alt='Chocolatey' />{' '}
+              <img
+                loading='lazy'
+                src='/assets/img/chocolatey.svg'
+                alt='Chocolatey'
+              />{' '}
               Pacote Chocolatey <sup>?</sup>
             </span>
             <input
@@ -434,7 +438,7 @@ export const Project: FC = () => {
             <span>
               <img
                 loading='lazy'
-                src='/img/vscode.svg'
+                src='/assets/img/vscode.svg'
                 alt='Visual Studio Code Marketplace'
               />{' '}
               Visual Studio Code ID <sup>?</sup>

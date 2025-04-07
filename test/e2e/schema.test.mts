@@ -19,7 +19,7 @@ const invalidChars = /[^\p{L}\p{N}\s\-.!?_ #@()*&%^:—,/'"’“”~+={}()\[\]\
 const schemas = [
   {
     schemaPath: './schemas/projects.json',
-    path: './content/maintainers/',
+    path: './static/maintainers/',
     filter: /projects\.json/,
   },
 ];

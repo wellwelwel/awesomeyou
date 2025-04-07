@@ -236,7 +236,7 @@ export const Project: FC<ProcessedProject> = ({
                       </td>
                       <td>
                         <SafeLink to={`https://www.npmjs.com/package/${npm}`}>
-                          <img loading='lazy' src='/img/npm.svg' />
+                          <img loading='lazy' src='/assets/img/npm.svg' />
                           {npm.label}
                         </SafeLink>
                       </td>
@@ -252,7 +252,7 @@ export const Project: FC<ProcessedProject> = ({
                         <SafeLink
                           to={`https://formulae.brew.sh/formula/${homebrew}`}
                         >
-                          <img loading='lazy' src='/img/homebrew.svg' />
+                          <img loading='lazy' src='/assets/img/homebrew.svg' />
                           {homebrew.label}
                         </SafeLink>
                       </td>
@@ -266,7 +266,7 @@ export const Project: FC<ProcessedProject> = ({
                       </td>
                       <td>
                         <SafeLink to={`https://pypi.org/project/${pypi}/`}>
-                          <img loading='lazy' src='/img/pypi.svg' />
+                          <img loading='lazy' src='/assets/img/pypi.svg' />
                           {pypi.label}
                         </SafeLink>
                       </td>
@@ -282,7 +282,10 @@ export const Project: FC<ProcessedProject> = ({
                         <SafeLink
                           to={`https://community.chocolatey.org/packages/${chocolatey}`}
                         >
-                          <img loading='lazy' src='/img/chocolatey.svg' />
+                          <img
+                            loading='lazy'
+                            src='/assets/img/chocolatey.svg'
+                          />
                           {chocolatey.label}
                         </SafeLink>
                       </td>
@@ -298,7 +301,7 @@ export const Project: FC<ProcessedProject> = ({
                         <SafeLink
                           to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
                         >
-                          <img loading='lazy' src='/img/vscode.svg' />
+                          <img loading='lazy' src='/assets/img/vscode.svg' />
                           {vscode.label}
                         </SafeLink>
                       </td>

@@ -32,9 +32,9 @@ Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</str
 
 ## 🤝 Guia de Contribuições
 
-Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
+➕ [Adicionando novas pessoas e projetos](https://awesomeyou.io/new/).
 
-➕ [Adicionando novos projetos](https://awesomeyou.io/new/).
+- Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
 ---
 

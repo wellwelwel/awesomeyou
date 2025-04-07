@@ -107,12 +107,12 @@ export const Instructions: FC = () => {
           <span>
             Crie o arquivo{' '}
             <code>
-              content/maintainers/<ins>{maintainer}</ins>/projects.json
+              static/maintainers/<ins>{maintainer}</ins>/projects.json
             </code>{' '}
             e cole o conteúdo a seguir:
             <CodeBlock
               language='json'
-              title={`content/maintainers/${maintainer}/projects.json`}
+              title={`static/maintainers/${maintainer}/projects.json`}
             >
               {`${formattedJSON}\n\n`}
             </CodeBlock>

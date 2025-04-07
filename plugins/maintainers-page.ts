@@ -18,7 +18,7 @@ export default function pluginDynamicMaintainers(
     async loadContent() {
       const content = JSON.parse(
         await readFile(
-          'content/assets/json/maintainers/_cache/infos.json',
+          'static/assets/json/maintainers/_cache/infos.json',
           'utf8'
         )
       );
@@ -45,7 +45,7 @@ export default function pluginDynamicMaintainers(
     },
 
     getPathsToWatch() {
-      return [resolve('./content/maintainers')];
+      return [resolve('./static/maintainers')];
     },
   };
 }

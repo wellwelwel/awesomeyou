@@ -25,7 +25,7 @@ const { categories } = require('@site/src/configs/categories');
 const { languages } = require('@site/src/configs/languages');
 const { normalizeChars } = require('@site/src/helpers/normalize-chars');
 
-const files = await listFiles('./content/maintainers/', {
+const files = await listFiles('./static/maintainers/', {
   filter: /projects\.json/,
 });
 
@@ -40,7 +40,7 @@ const maintainersByUsername = new Set<string>();
 for (const file of files) {
   const rawProject: RawProject = JSON.parse(await readFile(file, 'utf8'));
   const username = dirname(file).split('/').pop()!;
-  const base = `./content/assets/json/maintainers/${username}`;
+  const base = `./static/assets/json/maintainers/${username}`;
   const filePath = await readFile(`${base}/infos.json`, 'utf8');
   const maintainer: MaintainerInfo = JSON.parse(filePath);
 

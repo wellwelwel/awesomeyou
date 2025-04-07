@@ -21,10 +21,10 @@ const {
 } = require('@site/src/helpers/extract-repository.js');
 
 const token = String(env.GITHUB_TOKEN);
-const base = `./content/assets/json/maintainers/_cache`;
+const base = `./static/assets/json/maintainers/_cache`;
 const filePath = `${base}/infos.json`;
 const currentDate = getCurrentDate();
-const files = await listFiles('./content/maintainers/', {
+const files = await listFiles('./static/maintainers/', {
   filter: /projects\.json/,
 });
 
@@ -58,7 +58,7 @@ const processMaintainers = async (): Promise<
 
   console.log('Caching maintainer infos');
 
-  const maintainersDir = resolve('./content/maintainers');
+  const maintainersDir = resolve('./static/maintainers');
   const dirents = await readdir(maintainersDir, { withFileTypes: true });
   const maintainerDirs = dirents
     .filter((dirent) => dirent.isDirectory())
@@ -72,7 +72,7 @@ const processMaintainers = async (): Promise<
     const projectsData: RawProject = JSON.parse(fileContents);
     const maintainerInfos = JSON.parse(
       await readFile(
-        `./content/assets/json/maintainers/${username}/infos.json`,
+        `./static/assets/json/maintainers/${username}/infos.json`,
         'utf8'
       )
     );
@@ -85,7 +85,7 @@ const processMaintainers = async (): Promise<
           );
 
           const statsContents = await readFile(
-            `./content/assets/json/projects/${organization}/${repository}.json`,
+            `./static/assets/json/projects/${organization}/${repository}.json`,
             'utf8'
           );
           const stats: ProjectStats = JSON.parse(statsContents).stats;
@@ -115,7 +115,7 @@ const processMaintainers = async (): Promise<
 
 for (const file of files) {
   const username = dirname(file).split('/').pop()!;
-  const base = `./content/assets/json/maintainers/${username}`;
+  const base = `./static/assets/json/maintainers/${username}`;
   const filePath = `${base}/infos.json`;
 
   if (!(await shouldUpdateFile(filePath, 7))) continue;

@@ -38,13 +38,13 @@ const loadMaintainers = (): Maintainer[] => {
   const maintainersInfos = new Map();
 
   const context = require.context(
-    '@site/content/maintainers',
+    '@site/static/maintainers',
     true,
     /projects\.json$/
   );
 
   const subContext = require.context(
-    '@site/content/assets/json/maintainers/',
+    '@site/static/assets/json/maintainers/',
     true,
     /infos\.json$/
   );
