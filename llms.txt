@@ -149,6 +149,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 Rust
 ✍️ Rapha Amorim
 
+## [tabnews.com.br](https://github.com/filipedeschamps/tabnews.com.br)
+
+🇧🇷 ✅
+🏷️ Apps, Plataformas e Softwares
+💻 JavaScript
+
 ## [Vagas](https://github.com/frontendbr/vagas)
 
 🇧🇷 ✅
