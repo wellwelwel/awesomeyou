@@ -4,13 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
-import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
+import type {
+  ProcessedProject,
+  ProjectOptions,
+  ProjectStats,
+  RawProject,
+} from '@site/src/@types/projects';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { listFiles, sleep } from 'poku';
 import {
   getCurrentDate,
-  shouldUpdateFile,
+  // shouldUpdateFile,
 } from '@site/tools/helpers/dates.mjs';
 
 const require = createRequire(import.meta.url);
@@ -27,7 +32,7 @@ const { processProject } = require('@site/src/helpers/generate-stats') as {
     cb: (data: {
       repository: string;
       organization: string;
-      results: ProjectOptions;
+      results: ProjectStats;
     }) => unknown
   ) => Promise<void>;
 };
@@ -58,9 +63,9 @@ for (const maintainer of maintainers) {
     const { organization, repository } = extractRepository(project.repository);
     const key = `${organization}/${repository}`;
     const currentDate = getCurrentDate();
-    const file = `content/assets/json/projects/${organization}/${repository}.json`;
+    // const file = `content/assets/json/projects/${organization}/${repository}.json`;
 
-    if (!(await shouldUpdateFile(file, 1))) continue;
+    // if (!(await shouldUpdateFile(file, 1))) continue;
 
     const processedInfos = {
       bio: infos.bio?.trim() || undefined,
@@ -84,7 +89,7 @@ for (const maintainer of maintainers) {
     await processProject(project, async ({ results }) => {
       console.log('Creating stats for', key);
 
-      const processedProject = {
+      const processedProject: ProcessedProject = {
         organization,
         repository,
         categories: project.categories,
@@ -94,6 +99,11 @@ for (const maintainer of maintainers) {
         message: project.message,
         name: project.name,
         url: project.repository,
+        chocolatey: project.chocolatey,
+        homebrew: project.homebrew,
+        npm: project.npm,
+        pypi: project.pypi,
+        vscode: project.vscode,
         stats: results,
         maintainers: [processedInfos],
         updatedAt: currentDate,

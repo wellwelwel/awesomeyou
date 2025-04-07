@@ -77,5 +77,10 @@ export type ProcessedProject = {
   madeInBrazil?: boolean;
   name?: string;
   message?: string;
+  npm?: string;
+  pypi?: string;
+  homebrew?: string;
+  vscode?: string;
+  chocolatey?: string;
   updatedAt?: string;
 };

@@ -44,15 +44,15 @@ export const Form: FC = () => {
       return;
     }
 
-    if (!currentProject.description) {
-      toast.error('Insira a descrição do projeto.');
-      return;
-    }
-
     try {
       extractRepository(currentProject.repository);
     } catch (error) {
       error instanceof Error && toast.error(error.message);
+      return;
+    }
+
+    if (!currentProject.description) {
+      toast.error('Insira a descrição do projeto.');
       return;
     }
 
