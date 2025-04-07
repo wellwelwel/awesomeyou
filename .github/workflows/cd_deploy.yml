@@ -31,8 +31,8 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
-      # - name: Getting Latest Assets
-      #   run: npm run fetch
+      - name: Getting Latest Assets
+        run: npm run fetch
 
       - name: Installing Dependencies
         run: npm ci

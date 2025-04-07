@@ -35,7 +35,9 @@ jobs:
         run: npm ci
 
       - name: Building Site
-        run: npm run build:maintainers
+        run: |
+          npm run build:maintainers
+          npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RESET_CACHE: 1

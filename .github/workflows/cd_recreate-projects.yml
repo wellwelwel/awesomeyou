@@ -35,7 +35,9 @@ jobs:
         run: npm ci
 
       - name: Building Site
-        run: npm run build:projects
+        run: |
+          npm run build:projects
+          npm run build
         env:
           RESET_CACHE: 1
 
