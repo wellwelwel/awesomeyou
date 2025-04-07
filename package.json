@@ -16,7 +16,7 @@
     "build:cache": "tsx tools/generate-maintainers-cache.mts",
     "build:server": "rollup -c && cp -f wrangler.prod.jsonc server/wrangler.jsonc",
     "prebuild": "tsx tools/generate-resume.mts",
-    "build": "tsx generate-maintainers-cache.mts && docusaurus build && npm run build:server",
+    "build": "tsx tools/generate-maintainers-cache.mts && docusaurus build && npm run build:server",
     "postbuild": "tsx tools/modify-sitemap.mts && tsx tools/generate-llms.mts",
     "clear": "docusaurus clear",
     "reset": "(npm run clear || true) && rm -rf node_modules package-lock.json && npm i",
@@ -31,7 +31,7 @@
     "prefetch": "mkdir -p static/assets/json",
     "fetch": "git fetch https://github.com/wellwelwel/awesomeyou.git website:website && git checkout FETCH_HEAD -- assets/json/",
     "postfetch": "cp -r assets/json/* static/assets/json/ && rm -rf json/ && git reset -q HEAD -- .",
-    "pretest": "npm run build:projects && npm run build:cache",
+    "pretest": "npm run fetch && npm run build:projects",
     "test": "poku -r=compact",
     "posttest": "npm run typecheck && npm run lint"
   },
