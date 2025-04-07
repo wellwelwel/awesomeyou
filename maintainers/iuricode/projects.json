@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Padrões de commits",
+      "repository": "https://github.com/iuricode/padroes-de-commits",
+      "description": "Padrões de commits.",
+      "categories": ["educational", "git"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    }
+  ]
+}
