@@ -39,8 +39,9 @@ jobs:
 
       - name: Building Site
         run: |
-          npm run build:projects
           npm run build:maintainers
+          npm run build:projects
+          npm run build:cache
           npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

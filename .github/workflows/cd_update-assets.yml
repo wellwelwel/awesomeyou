@@ -37,7 +37,11 @@ jobs:
         run: npm ci
 
       - name: Building Site
-        run: npm run build
+        run: |
+          npm run build:maintainers
+          npm run build:projects
+          npm run build:cache
+          npm run build
 
       - name: Deploy — Website
         uses: peaceiris/actions-gh-pages@v4
