@@ -50,7 +50,9 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
   const openProject = useCallback(
     (repositoryURL?: string) => {
       if (!maintainer || maintainer === '') {
-        toast.error('Defina o username de que mantém os projetos.');
+        toast.error(
+          'Digite o username ou URL de uma das pessoas que mantém os projetos.'
+        );
         return;
       }
 

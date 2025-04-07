@@ -42,18 +42,24 @@ Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
 Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) <ins>não é</ins> uma lista.
 
-- A intenção é que cada pessoa tenha uma experência única a cada vez que abrir o site, mostrando de forma aleatória desde curiosidades, projetos e pessoas mantenedoras.
+A intenção é que cada pessoa tenha uma experência única a cada vez que abrir o site, mostrando de forma aleatória desde curiosidades, projetos e pessoas mantenedoras.
+
+Aqui você pode encontrar:
+
+- 🎙️ Pessoas com experiências reais para palestrar nos seus eventos.
+- 📦 Projetos incríveis para contribuir e apoiar.
+- 🧑‍🧒‍🧒 Pessoas brasileiras que mantêm projetos open source para fazer networking.
 
 ### 🧩 Recursos
 
 O site conta com:
 
 - ✅ Filtro por **Linguagens de Programação**, **Origens** e **Categorias**.
-- ✅ Pesquisa manual pelo nome do projeto ou das pessoas mantenedoras.
+- ✅ Pesquisa manual pelo nome do projeto ou de quem os mantêm.
 - ✅ Exibição justa — de verdade — por aleatoriedade.
 - ✅ Ordenação por projetos em processo de crescimento.
-- ✅ Ordenação por impacto.
-- ✅ Permite múltiplas pessoas mantenedoras no mesmo projeto.
+- ✅ Ordenação por maior impacto.
+- ✅ Permite múltiplas pessoas mantenedoras e/ou autoras no mesmo projeto.
 
 ### 🧑‍💼 O Lado Humano da Iniciativa Open Source
 
