@@ -25,6 +25,7 @@ import { SafeLink } from '@site/src/components/SafeLink';
 import { Context } from '@site/src/contexts/New';
 import { deepTrim } from '@site/src/helpers/deep-trim';
 import { extractRepository } from '@site/src/helpers/extract-repository';
+import { format } from '@site/src/helpers/formatter';
 
 export const Instructions: FC = () => {
   const { useMaintainer, useJSON } = useContext(Context);
@@ -107,12 +108,12 @@ export const Instructions: FC = () => {
           <span>
             Crie o arquivo{' '}
             <code>
-              static/maintainers/<ins>{maintainer}</ins>/projects.json
+              static/maintainers/<ins>{maintainer || '***'}</ins>/projects.json
             </code>{' '}
             e cole o conteúdo a seguir:
             <CodeBlock
               language='json'
-              title={`static/maintainers/${maintainer}/projects.json`}
+              title={`static/maintainers/${maintainer || '***'}/projects.json`}
             >
               {`${formattedJSON}\n\n`}
             </CodeBlock>
@@ -143,16 +144,22 @@ export const Instructions: FC = () => {
           <span>
             Abra uma <strong>Pull Request</strong> com o título "
             <strong>
-              docs: add{' '}
-              {json?.projects?.[0]?.name ||
-                (() => {
-                  try {
-                    return extractRepository(json.projects[0].repository)
-                      .repository;
-                  } catch (error) {
-                    return '***';
-                  }
-                })()}
+              feat: add{' '}
+              {json.projects &&
+                format.listEn(
+                  json.projects.map((project) => {
+                    if (project.name) return project.name;
+
+                    try {
+                      const { repository } = extractRepository(
+                        project.repository
+                      );
+                      return repository;
+                    } catch (error) {
+                      return '***';
+                    }
+                  })
+                )}
             </strong>
             ".
           </span>

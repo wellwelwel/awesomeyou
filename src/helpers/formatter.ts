@@ -8,6 +8,12 @@ const list = new Intl.ListFormat('pt-BR', {
   type: 'conjunction',
 });
 
+const listEn = new Intl.ListFormat('en-US', {
+  style: 'long',
+  type: 'conjunction',
+});
+
 export const format = {
   list: list.format.bind(list),
+  listEn: listEn.format.bind(listEn),
 };

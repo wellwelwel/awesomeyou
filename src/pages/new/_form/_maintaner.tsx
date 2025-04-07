@@ -3,8 +3,9 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { RawProject } from '@site/src/@types/projects';
 import type { ChangeEvent, FC } from 'react';
-import { startTransition, useCallback, useContext } from 'react';
+import { startTransition, useCallback, useContext, useEffect } from 'react';
 import { createLRU } from 'lru.min';
 import { CircleAlert, Github, User } from 'lucide-react';
 import { toast } from 'sonner';
@@ -13,8 +14,9 @@ import { Context } from '@site/src/contexts/New';
 const LRU = createLRU<string, boolean>({ max: 100 });
 
 export const Maintainer: FC = () => {
-  const { useMaintainer } = useContext(Context);
+  const { useMaintainer, useJSON } = useContext(Context);
   const [maintainer, setMaintainer] = useMaintainer;
+  const [, setJSON] = useJSON;
 
   const updateMaintainer = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +28,8 @@ export const Maintainer: FC = () => {
   );
 
   const checkUser = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    toast.dismiss();
+
     const username = e.currentTarget.value.trim();
     if (!username) return;
 
@@ -50,6 +54,27 @@ export const Maintainer: FC = () => {
       } catch {}
     });
   }, []);
+
+  useEffect(() => {
+    toast.dismiss();
+
+    startTransition(async () => {
+      try {
+        const response = await fetch(
+          `/maintainers/${maintainer}/projects.json`
+        );
+        const exists = response.status !== 404;
+
+        if (!exists) return;
+
+        const raw: RawProject = await response.json();
+
+        setJSON(raw);
+
+        toast.info(`${maintainer} já possui projetos na iniciativa 🚀`);
+      } catch {}
+    });
+  }, [maintainer]);
 
   return (
     <>
