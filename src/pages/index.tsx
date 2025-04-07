@@ -5,6 +5,8 @@
 
 import '@site/src/css/pages/home.scss';
 
+import type { ResumedMaintaners } from '@site/src/@types/maintainers';
+import type { ResumedProject } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
 import {
   startTransition,
@@ -35,8 +37,6 @@ import {
   Star,
   UsersRound,
 } from 'lucide-react';
-import { ResumedMaintaners } from '@site/src/@types/maintainers';
-import { ResumedProject } from '@site/src/@types/projects';
 import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { categories } from '@site/src/configs/categories';

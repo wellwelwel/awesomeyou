@@ -11,12 +11,12 @@
  */
 
 import type { MaintainerInfo } from '@site/src/@types/maintainers';
+import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
 import { readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import commentMark from 'comment-mark';
 import { listFiles } from 'poku';
-import { ProjectOptions, RawProject } from '@site/src/@types/projects';
 
 const require = createRequire(import.meta.url);
 const { extractRepository } = require('@site/src/helpers/extract-repository');

@@ -3,15 +3,15 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type {
+  MaintainerInfo,
+  ResumedMaintaners,
+} from '@site/src/@types/maintainers';
+import type { RawProject, ResumedProject } from '@site/src/@types/projects';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
 import { listFiles } from 'poku';
-import {
-  MaintainerInfo,
-  ResumedMaintaners,
-} from '@site/src/@types/maintainers';
-import { RawProject, ResumedProject } from '@site/src/@types/projects';
 
 const require = createRequire(import.meta.url);
 const { extractRepository } = require('@site/src/helpers/extract-repository');

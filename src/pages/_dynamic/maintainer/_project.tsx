@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { FC, useContext } from 'react';
 import {
   Award,
@@ -13,7 +14,6 @@ import {
   Sprout,
   Trophy,
 } from 'lucide-react';
-import { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { Context } from '@site/src/contexts/Maintainer';
 import { getScore } from '@site/src/helpers/get-score';

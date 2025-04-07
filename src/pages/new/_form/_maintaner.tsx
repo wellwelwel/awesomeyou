@@ -4,9 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { ChangeEvent, FC } from 'react';
-import { useCallback, useContext } from 'react';
+import { startTransition, useCallback, useContext } from 'react';
+import { createLRU } from 'lru.min';
 import { CircleAlert, Github, User } from 'lucide-react';
+import { toast } from 'sonner';
 import { Context } from '@site/src/contexts/New';
+
+const LRU = createLRU<string, boolean>({ max: 100 });
 
 export const Maintainer: FC = () => {
   const { useMaintainer } = useContext(Context);
@@ -20,6 +24,32 @@ export const Maintainer: FC = () => {
     },
     [setMaintainer]
   );
+
+  const checkUser = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const username = e.currentTarget.value.trim();
+    if (!username) return;
+
+    if (LRU.has(username)) {
+      if (!LRU.get(username))
+        toast.error(`O username "${username}" não foi encontrado.`);
+
+      return;
+    }
+
+    startTransition(async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${username}`
+        );
+        const exists = response.status !== 404;
+
+        LRU.set(username, exists);
+
+        if (!exists)
+          toast.error(`O username "${username}" não foi encontrado.`);
+      } catch {}
+    });
+  }, []);
 
   return (
     <>
@@ -41,6 +71,7 @@ export const Maintainer: FC = () => {
           required
           value={maintainer}
           onChange={updateMaintainer}
+          onBlur={checkUser}
         />
         <small>
           <CircleAlert /> O username do perfil de quem mantém o projeto no
