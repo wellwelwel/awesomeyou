@@ -11,6 +11,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 > ✍️ Autor
 
 
+## [Awesome Go](https://github.com/avelino/awesome-go)
+
+🇧🇷 ✅
+🏷️ Listas
+💻 GO
+✍️ Avelino
+
 ## [Awesome Made by Brazilians](https://github.com/felipefialho/awesome-made-by-brazilians)
 
 🇧🇷 ✅

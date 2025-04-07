@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Awesome Go",
+      "repository": "https://github.com/avelino/awesome-go",
+      "description": "A curated list of awesome Go frameworks, libraries and software.",
+      "categories": ["list"],
+      "languages": ["go"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    }
+  ]
+}
