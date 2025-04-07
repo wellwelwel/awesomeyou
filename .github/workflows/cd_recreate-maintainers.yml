@@ -1,0 +1,50 @@
+name: '🚀 CD (Website) — Publish (Recreate Maintainers)'
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: ${{ github.event.repository.fork == false && github.ref == 'refs/heads/main' }}
+    name: Deploy
+    steps:
+      - name: Actions - Checkout
+        uses: actions/checkout@v4
+
+      - name: Actions - Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
+      - name: Getting Latest Assets
+        run: npm run fetch
+
+      - name: Installing Dependencies
+        run: npm ci
+
+      - name: Building Site
+        run: npm run build:maintainers
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RESET_CACHE: 1
+
+      - name: Deploy — Website
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: 'website'
+          cname: awesomeyou.io
+          allow_empty_commit: false

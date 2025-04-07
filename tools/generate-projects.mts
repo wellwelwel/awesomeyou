@@ -12,6 +12,7 @@ import type {
 } from '@site/src/@types/projects';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
+import { env } from 'node:process';
 import { listFiles, sleep } from 'poku';
 import {
   getCurrentDate,
@@ -65,7 +66,7 @@ for (const maintainer of maintainers) {
     const currentDate = getCurrentDate();
     const file = `static/assets/json/projects/${organization}/${repository}.json`;
 
-    if (!(await shouldUpdateFile(file, 1))) continue;
+    if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(file, 1))) continue;
 
     const processedInfos = {
       bio: infos.bio?.trim() || undefined,

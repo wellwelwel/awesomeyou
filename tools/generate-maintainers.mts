@@ -44,7 +44,8 @@ for (const file of files) {
   const base = `./static/assets/json/maintainers/${username}`;
   const filePath = `${base}/infos.json`;
 
-  if (!(await shouldUpdateFile(filePath, 7))) continue;
+  if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(filePath, 7)))
+    continue;
 
   console.log('Creating infos for', username);
 

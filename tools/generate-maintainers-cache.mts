@@ -8,6 +8,7 @@ import type { ProjectStats, RawProject } from '@site/src/@types/projects';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
+import { env } from 'node:process';
 import { getCurrentDate, shouldUpdateFile } from './helpers/dates.mjs';
 
 const require = createRequire(import.meta.url);
@@ -25,7 +26,7 @@ const currentDate = getCurrentDate();
 const processMaintainers = async (): Promise<
   ProcessedMaintainer[] | undefined
 > => {
-  if (!(await shouldUpdateFile(filePath, 1))) return;
+  if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(filePath, 1))) return;
 
   console.log('Caching maintainer infos');
 
