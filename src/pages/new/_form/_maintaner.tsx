@@ -81,7 +81,7 @@ export const Maintainer: FC = () => {
   return (
     <>
       <h2>
-        <User /> Quem matém os projetos?
+        <User /> Quem mantém os projetos?
       </h2>
       <label className='column'>
         <span>
