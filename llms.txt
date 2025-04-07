@@ -37,6 +37,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 TypeScript
 ✍️ Weslley Araújo
 
+## [Lwan Web Server](https://github.com/lpereira/lwan)
+
+🇧🇷 ✅
+🏷️ DevOps e Performance
+💻 C
+✍️ L. Pereira
+
 ## [MySQL2](https://github.com/sidorares/node-mysql2)
 
 🇧🇷 ❌
