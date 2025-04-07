@@ -38,6 +38,12 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 Ruby
 ✍️ José Valim
 
+## [Dracula Theme](https://github.com/dracula/dracula-theme)
+
+🇧🇷 ✅
+🏷️ Temas
+✍️ Zeno Rocha
+
 ## [Elixir](https://github.com/elixir-lang/elixir)
 
 🇧🇷 ✅
@@ -77,6 +83,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
+
+## [React Email](https://github.com/resend/react-email)
+
+🇧🇷 ✅
+🏷️ Ferramentas e Frontend
+💻 TypeScript
+✍️ Zeno Rocha
 
 ## [Rio](https://github.com/raphamorim/rio)
 
