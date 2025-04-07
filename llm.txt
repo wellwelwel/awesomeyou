@@ -24,6 +24,18 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Linguagem de Programação
 ✍️ Victor Taelin
 
+## [Brasil API](https://github.com/BrasilAPI/BrasilAPI)
+
+🇧🇷 ✅
+🏷️ API
+💻 JavaScript
+
+## [CEP Promise](https://github.com/BrasilAPI/cep-promise)
+
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 JavaScript
+
 ## [Corcel](https://github.com/corcel/corcel)
 
 🇧🇷 ✅
