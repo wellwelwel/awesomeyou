@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Bun",
+      "repository": "https://github.com/oven-sh/bun",
+      "description": "Incredibly fast JavaScript runtime, bundler, test runner, and package manager — all in one.",
+      "categories": ["language"],
+      "languages": ["zig"],
+      "npm": "bun",
+      "chocolatey": "bun"
+    },
+    {
+      "name": "Socketify",
+      "repository": "https://github.com/cirospaciari/socketify.py",
+      "description": "Bringing Http/Https and WebSockets High Performance servers for PyPy3 and Python3.",
+      "categories": ["performance", "tool"],
+      "languages": ["python"],
+      "pypi": "socketify",
+      "madeInBrazil": true,
+      "isAuthor": true
+    }
+  ]
+}

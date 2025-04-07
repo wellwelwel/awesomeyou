@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "name": "Awesome Go",
+      "repository": "https://github.com/avelino/awesome-go",
+      "description": "A curated list of awesome Go frameworks, libraries and software.",
+      "categories": ["list"],
+      "languages": ["go"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    },
+    {
+      "name": "prestd",
+      "repository": "https://github.com/prest/prest",
+      "description": "A curated list of awesome Go frPostgreSQL ➕ REST, low-code, simplify and accelerate development, ⚡ instant, realtime, high-performance on any Postgres application, existing or new ameworks, libraries and software",
+      "categories": ["tool", "api"],
+      "languages": ["go"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    },
+    {
+      "name": "moclojer",
+      "repository": "https://github.com/moclojer/moclojer",
+      "description": "Simple and efficient HTTP and Webscoket mock server with specification in yaml, edn or OpenAPI",
+      "categories": ["tool", "api", "mock"],
+      "languages": ["clojure"],
+      "madeInBrazil": true,
+      "isAuthor": true
+    }
+  ]
+}
