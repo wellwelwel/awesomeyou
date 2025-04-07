@@ -135,7 +135,7 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [Node.js](https://github.com/nodejs/node)
 
 🇧🇷 ❌
-👤 Erick Wendel e Rafael Gonzaga
+👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
 🏷️ Linguagem de Programação
 
 ## [Padrões de commits](https://github.com/iuricode/padroes-de-commits)
