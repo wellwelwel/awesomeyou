@@ -30,7 +30,7 @@
     "purge": "tsx --env-file-if-exists=.env tools/purge-cache.mts",
     "prefetch": "mkdir -p static/assets/json",
     "fetch": "git fetch https://github.com/wellwelwel/awesomeyou.git website:website && git checkout FETCH_HEAD -- assets/json/",
-    "postfetch": "cp -r assets/json/* static/assets/json/ && rm -rf json/ && git reset -q HEAD -- .",
+    "postfetch": "cp -r assets/json/* static/assets/json/ && rm -rf assets && git reset -q HEAD -- .",
     "pretest": "npm run fetch && npm run build:projects",
     "test": "poku -r=compact",
     "posttest": "npm run typecheck && npm run lint"

@@ -35,6 +35,7 @@ Ao abrir seu **Pull Request**, descreva a solução proposta e o que ela resolve
 Você precisará das seguintes ferramentas instaladas em seu sistema:
 
 - [**Node.js**](https://nodejs.org/en/download/package-manager)
+- [**WSL**](https://learn.microsoft.com/pt-br/windows/wsl/install) (para usuários **Windows**)
 
 Faça o [ _fork_](https://github.com/wellwelwel/awesomeyou/fork) deste repositório, baixe seu _fork_ localmente e crie uma nova _branch_ a partir da `main`.  
 Em seguida, execute `npm ci` para uma instalação limpa da _node_modules_:
