@@ -24,6 +24,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Linguagem de Programação
 ✍️ Victor Taelin
 
+## [Corcel](https://github.com/corcel/corcel)
+
+🇧🇷 ✅
+🏷️ Ferramentas
+💻 PHP
+✍️ Junior Grossi
+
 ## [HVM2](https://github.com/HigherOrderCO/HVM)
 
 🇧🇷 ✅
