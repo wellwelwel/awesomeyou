@@ -90,7 +90,8 @@
                 "productivity",
                 "list",
                 "template",
-                "git"
+                "git",
+                "mock"
               ]
             },
             "uniqueItems": true

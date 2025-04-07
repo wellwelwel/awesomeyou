@@ -12,7 +12,7 @@
 - Se você não faz parte do projeto que está incluindo, a descrição deve ser exatamente como descrita no repositório do projeto original, removendo apenas símbolos e emojis.
 - Nenhuma informação deve conter ofensas, _palavrões_ ou conteúdos impróprios para menores de idade, seja no nome, descrição ou mensagem de apoio (CTA).
   - O nome pode ter até 50 caracteres.
-  - A descrição pode ter até 200 caracteres.
+  - A descrição pode ter até 250 caracteres.
   - A mensagem de apoio (CTA) pode ter até **120** caracteres.
 - O projeto deve obter a partir de [**250** pontos](https://github.com/wellwelwel/awesomeyou/issues/4) para passar nos testes automatizados.
 - O projeto não pode ser de uso pessoal, independentemente da pontuação adquirida.
