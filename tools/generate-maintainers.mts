@@ -9,6 +9,8 @@ import { env } from 'node:process';
 import { listFiles, sleep } from 'poku';
 import { getCurrentDate, shouldUpdateFile } from './helpers/dates.mjs';
 
+await mkdir('./static/maintainers/', { recursive: true });
+
 const token = String(env.GITHUB_TOKEN);
 const files = await listFiles('./static/maintainers/', {
   filter: /projects\.json/,
