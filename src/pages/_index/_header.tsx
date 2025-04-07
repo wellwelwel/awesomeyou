@@ -31,7 +31,7 @@ import PeopleV from '@site/content/assets/img/people/V.svg';
 import { Name } from '@site/src/components/Name';
 import { randomize } from '@site/src/helpers/randomizer';
 
-let remainingNumbers: number[];
+let remainingNumbers: number[] = [];
 
 const curiosities = [
   'Sabia que a maioria das linguagens de programação são open source?',
@@ -218,10 +218,12 @@ export const Header: FC = () => {
       <small className='quoted'>
         <div ref={barRef} key={currentNumber} className='bar'></div>
         <Quote />
-        <ReactTyped
-          typeSpeed={20}
-          strings={[`${curiosities[currentNumber - 1]} ✨`]}
-        />
+        {remainingNumbers.length > 0 && (
+          <ReactTyped
+            typeSpeed={20}
+            strings={[`${curiosities[currentNumber - 1]} ✨`]}
+          />
+        )}
       </small>
     </>
   );
