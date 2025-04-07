@@ -146,7 +146,7 @@ export const Instructions: FC = () => {
             Abra uma <strong>Pull Request</strong> com o título:{' '}
             <code>
               <strong>
-                feat: add{' '}
+                feat({maintainer || '***'}): add{' '}
                 {json?.projects?.length > 0
                   ? format.listEn(
                       json.projects.map((project) => {
