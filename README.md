@@ -69,7 +69,7 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 
 ## ⚖️ Sistema de Pontos
 
-O cálculo da pontuação diário inclui:
+O cálculo diário da pontuação inclui:
 
 - 🧑‍🧑‍🧒‍🧒 **Criação de Comunidade** através de contribuições com _commits_ e _forks_.
 - 🚀 **Impacto** através de dependentes diretos, instalações e downloads.
