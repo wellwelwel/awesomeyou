@@ -29,7 +29,7 @@
 ## Lives e Podcast _(em breve)_
 
 - Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar do nosso futuro Podcast (que será publicado em vídeo no **YouTube**). <sup>1</sup>
-  - Não há nenhuma obrigação e aceitar ou não o convite fica a critério do prórpio convidado.
+  - Não há nenhuma obrigação e, aceitar ou não o convite, fica a critério do próprio convidado.
 - Ao aceitar o convite para o Podcast, você:
   - reconhece que sua participação é voluntária e autoriza o uso da sua imagem, nome e voz, captados em vídeos durante o evento, para fins de divulgação e promoção do Podcast em qualquer meio de comunicação, incluindo redes sociais, websites e materiais impressos.
   - concorda que o conteúdo apresentado no Podcast poderá ser utilizado para fins educacionais e de divulgação do Podcast.

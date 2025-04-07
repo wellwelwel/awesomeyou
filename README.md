@@ -30,22 +30,15 @@ Você pode nos apoiar com uma simples <strong>estrela no nosso repositório</str
 
 ---
 
-## 🤝 Contribua
+## 🤝 Guia de Contribuições
 
-Você pode contribuir desde ideias, melhorias no site ou no sistema de pontuações e, claro, incluindo projetos criados ou mantidos por brasileiros na iniciativa.
-
-Quer incluir seu projeto ou o de alguém que você conhece? Crie seu **JSON** dinamicamente na página [**Novo Projeto +**](https://awesomeyou.io/new/), siga as instruções na própia página e abra seu **Pull Request**.
-
-> [!TIP]
->
-> - Você não precisa ser o autor ou o mantenedor do projeto para incluí-lo 💡
-> - Sinta-se à vontade para conversar em português 🏠
+Veja o guia completo em [**CONTRIBUTING.md**](./CONTRIBUTING.md).
 
 ---
 
 ## 💡 Por que mais uma ~Lista~?
 
-Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) <ins>não</ins> é uma lista.
+Antes, me deixe corrigir: a [**Awesome You**](https://awesomeyou.io) <ins>não é</ins> uma lista.
 
 ### 📊 Relevância vs. Impacto vs. Popularidade vs. Comunidade
 
@@ -73,7 +66,7 @@ Ao invés de apenas catalogar projetos, nós valorizamos o trabalho de quem mant
 
 ## ⚖️ Sistema de Pontos
 
-O cálculo da pontuação inclui:
+O cálculo da pontuação diário inclui:
 
 - 🧑‍🧑‍🧒‍🧒 **Criação de Comunidade** através de contribuições com _commits_ e _forks_.
 - 🚀 **Impacto** através de dependentes diretos, instalações e downloads.
@@ -97,7 +90,7 @@ Seja por diversão, meta ou até mesmo por curiosidade, você pode calcular a po
 
 ## 🧑‍⚖️ Regras
 
-Você pode consultar as regras [aqui](./docs/RULES.md) e debatê-las [aqui](https://github.com/wellwelwel/awesomeyou/issues/2).
+Você pode consultar as regras em [docs/RULES.md](./docs/RULES.md) e debatê-las [aqui](https://github.com/wellwelwel/awesomeyou/issues/2).
 
 ---
 
