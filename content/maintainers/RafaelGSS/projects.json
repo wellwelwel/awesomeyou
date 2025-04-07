@@ -9,6 +9,23 @@
       "languages": ["cpp"],
       "homebrew": "node",
       "chocolatey": "nodejs"
+    },
+    {
+      "repository": "https://github.com/nodejs/is-my-node-vulnerable",
+      "description": "package that checks if your Node.js installation is vulnerable to known security vulnerabilities",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "is-my-node-vulnerable",
+      "npm": "is-my-node-vulnerable",
+      "categories": [
+        "cli",
+        "ci",
+        "security",
+        "tool"
+      ],
+      "languages": [
+        "javascript"
+      ]
     }
   ]
 }
