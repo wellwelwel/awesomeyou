@@ -151,6 +151,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🏷️ Conteúdos Educacionais e Git
 ✍️ Iuri Silva
 
+## [phpsocket.io](https://github.com/walkor/phpsocket.io)
+
+🇧🇷 ❌
+👤 Marcos Marcolin
+🏷️ Backend
+💻 PHP
+
 ## [Poku](https://github.com/wellwelwel/poku)
 
 🇧🇷 ✅
