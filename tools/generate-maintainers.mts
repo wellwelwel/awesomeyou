@@ -3,7 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { env } from 'node:process';
 import { listFiles, sleep } from 'poku';
@@ -46,6 +46,22 @@ for (const file of files) {
 
   if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(filePath, 7)))
     continue;
+
+  if (!env.GITHUB_TOKEN) {
+    try {
+      await readFile(filePath, 'utf8');
+    } catch (error) {
+      console.log('Simulating infos for', username);
+
+      await mkdir(base, { recursive: true });
+      await writeFile(
+        filePath,
+        JSON.stringify({ username, name: '' }, null, 0)
+      );
+    }
+
+    continue;
+  }
 
   console.log('Creating infos for', username);
 

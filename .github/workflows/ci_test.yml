@@ -35,7 +35,9 @@ jobs:
         run: npm ci
 
       - name: Testing Projects
-        run: npm test
+        run: |
+          npm run build:maintainers
+          npm test
 
       - name: Building Site
         run: npm run build
