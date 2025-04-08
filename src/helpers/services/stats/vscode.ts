@@ -54,7 +54,7 @@ export const vscodeDownloads = async (vscode: string) => {
 
   const results = await (
     await fetch(
-      `https://img.shields.io/visual-studio-marketplace/i/${vscode}.json`
+      `https://img.shields.io/visual-studio-marketplace/i/${vscode}.json?cacheSeconds=1`
     )
   ).json();
 

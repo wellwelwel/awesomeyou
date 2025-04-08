@@ -25,8 +25,8 @@ test('Ensure projects are the same length', async () => {
     const stats = content.stats as ProjectStats;
 
     strict(
-      !/not specified/.test(stats.license),
-      `Ensure license file for ${content.file}`
+      stats.score >= 200,
+      `Ensure score for './${content.file}' — ${stats.score}/200`
     );
 
     strict(
@@ -71,8 +71,20 @@ test('Ensure projects are the same length', async () => {
     );
 
     strict(
-      stats.score >= 200,
-      `Ensure score for './${content.file}' — ${stats.score}/200`
+      typeof stats.chocolatey === 'undefined' ||
+        typeof stats.chocolatey.value === 'number',
+      `Ensure Chocolatey for ${content.file}`
+    );
+
+    strict(
+      typeof stats.vscode === 'undefined' ||
+        typeof stats.vscode.value === 'number',
+      `Ensure Visual Studio Marketplace for ${content.file}`
+    );
+
+    strict(
+      !/not specified/.test(stats.license),
+      `Ensure license file for ${content.file}`
     );
   }
 });

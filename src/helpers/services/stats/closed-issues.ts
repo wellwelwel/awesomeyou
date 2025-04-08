@@ -11,7 +11,7 @@ export const issuesClosed = async (
 ) => {
   const results = await (
     await fetch(
-      `https://img.shields.io/github/issues-closed/${organization}/${repository}.json`
+      `https://img.shields.io/github/issues-closed/${organization}/${repository}.json?cacheSeconds=1`
     )
   ).json();
 

@@ -23,7 +23,7 @@ export const commitsByMaintainer = async (
 
     results = await (
       await fetch(
-        `https://img.shields.io/github/commit-activity/t/${organization}/${repository}.json?authorFilter=${maintainer}`
+        `https://img.shields.io/github/commit-activity/t/${organization}/${repository}.json?authorFilter=${maintainer}&cacheSeconds=1`
       )
     ).json();
 
