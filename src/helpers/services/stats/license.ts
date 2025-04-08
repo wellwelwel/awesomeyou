@@ -6,7 +6,7 @@
 export const license = async (organization: string, repository: string) => {
   const results = await (
     await fetch(
-      `https://img.shields.io/github/license/${organization}/${repository}.json`
+      `https://img.shields.io/github/license/${organization}/${repository}.json?cacheSeconds=1`
     )
   ).json();
 

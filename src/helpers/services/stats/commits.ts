@@ -45,7 +45,7 @@ const langMap: Record<string, string> = {
 export const commits = async (organization: string, repository: string) => {
   const results = await (
     await fetch(
-      `https://img.shields.io/github/last-commit/${organization}/${repository}.json`
+      `https://img.shields.io/github/last-commit/${organization}/${repository}.json?cacheSeconds=1`
     )
   ).json();
 
