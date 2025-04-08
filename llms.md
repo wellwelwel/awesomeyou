@@ -45,6 +45,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 JavaScript
 ✍️ Filipe Deschamps
 
+## [BuildCLI](https://github.com/BuildCLI/BuildCLI)
+
+🇧🇷 ✅
+🏷️ CLI e CI/CD
+💻 Java
+✍️ Wheslley Rimar
+
 ## [Bun](https://github.com/oven-sh/bun)
 
 🇧🇷 ❌
