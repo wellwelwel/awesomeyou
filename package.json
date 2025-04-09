@@ -36,7 +36,7 @@
     "posttest": "npm run typecheck && npm run lint"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250407.0",
+    "@cloudflare/workers-types": "^4.20250409.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
@@ -73,7 +73,7 @@
     "sonner": "^2.0.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
-    "wrangler": "^4.7.2",
+    "wrangler": "^4.9.1",
     "xml2js": "^0.6.2"
   },
   "browserslist": {
