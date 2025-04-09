@@ -12,7 +12,7 @@
 
   button {
     flex-grow: 1;
-    @include flex(row, stretch, center);
+    @include flex(row, center, center);
     gap: 5px;
     padding: 7.5px 15px;
     border: 1px dotted #a6cce0a6;
