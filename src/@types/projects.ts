@@ -19,13 +19,14 @@ export type ProjectOptions = {
   message?: string;
   languages?: (keyof typeof languages)[];
   categories?: (keyof typeof categories)[];
+  madeInBrazil?: boolean;
+  isAuthor?: boolean;
   npm?: string;
   pypi?: string;
   homebrew?: string;
   vscode?: string;
   chocolatey?: string;
-  madeInBrazil?: boolean;
-  isAuthor?: boolean;
+  packagist?: string;
 };
 
 export type RawProject = {
@@ -47,6 +48,7 @@ export type ProjectStats = {
   pypi?: StatsPropos;
   vscode?: StatsPropos;
   chocolatey?: StatsPropos;
+  packagist?: StatsPropos;
   score: number;
 };
 
@@ -65,22 +67,10 @@ export type ResumedProject = {
   category?: keyof typeof categories;
 };
 
-export type ProcessedProject = {
+export type ProcessedProject = Omit<ProjectOptions, 'isAuthor'> & {
   organization: string;
-  repository: string;
-  description: string;
   url: string;
   stats: ProjectStats;
   maintainers: MaintainerInfo[];
-  languages?: (keyof typeof languages)[];
-  categories?: (keyof typeof categories)[];
-  madeInBrazil?: boolean;
-  name?: string;
-  message?: string;
-  npm?: string;
-  pypi?: string;
-  homebrew?: string;
-  vscode?: string;
-  chocolatey?: string;
   updatedAt?: string;
 };

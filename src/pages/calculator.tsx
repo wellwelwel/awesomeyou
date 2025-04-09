@@ -63,6 +63,7 @@ export default (): ReactNode => {
         const pypi = formData.get('pypi');
         const chocolatey = formData.get('chocolatey');
         const vscode = formData.get('vscode');
+        const packagist = formData.get('packagist');
 
         if (!repositoryFormURL || typeof repositoryFormURL !== 'string') {
           toast.error('Insira uma URL válida.');
@@ -99,6 +100,7 @@ export default (): ReactNode => {
               pypi,
               chocolatey,
               vscode,
+              packagist,
             },
             null,
             0
@@ -207,6 +209,25 @@ export default (): ReactNode => {
                 <input placeholder='Ex.: socketify' type='text' name='pypi' />
                 <small>
                   <CircleHelp /> Nome do pacote PyPi, caso exista (opcional).
+                </small>
+              </label>
+              <label>
+                <span>
+                  <img
+                    loading='lazy'
+                    src='/assets/img/packagist.svg'
+                    alt='Packagist'
+                  />{' '}
+                  Pacote Packagist <sup>?</sup>
+                </span>
+                <input
+                  placeholder='Ex.: jgrossi/corcel'
+                  type='text'
+                  name='packagist'
+                />
+                <small>
+                  <CircleHelp /> Nome do usuário/pacote Packagist, caso exista
+                  (opcional).
                 </small>
               </label>
               <label>
@@ -391,6 +412,22 @@ export default (): ReactNode => {
                               alt='PyPi'
                             />
                             {stats.pypi.label}
+                          </td>
+                        </tr>
+                      )}
+
+                      {stats?.packagist?.label && (
+                        <tr>
+                          <td>
+                            <span>Downloads por Mês</span>
+                          </td>
+                          <td>
+                            <img
+                              loading='lazy'
+                              src='/assets/img/packagist.svg'
+                              alt='Packagist'
+                            />
+                            {stats.packagist.label}
                           </td>
                         </tr>
                       )}

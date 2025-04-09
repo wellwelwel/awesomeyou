@@ -20,7 +20,7 @@ export const SCORE_FACTORS = Object.freeze({
   INACTIVE_YEAR_BASE_PENALTY: 200,
 });
 
-export const calculatePenaltyFromActivity = (activityDate: string): number => {
+const calculatePenaltyFromActivity = (activityDate: string): number => {
   const currentYear = new Date().getUTCFullYear();
   const yearMatch = activityDate.match(/\b\d{4}\b/);
 
@@ -32,6 +32,26 @@ export const calculatePenaltyFromActivity = (activityDate: string): number => {
   if (yearsPassed < SCORE_FACTORS.MIN_INACTIVE_YEARS_FOR_PENALTY) return 0; // up to one year (unpenalized)
 
   return yearsPassed ** 2 * SCORE_FACTORS.INACTIVE_YEAR_BASE_PENALTY;
+};
+
+const monthlyDownloads = (value?: number): number => {
+  if (typeof value === 'number')
+    return (
+      Math.floor(value / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS
+    );
+
+  return 0;
+};
+
+const totalDownloads = (value?: number): number => {
+  if (typeof value === 'number')
+    return (
+      Math.floor(value / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
+      SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS
+    );
+
+  return 0;
 };
 
 /**
@@ -52,6 +72,8 @@ export const getScore = (options: {
   pypi?: number;
   /* Impact: Downloads & Installations */
   chocolatey?: number;
+  /* Impact: Downloads & Installations */
+  packagist?: number;
   /* Community */
   contributors?: number;
   /* Maintenance: Activity */
@@ -62,7 +84,7 @@ export const getScore = (options: {
   closedIssues?: number;
   /* Maintenance: Community Support */
   repositoryDependents?: number;
-}) => {
+}): number => {
   const {
     contributors,
     forks,
@@ -71,6 +93,7 @@ export const getScore = (options: {
     pypi,
     vscode,
     chocolatey,
+    packagist,
     stars,
     commits,
     closedIssues,
@@ -90,32 +113,15 @@ export const getScore = (options: {
   if (typeof contributors === 'number')
     score += contributors * SCORE_FACTORS.CONTRIBUTOR_POINTS;
 
-  // Total Downloads
-  if (typeof vscode === 'number')
-    score +=
-      Math.floor(vscode / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
-      SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS;
-
-  if (typeof chocolatey === 'number')
-    score +=
-      Math.floor(chocolatey / SCORE_FACTORS.TOTAL_DOWNLOADS_INTERVAL) *
-      SCORE_FACTORS.TOTAL_DOWNLOADS_POINTS;
-
   // Monthly Downloads
-  if (typeof npm === 'number')
-    score +=
-      Math.floor(npm / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
-      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
+  score += monthlyDownloads(npm);
+  score += monthlyDownloads(homebrew);
+  score += monthlyDownloads(pypi);
+  score += monthlyDownloads(packagist);
 
-  if (typeof homebrew === 'number')
-    score +=
-      Math.floor(homebrew / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
-      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
-
-  if (typeof pypi === 'number')
-    score +=
-      Math.floor(pypi / SCORE_FACTORS.MONTHLY_DOWNLOADS_INTERVAL) *
-      SCORE_FACTORS.MONTHLY_DOWNLOADS_POINTS;
+  // Total Downloads
+  score += totalDownloads(vscode);
+  score += totalDownloads(chocolatey);
 
   // Maintenance
   if (typeof closedIssues === 'number') {

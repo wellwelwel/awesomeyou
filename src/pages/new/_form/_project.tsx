@@ -43,6 +43,7 @@ const initialState: ProjectOptions = {
   pypi: '',
   chocolatey: '',
   vscode: '',
+  packagist: '',
 };
 
 export const Project: FC = () => {
@@ -92,6 +93,7 @@ export const Project: FC = () => {
             homebrew: existingData.homebrew || '',
             npm: existingData.npm || '',
             pypi: existingData.pypi || '',
+            packagist: existingData.packagist || '',
             vscode: existingData.vscode || '',
           }));
         } catch {}
@@ -414,6 +416,27 @@ export const Project: FC = () => {
             />
             <small>
               <CircleHelp /> Nome do pacote PyPi, caso exista (opcional).
+            </small>
+          </label>
+          <label>
+            <span>
+              <img
+                loading='lazy'
+                src='/assets/img/packagist.svg'
+                alt='Packagist'
+              />{' '}
+              Pacote Packagist <sup>?</sup>
+            </span>
+            <input
+              placeholder='Ex.: jgrossi/corcel'
+              type='text'
+              name='packagist'
+              value={project.packagist}
+              onChange={(e) => updateProject(e, 'packagist')}
+            />
+            <small>
+              <CircleHelp /> Nome do usuário/pacote Packagist, caso exista
+              (opcional).
             </small>
           </label>
           <label>

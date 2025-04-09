@@ -72,12 +72,18 @@ export default {
           400
         );
 
+      if (!isValidParam(body.packagist))
+        return response({ message: 'Pacote Packagist inválido.' }, 400);
+
       const repositoryURL = repositoryRaw.trim();
       const npm = sanitizeParam(body.npm);
       const homebrew = sanitizeParam(body.homebrew);
       const pypi = sanitizeParam(body.pypi);
       const chocolatey = sanitizeParam(body.chocolatey);
       const vscode = sanitizeParam(body.vscode);
+      const packagist = sanitizeParam(body.packagist);
+
+      const { organization, repository } = extractRepository(repositoryURL);
 
       let key = repositoryURL;
       if (typeof npm === 'string') key += `:${npm}`;
@@ -85,8 +91,7 @@ export default {
       if (typeof pypi === 'string') key += `:${pypi}`;
       if (typeof chocolatey === 'string') key += `:${chocolatey}`;
       if (typeof vscode === 'string') key += `:${vscode}`;
-
-      const { organization, repository } = extractRepository(repositoryURL);
+      if (typeof packagist === 'string') key += `:${packagist}`;
 
       return cache.stats.has(key)
         ? response(cache.stats.get(key))
@@ -100,6 +105,7 @@ export default {
                 pypi,
                 chocolatey,
                 vscode,
+                packagist,
               },
               ({ results }) => {
                 const score = getScore({
@@ -115,6 +121,7 @@ export default {
                   chocolatey: results?.chocolatey?.value,
                   repositoryDependents: results?.repositoryDependents?.value,
                   vscode: results?.vscode?.value,
+                  packagist: results?.packagist?.value,
                 });
 
                 const result = {

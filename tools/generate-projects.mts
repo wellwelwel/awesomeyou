@@ -105,6 +105,7 @@ for (const maintainer of maintainers) {
         npm: project.npm,
         pypi: project.pypi,
         vscode: project.vscode,
+        packagist: project.packagist,
         stats: results,
         maintainers: [processedInfos],
         updatedAt: currentDate,
