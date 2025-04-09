@@ -116,6 +116,10 @@
             "type": "string",
             "description": "Nome do pacote Chocolatey, se existir."
           },
+          "packagist": {
+            "type": "string",
+            "description": "Nome do usuário/pacote Packagist, se existir."
+          },
           "madeInBrazil": {
             "type": "boolean",
             "description": "O projeto foi feito por brasileiros?"

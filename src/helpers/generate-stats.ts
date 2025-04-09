@@ -15,6 +15,7 @@ import { homebrewDownloads } from '@site/src/helpers/services/stats/homebrew';
 import { issues } from '@site/src/helpers/services/stats/issues';
 import { license } from '@site/src/helpers/services/stats/license';
 import { npmDownloads } from '@site/src/helpers/services/stats/npm';
+import { packagistDownloads } from '@site/src/helpers/services/stats/packagist';
 import { pypiDownloads } from '@site/src/helpers/services/stats/pypi';
 import { getRepoDepsManually } from '@site/src/helpers/services/stats/repo-dependencies';
 import { stars } from '@site/src/helpers/services/stats/stars';
@@ -35,9 +36,10 @@ export const processProject = async (
     homebrew,
     vscode,
     chocolatey,
+    packagist,
   } = options;
   const { organization, repository } = extractRepository(repositoryURL);
-  const results = Object.create(null);
+  const results: ProjectStats = Object.create(null);
 
   const requests = await Promise.all([
     license(organization, repository),
@@ -64,6 +66,7 @@ export const processProject = async (
   if (pypi) results.pypi = await pypiDownloads(pypi);
   if (vscode) results.vscode = await vscodeDownloads(vscode);
   if (chocolatey) results.chocolatey = await chocolateyDownloads(chocolatey);
+  if (packagist) results.packagist = await packagistDownloads(packagist);
 
   results.score = getScore({
     contributors: results?.contributors?.value,
@@ -73,6 +76,7 @@ export const processProject = async (
     pypi: results?.pypi?.value,
     vscode: results?.vscode?.value,
     chocolatey: results?.chocolatey?.value,
+    packagist: results?.packagist?.value,
     stars: results?.stars?.value,
     issues: results?.issues?.value,
     closedIssues: results?.closedIssues?.value,

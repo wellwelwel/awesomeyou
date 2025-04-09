@@ -5,7 +5,12 @@
 
 import { createShieldsIoDownloads } from '@site/src/builders/shields.io-downloads';
 
-export const chocolateyDownloads = createShieldsIoDownloads({
-  registry: 'chocolatey',
-  period: 'dt',
+export const packagistDownloads = createShieldsIoDownloads({
+  registry: 'packagist',
+  condition(path) {
+    const [user, repo] = path.split('/');
+
+    if (!user || user.trim().length === 0 || !repo || repo.trim().length === 0)
+      return new Error('Pacote Packagist inválido.', { cause: 400 });
+  },
 });

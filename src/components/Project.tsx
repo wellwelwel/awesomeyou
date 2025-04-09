@@ -49,6 +49,12 @@ export const Project: FC<ProcessedProject> = ({
   organization,
   repository,
   url,
+  npm: npmPkg,
+  homebrew: homebrewPkg,
+  pypi: pypiPkg,
+  packagist: packagistPkg,
+  vscode: vscodePkg,
+  chocolatey: chocolateyPkg,
   stats,
 }) => {
   const refs = {
@@ -69,6 +75,7 @@ export const Project: FC<ProcessedProject> = ({
     npm,
     homebrew,
     pypi,
+    packagist,
     chocolatey,
     vscode,
     closedIssues,
@@ -235,7 +242,9 @@ export const Project: FC<ProcessedProject> = ({
                         <span>Downloads por mês:</span>
                       </td>
                       <td>
-                        <SafeLink to={`https://www.npmjs.com/package/${npm}`}>
+                        <SafeLink
+                          to={`https://www.npmjs.com/package/${npmPkg}`}
+                        >
                           <img loading='lazy' src='/assets/img/npm.svg' />
                           {npm.label}
                         </SafeLink>
@@ -250,7 +259,7 @@ export const Project: FC<ProcessedProject> = ({
                       </td>
                       <td>
                         <SafeLink
-                          to={`https://formulae.brew.sh/formula/${homebrew}`}
+                          to={`https://formulae.brew.sh/formula/${homebrewPkg}`}
                         >
                           <img loading='lazy' src='/assets/img/homebrew.svg' />
                           {homebrew.label}
@@ -265,9 +274,25 @@ export const Project: FC<ProcessedProject> = ({
                         <span>Downloads por mês:</span>
                       </td>
                       <td>
-                        <SafeLink to={`https://pypi.org/project/${pypi}/`}>
+                        <SafeLink to={`https://pypi.org/project/${pypiPkg}/`}>
                           <img loading='lazy' src='/assets/img/pypi.svg' />
                           {pypi.label}
+                        </SafeLink>
+                      </td>
+                    </tr>
+                  )}
+
+                  {packagist?.value && (
+                    <tr title='Packagist'>
+                      <td>
+                        <span>Downloads por mês:</span>
+                      </td>
+                      <td>
+                        <SafeLink
+                          to={`https://packagist.org/packages/${packagistPkg}`}
+                        >
+                          <img loading='lazy' src='/assets/img/packagist.svg' />
+                          {packagist.label}
                         </SafeLink>
                       </td>
                     </tr>
@@ -280,7 +305,7 @@ export const Project: FC<ProcessedProject> = ({
                       </td>
                       <td>
                         <SafeLink
-                          to={`https://community.chocolatey.org/packages/${chocolatey}`}
+                          to={`https://community.chocolatey.org/packages/${chocolateyPkg}`}
                         >
                           <img
                             loading='lazy'
@@ -299,7 +324,7 @@ export const Project: FC<ProcessedProject> = ({
                       </td>
                       <td>
                         <SafeLink
-                          to={`https://marketplace.visualstudio.com/items?itemName=${vscode}`}
+                          to={`https://marketplace.visualstudio.com/items?itemName=${vscodePkg}`}
                         >
                           <img loading='lazy' src='/assets/img/vscode.svg' />
                           {vscode.label}

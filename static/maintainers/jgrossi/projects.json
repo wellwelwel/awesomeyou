@@ -7,6 +7,7 @@
       "description": "Use WordPress backend with Laravel or any PHP application.",
       "languages": ["php"],
       "categories": ["tool"],
+      "packagist": "jgrossi/corcel",
       "madeInBrazil": true,
       "isAuthor": true
     }
