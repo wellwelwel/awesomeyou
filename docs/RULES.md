@@ -6,7 +6,7 @@
 - O projeto precisa ser ativo. <sup>1</sup>
 - O projeto precisa aceitar possíveis contribuições (**Issues** e **Pull Requests**) de maneira pública e transparente. <sup>2</sup>
 - O projeto precisa ser documentado para que qualquer pessoa possa usá-lo.
-- O projeto precisa ter uma licença _open source_ transparente. <sup>3</sup>
+- O projeto precisa ser licenciado sob uma licença aprovada pela [**Open Source Iniciative**](https://opensource.org/licenses). <sup>3</sup>
 - O projeto deve ter pelo menos um brasileiro mantenedor, independentemente do país do autor e do projeto.
 - O nome do projeto não deve incluir símbolos ou emojis.
 - Se você não faz parte do projeto que está incluindo, a descrição deve ser exatamente como descrita no repositório do projeto original, removendo apenas símbolos e emojis.
