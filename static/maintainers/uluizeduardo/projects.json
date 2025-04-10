@@ -7,8 +7,8 @@
       "madeInBrazil": true,
       "isAuthor": true,
       "message": "Contribua com o BuildCLI e ajude a construir a ferramenta que todo dev Java vai querer usar.",
-      "languages": ["java", "shell"],
-      "categories": ["cli", "ci", "devops", "git"]
+      "categories": ["cli", "devops", "git", "ai"],
+      "languages": ["java", "shell"]
     }
   ]
 }
