@@ -48,9 +48,10 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ## [BuildCLI](https://github.com/BuildCLI/BuildCLI)
 
 🇧🇷 ✅
-👤 Matheus Oliveira e Wheslley Rimar
-🏷️ CLI e DevOps
+👤 Luiz Amorim, Matheus Oliveira e Wheslley Rimar
+🏷️ CLI e CI/CD
 💻 Java
+✍️ Luiz Amorim
 ✍️ Wheslley Rimar
 
 ## [Bun](https://github.com/oven-sh/bun)
