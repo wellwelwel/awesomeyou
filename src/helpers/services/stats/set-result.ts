@@ -3,6 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { StatsPropos } from '@site/src/@types/projects';
+
 export const localeNumber = (num: number) => {
   if (num < 1000) return num.toLocaleString('pt-BR');
 
@@ -27,7 +29,7 @@ export const localeNumber = (num: number) => {
   return `${shortNumber}${suffix}`;
 };
 
-export const setResult = (value: string) => {
+export const setResult = (value: string): StatsPropos => {
   const number =
     Number(value.replace(/[^0-9.]/g, '')) *
     (/k/i.test(value.replace(/mês/, ''))
