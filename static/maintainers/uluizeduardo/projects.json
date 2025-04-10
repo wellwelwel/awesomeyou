@@ -1,14 +1,14 @@
 {
-   "$schema": "../../../schemas/projects.json",
-   "projects": [
-     {
-       "repository": "https://github.com/BuildCLI/BuildCLI",
-       "description": "BuildCLI is a command-line interface (CLI) tool for managing and automating common tasks in Java project development.",
-       "madeInBrazil": true,
-       "isAuthor": true,
-       "message": "Contribua com o BuildCLI e ajude a construir a ferramenta que todo dev Java vai querer usar.",
-       "languages": ["java", "shell"],
-       "categories": ["cli", "ci", "devops", "git"]
-     }
-   ]
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/BuildCLI/BuildCLI",
+      "description": "BuildCLI is a command-line interface (CLI) tool for managing and automating common tasks in Java project development.",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "message": "Contribua com o BuildCLI e ajude a construir a ferramenta que todo dev Java vai querer usar.",
+      "languages": ["java", "shell"],
+      "categories": ["cli", "ci", "devops", "git"]
+    }
+  ]
 }
