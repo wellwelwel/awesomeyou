@@ -49,7 +49,7 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 
 🇧🇷 ✅
 👤 Luiz Amorim, Matheus Oliveira e Wheslley Rimar
-🏷️ CLI e CI/CD
+🏷️ CLI e DevOps
 💻 Java
 ✍️ Luiz Amorim
 ✍️ Wheslley Rimar
