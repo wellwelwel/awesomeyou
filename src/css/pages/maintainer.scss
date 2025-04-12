@@ -58,27 +58,38 @@
         }
 
         &.baloon {
+          padding-bottom: 0;
           margin-top: 30px;
-          border-radius: 15px;
+          border: none;
+          background-color: unset;
+          gap: 25px;
 
-          &::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            opacity: 0.5;
-            background-image:
-              linear-gradient(#ffffff50 1px, transparent 1px),
-              linear-gradient(to right, #ffffff75 1px, transparent 1px);
-            background-size: 10px 10px;
-            pointer-events: none;
+          & > span {
+            gap: 30px;
+
+            & > span {
+              @include flex(column);
+              gap: 5px;
+            }
+          }
+
+          & > footer {
+            padding-top: 12.5px;
+          }
+
+          &:hover {
+            box-shadow: none;
           }
         }
 
         &.quoted {
           @include flex(row, flex-start);
           gap: 10px;
+          padding: 20px;
           margin-top: 15px;
+          background-color: #aae1ff38;
+          border-radius: 10px;
+          border: 1px solid #b9e2ff;
 
           svg {
             width: 18px;
@@ -107,19 +118,68 @@
           text-align: left;
           font-weight: 500;
 
-          img {
-            width: 128px;
-            min-width: 96px;
-            height: 128px;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 15px;
-            border: 2px solid #e5f4ff;
-            box-shadow: 0 0 7.5px #1254a925;
-            transition: box-shadow 0.5s;
+          & > div {
+            position: relative;
+            @include flex(row, center, center);
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 7.5px;
+              left: -7.5px;
+              z-index: -1;
+              display: block;
+              width: 100%;
+              height: 100%;
+              border-radius: 15px;
+              background-color: #3dbbff38;
+              border: 1px solid #b9e2ff;
+              box-shadow: 0 0 2px #00000010;
+              transition: inset 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 15px;
+              left: -15px;
+              z-index: -2;
+              display: block;
+              width: 100%;
+              height: 100%;
+              border-radius: 15px;
+              background-color: #7ed2ff38;
+              border: 1px solid #b9e2ff;
+              box-shadow: 0 0 2px #00000020;
+              transition: inset 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
 
             &:hover {
-              box-shadow: 0 0 5px #1254a975;
+              &::before {
+                top: 10px;
+                left: -10px;
+              }
+
+              &::after {
+                top: 20px;
+                left: -20px;
+              }
+            }
+
+            img {
+              width: 128px;
+              min-width: 96px;
+              height: 128px;
+              object-fit: cover;
+              object-position: center;
+              border-radius: 15px;
+              border: 1px solid #1254a925;
+              box-shadow: 0 0 7.5px #1254a975;
+              transition: box-shadow 0.5s;
+
+              &:hover {
+                box-shadow: 0 0 5px #1254a975;
+              }
             }
           }
 
@@ -135,7 +195,18 @@
             &.name {
               margin-bottom: 2.5px;
               font-family: var(--ifm-font-family-featured);
+              font-size: 15px;
               font-weight: 800;
+
+              &::before {
+                content: '';
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #00a2ff;
+                margin-right: 7.5px;
+              }
 
               + p {
                 font-size: 13px;

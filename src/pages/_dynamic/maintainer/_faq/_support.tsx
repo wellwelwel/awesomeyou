@@ -20,6 +20,7 @@ import { Context } from '@site/src/contexts/Maintainer';
 export const Support: FC = () => {
   const { maintainer } = useContext(Context);
   const { name, username } = maintainer;
+  const firstName = name.split(' ').shift();
 
   return (
     <FAQ
@@ -42,7 +43,9 @@ export const Support: FC = () => {
           <Share2 />
           <span>
             <ins>Compartilhe</ins> projetos que{' '}
-            <SafeLink to={`https://github.com/${username}`}>{name}</SafeLink>{' '}
+            <SafeLink to={`https://github.com/${username}`}>
+              {firstName}
+            </SafeLink>{' '}
             mantém com a sua rede e conte como eles já te ajudaram.
           </span>
         </p>
@@ -57,7 +60,9 @@ export const Support: FC = () => {
           <Cross />
           <span>
             <ins>Contribua</ins> com os projetos que{' '}
-            <SafeLink to={`https://github.com/${username}`}>{name}</SafeLink>{' '}
+            <SafeLink to={`https://github.com/${username}`}>
+              {firstName}
+            </SafeLink>{' '}
             mantém.
           </span>
         </p>
@@ -67,7 +72,7 @@ export const Support: FC = () => {
             <SafeLink to={`https://github.com/sponsors/${username}`}>
               Patrocine
             </SafeLink>{' '}
-            mantenedores.
+            ✨
           </span>
         </p>
       </small>

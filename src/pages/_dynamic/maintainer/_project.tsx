@@ -98,8 +98,7 @@ export const Project: FC<Props> = (project) => {
           .
         </p>
         <p>
-          — O repositório do projeto no{' '}
-          <SafeLink to={project.repository}>GitHub</SafeLink> conta com{' '}
+          — O repositório do projeto conta com{' '}
           <strong>{stats.contributors.label}</strong> contribuidor
           {stats.contributors.value > 1 && 'es'}
           {stats.repositoryDependents.value > 0 && (
@@ -107,7 +106,7 @@ export const Project: FC<Props> = (project) => {
               , {stats.repositoryDependents.value > 1000 ? 'mais de ' : ''}
               <strong>{stats.repositoryDependents.label}</strong>
               {stats.repositoryDependents.value > 1000000 ? ' de ' : ' '}
-              repositórios públicos dependem diretamente dele
+              repositórios públicos dependem dele
             </>
           )}
           {monthDownloads > 0 && (
@@ -125,7 +124,7 @@ export const Project: FC<Props> = (project) => {
               {totalDownloads > 1000000 ? ' de ' : ''} downloads públicos totais
             </>
           )}{' '}
-          e {stats.stars.value > 1000 ? ' mais de ' : ' '}
+          e possui {stats.stars.value > 1000 ? ' mais de ' : ' '}
           <strong>{stats.stars.label}</strong> estrelas.
         </p>
       </main>

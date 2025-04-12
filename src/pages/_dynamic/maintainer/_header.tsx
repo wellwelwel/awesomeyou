@@ -37,48 +37,41 @@ export const Header: FC = () => {
         <Quote /> <span>{description}</span>
       </small>
       <small className='baloon'>
-        <Parallax
-          scale={1}
-          tiltMaxAngleX={0.35}
-          tiltMaxAngleY={0.35}
-          perspective={1920}
-        >
-          <div className='float egg' onClick={egg}>
-            <Fingerprint />
-          </div>
-          <span>
-            <Parallax scale={1.02} tiltMaxAngleX={5} tiltMaxAngleY={5}>
-              <img
-                src={`https://avatars.githubusercontent.com/${username}`}
-                loading='eager'
-                alt={`${username} profile avatar`}
-              />
-            </Parallax>
-            <span>
-              <p className='name'>{<Name name={name} />}</p>
-              {bio && <p>{bio}</p>}
-            </span>
-          </span>
-          <footer>
-            <div className='links'>
-              <SafeLink to={`https://github.com/${username}`}>
-                <Github />
-                {username}
-              </SafeLink>
-              {blog ? (
-                <SafeLink to={`https://${normalizeURL(blog)}`}>
-                  <Network />
-                  {normalizeURL(blog)}
-                </SafeLink>
-              ) : null}
+        <span>
+          <Parallax scale={1.02} tiltMaxAngleX={2.5} tiltMaxAngleY={2.5}>
+            <div className='float egg' onClick={egg}>
+              <Fingerprint />
             </div>
-            {location ? (
-              <div>
-                <MapPin /> {location}
-              </div>
+            <img
+              src={`https://avatars.githubusercontent.com/${username}`}
+              loading='eager'
+              alt={`${username} profile avatar`}
+            />
+          </Parallax>
+          <span>
+            <p className='name'>{<Name name={name} />}</p>
+            {bio && <p>{bio}</p>}
+          </span>
+        </span>
+        <footer>
+          <div className='links'>
+            <SafeLink to={`https://github.com/${username}`}>
+              <Github />
+              {username}
+            </SafeLink>
+            {blog ? (
+              <SafeLink to={`https://${normalizeURL(blog)}`}>
+                <Network />
+                {normalizeURL(blog)}
+              </SafeLink>
             ) : null}
-          </footer>
-        </Parallax>
+          </div>
+          {location ? (
+            <div>
+              <MapPin /> {location}
+            </div>
+          ) : null}
+        </footer>
       </small>
     </header>
   );
