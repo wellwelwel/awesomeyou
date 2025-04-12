@@ -41,8 +41,7 @@
         box-shadow: 0 0 5px #445cc619;
         transition:
           transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9),
-          filter 0.25s ease-in-out,
-          border-radius 0.25s;
+          filter 0.25s ease-in-out;
 
         &:hover {
           transform: translateY(-5px);
@@ -51,10 +50,6 @@
           header {
             & > a {
               transform: scale(1.05);
-
-              img {
-                border-radius: 10% 10% 10% 10% / 10% 10% 10% 10%;
-              }
             }
           }
         }
@@ -89,10 +84,9 @@
               object-fit: cover;
               object-position: center;
               border: 1px solid #acccff95;
-              border-radius: 60% 30% 60% 40% / 45% 30% 70% 50%;
+              border-radius: 15px;
               box-shadow: 0 0 5px #445cc62e;
               transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
-              animation: baloon 1s cubic-bezier(0.75, -0.9, 0.2, 0.9) forwards;
 
               &:hover {
                 transform: scale(1.05);
