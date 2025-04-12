@@ -4,17 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
-import { FC, useContext } from 'react';
-import {
-  Award,
-  ExternalLink,
-  Flame,
-  FlameKindling,
-  Scale,
-  Sprout,
-  Trophy,
-} from 'lucide-react';
+import type { FC } from 'react';
+import { useContext } from 'react';
+import { ExternalLink, Scale } from 'lucide-react';
 import { SafeLink } from '@site/src/components/SafeLink';
+import { ScoreIcon } from '@site/src/components/ScoreIcon';
 import { Context } from '@site/src/contexts/Maintainer';
 import { localeNumber } from '@site/src/helpers/services/stats/set-result';
 
@@ -137,18 +131,7 @@ export const Project: FC<Props> = (project) => {
       </main>
       <footer>
         <p>
-          Score:{' '}
-          {score > 1_000_000 ? (
-            <Trophy />
-          ) : score > 100_000 ? (
-            <Award />
-          ) : score > 10_000 ? (
-            <Flame />
-          ) : score > 1_000 ? (
-            <FlameKindling />
-          ) : (
-            <Sprout />
-          )}{' '}
+          Score: <ScoreIcon score={score} />{' '}
           {Number(score).toLocaleString('pt-BR')}
         </p>
         <p>

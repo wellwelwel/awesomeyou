@@ -235,9 +235,9 @@
           text-align: center;
           padding: 10px;
           border-radius: 10px;
-          border: 1px solid #e5e50e;
-          background-color: #fffee2;
-          color: #786d0d;
+          border: 1px solid #0ee515;
+          background-color: #e2ffec;
+          color: #0d7846;
           font-size: 13px;
           font-weight: 500;
           transition:
@@ -249,8 +249,8 @@
           }
 
           &:hover {
-            color: #373905;
-            border-color: #c5c514;
+            color: #053914;
+            border-color: #14c567;
           }
         }
 
@@ -335,6 +335,23 @@
 
                 + td {
                   border-left-color: #cc2266;
+                  text-transform: uppercase;
+                }
+              }
+            }
+
+            &.error-light {
+              background-color: #fffadd;
+
+              td {
+                color: #cc8222;
+
+                svg {
+                  stroke: #cc8222;
+                }
+
+                + td {
+                  border-left-color: #ffec8f;
                   text-transform: uppercase;
                 }
               }

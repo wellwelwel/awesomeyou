@@ -9,30 +9,26 @@ import React, { useCallback, useRef } from 'react';
 import Link from '@docusaurus/Link';
 import {
   Activity,
-  Award,
   Bug,
   BugOff,
   Code,
   Dna,
   ExternalLink,
-  Flame,
-  FlameKindling,
   HeartHandshake,
   MapPin,
   Network,
   Rocket,
   Scale,
   Shapes,
-  Sprout,
   Star,
   StarHalf,
-  Trophy,
   UsersRound,
   UtensilsCrossed,
   Wrench,
 } from 'lucide-react';
 import { Name } from '@site/src/components/Name';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
+import { ScoreIcon } from '@site/src/components/ScoreIcon';
 import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
@@ -197,17 +193,7 @@ export const Project: FC<ProcessedProject> = ({
                       <span>Score:</span>
                     </td>
                     <td>
-                      {score > 1_000_000 ? (
-                        <Trophy />
-                      ) : score > 100_000 ? (
-                        <Award />
-                      ) : score > 10_000 ? (
-                        <Flame />
-                      ) : score > 1_000 ? (
-                        <FlameKindling />
-                      ) : (
-                        <Sprout />
-                      )}
+                      <ScoreIcon score={score} />
                       <span className='score'>
                         {Number(score).toLocaleString('pt-BR')}
                       </span>

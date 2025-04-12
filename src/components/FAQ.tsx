@@ -3,7 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { FC, ReactNode } from 'react';
+import type { FC } from 'react';
+import { ReactNode } from 'react';
 import { Plus } from 'lucide-react';
 
 export type FAQProps = {

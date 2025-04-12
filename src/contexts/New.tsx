@@ -4,18 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
-import {
-  createContext,
-  Dispatch,
-  FC,
-  ReactNode,
-  RefObject,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import type { Dispatch, FC, ReactNode, RefObject, SetStateAction } from 'react';
+import { createContext, useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
 
 type ContextType = {

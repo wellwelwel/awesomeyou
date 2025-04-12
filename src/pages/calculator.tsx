@@ -13,7 +13,6 @@ import Layout from '@theme/Layout';
 import { createLRU } from 'lru.min';
 import {
   Activity,
-  Award,
   Bug,
   BugOff,
   Calculator,
@@ -23,22 +22,19 @@ import {
   ClipboardList,
   Dna,
   ExternalLink,
-  Flame,
-  FlameKindling,
   Gamepad2,
   Github,
   HeartHandshake,
   Rocket,
   Scale,
-  Sprout,
   Star,
-  Trophy,
   UtensilsCrossed,
   Wrench,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Name } from '@site/src/components/Name';
 import { SafeLink } from '@site/src/components/SafeLink';
+import { ScoreIcon } from '@site/src/components/ScoreIcon';
 import { API } from '@site/src/configs/api';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 
@@ -52,6 +48,7 @@ export default (): ReactNode => {
 
   const getRepository = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setStats(null);
     scoreRef.current?.classList.remove('active');
 
     startTransition(async () => {
@@ -80,10 +77,7 @@ export default (): ReactNode => {
 
         toast.dismiss();
         setStats(null);
-
-        setTimeout(() => {
-          scoreRef.current?.classList.add('active');
-        }, 250);
+        scoreRef.current?.classList.add('active');
 
         if (LRU.has(key)) {
           setStats(LRU.get(key)!);
@@ -306,22 +300,16 @@ export default (): ReactNode => {
                           {stats.username}/{stats.repository}
                         </td>
                       </tr>
-                      <tr>
+                      <tr
+                        className={
+                          stats.score < 200 ? 'error-light' : undefined
+                        }
+                      >
                         <td>
                           <span>Score</span>
                         </td>
                         <td>
-                          {stats.score > 1_000_000 ? (
-                            <Trophy />
-                          ) : stats.score > 100_000 ? (
-                            <Award />
-                          ) : stats.score > 10_000 ? (
-                            <Flame />
-                          ) : stats.score > 1_000 ? (
-                            <FlameKindling />
-                          ) : (
-                            <Sprout />
-                          )}
+                          <ScoreIcon score={stats.score} />
                           <span className='score'>
                             {Number(stats.score).toLocaleString('pt-BR')}
                           </span>
