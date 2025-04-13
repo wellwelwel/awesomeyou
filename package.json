@@ -36,7 +36,7 @@
     "posttest": "npm run typecheck && npm run lint"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250409.0",
+    "@cloudflare/workers-types": "^4.20250413.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
@@ -48,9 +48,9 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.1",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
     "@types/webpack-env": "^1.18.8",
     "@types/xml2js": "^0.4.14",
     "ajv": "^8.17.1",
@@ -66,15 +66,18 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-parallax-tilt": "^1.7.289",
+    "react-parallax-tilt": "^1.7.290",
     "react-typed": "^2.0.12",
-    "rollup": "^4.39.0",
+    "rollup": "^4.40.0",
     "sass": "^1.86.3",
     "sonner": "^2.0.3",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
-    "wrangler": "^4.9.1",
+    "wrangler": "^4.10.0",
     "xml2js": "^0.6.2"
+  },
+  "overrides": {
+    "esbuild": "latest"
   },
   "browserslist": {
     "production": [
