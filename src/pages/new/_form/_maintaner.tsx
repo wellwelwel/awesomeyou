@@ -14,9 +14,10 @@ import { Context } from '@site/src/contexts/New';
 const LRU = createLRU<string, boolean>({ max: 100 });
 
 export const Maintainer: FC = () => {
-  const { useMaintainer, useJSON } = useContext(Context);
+  const { useMaintainer, useJSON, useFileExists } = useContext(Context);
   const [maintainer, setMaintainer] = useMaintainer;
   const [, setJSON] = useJSON;
+  const [, setFileExists] = useFileExists;
 
   const updateMaintainer = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +50,17 @@ export const Maintainer: FC = () => {
 
         LRU.set(username, exists);
 
-        if (!exists)
+        const { name } = await response.json();
+
+        if (!exists) {
           toast.error(`O username "${username}" não foi encontrado.`);
+          return;
+        }
+
+        if (typeof name === 'string')
+          toast.success(
+            `Obrigado por estar aqui, ${name.split(' ').shift()} ✨`
+          );
       } catch {}
     });
   }, []);
@@ -67,10 +77,15 @@ export const Maintainer: FC = () => {
         );
         const exists = response.status !== 404;
 
-        if (!exists) return;
+        if (!exists) {
+          setFileExists(false);
+
+          return;
+        }
 
         const raw: RawProject = await response.json();
 
+        setFileExists(true);
         setJSON(raw);
 
         toast.info(`${maintainer} já possui projetos na iniciativa 🚀`);

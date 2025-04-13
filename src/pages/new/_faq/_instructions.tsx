@@ -7,15 +7,15 @@ import type { FC } from 'react';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import CodeBlock from '@theme/CodeBlock';
 import {
+  ChevronsLeftRightEllipsis,
   FileCode2,
   GitBranchPlus,
   GitGraph,
   GitPullRequestCreateArrow,
   GraduationCap,
   HousePlus,
-  PackageCheck,
+  SpellCheck,
   Utensils,
-  WandSparkles,
 } from 'lucide-react';
 import babelPlugin from 'prettier/plugins/babel';
 import estreePlugin from 'prettier/plugins/estree';
@@ -28,11 +28,12 @@ import { extractRepository } from '@site/src/helpers/extract-repository';
 import { format } from '@site/src/helpers/formatter';
 
 export const Instructions: FC = () => {
-  const { useMaintainer, useJSON } = useContext(Context);
+  const { useMaintainer, useJSON, useFileExists } = useContext(Context);
   const [maintainer] = useMaintainer;
   const [json] = useJSON;
   const [formattedJSON, setFormattedJSON] = useState('');
-  const useS = json?.projects?.length > 0 ? 's' : '';
+  const useS = json?.projects?.length > 1 ? 's' : '';
+  const [fileExists] = useFileExists;
 
   const formatJSON = useCallback(async () => {
     if (!json?.$schema) return;
@@ -99,15 +100,22 @@ export const Instructions: FC = () => {
           </span>
         </div>
         <div>
+          <ChevronsLeftRightEllipsis />
+          <span>
+            Acesse seu fork no <strong>GitHub</strong> e abra o editor online{' '}
+            pressionando a tecla <kbd>.</kbd> no teclado.
+          </span>
+        </div>
+        <div>
           <GitBranchPlus />
           <span>
-            Baixe seu <em>fork</em> localmente e crie uma nova <em>branch</em>.
+            Crie uma nova <em>branch</em> (opcional).
           </span>
         </div>
         <div>
           <FileCode2 />
           <span>
-            Crie o arquivo{' '}
+            {fileExists ? 'Edite' : 'Crie'} o arquivo{' '}
             <code>
               static/maintainers/<ins>{maintainer || '***'}</ins>/projects.json
             </code>{' '}
@@ -121,23 +129,19 @@ export const Instructions: FC = () => {
           </span>
         </div>
         <div>
-          <PackageCheck />
+          <SpellCheck />
           <span>
-            Instale as dependências do projeto com o comando <code>npm ci</code>{' '}
-            (opcional).
-          </span>
-        </div>
-        <div>
-          <WandSparkles />
-          <span>
-            Aplique a formatação com o comando <code>npm run lint:fix</code>{' '}
-            (opcional).
+            Caso tenha problemas com o <em>Linter</em>, instale a extensão do{' '}
+            <strong>Prettier</strong> no editor online do{' '}
+            <strong>GitHub</strong> e salve o arquivo novamente para aplicar a
+            formatação automaticamente.
           </span>
         </div>
         <div>
           <GitGraph />
           <span>
-            Crie o <em>commit</em> com suas modificações.
+            Realize o <em>commit</em> com suas modificações diretamente no
+            editor online.
           </span>
         </div>
         <div>
@@ -165,14 +169,15 @@ export const Instructions: FC = () => {
                   : '***'}
               </strong>
             </code>
-            .
+            , por exemplo.
           </span>
         </div>
         <div>
           <HousePlus />
           <span>
-            Aproveite o espaço para falar do
-            {useS} projeto{useS} e conversar em português com a gente.
+            Aproveite o espaço da <strong>Pull Request</strong> para falar do
+            {useS} projeto{useS} adicionado{useS} e conversar em português com a
+            gente.
           </span>
         </div>
       </small>

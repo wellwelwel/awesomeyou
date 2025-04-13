@@ -18,6 +18,7 @@ type ContextType = {
     Dispatch<SetStateAction<ProjectOptions | undefined>>,
   ];
   showSteps: RefObject<boolean>;
+  useFileExists: [boolean, Dispatch<SetStateAction<boolean>>];
 };
 
 export const displayModal = (status: boolean) => {
@@ -33,6 +34,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
   const useMaintainer = useState<string>('');
   const useJSON = useState<RawProject>(Object.create(null));
   const useCurrentProject = useState<ProjectOptions | undefined>(undefined);
+  const useFileExists = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [maintainer] = useMaintainer;
   const [, setCurrentProject] = useCurrentProject;
@@ -84,6 +86,7 @@ export const Provider: FC<{ children: ReactNode }> = ({ children }) => {
         useCurrentProject,
         openProject,
         showSteps,
+        useFileExists,
       }}
     >
       {children}
