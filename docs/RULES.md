@@ -28,7 +28,7 @@
 
 ## Pessoas
 
-- Todas as pessoas mantenedoras devem possuir no mínimo um _commit_ nos projetos cadastrados. <sup>1</sup>
+- Todas as pessoas mantenedoras devem possuir no mínimo um _commit_ através do _username_ cadastrado em cada projeto submetido. <sup>1</sup>
 
 > [!NOTE]
 >
@@ -38,10 +38,10 @@
 
 ## Meetups, Lives e Podcast
 
-- Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar de eventos. <sup>1</sup>
+- Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar dos nossos eventos. <sup>1</sup>
   - Não há nenhuma obrigação e, aceitar ou não o convite, fica a critério do próprio convidado.
 - Ao aceitar o convite, você:
-  - reconhece que sua participação é voluntária e autoriza o uso da sua imagem, nome e voz, captados em vídeos durante o evento, para fins de divulgação e promoção do Podcast em qualquer meio de comunicação, incluindo redes sociais, websites e materiais impressos.
+  - reconhece que sua participação é voluntária e autoriza o uso da sua imagem, nome e voz, captados em vídeos durante o evento, para fins de divulgação e promoção do evento em qualquer meio de comunicação, incluindo redes sociais, websites e materiais impressos.
   - concorda que o conteúdo apresentado poderá ser utilizado para fins educacionais e de divulgação da iniciativa.
 
 > [!NOTE]
