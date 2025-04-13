@@ -40,6 +40,7 @@
 
 - Mantenedores e autores dos projetos participantes da iniciativa podem receber convites para participar dos nossos eventos. <sup>1</sup>
   - Não há nenhuma obrigação e, aceitar ou não o convite, fica a critério do próprio convidado.
+  - Caso o convidado não responda em até sete dias corridos, o convite será anulado.
 - Ao aceitar o convite, você:
   - reconhece que sua participação é voluntária e autoriza o uso da sua imagem, nome e voz, captados em vídeos durante o evento, para fins de divulgação e promoção do evento em qualquer meio de comunicação, incluindo redes sociais, websites e materiais impressos.
   - concorda que o conteúdo apresentado poderá ser utilizado para fins educacionais e de divulgação da iniciativa.
