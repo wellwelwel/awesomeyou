@@ -19,26 +19,48 @@ const {
   extractRepository,
 } = require('@site/src/helpers/extract-repository.js');
 
-const base = `./static/assets/json/maintainers/_cache`;
+const base = './static/assets/json/maintainers/_cache';
 const filePath = `${base}/infos.json`;
 const currentDate = getCurrentDate();
 
 const processMaintainers = async (): Promise<
   ProcessedMaintainer[] | undefined
 > => {
-  if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(filePath, 1))) return;
-
-  console.log('Caching maintainer infos');
-
+  const needsRecreating = await shouldUpdateFile(filePath, 1);
   const maintainersDir = resolve('./static/maintainers');
   const dirents = await readdir(maintainersDir, { withFileTypes: true });
+  const maintainersCached: { maintainers: ProcessedMaintainer[] } =
+    await (async () => {
+      try {
+        return JSON.parse(await readFile(filePath, 'utf8'));
+      } catch (error) {
+        return { maintainer: [] };
+      }
+    })();
   const maintainerDirs = dirents
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name);
+  const missingMaintainers: string[] = await (async () => {
+    if (needsRecreating) return [];
+
+    const mapped: string[] = maintainersCached.maintainers.map(
+      (maintainer) => maintainer.username
+    );
+
+    return maintainerDirs.filter((maintainer) => !mapped.includes(maintainer));
+  })();
+  const needsUpdating = missingMaintainers.length > 0;
+
+  if (env.RESET_CACHE !== '1' && !needsRecreating && !needsUpdating) return;
+
+  console.log('Caching maintainer infos');
 
   const maintainers: ProcessedMaintainer[] = [];
+  const toRecreate = needsUpdating ? missingMaintainers : maintainerDirs;
 
-  for (const username of maintainerDirs) {
+  if (needsUpdating) maintainers.push(...maintainersCached.maintainers);
+
+  for (const username of toRecreate) {
     const projectsFile = join(maintainersDir, username, 'projects.json');
     const fileContents = await readFile(projectsFile, 'utf8');
     const projectsData: RawProject = JSON.parse(fileContents);
