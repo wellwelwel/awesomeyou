@@ -9,7 +9,7 @@
 - O projeto precisa ser licenciado sob uma licença aprovada pela [**Open Source Iniciative**](https://opensource.org/licenses). <sup>3</sup>
 - O projeto deve ter pelo menos um brasileiro mantenedor, independentemente do país do autor e do projeto.
 - O nome do projeto não deve incluir símbolos ou emojis.
-- Se você não faz parte do projeto que está incluindo, a descrição deve ser exatamente como descrita no repositório do projeto original, removendo apenas símbolos e emojis.
+- Se você não faz parte do projeto que está incluindo, a descrição deve ser exatamente como descrita no repositório do projeto original.
 - Nenhuma informação deve conter ofensas, _palavrões_ ou conteúdos impróprios para menores de idade, seja no nome, descrição ou mensagem de apoio (CTA).
   - O nome pode ter até 50 caracteres.
   - A descrição pode ter até 250 caracteres.
