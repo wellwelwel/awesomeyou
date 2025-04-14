@@ -13,7 +13,7 @@
     "start:server": "wrangler dev --ip 0.0.0.0",
     "build:maintainers": "tsx --env-file-if-exists=.env tools/generate-maintainers.mts",
     "build:projects": "tsx tools/generate-projects.mts",
-    "build:cache": "tsx tools/generate-maintainers-cache.mts",
+    "build:cache": "tsx --env-file-if-exists=.env tools/generate-maintainers-cache.mts",
     "build:server": "rollup -c && cp -f wrangler.prod.jsonc server/wrangler.jsonc",
     "prebuild": "tsx tools/generate-resume.mts",
     "build": "tsx tools/generate-maintainers-cache.mts && docusaurus build && npm run build:server",
