@@ -46,7 +46,10 @@ export const issuesClosed = async (
       )
     ).json();
 
-    if (results.value !== 'Unable to select next GitHub token from pool') {
+    if (
+      results.value !== 'Unable to select next GitHub token from pool' &&
+      results.value !== 'invalid'
+    ) {
       processed = setResult(results.value.replace(/closed/, ''));
       break;
     }

@@ -11,9 +11,12 @@ const getManually = async (
   repository: string
 ): Promise<string> => {
   const repoData = await GitHubAPI(`repos/${organization}/${repository}`);
-  const license = String(repoData?.license?.name || 'Other');
+  const license = repoData?.license;
 
-  return license;
+  if (!license) return 'not specified';
+  if (String(license?.spdx_id).includes('NOASSERTION')) return 'Other';
+
+  return String(license?.spdx_id || 'Other');
 };
 
 export const license = async (
@@ -36,7 +39,10 @@ export const license = async (
       )
     ).json();
 
-    if (results.value !== 'Unable to select next GitHub token from pool') {
+    if (
+      results.value !== 'Unable to select next GitHub token from pool' &&
+      results.value !== 'invalid'
+    ) {
       processed = results.value.includes('identifiable')
         ? 'Other'
         : results.value;
