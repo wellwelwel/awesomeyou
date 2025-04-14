@@ -10,8 +10,8 @@ const getManually = async (
   organization: string,
   repository: string
 ): Promise<string> => {
-  const repoData = await GitHubAPI(`repos/${organization}/${repository}`);
-  const license = repoData?.license;
+  const data = await GitHubAPI(`repos/${organization}/${repository}`);
+  const license = data?.license;
 
   if (!license) return 'not specified';
   if (String(license?.spdx_id).includes('NOASSERTION')) return 'Other';

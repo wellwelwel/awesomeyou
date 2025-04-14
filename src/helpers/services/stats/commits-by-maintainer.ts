@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { StatsPropos } from '@site/src/@types/projects.js';
-import { env } from 'node:process';
+import { GitHubAPI } from '../../apis/github.js';
 import { localeNumber, setResult } from './set-result.js';
 
-const token = env.GITHUB_TOKEN;
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const getCommitsByMaintainerManually = async (
@@ -16,24 +15,18 @@ const getCommitsByMaintainerManually = async (
   maintainer: string
 ): Promise<StatsPropos> => {
   const perPage = 100;
-  const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
 
   let page = 1;
   let totalCommits = 0;
 
   while (true) {
-    const response = await fetch(
-      `https://api.github.com/repos/${organization}/${repository}/commits?author=${maintainer}&per_page=${perPage}&page=${page}`,
-      { headers }
+    const data = await GitHubAPI(
+      `repos/${organization}/${repository}/commits?author=${maintainer}&per_page=${perPage}&page=${page}`
     );
 
-    if (!response.ok) throw new Error('GitHub API error');
+    totalCommits += data.length;
 
-    const commits = await response.json();
-
-    totalCommits += commits.length;
-
-    if (commits.length < perPage) break;
+    if (data.length < perPage) break;
 
     page++;
   }

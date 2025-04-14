@@ -12,8 +12,8 @@ const getManually = async (
   organization: string,
   repository: string
 ): Promise<StatsPropos> => {
-  const repoData = await GitHubAPI(`repos/${organization}/${repository}`);
-  const stat = Number(repoData.stargazers_count);
+  const data = await GitHubAPI(`repos/${organization}/${repository}`);
+  const stat = Number(data.stargazers_count);
 
   const results = {
     value: stat,

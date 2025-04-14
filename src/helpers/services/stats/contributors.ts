@@ -18,13 +18,13 @@ const getManually = async (
   let totalContributors = 0;
 
   while (true) {
-    const contributorsData = await GitHubAPI(
+    const data = await GitHubAPI(
       `repos/${organization}/${repository}/contributors?per_page=${perPage}&page=${page}`
     );
 
-    totalContributors += contributorsData.length;
+    totalContributors += data.length;
 
-    if (contributorsData.length < perPage) break;
+    if (data.length < perPage) break;
 
     page++;
   }
