@@ -12,11 +12,11 @@ const getManually = async (
   organization: string,
   repository: string
 ): Promise<StatsPropos> => {
-  const issuesData = await GitHubAPI(
+  const data = await GitHubAPI(
     `search/issues?q=is:issue+is:closed+repo:${organization}/${repository}`
   );
 
-  const stat = Number(issuesData.total_count);
+  const stat = Number(data.total_count);
 
   const results = {
     value: stat,
