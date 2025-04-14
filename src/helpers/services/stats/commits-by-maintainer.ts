@@ -33,7 +33,7 @@ const getCommitsByMaintainerManually = async (
 
     totalCommits += commits.length;
 
-    if (commits.length < 100) break;
+    if (commits.length < perPage) break;
 
     page++;
   }

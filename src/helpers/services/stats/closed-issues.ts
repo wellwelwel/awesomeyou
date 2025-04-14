@@ -4,17 +4,68 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { StatsPropos } from '@site/src/@types/projects';
+import { GitHubAPI } from '@site/src/helpers/apis/github';
+import { delay } from '@site/src/helpers/delay';
 import { setResult } from '@site/src/helpers/services/stats/set-result';
+
+const getManually = async (
+  organization: string,
+  repository: string
+): Promise<StatsPropos> => {
+  const issuesData = await GitHubAPI(
+    `search/issues?q=is:issue+is:closed+repo:${organization}/${repository}`
+  );
+
+  const stat = Number(issuesData.total_count);
+
+  const results = {
+    value: stat,
+    label: stat.toLocaleString(),
+  };
+
+  return results;
+};
 
 export const issuesClosed = async (
   organization: string,
   repository: string
 ): Promise<StatsPropos> => {
-  const results = await (
-    await fetch(
-      `https://img.shields.io/github/issues-closed/${organization}/${repository}.json?cacheSeconds=1`
-    )
-  ).json();
+  const maxRetries = 10;
+  const lag = 10;
+  const retryDelay = 1000 + lag;
 
-  return setResult(results.value.replace(/closed/, ''));
+  let processed: StatsPropos | undefined;
+  let attempts = 0;
+
+  while (attempts < maxRetries) {
+    attempts++;
+
+    const results = await (
+      await fetch(
+        `https://img.shields.io/github/issues-closed/${organization}/${repository}.json?cacheSeconds=1`
+      )
+    ).json();
+
+    if (results.value !== 'Unable to select next GitHub token from pool') {
+      processed = setResult(results.value.replace(/closed/, ''));
+      break;
+    }
+
+    if (attempts >= maxRetries) break;
+
+    await delay(retryDelay);
+  }
+
+  if (!processed) {
+    try {
+      processed = await getManually(organization, repository);
+    } catch {}
+  }
+
+  return (
+    processed || {
+      value: 0,
+      label: '0',
+    }
+  );
 };

@@ -39,6 +39,7 @@ jobs:
           npm run build:cache
           npm run build
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RESET_CACHE: 1
 
       - name: Deploy — Website
