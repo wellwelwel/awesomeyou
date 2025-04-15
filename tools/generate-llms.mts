@@ -82,7 +82,9 @@ for (const { name, username, projects } of maintainers) {
 
       sentencesByProject
         .get(key)!
-        .push(`\n## [${projectName.trim()}](${project.repository})\n`);
+        .push(
+          `\n## ${projectName.trim()}: ${project.repository.replace(/https:\/\//, '')}\n`
+        );
 
       sentencesByProject
         .get(key)!
