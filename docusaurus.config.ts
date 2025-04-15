@@ -23,6 +23,9 @@ const config: Config = {
     [
       'classic',
       {
+        googleTagManager: {
+          containerId: 'GTM-P3QVJ2Q3',
+        },
         blog: false,
         docs: false,
         theme: {
