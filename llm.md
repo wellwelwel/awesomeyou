@@ -194,7 +194,7 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 🇧🇷 ✅
 🏷️ Apps, Plataformas e Softwares
 💻 Rust
-✍️ Rapha Amorim
+✍️ 🅡🅐🅟🅗🅐
 
 ## [Socketify](https://github.com/cirospaciari/socketify.py)
 
