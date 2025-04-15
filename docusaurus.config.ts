@@ -11,9 +11,9 @@ const config: Config = {
   url: 'https://awesomeyou.io/',
   baseUrl: '/',
   trailingSlash: true,
-  onBrokenLinks: 'log',
-  onBrokenMarkdownLinks: 'log',
-  onBrokenAnchors: 'log',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'throw',
+  onBrokenAnchors: 'throw',
   onDuplicateRoutes: 'throw',
   i18n: {
     defaultLocale: 'pt-BR',
