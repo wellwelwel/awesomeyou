@@ -3,6 +3,7 @@
   "main": "index.js",
   "compatibility_date": "2025-03-10",
   "no_bundle": true,
+  "send_metrics": false,
   "vars": {
     "ENVIRONMENT": "production"
   }

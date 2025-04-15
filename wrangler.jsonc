@@ -6,6 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "main": "src/server/index.ts",
   "compatibility_date": "2025-03-10",
+  "send_metrics": false,
   "dev": {
     "port": 6061
   }
