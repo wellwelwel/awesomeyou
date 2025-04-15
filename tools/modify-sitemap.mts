@@ -35,7 +35,7 @@ const sitemapPath = path.join(cwd(), 'build', 'sitemap.xml');
 const manualRoutes: { path: string; config: SitemapRule['config'] }[] = [
   {
     path: '/llms.txt',
-    config: { changefreq: 'daily', priority: '0.5' },
+    config: { changefreq: 'daily', priority: '0.6' },
   },
 ];
 
@@ -50,19 +50,19 @@ const sitemapRules: SitemapRule[] = [
   },
   {
     pattern: 'https://awesomeyou.io/projects/',
-    config: { changefreq: 'daily', priority: '1.0' },
+    config: { changefreq: 'daily', priority: '0.9' },
   },
   {
     pattern: /^https:\/\/awesomeyou\.io\/maintainers\/$/,
-    config: { changefreq: 'weekly', priority: '0.5' },
-  },
-  {
-    pattern: '/maintainers/',
     config: { changefreq: 'weekly', priority: '0.8' },
   },
   {
-    pattern: /^https:\/\/awesomeyou\.io\/$/,
+    pattern: '/maintainers/',
     config: { changefreq: 'weekly', priority: '0.7' },
+  },
+  {
+    pattern: /^https:\/\/awesomeyou\.io\/$/,
+    config: { changefreq: 'weekly', priority: '1' },
   },
 ];
 
