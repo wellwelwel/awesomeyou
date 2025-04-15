@@ -130,8 +130,4 @@ const readme = commentMark(base, {
     .join('\n'),
 }).replace(/<!-- (projects):(start|end) -->(\n)?/g, '');
 
-// Atualmente não existe uma padronização para o nome ou extensão do arquivo que LLMs irão adotar.
-writeFile('./build/llms.md', readme, 'utf8');
-writeFile('./build/llm.md', readme, 'utf8');
-writeFile('./build/llm.txt', readme, 'utf8');
-writeFile('./build/llms.txt', readme, 'utf8');
+await writeFile('./build/llms.txt', readme, 'utf8');

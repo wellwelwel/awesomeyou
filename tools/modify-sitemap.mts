@@ -8,29 +8,36 @@ import path from 'node:path';
 import { cwd, env } from 'node:process';
 import { Builder, parseStringPromise } from 'xml2js';
 
-interface UrlEntry {
+type UrlEntry = {
   loc: string[];
   changefreq: string[];
   priority: string[];
   [key: string]: any;
-}
+};
 
-interface SitemapData {
+type SitemapData = {
   urlset: {
     $: Record<string, string>;
     url: UrlEntry[];
   };
-}
+};
 
-interface SitemapRule {
+type SitemapRule = {
   pattern: RegExp | string;
   config: {
     changefreq: string;
     priority: string;
   };
-}
+};
 
 const sitemapPath = path.join(cwd(), 'build', 'sitemap.xml');
+
+const manualRoutes: { path: string; config: SitemapRule['config'] }[] = [
+  {
+    path: '/llms.txt',
+    config: { changefreq: 'daily', priority: '0.5' },
+  },
+];
 
 const sitemapRules: SitemapRule[] = [
   {
@@ -62,9 +69,7 @@ const sitemapRules: SitemapRule[] = [
 const sitemapXml = await readFile(sitemapPath, 'utf8');
 const sitemap = (await parseStringPromise(sitemapXml)) as SitemapData;
 
-if (!sitemap.urlset?.url) {
-  throw new Error('Invalid sitemap');
-}
+if (!sitemap.urlset?.url) throw new Error('Invalid sitemap');
 
 const changes: Record<
   string,
@@ -107,6 +112,24 @@ sitemap.urlset.url = sitemap.urlset.url.map((entry) => {
 
   return entry;
 });
+
+for (const route of manualRoutes) {
+  const url = `https://awesomeyou.io${route.path}`;
+
+  const newEntry: UrlEntry = {
+    loc: [url],
+    changefreq: [route.config.changefreq],
+    priority: [route.config.priority],
+  };
+
+  sitemap.urlset.url.push(newEntry);
+
+  if (env.DEBUG === '1') {
+    console.log(`  - Added new route: ${url}`);
+    console.log(`      Frequency: ${route.config.changefreq}`);
+    console.log(`      Priority: ${route.config.priority}`);
+  }
+}
 
 const builder = new Builder({
   renderOpts: {
