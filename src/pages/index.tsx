@@ -417,6 +417,16 @@ export default (): ReactNode => {
                       <span>Matheus Oliveira</span>
                     </header>
                   </SafeLink>
+                  <SafeLink to='https://www.linkedin.com/in/ciro-spaciari-23253b57/'>
+                    <header>
+                      <img
+                        loading='lazy'
+                        src='/assets/img/team/1676567089940.jpeg'
+                        alt='Ciro Spaciari'
+                      />
+                      <span>Ciro Spaciari</span>
+                    </header>
+                  </SafeLink>
                 </div>
               </div>
               <footer>
