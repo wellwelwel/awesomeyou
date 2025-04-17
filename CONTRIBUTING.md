@@ -73,3 +73,13 @@ npm run build
 > - Por favor, não inclua uma nova _lib_ sem antes discutir a implementação em um Issue dedicado.
 > - Não altere o _package-lock.json_ manualmente.
 > - As _branches_ [`website`](https://github.com/wellwelwel/awesomeyou/tree/website) e [`server`](https://github.com/wellwelwel/awesomeyou/tree/server) são geradas automaticamente no processo de _deployment_.
+
+---
+
+# Guia para Mantenedores da Awesome You
+
+O cachê global do site é renovado a cada 2 horas. Isso significa que um novo projeto ou mantenedor pode levar até duas horas para aparecer efetivamente no site.
+
+> [!NOTE]
+>
+> É possível resetar o cachê a qualquer momento executando o workflow [**Purge Cache**](https://github.com/wellwelwel/awesomeyou/actions/workflows/cd_purge.yml).
