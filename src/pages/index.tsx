@@ -372,7 +372,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1738374865030.jpeg'
-                        alt='Weslley Araújo'
+                        alt='Foto Weslley Araújo'
                       />
                       <span>Weslley Araújo</span>
                     </header>
@@ -382,7 +382,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1734193593018.jpeg'
-                        alt='Larissa Azevedo'
+                        alt='Foto Larissa Azevedo'
                       />
                       <span>Larissa Azevedo</span>
                     </header>
@@ -392,7 +392,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1675982740716.jpeg'
-                        alt='Lucas Santos'
+                        alt='Foto Lucas Santos'
                       />
                       <span>Lucas Santos</span>
                     </header>
@@ -402,7 +402,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1734113677336.jpeg'
-                        alt='Wheslley Rimar Bezerra'
+                        alt='Foto Wheslley Rimar Bezerra'
                       />
                       <span>Wheslley Rimar Bezerra</span>
                     </header>
@@ -412,7 +412,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1663505481247.jpeg'
-                        alt='Matheus Oliveira'
+                        alt='Foto Matheus Oliveira'
                       />
                       <span>Matheus Oliveira</span>
                     </header>
@@ -422,7 +422,7 @@ export default (): ReactNode => {
                       <img
                         loading='lazy'
                         src='/assets/img/team/1676567089940.jpeg'
-                        alt='Ciro Spaciari'
+                        alt='Foto Ciro Spaciari'
                       />
                       <span>Ciro Spaciari</span>
                     </header>
