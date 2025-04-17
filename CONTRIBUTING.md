@@ -78,6 +78,8 @@ npm run build
 
 # Guia para Mantenedores da Awesome You
 
+## Cache
+
 O cachê global do site é renovado a cada 2 horas. Isso significa que um novo projeto ou mantenedor pode levar até duas horas para aparecer efetivamente no site.
 
 > [!NOTE]
