@@ -120,10 +120,13 @@ export const Header: FC = () => {
         <aside>
           <h1 aria-label='Como seu projeto impacta o mundo real?'>
             <div>
-              <Name name='Como seu projeto impacta o' />
+              <Name
+                name='Como seu projeto impacta o'
+                animateStroke={[0, 1.5, 1.25]}
+              />
             </div>
             <div>
-              <Name name='mundo real?' />
+              <Name name='mundo real?' animateStroke={[0, 1.5, 1.25]} />
             </div>
           </h1>
           <small>Awesome You 💛</small>

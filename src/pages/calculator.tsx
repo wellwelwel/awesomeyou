@@ -130,7 +130,10 @@ export default (): ReactNode => {
         <main>
           <header>
             <h1 aria-label='Descubra seu Score'>
-              <Name name='<Descubra seu Score />' />
+              <Name
+                name='<Descubra seu Score />'
+                animateStroke={[0, 1.5, 1.25]}
+              />
             </h1>
 
             <small className='baloon'>

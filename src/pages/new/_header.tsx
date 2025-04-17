@@ -13,7 +13,7 @@ export const Header: FC = () => {
   return (
     <header>
       <h1 aria-label='Novo Projeto'>
-        <Name name='<Novo Projeto + />' />
+        <Name name='<Novo Projeto + />' animateStroke={[0, 1.5, 1.25]} />
       </h1>
       <small className='baloon'>
         <div className='float'>

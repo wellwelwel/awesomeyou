@@ -94,7 +94,10 @@ const MaintainersIndex: React.FC = () => {
         <main>
           <header className='show'>
             <h1 aria-label='Pessoas'>
-              <Name name="<Brazil class='Pessoas' />" />
+              <Name
+                name="<Brazil class='Pessoas' />"
+                animateStroke={[0, 1.5, 1.25]}
+              />
             </h1>
 
             <small className='baloon'>

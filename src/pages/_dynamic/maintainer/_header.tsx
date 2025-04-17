@@ -29,7 +29,7 @@ export const Header: FC = () => {
       <h1 aria-label={title}>
         Quem é{' '}
         <ins>
-          <Name name={name} />
+          <Name name={name} animateStroke={[0, 1.5, 1.25]} />
         </ins>
         ? <img src={'/assets/img/hi.gif'} loading='lazy' />
       </h1>

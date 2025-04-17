@@ -286,7 +286,10 @@ const Projects: FC<ProjectsProps> = ({
         <main>
           <header>
             <h1 aria-label={title}>
-              <Name name={`<Brazil class='${title}' />`} />
+              <Name
+                name={`<Brazil class='${title}' />`}
+                animateStroke={[0, 1.5, 1.25]}
+              />
             </h1>
 
             <small className='baloon'>

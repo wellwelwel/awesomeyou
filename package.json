@@ -55,6 +55,7 @@
     "@types/xml2js": "^0.4.14",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
+    "animejs": "^4.0.1",
     "comment-mark": "^1.1.1",
     "concurrently": "^9.1.2",
     "docusaurus-plugin-sass": "^0.2.6",

@@ -116,6 +116,10 @@
               animation: colorChange 5s ease-in-out infinite;
               animation-delay: calc(var(--index) * 0.2s);
               cursor: default;
+              will-change:
+                color,
+                -webkit-text-stroke-width;
+              transition: color 0.5s ease;
             }
 
             @media (max-width: 630px) {
