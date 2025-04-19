@@ -91,7 +91,7 @@ const Navbar = (): ReactNode => {
         closeButton={true}
       />
       <header ref={header} className='main-header'>
-        <Link to='/'>
+        <Link to='/' aria-label='Home'>
           <Home className='logo' /> Awesome You
         </Link>
         <aside>
@@ -119,7 +119,7 @@ const Navbar = (): ReactNode => {
       >
         <div className='content'>
           <header>
-            <Link to='/'>
+            <Link to='/' aria-label='Home'>
               <Home />
             </Link>
             <button
