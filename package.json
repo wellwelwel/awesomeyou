@@ -36,7 +36,7 @@
     "posttest": "npm run typecheck && npm run lint"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250417.0",
+    "@cloudflare/workers-types": "^4.20250419.0",
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/module-type-aliases": "3.7.0",
     "@docusaurus/preset-classic": "3.7.0",
@@ -60,7 +60,7 @@
     "concurrently": "^9.1.2",
     "docusaurus-plugin-sass": "^0.2.6",
     "lru.min": "^1.1.2",
-    "lucide-react": "^0.488.0",
+    "lucide-react": "^0.501.0",
     "packages-update": "^2.0.0",
     "poku": "^3.0.2",
     "prettier": "^3.5.3",
@@ -76,9 +76,6 @@
     "typescript": "^5.8.3",
     "wrangler": "^4.12.0",
     "xml2js": "^0.6.2"
-  },
-  "overrides": {
-    "esbuild": "latest"
   },
   "browserslist": {
     "production": [
