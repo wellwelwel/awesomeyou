@@ -83,8 +83,9 @@
         }
 
         &.quoted {
-          @include flex(row, flex-start);
+          @include flex(column, center, center);
           gap: 10px;
+          width: 100%;
           padding: 20px;
           margin-top: 15px;
           background-color: #aae1ff38;
@@ -92,13 +93,16 @@
           border: 1px solid #b9e2ff;
 
           svg {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             transform: rotate(-180deg) translateY(5px);
-            color: #0062ff;
+            fill: #0099ff;
+            stroke-width: 0;
           }
 
           & > span {
+            display: inline-block;
+            text-align: center;
             background: linear-gradient(
               94.23deg,
               #0062ff 12.41%,
@@ -107,6 +111,22 @@
             -webkit-text-fill-color: transparent;
             -webkit-background-clip: text;
             background-clip: text;
+          }
+
+          & > footer {
+            @include flex(row, center, center, nowrap);
+
+            img {
+              width: 48px;
+              height: 48px;
+              border-radius: 50%;
+            }
+
+            p {
+              color: #3d5884;
+              font-size: 12px;
+              max-width: 480px;
+            }
           }
         }
 

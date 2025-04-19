@@ -35,6 +35,16 @@ export const Header: FC = () => {
       </h1>
       <small className='quoted'>
         <Quote /> <span>{description}</span>
+        {bio && (
+          <footer>
+            <img
+              src={`https://avatars.githubusercontent.com/${username}`}
+              loading='eager'
+              alt={`${username} profile avatar`}
+            />
+            <p>{bio}</p>
+          </footer>
+        )}
       </small>
       <small className='baloon'>
         <span>
