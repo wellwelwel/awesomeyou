@@ -45,7 +45,7 @@
     }
 
     .projects {
-      @include flex(row, center);
+      @include flex(row, center, flex-start, wrap);
       gap: 10px;
       width: 100%;
       margin-bottom: 20px;
