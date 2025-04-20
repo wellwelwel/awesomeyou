@@ -4,6 +4,8 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 
 > Legenda:
 > 
+> Título: Repositório do GitHub
+>
 > 🇧🇷 Foi criado por um brasileiro?
 > 👤 Mantenedores Brasileiros
 > 🏷️ Categorias
@@ -11,33 +13,33 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 > ✍️ Autor
 
 
-## Awesome Go: github.com/avelino/awesome-go
+## Awesome Go: avelino/awesome-go
 
 🇧🇷 ✅
 🏷️ Listas
 💻 GO
 ✍️ Avelino
 
-## Awesome Made by Brazilians: github.com/felipefialho/awesome-made-by-brazilians
+## Awesome Made by Brazilians: felipefialho/awesome-made-by-brazilians
 
 🇧🇷 ✅
 🏷️ Listas
 ✍️ Felipe Fialho
 
-## AWS SSL Profiles: github.com/mysqljs/aws-ssl-profiles
+## AWS SSL Profiles: mysqljs/aws-ssl-profiles
 
 🇧🇷 ✅
 🏷️ Produtividade e Plug-ins
 💻 TypeScript
 ✍️ Weslley Araújo
 
-## Bend: github.com/HigherOrderCO/Bend
+## Bend: HigherOrderCO/Bend
 
 🇧🇷 ✅
 🏷️ Linguagem de Programação
 ✍️ Victor Taelin
 
-## Brasil API: github.com/BrasilAPI/BrasilAPI
+## Brasil API: BrasilAPI/BrasilAPI
 
 🇧🇷 ✅
 👤 Filipe Deschamps e Luciano Pellacani
@@ -45,7 +47,7 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 JavaScript
 ✍️ Filipe Deschamps
 
-## BuildCLI: github.com/BuildCLI/BuildCLI
+## BuildCLI: BuildCLI/BuildCLI
 
 🇧🇷 ✅
 👤 Luiz Amorim, Matheus Oliveira e Wheslley Rimar
@@ -54,13 +56,13 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 ✍️ Luiz Amorim
 ✍️ Wheslley Rimar
 
-## Bun: github.com/oven-sh/bun
+## Bun: oven-sh/bun
 
 🇧🇷 ❌
 👤 Ciro Spaciari
 🏷️ Linguagem de Programação
 
-## CEP Promise: github.com/BrasilAPI/cep-promise
+## CEP Promise: BrasilAPI/cep-promise
 
 🇧🇷 ✅
 👤 Filipe Deschamps e Luciano Pellacani
@@ -68,120 +70,120 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 JavaScript
 ✍️ Filipe Deschamps
 
-## Corcel: github.com/corcel/corcel
+## Corcel: corcel/corcel
 
 🇧🇷 ✅
 🏷️ Ferramentas
 💻 PHP
 ✍️ Junior Grossi
 
-## Devise: github.com/heartcombo/devise
+## Devise: heartcombo/devise
 
 🇧🇷 ✅
 🏷️ Ferramentas
 💻 Ruby
 ✍️ José Valim
 
-## Doom Fire Algorithm Playground: github.com/filipedeschamps/doom-fire-algorithm
+## Doom Fire Algorithm Playground: filipedeschamps/doom-fire-algorithm
 
 🇧🇷 ✅
 🏷️ Conteúdos Educacionais
 💻 JavaScript
 ✍️ Filipe Deschamps
 
-## Dracula Theme: github.com/dracula/dracula-theme
+## Dracula Theme: dracula/dracula-theme
 
 🇧🇷 ✅
 🏷️ Temas
 ✍️ Zeno Rocha
 
-## Elixir: github.com/elixir-lang/elixir
+## Elixir: elixir-lang/elixir
 
 🇧🇷 ✅
 🏷️ Linguagem de Programação
 ✍️ José Valim
 
-## Front-end Challenges: github.com/felipefialho/frontend-challenges
+## Front-end Challenges: felipefialho/frontend-challenges
 
 🇧🇷 ✅
 🏷️ Conteúdos Educacionais e Frontend
 ✍️ Felipe Fialho
 
-## HVM2: github.com/HigherOrderCO/HVM
+## HVM2: HigherOrderCO/HVM
 
 🇧🇷 ✅
 🏷️ Linguagem de Programação
 ✍️ Victor Taelin
 
-## lru.min: github.com/wellwelwel/lru.min
+## lru.min: wellwelwel/lru.min
 
 🇧🇷 ✅
 🏷️ Performance e Backend
 💻 TypeScript
 ✍️ Weslley Araújo
 
-## LuaRocks: github.com/luarocks/luarocks
+## LuaRocks: luarocks/luarocks
 
 🇧🇷 ✅
 🏷️ Ferramentas
 💻 Lua
 ✍️ Hisham Muhammad
 
-## Lwan Web Server: github.com/lpereira/lwan
+## Lwan Web Server: lpereira/lwan
 
 🇧🇷 ✅
 🏷️ DevOps e Performance
 💻 C
 ✍️ L. Pereira
 
-## moclojer: github.com/moclojer/moclojer
+## moclojer: moclojer/moclojer
 
 🇧🇷 ✅
 🏷️ Ferramentas e API
 💻 Clojure
 ✍️ Avelino
 
-## MySQL2: github.com/sidorares/node-mysql2
+## MySQL2: sidorares/node-mysql2
 
 🇧🇷 ❌
 👤 Weslley Araújo
 🏷️ Banco de Dados e Ferramentas
 💻 TypeScript
 
-## Node.js: github.com/nodejs/node
+## Node.js: nodejs/node
 
 🇧🇷 ❌
 👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
 🏷️ Linguagem de Programação
 
-## Padrões de commits: github.com/iuricode/padroes-de-commits
+## Padrões de commits: iuricode/padroes-de-commits
 
 🇧🇷 ✅
 🏷️ Conteúdos Educacionais e Git
 ✍️ Iuri Silva
 
-## phpsocket.io: github.com/walkor/phpsocket.io
+## phpsocket.io: walkor/phpsocket.io
 
 🇧🇷 ❌
 👤 Marcos Marcolin
 🏷️ Backend
 💻 PHP
 
-## Poku: github.com/wellwelwel/poku
+## Poku: wellwelwel/poku
 
 🇧🇷 ✅
 🏷️ Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
 
-## prestd: github.com/prest/prest
+## prestd: prest/prest
 
 🇧🇷 ✅
 🏷️ Ferramentas e API
 💻 GO
 ✍️ Avelino
 
-## React Email: github.com/resend/react-email
+## React Email: resend/react-email
 
 🇧🇷 ✅
 👤 Gabriel Miranda e Zeno Rocha
@@ -189,28 +191,28 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 TypeScript
 ✍️ Zeno Rocha
 
-## Rio: github.com/raphamorim/rio
+## Rio: raphamorim/rio
 
 🇧🇷 ✅
 🏷️ Apps, Plataformas e Softwares
 💻 Rust
 ✍️ 🅡🅐🅟🅗🅐
 
-## Socketify: github.com/cirospaciari/socketify.py
+## Socketify: cirospaciari/socketify.py
 
 🇧🇷 ✅
 🏷️ Performance e Ferramentas
 💻 Python
 ✍️ Ciro Spaciari
 
-## Splinter: github.com/cobrateam/splinter
+## Splinter: cobrateam/splinter
 
 🇧🇷 ✅
 🏷️ Testes e Ferramentas
 💻 Python
 ✍️ Andrews Medina
 
-## tabnews.com.br: github.com/filipedeschamps/tabnews.com.br
+## tabnews.com.br: filipedeschamps/tabnews.com.br
 
 🇧🇷 ✅
 👤 Felipe Barso e Filipe Deschamps
@@ -218,14 +220,14 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 💻 JavaScript
 ✍️ Filipe Deschamps
 
-## tsuru: github.com/tsuru/tsuru
+## tsuru: tsuru/tsuru
 
 🇧🇷 ✅
 🏷️ Apps, Plataformas e Softwares
 💻 GO
 ✍️ Andrews Medina
 
-## Vagas: github.com/frontendbr/vagas
+## Vagas: frontendbr/vagas
 
 🇧🇷 ✅
 🏷️ Listas e Carreira
