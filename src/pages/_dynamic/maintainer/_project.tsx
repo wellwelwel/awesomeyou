@@ -5,12 +5,13 @@
 
 import type { ProjectOptions, ProjectStats } from '@site/src/@types/projects';
 import type { FC } from 'react';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { ExternalLink, Scale } from 'lucide-react';
 import { SafeLink } from '@site/src/components/SafeLink';
 import { ScoreIcon } from '@site/src/components/ScoreIcon';
 import { Context } from '@site/src/contexts/Maintainer';
 import { localeNumber } from '@site/src/helpers/services/stats/set-result';
+import { useScroll } from '@site/src/hooks/useScroll';
 
 type Props = ProjectOptions & {
   commits: number;
@@ -20,6 +21,7 @@ type Props = ProjectOptions & {
 };
 
 export const Project: FC<Props> = (project) => {
+  const ref = useRef<HTMLElement>(null);
   const { maintainer } = useContext(Context);
   const { name, username } = maintainer;
   const { stats, organization } = project;
@@ -69,8 +71,14 @@ export const Project: FC<Props> = (project) => {
   const totalDownloads =
     (stats.chocolatey?.value || 0) + (stats.vscode?.value || 0);
 
+  useScroll(ref, (isVisible, target) => {
+    if (!isVisible) return;
+
+    target.classList.add('show');
+  });
+
   return (
-    <section className='project'>
+    <section ref={ref} className='project'>
       <header>
         <SafeLink to={project.repository}>
           <span>

@@ -33,6 +33,7 @@ import { categories } from '@site/src/configs/categories';
 import { languages } from '@site/src/configs/languages';
 import { normalizeChars } from '@site/src/helpers/normalize-chars';
 import { randomize } from '@site/src/helpers/randomizer';
+import { useScroll } from '@site/src/hooks/useScroll';
 
 export const Project: FC<ProcessedProject> = ({
   name,
@@ -54,6 +55,7 @@ export const Project: FC<ProcessedProject> = ({
   stats,
 }) => {
   const refs = {
+    container: useRef<HTMLElement>(null),
     impact: {
       h3: useRef<HTMLTableElement>(null),
       table: useRef<HTMLTableElement>(null),
@@ -104,8 +106,15 @@ export const Project: FC<ProcessedProject> = ({
     [refs]
   );
 
+  useScroll(refs.container, (isVisible, target) => {
+    if (!isVisible) return;
+
+    target.classList.add('show');
+  });
+
   return (
     <nav
+      ref={refs.container}
       data-search={normalizeChars(
         [
           repository,
@@ -129,6 +138,7 @@ export const Project: FC<ProcessedProject> = ({
 
         return acc;
       }, Object.create(null))}
+      className='hide'
     >
       <main>
         <section>

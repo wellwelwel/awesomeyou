@@ -341,6 +341,12 @@
           transition:
             transform 0.2s,
             filter 0.25s;
+          opacity: 0;
+          will-change: opacity, transform;
+
+          &.show {
+            animation: showIn 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+          }
 
           header {
             a {
