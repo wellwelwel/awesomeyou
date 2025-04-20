@@ -93,6 +93,82 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
     ].flat(1),
     isAccessibleForFree: true,
   }));
+  const ldByFAQs = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: title,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: description,
+          },
+        },
+      ],
+    },
+    ...projects.map((project) => {
+      const questions = [
+        {
+          name: `O que é o ${project.name}?`,
+          text: project.description,
+        },
+        {
+          name: `${project.name} foi criado por brasileiros?`,
+          text: project.madeInBrazil
+            ? `Sim, ${project.name} ${project.isAuthor ? 'foi criado' : 'é mantido'} por ${name}.`
+            : `Não, mas é mantido por pessoas brasileiras, como ${name}.`,
+        },
+        ...(project.isAuthor
+          ? [
+              {
+                name: `Quem criou o ${project.name}?`,
+                text: `${project.name} foi criado por ${name}, uma pessoa brasileira contribuinte da comunidade open source.`,
+              },
+            ]
+          : []),
+        ...(project.languages?.length
+          ? [
+              {
+                name: `Quais linguagens o ${project.name} utiliza?`,
+                text: `O ${project.name} é escrito principalmente em ${format.list(
+                  project.languages.map((language) => languages[language])
+                )}.`,
+              },
+            ]
+          : []),
+        ...(project.categories?.length
+          ? [
+              {
+                name: `Qual a categoria do ${project.name}?`,
+                text: `${project.name} possui as categorias ${format.list(
+                  project.categories.map((category) => categories[category])
+                )}.`,
+              },
+            ]
+          : []),
+        {
+          name: `Qual o repositório do ${project.name}?`,
+          text: `Você pode acessar o repositório em ${project.repository}`,
+        },
+      ];
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: questions.map(({ name, text }) => ({
+          '@type': 'Question',
+          name,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text,
+          },
+        })),
+      };
+    }),
+  ];
+
   const keywords = Array.from(
     new Set([
       'open source',
@@ -141,6 +217,11 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         {ldByProjects.map((ldByProject) => (
           <script type='application/ld+json' data-rh='true'>
             {JSON.stringify(ldByProject)}
+          </script>
+        ))}
+        {ldByFAQs.map((ldByFAQ) => (
+          <script type='application/ld+json' data-rh='true'>
+            {JSON.stringify(ldByFAQ)}
           </script>
         ))}
       </Head>
