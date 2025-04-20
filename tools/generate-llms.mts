@@ -82,7 +82,9 @@ for (const { name, username, projects } of maintainers) {
 
       sentencesByProject
         .get(key)!
-        .push(`\n## ${projectName.trim()}: ${organization}/${repository}\n`);
+        .push(
+          `---\n🆔 ${projectName.trim()}\n🐙 ${organization}/${repository}`
+        );
 
       sentencesByProject
         .get(key)!
@@ -95,7 +97,7 @@ for (const { name, username, projects } of maintainers) {
 
       if (project.categories && project.categories.length > 0)
         sentencesByProject.get(key)!.push(
-          `🏷️ ${format.list(
+          `🔖 ${format.list(
             project.categories.slice(0, 2).map((c) => {
               const isTestRunner =
                 c === 'test' &&
