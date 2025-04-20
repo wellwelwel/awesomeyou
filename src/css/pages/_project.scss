@@ -20,7 +20,7 @@ nav {
   will-change: opacity, transform, filter, box-shadow;
 
   &.show {
-    animation: showIn 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+    animation: up 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
   }
 
   main {

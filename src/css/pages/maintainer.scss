@@ -336,16 +336,13 @@
           background-color: #ffffff60;
           border: 1px solid #acccff95;
           box-shadow: 0 0 5px #445cc619;
-          transition: transform 0.25s cubic-bezier(0.75, -0.9, 0.2, 0.9);
           padding: 20px;
-          transition:
-            transform 0.2s,
-            filter 0.25s;
+          transition: filter 0.25s;
           opacity: 0;
-          will-change: opacity, transform;
+          will-change: opacity, filter, transform;
 
           &.show {
-            animation: showIn 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
+            animation: up 0.4s cubic-bezier(0.75, -0.5, 0.2, 0.9) forwards;
           }
 
           header {
@@ -473,10 +470,6 @@
             &:hover {
               box-shadow: 0 0 5px #00000015;
             }
-          }
-
-          &:hover {
-            transform: translateY(-2.5px);
           }
         }
 
