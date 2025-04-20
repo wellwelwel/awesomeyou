@@ -25,7 +25,7 @@
     {
       "name": "MySQL2",
       "repository": "https://github.com/sidorares/node-mysql2",
-      "languages": ["typescript", "javascript"],
+      "languages": ["javascript", "typescript"],
       "description": "⚡️ Cliente MySQL de alta performance para Node.js, Deno, Bun e Cloudflare Workers.",
       "npm": "mysql2",
       "categories": ["database", "tool", "backend"]
