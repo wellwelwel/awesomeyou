@@ -39,6 +39,7 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
     name,
     url: `https://awesomeyou.io/maintainers/${username}/`,
     sameAs: [`https://github.com/${username}`],
+    alternateName: username,
     knowsAbout: 'Open Source',
     jobTitle: 'Mantenedor',
     affiliation: projects.map((project) => ({
@@ -47,7 +48,51 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
       description: project.description,
       url: project.repository,
     })),
+    nationality: 'Brazilian',
+    memberOf: {
+      '@type': 'Organization',
+      name: 'Open Source Community',
+    },
+    knowsLanguage: [
+      {
+        '@type': 'Language',
+        name: 'Portuguese',
+        alternateName: 'pt-BR',
+      },
+      {
+        '@type': 'Language',
+        name: 'English',
+        alternateName: 'en',
+      },
+    ],
   };
+  const ldByProjects = projects.map((project) => ({
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.name,
+    codeRepository: project.repository,
+    programmingLanguage: project.languages?.[0]
+      ? languages[project.languages?.[0]]
+      : undefined,
+    ...(() => {
+      if (project.isAuthor)
+        return {
+          author: {
+            '@type': 'Person',
+            name,
+            url: `https://github.com/${username}`,
+          },
+        };
+    })(),
+    applicationCategory: project.categories?.[0]
+      ? categories[project.categories?.[0]]
+      : undefined,
+    keywords: [
+      project.languages?.map((language) => languages[language]),
+      project.categories?.map((category) => categories[category]),
+    ].flat(1),
+    isAccessibleForFree: true,
+  }));
   const keywords = Array.from(
     new Set([
       'open source',
@@ -93,6 +138,11 @@ const MaintainerPage: React.FC<{ data: ProcessedMaintainer }> = ({ data }) => {
         <script type='application/ld+json' data-rh='true'>
           {JSON.stringify(ld)}
         </script>
+        {ldByProjects.map((ldByProject) => (
+          <script type='application/ld+json' data-rh='true'>
+            {JSON.stringify(ldByProject)}
+          </script>
+        ))}
       </Head>
       <Provider
         title={title}
