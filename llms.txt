@@ -15,33 +15,33 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 Awesome Go
 🐙 avelino/awesome-go
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Listas
 💻 GO
 ✍️ Avelino
 ---
 🆔 Awesome Made by Brazilians
 🐙 felipefialho/awesome-made-by-brazilians
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Listas
 ✍️ Felipe Fialho
 ---
 🆔 AWS SSL Profiles
 🐙 mysqljs/aws-ssl-profiles
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Produtividade e Plug-ins
 💻 TypeScript
 ✍️ Weslley Araújo
 ---
 🆔 Bend
 🐙 HigherOrderCO/Bend
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Linguagem de Programação
 ✍️ Victor Taelin
 ---
 🆔 Brasil API
 🐙 BrasilAPI/BrasilAPI
-🇧🇷 ✅
+🇧🇷 ✓
 👤 Filipe Deschamps e Luciano Pellacani
 🔖 API
 💻 JavaScript
@@ -49,7 +49,7 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 BuildCLI
 🐙 BuildCLI/BuildCLI
-🇧🇷 ✅
+🇧🇷 ✓
 👤 Luiz Amorim, Matheus Oliveira e Wheslley Rimar
 🔖 CLI e DevOps
 💻 Java
@@ -58,13 +58,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 Bun
 🐙 oven-sh/bun
-🇧🇷 ❌
+🇧🇷 X
 👤 Ciro Spaciari
 🔖 Linguagem de Programação
 ---
 🆔 CEP Promise
 🐙 BrasilAPI/cep-promise
-🇧🇷 ✅
+🇧🇷 ✓
 👤 Filipe Deschamps e Luciano Pellacani
 🔖 Ferramentas
 💻 JavaScript
@@ -72,120 +72,120 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 Corcel
 🐙 corcel/corcel
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Ferramentas
 💻 PHP
 ✍️ Junior Grossi
 ---
 🆔 Devise
 🐙 heartcombo/devise
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Ferramentas
 💻 Ruby
 ✍️ José Valim
 ---
 🆔 Doom Fire Algorithm Playground
 🐙 filipedeschamps/doom-fire-algorithm
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Conteúdos Educacionais
 💻 JavaScript
 ✍️ Filipe Deschamps
 ---
 🆔 Dracula Theme
 🐙 dracula/dracula-theme
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Temas
 ✍️ Zeno Rocha
 ---
 🆔 Elixir
 🐙 elixir-lang/elixir
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Linguagem de Programação
 ✍️ José Valim
 ---
 🆔 Front-end Challenges
 🐙 felipefialho/frontend-challenges
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Conteúdos Educacionais e Frontend
 ✍️ Felipe Fialho
 ---
 🆔 HVM2
 🐙 HigherOrderCO/HVM
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Linguagem de Programação
 ✍️ Victor Taelin
 ---
 🆔 lru.min
 🐙 wellwelwel/lru.min
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Performance e Backend
 💻 TypeScript
 ✍️ Weslley Araújo
 ---
 🆔 LuaRocks
 🐙 luarocks/luarocks
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Ferramentas
 💻 Lua
 ✍️ Hisham Muhammad
 ---
 🆔 Lwan Web Server
 🐙 lpereira/lwan
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 DevOps e Performance
 💻 C
 ✍️ L. Pereira
 ---
 🆔 moclojer
 🐙 moclojer/moclojer
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Ferramentas e API
 💻 Clojure
 ✍️ Avelino
 ---
 🆔 MySQL2
 🐙 sidorares/node-mysql2
-🇧🇷 ❌
+🇧🇷 X
 👤 Weslley Araújo
 🔖 Banco de Dados e Ferramentas
 💻 TypeScript
 ---
 🆔 Node.js
 🐙 nodejs/node
-🇧🇷 ❌
+🇧🇷 X
 👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
 🔖 Linguagem de Programação
 ---
 🆔 Padrões de commits
 🐙 iuricode/padroes-de-commits
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Conteúdos Educacionais e Git
 ✍️ Iuri Silva
 ---
 🆔 phpsocket.io
 🐙 walkor/phpsocket.io
-🇧🇷 ❌
+🇧🇷 X
 👤 Marcos Marcolin
 🔖 Backend
 💻 PHP
 ---
 🆔 Poku
 🐙 wellwelwel/poku
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
 ---
 🆔 prestd
 🐙 prest/prest
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Ferramentas e API
 💻 GO
 ✍️ Avelino
 ---
 🆔 React Email
 🐙 resend/react-email
-🇧🇷 ✅
+🇧🇷 ✓
 👤 Gabriel Miranda e Zeno Rocha
 🔖 Ferramentas e Frontend
 💻 TypeScript
@@ -193,28 +193,28 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 Rio
 🐙 raphamorim/rio
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Apps, Plataformas e Softwares
 💻 Rust
 ✍️ 🅡🅐🅟🅗🅐
 ---
 🆔 Socketify
 🐙 cirospaciari/socketify.py
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Performance e Ferramentas
 💻 Python
 ✍️ Ciro Spaciari
 ---
 🆔 Splinter
 🐙 cobrateam/splinter
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Testes e Ferramentas
 💻 Python
 ✍️ Andrews Medina
 ---
 🆔 tabnews.com.br
 🐙 filipedeschamps/tabnews.com.br
-🇧🇷 ✅
+🇧🇷 ✓
 👤 Felipe Barso e Filipe Deschamps
 🔖 Apps, Plataformas e Softwares
 💻 JavaScript
@@ -222,13 +222,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 ---
 🆔 tsuru
 🐙 tsuru/tsuru
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Apps, Plataformas e Softwares
 💻 GO
 ✍️ Andrews Medina
 ---
 🆔 Vagas
 🐙 frontendbr/vagas
-🇧🇷 ✅
+🇧🇷 ✓
 🔖 Listas e Carreira
 ✍️ Felipe Fialho
