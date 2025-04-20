@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { FC } from 'react';
-import { BotMessageSquare, ScanSearch, Sparkles } from 'lucide-react';
+import { BotMessageSquare, MicVocal, ScanSearch, Sparkles } from 'lucide-react';
 import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 
@@ -25,6 +25,14 @@ export const Purpose: FC = () => {
             respectivos mantenedores brasileiros, por exemplo, ao pesquisar por
             "Quais linguagens de programação foram criadas por brasileiros?" ou
             "Quais brasileiros fazem parte de X projeto?".
+          </span>
+        </p>
+        <p>
+          <MicVocal />
+          <span>
+            Organizadores de eventos podem encontrar facilmente mantenedores com
+            conhecimentos e projetos relacionados com seus eventos e realizar
+            convites.
           </span>
         </p>
         <p>
