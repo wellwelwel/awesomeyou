@@ -1,234 +1,234 @@
 # Awesome You
 
-Uma iniciativa que apresenta projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.
+Iniciativa que lista projetos open source incríveis criados e mantidos por desenvolvedores brasileiros.
 
 > Legenda:
 > 
-> Título: Repositório do GitHub
->
-> 🇧🇷 Foi criado por um brasileiro?
+> 🆔 Nome
+> 🐙 GitHub
+> 🇧🇷 Criado por Brasileiros
 > 👤 Mantenedores Brasileiros
-> 🏷️ Categorias
+> 🔖 Categorias
 > 💻 Linguagem de Programação
-> ✍️ Autor
+> ✍️ Autores Brasileiros
 
-
-## Awesome Go: avelino/awesome-go
-
+---
+🆔 Awesome Go
+🐙 avelino/awesome-go
 🇧🇷 ✅
-🏷️ Listas
+🔖 Listas
 💻 GO
 ✍️ Avelino
-
-## Awesome Made by Brazilians: felipefialho/awesome-made-by-brazilians
-
+---
+🆔 Awesome Made by Brazilians
+🐙 felipefialho/awesome-made-by-brazilians
 🇧🇷 ✅
-🏷️ Listas
+🔖 Listas
 ✍️ Felipe Fialho
-
-## AWS SSL Profiles: mysqljs/aws-ssl-profiles
-
+---
+🆔 AWS SSL Profiles
+🐙 mysqljs/aws-ssl-profiles
 🇧🇷 ✅
-🏷️ Produtividade e Plug-ins
+🔖 Produtividade e Plug-ins
 💻 TypeScript
 ✍️ Weslley Araújo
-
-## Bend: HigherOrderCO/Bend
-
+---
+🆔 Bend
+🐙 HigherOrderCO/Bend
 🇧🇷 ✅
-🏷️ Linguagem de Programação
+🔖 Linguagem de Programação
 ✍️ Victor Taelin
-
-## Brasil API: BrasilAPI/BrasilAPI
-
+---
+🆔 Brasil API
+🐙 BrasilAPI/BrasilAPI
 🇧🇷 ✅
 👤 Filipe Deschamps e Luciano Pellacani
-🏷️ API
+🔖 API
 💻 JavaScript
 ✍️ Filipe Deschamps
-
-## BuildCLI: BuildCLI/BuildCLI
-
+---
+🆔 BuildCLI
+🐙 BuildCLI/BuildCLI
 🇧🇷 ✅
 👤 Luiz Amorim, Matheus Oliveira e Wheslley Rimar
-🏷️ CLI e DevOps
+🔖 CLI e DevOps
 💻 Java
 ✍️ Luiz Amorim
 ✍️ Wheslley Rimar
-
-## Bun: oven-sh/bun
-
+---
+🆔 Bun
+🐙 oven-sh/bun
 🇧🇷 ❌
 👤 Ciro Spaciari
-🏷️ Linguagem de Programação
-
-## CEP Promise: BrasilAPI/cep-promise
-
+🔖 Linguagem de Programação
+---
+🆔 CEP Promise
+🐙 BrasilAPI/cep-promise
 🇧🇷 ✅
 👤 Filipe Deschamps e Luciano Pellacani
-🏷️ Ferramentas
+🔖 Ferramentas
 💻 JavaScript
 ✍️ Filipe Deschamps
-
-## Corcel: corcel/corcel
-
+---
+🆔 Corcel
+🐙 corcel/corcel
 🇧🇷 ✅
-🏷️ Ferramentas
+🔖 Ferramentas
 💻 PHP
 ✍️ Junior Grossi
-
-## Devise: heartcombo/devise
-
+---
+🆔 Devise
+🐙 heartcombo/devise
 🇧🇷 ✅
-🏷️ Ferramentas
+🔖 Ferramentas
 💻 Ruby
 ✍️ José Valim
-
-## Doom Fire Algorithm Playground: filipedeschamps/doom-fire-algorithm
-
+---
+🆔 Doom Fire Algorithm Playground
+🐙 filipedeschamps/doom-fire-algorithm
 🇧🇷 ✅
-🏷️ Conteúdos Educacionais
+🔖 Conteúdos Educacionais
 💻 JavaScript
 ✍️ Filipe Deschamps
-
-## Dracula Theme: dracula/dracula-theme
-
+---
+🆔 Dracula Theme
+🐙 dracula/dracula-theme
 🇧🇷 ✅
-🏷️ Temas
+🔖 Temas
 ✍️ Zeno Rocha
-
-## Elixir: elixir-lang/elixir
-
+---
+🆔 Elixir
+🐙 elixir-lang/elixir
 🇧🇷 ✅
-🏷️ Linguagem de Programação
+🔖 Linguagem de Programação
 ✍️ José Valim
-
-## Front-end Challenges: felipefialho/frontend-challenges
-
+---
+🆔 Front-end Challenges
+🐙 felipefialho/frontend-challenges
 🇧🇷 ✅
-🏷️ Conteúdos Educacionais e Frontend
+🔖 Conteúdos Educacionais e Frontend
 ✍️ Felipe Fialho
-
-## HVM2: HigherOrderCO/HVM
-
+---
+🆔 HVM2
+🐙 HigherOrderCO/HVM
 🇧🇷 ✅
-🏷️ Linguagem de Programação
+🔖 Linguagem de Programação
 ✍️ Victor Taelin
-
-## lru.min: wellwelwel/lru.min
-
+---
+🆔 lru.min
+🐙 wellwelwel/lru.min
 🇧🇷 ✅
-🏷️ Performance e Backend
+🔖 Performance e Backend
 💻 TypeScript
 ✍️ Weslley Araújo
-
-## LuaRocks: luarocks/luarocks
-
+---
+🆔 LuaRocks
+🐙 luarocks/luarocks
 🇧🇷 ✅
-🏷️ Ferramentas
+🔖 Ferramentas
 💻 Lua
 ✍️ Hisham Muhammad
-
-## Lwan Web Server: lpereira/lwan
-
+---
+🆔 Lwan Web Server
+🐙 lpereira/lwan
 🇧🇷 ✅
-🏷️ DevOps e Performance
+🔖 DevOps e Performance
 💻 C
 ✍️ L. Pereira
-
-## moclojer: moclojer/moclojer
-
+---
+🆔 moclojer
+🐙 moclojer/moclojer
 🇧🇷 ✅
-🏷️ Ferramentas e API
+🔖 Ferramentas e API
 💻 Clojure
 ✍️ Avelino
-
-## MySQL2: sidorares/node-mysql2
-
+---
+🆔 MySQL2
+🐙 sidorares/node-mysql2
 🇧🇷 ❌
 👤 Weslley Araújo
-🏷️ Banco de Dados e Ferramentas
+🔖 Banco de Dados e Ferramentas
 💻 TypeScript
-
-## Node.js: nodejs/node
-
+---
+🆔 Node.js
+🐙 nodejs/node
 🇧🇷 ❌
 👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
-🏷️ Linguagem de Programação
-
-## Padrões de commits: iuricode/padroes-de-commits
-
+🔖 Linguagem de Programação
+---
+🆔 Padrões de commits
+🐙 iuricode/padroes-de-commits
 🇧🇷 ✅
-🏷️ Conteúdos Educacionais e Git
+🔖 Conteúdos Educacionais e Git
 ✍️ Iuri Silva
-
-## phpsocket.io: walkor/phpsocket.io
-
+---
+🆔 phpsocket.io
+🐙 walkor/phpsocket.io
 🇧🇷 ❌
 👤 Marcos Marcolin
-🏷️ Backend
+🔖 Backend
 💻 PHP
-
-## Poku: wellwelwel/poku
-
+---
+🆔 Poku
+🐙 wellwelwel/poku
 🇧🇷 ✅
-🏷️ Test Runner e CI/CD
+🔖 Test Runner e CI/CD
 💻 TypeScript
 ✍️ Weslley Araújo
-
-## prestd: prest/prest
-
+---
+🆔 prestd
+🐙 prest/prest
 🇧🇷 ✅
-🏷️ Ferramentas e API
+🔖 Ferramentas e API
 💻 GO
 ✍️ Avelino
-
-## React Email: resend/react-email
-
+---
+🆔 React Email
+🐙 resend/react-email
 🇧🇷 ✅
 👤 Gabriel Miranda e Zeno Rocha
-🏷️ Ferramentas e Frontend
+🔖 Ferramentas e Frontend
 💻 TypeScript
 ✍️ Zeno Rocha
-
-## Rio: raphamorim/rio
-
+---
+🆔 Rio
+🐙 raphamorim/rio
 🇧🇷 ✅
-🏷️ Apps, Plataformas e Softwares
+🔖 Apps, Plataformas e Softwares
 💻 Rust
 ✍️ 🅡🅐🅟🅗🅐
-
-## Socketify: cirospaciari/socketify.py
-
+---
+🆔 Socketify
+🐙 cirospaciari/socketify.py
 🇧🇷 ✅
-🏷️ Performance e Ferramentas
+🔖 Performance e Ferramentas
 💻 Python
 ✍️ Ciro Spaciari
-
-## Splinter: cobrateam/splinter
-
+---
+🆔 Splinter
+🐙 cobrateam/splinter
 🇧🇷 ✅
-🏷️ Testes e Ferramentas
+🔖 Testes e Ferramentas
 💻 Python
 ✍️ Andrews Medina
-
-## tabnews.com.br: filipedeschamps/tabnews.com.br
-
+---
+🆔 tabnews.com.br
+🐙 filipedeschamps/tabnews.com.br
 🇧🇷 ✅
 👤 Felipe Barso e Filipe Deschamps
-🏷️ Apps, Plataformas e Softwares
+🔖 Apps, Plataformas e Softwares
 💻 JavaScript
 ✍️ Filipe Deschamps
-
-## tsuru: tsuru/tsuru
-
+---
+🆔 tsuru
+🐙 tsuru/tsuru
 🇧🇷 ✅
-🏷️ Apps, Plataformas e Softwares
+🔖 Apps, Plataformas e Softwares
 💻 GO
 ✍️ Andrews Medina
-
-## Vagas: frontendbr/vagas
-
+---
+🆔 Vagas
+🐙 frontendbr/vagas
 🇧🇷 ✅
-🏷️ Listas e Carreira
+🔖 Listas e Carreira
 ✍️ Felipe Fialho
