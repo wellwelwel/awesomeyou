@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import type { FC } from 'react';
-import { Bot, MessageSquareShare, ScanSearch, Sparkles } from 'lucide-react';
+import { BotMessageSquare, ScanSearch, Sparkles } from 'lucide-react';
 import { FAQ } from '@site/src/components/FAQ';
 import { SafeLink } from '@site/src/components/SafeLink';
 
@@ -13,7 +13,7 @@ export const Purpose: FC = () => {
     <FAQ
       title={
         <>
-          <MessageSquareShare /> Qual o propósito dessa página?
+          <BotMessageSquare /> Qual o propósito dessa página?
         </>
       }
     >
@@ -28,21 +28,18 @@ export const Purpose: FC = () => {
           </span>
         </p>
         <p>
-          <Bot />
+          <Sparkles />
           <span>
-            Todo conteúdo gerado nessa página é estático, facilitando a leitura
-            e interpretação por sistemas de busca (crawlers), direcionando cada
-            mantenedor brasileiro cadastrado na Awesome You através de um{' '}
+            As descrições facilitam a leitura e interpretação por sistemas de
+            busca (crawlers e NLP parsing), combinando um{' '}
             <SafeLink to='https://awesomeyou.io/sitemap.xml'>
               sitemap.xml
             </SafeLink>{' '}
-            dinâmico e um schema <em>JSON-LD</em> estratégico.
-          </span>
-        </p>
-        <p>
-          <Sparkles />
-          <span>
-            A mesma ideia vale para Inteligências Artificiais com o novo padrão{' '}
+            dinâmico, um schema{' '}
+            <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45'>
+              JSON-LD
+            </SafeLink>{' '}
+            estratégico e o novo padrão{' '}
             <SafeLink to='https://awesomeyou.io/llms.txt'>llms.txt</SafeLink>.
           </span>
         </p>

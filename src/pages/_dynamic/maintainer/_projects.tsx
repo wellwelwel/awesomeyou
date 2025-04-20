@@ -17,8 +17,15 @@ export const Projects: FC = () => {
   return (
     <main className='projects'>
       <h2>
-        <Code /> {projects.length} projeto{ifPlural} cadastrado
-        {ifPlural}
+        <span>
+          <Code /> {projects.length} projeto{ifPlural} cadastrado
+          {ifPlural}
+        </span>
+        <img
+          src='/assets/img/ants-working.svg'
+          loading='eager'
+          alt={'Ilustração com Formigas Trabalhando'}
+        />
       </h2>
       {projects.length > 1 && (
         <small>

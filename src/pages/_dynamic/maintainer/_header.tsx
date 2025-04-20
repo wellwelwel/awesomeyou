@@ -8,7 +8,6 @@ import { useContext } from 'react';
 import { Fingerprint, Github, MapPin, Network, Quote } from 'lucide-react';
 import { toast } from 'sonner';
 import { Name } from '@site/src/components/Name';
-import { Parallax } from '@site/src/components/Parallax';
 import { normalizeURL, SafeLink } from '@site/src/components/SafeLink';
 import { Context } from '@site/src/contexts/Maintainer';
 
@@ -31,7 +30,10 @@ export const Header: FC = () => {
         <ins>
           <Name name={name} animateStroke={[0, 1.5, 1.25]} />
         </ins>
-        ? <img src={'/assets/img/hi.gif'} loading='lazy' />
+        ?{' '}
+        <div className='float egg' onClick={egg}>
+          <Fingerprint />
+        </div>
       </h1>
       <small className='quoted'>
         <Quote /> <span>{description}</span>
@@ -47,22 +49,6 @@ export const Header: FC = () => {
         )}
       </small>
       <small className='baloon'>
-        <span>
-          <Parallax scale={1.02} tiltMaxAngleX={2.5} tiltMaxAngleY={2.5}>
-            <div className='float egg' onClick={egg}>
-              <Fingerprint />
-            </div>
-            <img
-              src={`https://avatars.githubusercontent.com/${username}`}
-              loading='eager'
-              alt={`${username} profile avatar`}
-            />
-          </Parallax>
-          <span>
-            <p className='name'>{<Name name={name} />}</p>
-            {bio && <p>{bio}</p>}
-          </span>
-        </span>
         <footer>
           <div className='links'>
             <SafeLink to={`https://github.com/${username}`}>
