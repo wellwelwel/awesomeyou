@@ -88,7 +88,7 @@ export const Maintainer: FC = () => {
         setFileExists(true);
         setJSON(raw);
 
-        toast.info(`${maintainer} já possui projetos na iniciativa 🚀`);
+        toast.info(`${maintainer} possui projetos na iniciativa 🚀`);
       } catch {}
     });
   }, [maintainer]);

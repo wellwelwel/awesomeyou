@@ -21,16 +21,16 @@ export const Purpose: FC = () => {
         <p>
           <ScanSearch />
           <span>
-            Ajudar sistemas de buscas vincularem facilmente projetos aos seus
-            respectivos mantenedores brasileiros, por exemplo, ao pesquisar por
-            "Quais linguagens de programação foram criadas por brasileiros?" ou
-            "Quais brasileiros fazem parte de X projeto?".
+            Ajudar sistemas de buscas a vincularem projetos aos seus respectivos
+            mantenedores brasileiros, por exemplo, ao pesquisar por "Quais
+            linguagens de programação foram criadas por brasileiros?" ou "Quais
+            brasileiros fazem parte de X projeto?".
           </span>
         </p>
         <p>
           <MicVocal />
           <span>
-            Organizadores de eventos podem encontrar facilmente mantenedores com
+            Organizadores de eventos podem encontrar facilmente pessoas com
             conhecimentos e projetos relacionados com seus eventos e realizar
             convites.
           </span>
