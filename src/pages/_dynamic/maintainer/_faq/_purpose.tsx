@@ -44,7 +44,7 @@ export const Purpose: FC = () => {
               sitemap.xml
             </SafeLink>{' '}
             dinâmico, um schema{' '}
-            <SafeLink to='https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45'>
+            <SafeLink to='https://github.com/wellwelwel/awesomeyou/tree/main/src/pages/_dynamic/maintainer/_ld'>
               JSON-LD
             </SafeLink>{' '}
             estratégico e o novo padrão{' '}

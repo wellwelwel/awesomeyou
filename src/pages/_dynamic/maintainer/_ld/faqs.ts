@@ -52,7 +52,7 @@ export const ldFaqs = (options: Props) => {
                 {
                   name: `Quais linguagens o ${project.name} utiliza?`,
                   text: `${project.name} é escrito principalmente em ${project.languages
-                    .map((lang) => languages[lang])
+                    .map((language) => languages[language])
                     .join(', ')}.`,
                 },
               ]
@@ -62,7 +62,7 @@ export const ldFaqs = (options: Props) => {
                 {
                   name: `Qual a categoria do ${project.name}?`,
                   text: `${project.name} é classificado como ${project.categories
-                    .map((cat) => categories[cat])
+                    .map((category) => categories[category])
                     .join(', ')}.`,
                 },
               ]

@@ -81,7 +81,7 @@ Por exemplo:
 - **C)** ❌ Quais _[categorias do projeto]_ foram criados por brasileiros?
 - **D)** ❌ Quais _[categorias do projeto]_ são mantidos por brasileiros?
 
-Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/blob/25488b7f51bc82fd8a1902fea6c1e341207bb4c9/src/pages/_dynamic/maintainer/index.tsx#L31-L45) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
+Tentamos resolver isso combinando [arquivos estáticos](https://github.com/wellwelwel/awesomeyou/tree/website), um [sitemap](https://awesomeyou.io/sitemap.xml) dinâmico e [JSON-LD](https://github.com/wellwelwel/awesomeyou/tree/main/src/pages/_dynamic/maintainer/_ld) estratégicos, além do novo padrão [llms.txt](https://awesomeyou.io/llms.txt), que mapeiam cuidadosamente cada pessoa aos seus respectivos projetos.
 
 </details>
 

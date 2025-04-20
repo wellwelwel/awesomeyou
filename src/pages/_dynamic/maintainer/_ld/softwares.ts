@@ -36,8 +36,8 @@ export const ldSoftwares = (options: Props) => {
         ? categories[project.categories[0]]
         : undefined,
       keywords: [
-        ...(project.languages?.map((l) => languages[l]) ?? []),
-        ...(project.categories?.map((c) => categories[c]) ?? []),
+        ...(project.languages?.map((language) => languages[language]) ?? []),
+        ...(project.categories?.map((category) => categories[category]) ?? []),
       ],
       isAccessibleForFree: true,
     })),
