@@ -217,7 +217,7 @@ export default (): ReactNode => {
                   >
                     <header>
                       <img
-                        src={`https://avatars.githubusercontent.com/${project.organization}`}
+                        src={`https://avatars.githubusercontent.com/${project.organization}?size=72`}
                         loading='lazy'
                         alt={`${project.organization} profile avatar`}
                       />
@@ -269,7 +269,7 @@ export default (): ReactNode => {
                   <Link to={`maintainers/${maintainer.username}`}>
                     <header>
                       <img
-                        src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                        src={`https://avatars.githubusercontent.com/${maintainer.username}?size=72`}
                         loading='lazy'
                         alt={`${maintainer.name} profile avatar`}
                       />

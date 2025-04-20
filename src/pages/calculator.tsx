@@ -295,7 +295,7 @@ export default (): ReactNode => {
                         <td>Repositório</td>
                         <td>
                           <img
-                            src={`https://avatars.githubusercontent.com/${stats.username}`}
+                            src={`https://avatars.githubusercontent.com/${stats.username}?size=36`}
                             loading='lazy'
                             className='organization'
                             alt={`${stats.username} profile avatar`}

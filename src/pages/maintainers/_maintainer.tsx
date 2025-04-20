@@ -54,7 +54,7 @@ export const Maintainer: FC<Props> = ({ maintainer }) => {
       <header>
         <Link to={`/maintainers/${maintainer.username}`}>
           <img
-            src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+            src={`https://avatars.githubusercontent.com/${maintainer.username}?size=256`}
             loading='lazy'
             alt={`${maintainer.username} profile avatar`}
           />
@@ -104,7 +104,7 @@ export const Maintainer: FC<Props> = ({ maintainer }) => {
             <SafeLink key={index} to={project.repository} className='project'>
               <span>
                 <img
-                  src={`https://avatars.githubusercontent.com/${organization}`}
+                  src={`https://avatars.githubusercontent.com/${organization}?size=40`}
                   loading='lazy'
                   alt={`${maintainer.username} profile avatar`}
                 />

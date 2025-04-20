@@ -145,7 +145,7 @@ export const Project: FC<ProcessedProject> = ({
           <SafeLink to={url} aria-label='Go to repository'>
             <h2>
               <img
-                src={`https://avatars.githubusercontent.com/${organization}`}
+                src={`https://avatars.githubusercontent.com/${organization}?size=96`}
                 loading='lazy'
                 alt={`${projectName} profile avatar`}
               />
@@ -398,7 +398,7 @@ export const Project: FC<ProcessedProject> = ({
                   to={`/maintainers/${maintainer.username}`}
                 >
                   <img
-                    src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                    src={`https://avatars.githubusercontent.com/${maintainer.username}?size=72`}
                     loading='lazy'
                     alt={`${projectName} profile avatar`}
                   />
@@ -406,7 +406,7 @@ export const Project: FC<ProcessedProject> = ({
                     <header>
                       <aside>
                         <img
-                          src={`https://avatars.githubusercontent.com/${maintainer.username}`}
+                          src={`https://avatars.githubusercontent.com/${maintainer.username}?size=184`}
                           loading='lazy'
                           alt={`${projectName} profile avatar`}
                         />

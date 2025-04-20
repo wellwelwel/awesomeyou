@@ -39,7 +39,7 @@ export const Header: FC = () => {
         <Quote /> <span>{description}</span>
         <footer>
           <img
-            src={`https://avatars.githubusercontent.com/${username}`}
+            src={`https://avatars.githubusercontent.com/${username}?size=96`}
             loading='eager'
             alt={`${username} profile avatar`}
           />

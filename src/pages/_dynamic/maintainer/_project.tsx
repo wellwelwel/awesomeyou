@@ -83,7 +83,7 @@ export const Project: FC<Props> = (project) => {
         <SafeLink to={project.repository}>
           <span>
             <img
-              src={`https://avatars.githubusercontent.com/${organization}`}
+              src={`https://avatars.githubusercontent.com/${organization}?size=72`}
               loading='lazy'
               alt={`${organization} profile avatar`}
             />
