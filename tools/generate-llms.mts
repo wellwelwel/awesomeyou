@@ -88,7 +88,7 @@ for (const { name, username, projects } of maintainers) {
 
       sentencesByProject
         .get(key)!
-        .push(`🇧🇷 ${project.madeInBrazil ? '✅' : '❌'}`);
+        .push(`🇧🇷 ${project.madeInBrazil ? '✓' : 'X'}`);
 
       if (!project.madeInBrazil || projectMaintainers.length > 1)
         sentencesByProject
