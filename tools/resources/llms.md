@@ -4,6 +4,8 @@ Uma iniciativa que apresenta projetos open source incríveis criados e mantidos 
 
 > Legenda:
 > 
+> Título: Repositório do GitHub
+>
 > 🇧🇷 Foi criado por um brasileiro?
 > 👤 Mantenedores Brasileiros
 > 🏷️ Categorias

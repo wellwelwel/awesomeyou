@@ -59,7 +59,7 @@ for (const { name, username, projects } of maintainers) {
   maintainersByUsername.add(username);
 
   for (const project of projects) {
-    const { repository } = extractRepository(project.repository);
+    const { organization, repository } = extractRepository(project.repository);
     const projectName = project.name || repository;
     const key = projectName;
     const exists = sentencesByProject.has(key);
@@ -82,9 +82,7 @@ for (const { name, username, projects } of maintainers) {
 
       sentencesByProject
         .get(key)!
-        .push(
-          `\n## ${projectName.trim()}: ${project.repository.replace(/https:\/\//, '')}\n`
-        );
+        .push(`\n## ${projectName.trim()}: ${organization}/${repository}\n`);
 
       sentencesByProject
         .get(key)!
