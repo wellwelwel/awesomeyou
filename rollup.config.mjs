@@ -4,8 +4,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import { defineConfig } from 'rollup';
 
-export default {
+export default defineConfig({
   input: 'src/server/index.ts',
   output: {
     file: 'server/index.js',
@@ -24,4 +25,4 @@ export default {
       },
     }),
   ],
-};
+});
