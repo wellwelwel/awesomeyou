@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/ZaqueuCavalcante/syki",
+      "description": "É um sistema open-source para gerenciamento educacional, que pode ser usado por gestores, professores e alunos.",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "Syki",
+      "languages": ["csharp", "dart"],
+      "categories": ["api", "backend", "frontend", "test"]
+    }
+  ]
+}

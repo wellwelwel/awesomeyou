@@ -212,6 +212,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 💻 Python
 ✍️ Andrews Medina
 ---
+🆔 Syki
+🐙 ZaqueuCavalcante/syki
+🇧🇷 ✓
+🔖 API e Backend
+💻 C#
+✍️ Zaqueu Cavalcante
+---
 🆔 tabnews.com.br
 🐙 filipedeschamps/tabnews.com.br
 🇧🇷 ✓
