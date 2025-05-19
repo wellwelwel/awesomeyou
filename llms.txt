@@ -196,7 +196,7 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 🇧🇷 ✓
 🔖 Apps, Plataformas e Softwares
 💻 Rust
-✍️ Rapha Amorim
+✍️ Raphael Amorim
 ---
 🆔 Socketify
 🐙 cirospaciari/socketify.py
