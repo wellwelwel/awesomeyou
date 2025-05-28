@@ -6,25 +6,16 @@
       "description": "Devopness: automated DevOps for AI Agents & Humans. Provision infra and deploy any software to any cloud, in minutes 🚀",
       "madeInBrazil": true,
       "isAuthor": true,
-      "message": "Deixe uma estrelinha ⭐ e envie PRs para o repo do Devopness :-). Veja o produto em ação em https://www.youtube.com/@devopness/videos Contrataremos freelas (e equipe permanente 🤞🏽) com prioridade para quem já tem seu nome aqui https://github.com/devopness/devopness/graphs/contributors :-)",
+      "message": "Deixe-nos uma estrelinha ⭐ e PRs são bem-vindas :-). Veja o produto em ação em https://www.youtube.com/@devopness/videos",
       "languages": [
-        "javascript",
-        "typescript",
         "python",
-        "ruby",
-        "shell"
+        "typescript"
       ],
       "categories": [
-        "ai",
-        "api",
-        "career",
-        "ci",
-        "cli",
-        "cloud",
         "devops",
-        "git",
+        "cloud",
         "productivity",
-        "tool"
+        "ci"
       ]
     }
   ]
