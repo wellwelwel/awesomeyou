@@ -3,7 +3,7 @@
   "projects": [
     {
       "repository": "https://github.com/devopness/devopness",
-      "description": "BuildCLI is a command-line interface (CLI) tool for managing and automating common tasks in Java project development.",
+      "description": "Devopness: automated DevOps for AI Agents & Humans. Provision infra and deploy any software to any cloud, in minutes 🚀",
       "madeInBrazil": true,
       "isAuthor": true,
       "message": "Deixe uma estrelinha ⭐ e envie PRs para o repo do Devopness :-). Contrataremos freelas (e equipe permanente 🤞🏽) com prioridade para quem já tem seu nome aqui https://github.com/devopness/devopness/graphs/contributors :-)",
