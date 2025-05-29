@@ -31,127 +31,168 @@ for (const { schemaPath, path, filter } of schemas) {
     });
 
     for (const file of files) {
-      await it(file, async () => {
-        const [schema, jsonData] = await Promise.all([
-          readFile(resolve(schemaPath), 'utf8').then(JSON.parse),
-          readFile(file, 'utf8').then(JSON.parse),
-        ]);
+      const [schema, jsonData] = await Promise.all([
+        readFile(resolve(schemaPath), 'utf8').then(JSON.parse),
+        readFile(file, 'utf8').then(JSON.parse),
+      ]);
 
-        const { $schema, projects } = jsonData as RawProject;
+      const { $schema, projects } = jsonData as RawProject;
 
+      it(file, () => {
         strict.strictEqual(
           $schema,
           `../../.${schemaPath}`,
           'Ensure schema path'
         );
+      });
 
+      it(file, () => {
         strict(Array.isArray(projects), 'Recognize projects');
+      });
 
-        for (const project of projects) {
-          const { organization, repository } = extractRepository(
-            project.repository
-          );
+      for (const project of projects) {
+        const { organization, repository } = extractRepository(
+          project.repository
+        );
 
+        it(file, () => {
           strict.strictEqual(
             project.repository,
             project.repository.trim(),
             `${organization}/${repository}: Ensure repository URL is trimmed`
           );
+        });
 
+        it(file, () => {
           strict(
             organization,
             `${organization}/${repository}: Ensure organization name exists`
           );
+        });
 
+        it(file, () => {
           strict(
             repository,
             `${organization}/${repository}: Ensure repository name exists`
           );
+        });
 
+        it(file, () => {
           strict.doesNotMatch(
             repository,
             /[^a-zA-Z0-9-_.]/,
             `${organization}/${repository}: Ensure repository name only contains valid characters`
           );
+        });
 
+        it(file, () => {
           strict(
             project.repository.startsWith('https://github.com/'),
             `${organization}/${repository}: Ensure repository is on GitHub`
           );
+        });
 
+        it(file, () => {
           strict.doesNotMatch(
             project.repository,
             /#|\?/,
             `${organization}/${repository}: Ensure repository URL`
           );
+        });
 
+        it(file, () => {
           strict(
             project.description.length <= 250,
             `${organization}/${repository}: Ensure description length: (${project.description.length}/250)`
           );
+        });
 
+        it(file, () => {
           strict.strictEqual(
             project.description,
             project.description.trim(),
             `${organization}/${repository}: Ensure project description is trimmed`
           );
+        });
 
-          if (project.name) {
+        if (project.name) {
+          const { name } = project;
+
+          it(file, () => {
             strict(
-              project.name.length <= 50,
-              `${organization}/${repository}: Ensure name length (${project.name.length}/50)`
+              name.length <= 50,
+              `${organization}/${repository}: Ensure name length (${name.length}/50)`
             );
+          });
 
+          it(file, () => {
             strict.doesNotMatch(
-              project.name,
+              name,
               invalidChars,
               `${organization}/${repository}: Ensure project name does not contain emojis or symbols`
             );
+          });
 
+          it(file, () => {
             strict.strictEqual(
-              project.name,
-              project.name.trim(),
+              name,
+              name.trim(),
               `${organization}/${repository}: Ensure project name is trimmed`
             );
-          }
-
-          if (project.message) {
-            strict(
-              project.message.length <= 120,
-              `${organization}/${repository}: Ensure message (CTA) length (${project.message.length}/120)`
-            );
-
-            strict.strictEqual(
-              project.message,
-              project.message.trim(),
-              `${organization}/${repository}: Ensure project description is trimmed`
-            );
-          }
-
-          if (Array.isArray(project.languages))
-            strict(
-              project.languages.length > 0 && project.languages.length <= 2,
-              `${organization}/${repository}: Ensure languages size (${project.languages.length}/2)`
-            );
-
-          if (Array.isArray(project.categories))
-            strict(
-              project.categories.length > 0 && project.categories.length <= 4,
-              `${organization}/${repository}: Ensure categories size (${project.categories.length}/4)`
-            );
+          });
         }
 
-        const ajv = new Ajv({ allErrors: true });
+        if (project.message) {
+          const { message } = project;
+          it(file, () => {
+            strict(
+              message.length <= 120,
+              `${organization}/${repository}: Ensure message (CTA) length (${message.length}/120)`
+            );
+          });
 
-        addFormats(ajv);
+          it(file, () => {
+            strict.strictEqual(
+              message,
+              message.trim(),
+              `${organization}/${repository}: Ensure project description is trimmed`
+            );
+          });
+        }
 
-        const validate = ajv.compile(schema);
+        if (Array.isArray(project.languages)) {
+          const { languages } = project;
 
-        strict(
-          validate(jsonData),
-          `Ensure options for "${file}": ${validate.errors ? JSON.stringify(validate.errors, null, 2) : ''}`
-        );
-      });
+          it(file, () => {
+            strict(
+              languages.length > 0 && languages.length <= 2,
+              `${organization}/${repository}: Ensure languages size (${languages.length}/2)`
+            );
+          });
+        }
+
+        if (Array.isArray(project.categories)) {
+          const { categories } = project;
+
+          it(file, () => {
+            strict(
+              categories.length > 0 && categories.length <= 4,
+              `${organization}/${repository}: Ensure categories size (${categories.length}/4)`
+            );
+          });
+        }
+      }
+
+      const ajv = new Ajv({ allErrors: true });
+
+      addFormats(ajv);
+
+      const validate = ajv.compile(schema);
+
+      strict(
+        validate(jsonData),
+        `Ensure options for "${file}": ${validate.errors ? JSON.stringify(validate.errors, null, 2) : ''}`
+      );
     }
   });
 }
