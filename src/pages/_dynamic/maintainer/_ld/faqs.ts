@@ -48,7 +48,7 @@ export const ldFaqs = (options: Props) => {
             ? [
                 {
                   name: `Quem criou o ${project.name}?`,
-                  text: `${project.name} foi criado por ${name}, contribuinte brasileiro ativo da comunidade open source.`,
+                  text: `${project.name} foi criado por ${name}, colaborador brasileiro ativo da comunidade open source.`,
                 },
               ]
             : []),
