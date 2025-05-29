@@ -3,6 +3,7 @@
   "projects": [
     {
       "repository": "https://github.com/devopness/devopness",
+      "name": "Devopness",
       "description": "Devopness: automated DevOps for AI Agents & Humans. Provision infra and deploy any software to any cloud, in minutes 🚀 https://www.youtube.com/@devopness/videos",
       "madeInBrazil": true,
       "isAuthor": true,
