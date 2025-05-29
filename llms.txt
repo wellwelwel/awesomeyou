@@ -84,6 +84,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 💻 Ruby
 ✍️ José Valim
 ---
+🆔 Devopness
+🐙 devopness/devopness
+🇧🇷 ✓
+🔖 DevOps e Cloud
+💻 Python
+✍️ jfoliveira
+---
 🆔 Doom Fire Algorithm Playground
 🐙 filipedeschamps/doom-fire-algorithm
 🇧🇷 ✓
