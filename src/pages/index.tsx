@@ -347,7 +347,7 @@ export default (): ReactNode => {
                   Como um projeto aberto e criado pela comunidade para a
                   comunidade, todos os{' '}
                   <SafeLink to='https://github.com/wellwelwel/awesomeyou/graphs/contributors'>
-                    <strong>contribuidores</strong>
+                    <strong>colaboradores</strong>
                   </SafeLink>{' '}
                   fazem parte do projeto 🤝
                 </p>
