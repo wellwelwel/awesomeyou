@@ -211,7 +211,7 @@ export const Project: FC<ProcessedProject> = ({
                   </tr>
 
                   <tr>
-                    <td>Contribuidores:</td>
+                    <td>Colaboradores:</td>
                     <td>
                       <SafeLink to={`${url}/graphs/contributors`}>
                         <HeartHandshake />

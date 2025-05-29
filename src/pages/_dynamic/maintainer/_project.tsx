@@ -107,7 +107,7 @@ export const Project: FC<Props> = (project) => {
         </p>
         <p>
           — O repositório do projeto conta com{' '}
-          <strong>{stats.contributors.label}</strong> contribuidor
+          <strong>{stats.contributors.label}</strong> colaborador
           {stats.contributors.value > 1 && 'es'}
           {stats.repositoryDependents.value > 0 && (
             <>
