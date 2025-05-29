@@ -3,20 +3,12 @@
   "projects": [
     {
       "repository": "https://github.com/devopness/devopness",
-      "description": "Devopness: automated DevOps for AI Agents & Humans. Provision infra and deploy any software to any cloud, in minutes 🚀",
+      "description": "Devopness: automated DevOps for AI Agents & Humans. Provision infra and deploy any software to any cloud, in minutes 🚀 https://www.youtube.com/@devopness/videos",
       "madeInBrazil": true,
       "isAuthor": true,
-      "message": "Deixe-nos uma estrelinha ⭐ e PRs são bem-vindas :-). Veja o produto em ação em https://www.youtube.com/@devopness/videos",
-      "languages": [
-        "python",
-        "typescript"
-      ],
-      "categories": [
-        "devops",
-        "cloud",
-        "productivity",
-        "ci"
-      ]
+      "message": "Deixe-nos uma estrelinha ⭐ PRs são bem-vindas. Discord: https://discord.gg/5KphsWxHeJ",
+      "languages": ["python", "typescript"],
+      "categories": ["devops", "cloud", "productivity", "ci"]
     }
   ]
 }
