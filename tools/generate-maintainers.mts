@@ -36,7 +36,7 @@ const getGitHubUserName = async (username: string) => {
 
   const { name, bio, location, blog } = await response.json();
 
-  return { name, bio, location, blog };
+  return { name: name || username, bio, location, blog };
 };
 
 for (const file of files) {
