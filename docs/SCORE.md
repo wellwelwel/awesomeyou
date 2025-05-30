@@ -17,11 +17,11 @@ Por exemplo, um projeto com poucas estrelas, mas que tenha contribuições de ou
 
 Projeto com uma comunidade forte:
 
-- Com **15** colaboradores, **0** instalações ou downloads, **20** forks, **55** estrelas, **5** issues abertas e **45** issues fechadas conseguiria quebrar a barreira dos **200** pontos.
+- Com **15** contribuidores, **0** instalações ou downloads, **20** forks, **55** estrelas, **5** issues abertas e **45** issues fechadas conseguiria quebrar a barreira dos **200** pontos.
 
 Projeto com alto impacto, mas baixa popularidade:
 
-- Com **6** colaboradores, **20.000** instalações ou downloads mensais, **3** forks, **16** estrelas, **0** issues abertas, **28** issues fechadas e **200** dependências diretas do repositório conseguiria quebrar a barreira dos **200** pontos.
+- Com **6** contribuidores, **20.000** instalações ou downloads mensais, **3** forks, **16** estrelas, **0** issues abertas, **28** issues fechadas e **200** dependências diretas do repositório conseguiria quebrar a barreira dos **200** pontos.
 
 **Como é possível um projeto ter tantos downloads e não ser popular?**
 
@@ -43,9 +43,9 @@ Para um projeto que dependa exclusivamente da popularidade, ele precisaria obter
 
 <br />
 
-As pontuações por senso de comunidade envolvem números de colaboradores com _commits_ na _branch_ principal do repositório e também através da intenção de contribuição _(forks)_:
+As pontuações por senso de comunidade envolvem números de contribuidores com _commits_ na _branch_ principal do repositório e também através da intenção de contribuição _(forks)_:
 
-- Cada colaborador com _commits_ na _branch_ principal equivale a **5** pontos.
+- Cada contribuidor com _commits_ na _branch_ principal equivale a **5** pontos.
   - Atualmente, essa conta também inclui _bots_, não por intenção, mas por limitação de automação.
 - Cada intenção de contribuição _(forks)_ equivalem a **2** pontos.
 - É obrigatório que o projeto tenha uma licença transparente e identificada pelo **GitHub**.

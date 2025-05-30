@@ -344,7 +344,7 @@ export default (): ReactNode => {
                   <table>
                     <tbody>
                       <tr>
-                        <td>Colaboradores</td>
+                        <td>Contribuidores</td>
                         <td>
                           <HeartHandshake />
                           {stats?.contributors?.label || 0}
