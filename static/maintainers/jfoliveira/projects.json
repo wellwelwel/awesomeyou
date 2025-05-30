@@ -9,7 +9,7 @@
       "isAuthor": true,
       "message": "Deixe-nos uma estrelinha ⭐ PRs são bem-vindas. Discord: https://discord.gg/5KphsWxHeJ",
       "languages": ["python", "typescript"],
-      "categories": ["devops", "ai", "cloud", "ci"]
+      "categories": ["devops", "cloud", "ai", "ci"]
     }
   ]
 }
