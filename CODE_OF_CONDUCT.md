@@ -30,7 +30,7 @@ Exemplos de comportamentos inaceitáveis por parte dos participantes incluem:
 
 Os mantenedores do projeto são responsáveis por esclarecer os padrões de comportamento aceitável e são esperadas ações corretivas apropriadas e justas em resposta a quaisquer casos de comportamento inaceitável.
 
-Os mantenedores do projeto têm o direito e a responsabilidade de remover, editar ou rejeitar comentários, commits, código, edições em wikis, issues e outras contribuições que não estejam alinhadas a este Código de Conduta, ou de banir temporariamente ou permanentemente qualquer contribuidor por outros comportamentos que considerem inapropriados, ameaçadores, ofensivos ou prejudiciais.
+Os mantenedores do projeto têm o direito e a responsabilidade de remover, editar ou rejeitar comentários, commits, código, edições em wikis, issues e outras contribuições que não estejam alinhadas a este Código de Conduta, ou de banir temporariamente ou permanentemente qualquer colaborador por outros comportamentos que considerem inapropriados, ameaçadores, ofensivos ou prejudiciais.
 
 ---
 
