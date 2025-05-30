@@ -16,7 +16,7 @@ const { extractRepository } = require('@site/src/helpers/extract-repository');
 
 const invalidChars = /[^\p{L}\p{N}\s\-.!?_ #@()*&%^:—,/'"’“”~+={}()\[\]\\]/u;
 
-const MAX_CATEGORIES = 4;
+const MAX_CATEGORIES = 5;
 const MAX_DESCRIPTION_LENGTH = 250;
 const MAX_LANGUAGES = 2;
 const MAX_MESSAGE_LENGTH = 120;
