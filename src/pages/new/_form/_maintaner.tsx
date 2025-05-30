@@ -59,7 +59,7 @@ export const Maintainer: FC = () => {
 
         if (typeof name === 'string')
           toast.success(
-            `Obrigado por estar aqui, ${name.split(' ').shift()} ✨`
+            `Obrigado por estar aqui, ${(name || username).split(' ').shift()} ✨`
           );
       } catch {}
     });

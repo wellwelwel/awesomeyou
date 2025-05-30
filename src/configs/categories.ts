@@ -8,6 +8,7 @@ export const categories = Object.freeze({
   app: 'Apps, Plataformas e Softwares',
   database: 'Banco de Dados',
   ci: 'CI/CD',
+  cloud: 'Cloud',
   devops: 'DevOps',
   language: 'Linguagem de Programação',
   performance: 'Performance',

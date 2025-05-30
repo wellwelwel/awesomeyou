@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { readFile } from 'node:fs/promises';
-import { listFiles, strict, test } from 'poku';
+import { describe, it, listFiles, strict } from 'poku';
 import { ProjectStats } from '@site/src/@types/projects';
 
-test('Ensure projects are the same length', async () => {
+describe('Ensure projects are the same length', async () => {
   const files = await listFiles('./static/assets/json/projects', {
     filter: /\.json/,
   });
@@ -24,67 +24,92 @@ test('Ensure projects are the same length', async () => {
   for (const content of contents) {
     const stats = content.stats as ProjectStats;
 
-    strict(
-      stats.score >= 200,
-      `Ensure score for './${content.file}' — ${stats.score}/200`
-    );
+    it(() => {
+      strict(
+        stats.score >= 200,
+        `Ensure score for './${content.file}' — ${stats.score}/200`
+      );
+    });
 
-    strict(
-      typeof stats.commits === 'string',
-      `Ensure commits for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.commits === 'string',
+        `Ensure commits for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.contributors.value === 'number',
-      `Ensure contributors for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.contributors.value === 'number',
+        `Ensure contributors for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.issues.value === 'number',
-      `Ensure issues for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.issues.value === 'number',
+        `Ensure issues for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.closedIssues.value === 'number',
-      `Ensure pull requests for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.closedIssues.value === 'number',
+        `Ensure closed issues for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.stars.value === 'number',
-      `Ensure pull requests for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.stars.value === 'number',
+        `Ensure stars for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.npm === 'undefined' || typeof stats.npm.value === 'number',
-      `Ensure npm for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.npm === 'undefined' || typeof stats.npm.value === 'number',
+        `Ensure npm for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.homebrew === 'undefined' ||
-        typeof stats.homebrew.value === 'number',
-      `Ensure Homebrew for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.homebrew === 'undefined' ||
+          typeof stats.homebrew.value === 'number',
+        `Ensure Homebrew for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.pypi === 'undefined' || typeof stats.pypi.value === 'number',
-      `Ensure PyPi for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.pypi === 'undefined' ||
+          typeof stats.pypi.value === 'number',
+        `Ensure PyPi for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.chocolatey === 'undefined' ||
-        typeof stats.chocolatey.value === 'number',
-      `Ensure Chocolatey for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.chocolatey === 'undefined' ||
+          typeof stats.chocolatey.value === 'number',
+        `Ensure Chocolatey for ${content.file}`
+      );
+    });
 
-    strict(
-      typeof stats.vscode === 'undefined' ||
-        typeof stats.vscode.value === 'number',
-      `Ensure Visual Studio Marketplace for ${content.file}`
-    );
+    it(() => {
+      strict(
+        typeof stats.vscode === 'undefined' ||
+          typeof stats.vscode.value === 'number',
+        `Ensure Visual Studio Marketplace for ${content.file}`
+      );
+    });
 
-    strict(
-      !/not specified/.test(stats.license),
-      `Ensure license file for ${content.file}`
-    );
+    it(() => {
+      strict(
+        !/not specified/.test(stats.license),
+        `Ensure license file for ${content.file}`
+      );
+    });
   }
 });

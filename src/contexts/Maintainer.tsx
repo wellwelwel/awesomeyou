@@ -34,7 +34,10 @@ export const Provider: FC<ContextType & { children: ReactNode }> = ({
       value={{
         title,
         description,
-        maintainer,
+        maintainer: {
+          ...maintainer,
+          name: maintainer.name || maintainer.username,
+        },
       }}
     >
       {children}
