@@ -67,7 +67,7 @@ const Footer = (): ReactNode => {
           </p>
           <p>
             Os dados vêm de APIs públicas e das próprias informações fornecidas
-            pelos colaboradores ao incluirem projetos e mantenedores.
+            pelos contribuidores ao incluirem projetos e mantenedores.
           </p>
           <p>
             Você pode encontrar nosso código fonte e contribuir através do{' '}
