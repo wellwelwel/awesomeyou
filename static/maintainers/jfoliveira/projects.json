@@ -4,12 +4,12 @@
     {
       "repository": "https://github.com/devopness/devopness",
       "name": "Devopness",
-      "description": "DevOps Happiness: for AI Agents & Humans. Deploy any app to any cloud & provision cloud infra in minutes. Fast, simple, cloud-native 🚀",
+      "description": "DevOps Happiness: for AI Agents & Humans. Deploy any app to any cloud & provision infra in minutes. Fast, simple, cloud-native 🚀",
       "madeInBrazil": true,
       "isAuthor": true,
       "message": "Deixe-nos uma estrelinha ⭐ PRs são bem-vindas. Discord: https://discord.gg/5KphsWxHeJ",
       "languages": ["python", "typescript"],
-      "categories": ["devops", "cloud", "productivity", "ci"]
+      "categories": ["devops", "ai", "cloud", "productivity", "ci"]
     }
   ]
 }
