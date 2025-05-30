@@ -20,7 +20,7 @@
 
 > [!NOTE]
 >
-> - <sup>1</sup> Por ativo, o projeto precisa estar pronto para receber Issues ou Pull Requests de possíveis colaboradores e estar aberto a discussões.
+> - <sup>1</sup> Por ativo, o projeto precisa estar pronto para receber Issues ou Pull Requests de possíveis contribuidores e estar aberto a discussões.
 > - <sup>2</sup> "Aceitar" é diferente de "mesclar". Se o projeto é feito para a comunidade _open source_, ele deve estar aberto para debater ideias que usuários proponham e corrigir _bugs_ reportados, por exemplo.
 > - <sup>3</sup> O **GitHub** busca pelo arquivo `LICENSE` e também por arquivos que comecem por `LICENSE-___`, ambos no diretório raiz do repositório. Caso o **GitHub** não encontre a licença, o projeto irá falhar nos testes automatizados.
 
