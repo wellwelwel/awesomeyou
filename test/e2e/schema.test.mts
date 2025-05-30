@@ -16,6 +16,12 @@ const { extractRepository } = require('@site/src/helpers/extract-repository');
 
 const invalidChars = /[^\p{L}\p{N}\s\-.!?_ #@()*&%^:—,/'"’“”~+={}()\[\]\\]/u;
 
+const MAX_CATEGORIES = 4;
+const MAX_DESCRIPTION_LENGTH = 250;
+const MAX_LANGUAGES = 2;
+const MAX_MESSAGE_LENGTH = 120;
+const MAX_NAME_LENGTH = 50;
+
 const schemas = [
   {
     schemaPath: './schemas/projects.json',
@@ -102,8 +108,8 @@ for (const { schemaPath, path, filter } of schemas) {
 
         it(file, () => {
           strict(
-            project.description.length <= 250,
-            `${organization}/${repository}: Ensure description length: (${project.description.length}/250)`
+            project.description.length <= MAX_DESCRIPTION_LENGTH,
+            `${organization}/${repository}: Ensure description length: (${project.description.length}/MAX_DESCRIPTION_LENGTH)`
           );
         });
 
@@ -120,8 +126,8 @@ for (const { schemaPath, path, filter } of schemas) {
 
           it(file, () => {
             strict(
-              name.length <= 50,
-              `${organization}/${repository}: Ensure name length (${name.length}/50)`
+              name.length <= MAX_NAME_LENGTH,
+              `${organization}/${repository}: Ensure name length (${name.length}/MAX_NAME_LENGTH)`
             );
           });
 
@@ -146,8 +152,8 @@ for (const { schemaPath, path, filter } of schemas) {
           const { message } = project;
           it(file, () => {
             strict(
-              message.length <= 120,
-              `${organization}/${repository}: Ensure message (CTA) length (${message.length}/120)`
+              message.length <= MAX_MESSAGE_LENGTH,
+              `${organization}/${repository}: Ensure message (CTA) length (${message.length}/MAX_MESSAGE_LENGTH)`
             );
           });
 
@@ -165,8 +171,8 @@ for (const { schemaPath, path, filter } of schemas) {
 
           it(file, () => {
             strict(
-              languages.length > 0 && languages.length <= 2,
-              `${organization}/${repository}: Ensure languages size (${languages.length}/2)`
+              languages.length > 0 && languages.length <= MAX_LANGUAGES,
+              `${organization}/${repository}: Ensure languages size (${languages.length}/MAX_LANGUAGES)`
             );
           });
         }
@@ -176,8 +182,8 @@ for (const { schemaPath, path, filter } of schemas) {
 
           it(file, () => {
             strict(
-              categories.length > 0 && categories.length <= 4,
-              `${organization}/${repository}: Ensure categories size (${categories.length}/4)`
+              categories.length > 0 && categories.length <= MAX_CATEGORIES,
+              `${organization}/${repository}: Ensure categories size (${categories.length}/MAX_CATEGORIES)`
             );
           });
         }
