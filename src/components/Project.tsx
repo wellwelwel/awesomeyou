@@ -220,7 +220,7 @@ export const Project: FC<ProcessedProject> = ({
                     </td>
                   </tr>
 
-                  {repositoryDependents.value > 0 && (
+                  {repositoryDependents.value > 0 ? (
                     <tr>
                       <td>Dependentes:</td>
                       <td>
@@ -230,9 +230,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {npm?.value && (
+                  {npm?.value ? (
                     <tr title='npm'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -246,9 +246,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {homebrew?.value && (
+                  {homebrew?.value ? (
                     <tr title='Homebrew'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -262,9 +262,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {pypi?.value && (
+                  {pypi?.value ? (
                     <tr title='PyPi'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -276,9 +276,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {packagist?.value && (
+                  {packagist?.value ? (
                     <tr title='Packagist'>
                       <td>
                         <span>Downloads por mês:</span>
@@ -292,9 +292,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {chocolatey?.value && (
+                  {chocolatey?.value ? (
                     <tr title='Chocolatey'>
                       <td>
                         <span>Downloads Totais:</span>
@@ -311,9 +311,9 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
-                  {vscode?.value && (
+                  {vscode?.value ? (
                     <tr title='Visual Studio Code Marketplace'>
                       <td>
                         <span>Downloads Totais:</span>
@@ -327,7 +327,7 @@ export const Project: FC<ProcessedProject> = ({
                         </SafeLink>
                       </td>
                     </tr>
-                  )}
+                  ) : null}
 
                   <tr>
                     <td>Forks:</td>
