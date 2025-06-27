@@ -3,6 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+/// <reference path="../../worker-configuration.d.ts" />
+
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { processProject } from '@site/src/helpers/generate-stats';
 import { getScore } from '@site/src/helpers/get-score';
