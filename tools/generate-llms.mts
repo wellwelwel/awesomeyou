@@ -15,7 +15,7 @@ import type { ProjectOptions, RawProject } from '@site/src/@types/projects';
 import { readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { dirname } from 'node:path';
-import commentMark from 'comment-mark';
+import { commentMark } from 'comment-mark';
 import { listFiles } from 'poku';
 
 const require = createRequire(import.meta.url);
@@ -125,11 +125,13 @@ for (const { name, username, projects } of maintainers) {
 
 const base = await readFile('tools/resources/llms.md', 'utf8');
 
-const readme = commentMark(base, {
-  projects: Array.from(sentencesByProject.entries())
-    .sort(([a], [b]) => normalizeChars(a).localeCompare(normalizeChars(b)))
-    .map(([, sentences]) => sentences.join('\n'))
-    .join('\n'),
-}).replace(/<!-- (projects):(start|end) -->(\n)?/g, '');
+const readme = String(
+  commentMark(base, {
+    projects: Array.from(sentencesByProject.entries())
+      .sort(([a], [b]) => normalizeChars(a).localeCompare(normalizeChars(b)))
+      .map(([, sentences]) => sentences.join('\n'))
+      .join('\n'),
+  })
+).replace(/<!-- (projects):(start|end) -->(\n)?/g, '');
 
 await writeFile('./build/llms.txt', readme, 'utf8');
