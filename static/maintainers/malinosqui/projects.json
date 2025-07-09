@@ -8,15 +8,8 @@
       "isAuthor": true,
       "name": "Kodus",
       "message": "Deixe uma estrela pra mostrar seu carinho",
-      "languages": [
-        "typescript"
-      ],
-      "categories": [
-        "api",
-        "productivity",
-        "backend",
-        "ai"
-      ]
+      "languages": ["typescript"],
+      "categories": ["api", "productivity", "backend", "ai"]
     }
   ]
 }
