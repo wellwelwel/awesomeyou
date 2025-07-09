@@ -122,6 +122,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 🔖 Linguagem de Programação
 ✍️ Victor Taelin
 ---
+🆔 Kodus
+🐙 kodustech/kodus-ai
+🇧🇷 ✓
+🔖 API e Produtividade
+💻 TypeScript
+✍️ Gabriel Malinosqui
+---
 🆔 lru.min
 🐙 wellwelwel/lru.min
 🇧🇷 ✓

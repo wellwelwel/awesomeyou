@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/kodustech/kodus-ai",
+      "description": "Open source AI code reviews — just like your senior dev would do.",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "Kodus",
+      "message": "Deixe uma estrela pra mostrar seu carinho",
+      "languages": ["typescript"],
+      "categories": ["api", "productivity", "backend", "ai"]
+    }
+  ]
+}
