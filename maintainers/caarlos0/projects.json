@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/goreleaser/goreleaser",
+      "description": "Release engineering, simplified.",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "GoReleaser",
+      "languages": ["go"],
+      "categories": ["ci", "cli", "tool"]
+    }
+  ]
+}
