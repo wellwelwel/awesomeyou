@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/kitajs/kitajs",
+      "description": "Performant and type-safe Fastify router.",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "Kita",
+      "npm": "@kitajs/runtime",
+      "languages": ["typescript", "javascript"],
+      "categories": ["tool", "plugin"]
+    }
+  ]
+}

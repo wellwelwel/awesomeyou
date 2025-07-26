@@ -129,6 +129,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 🔖 Linguagem de Programação
 ✍️ Victor Taelin
 ---
+🆔 Kita
+🐙 kitajs/kitajs
+🇧🇷 ✓
+🔖 Ferramentas e Plug-ins
+💻 TypeScript
+✍️ Arthur Fiorette
+---
 🆔 Kodus
 🐙 kodustech/kodus-ai
 🇧🇷 ✓
