@@ -184,6 +184,13 @@ Iniciativa que lista projetos open source incríveis criados e mantidos por dese
 👤 Erick Wendel, Lucas Santos e Rafael Gonzaga
 🔖 Linguagem de Programação
 ---
+🆔 Pac Go
+🐙 danicat/pacgo
+🇧🇷 ✓
+🔖 Conteúdos Educacionais e CLI
+💻 GO
+✍️ Daniela Petruzalek
+---
 🆔 Padrões de commits
 🐙 iuricode/padroes-de-commits
 🇧🇷 ✓

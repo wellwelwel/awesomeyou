@@ -1,0 +1,14 @@
+{
+  "$schema": "../../../schemas/projects.json",
+  "projects": [
+    {
+      "repository": "https://github.com/danicat/pacgo",
+      "description": "A Pac Man clone written in Go (with emojis!)",
+      "madeInBrazil": true,
+      "isAuthor": true,
+      "name": "Pac Go",
+      "languages": ["go"],
+      "categories": ["educational", "cli"]
+    }
+  ]
+}
