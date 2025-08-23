@@ -146,11 +146,14 @@ export const getScore = (options: {
 
   // Activity
   if (typeof commits === 'string') {
-    const penalty = calculatePenaltyFromActivity(commits);
+    const openIssues = typeof issues === 'number' ? issues : 0;
+    const hasIssue = openIssues > 0;
+    const penalty = hasIssue ? calculatePenaltyFromActivity(commits) : 0;
 
-    if (typeof issues === 'number') {
-      if (penalty > 0) score -= issues * SCORE_FACTORS.INACTIVE_ISSUE_PENALTY;
-      else score -= issues;
+    if (hasIssue) {
+      if (penalty > 0)
+        score -= openIssues * SCORE_FACTORS.INACTIVE_ISSUE_PENALTY;
+      else score -= openIssues;
     }
 
     score = score - penalty;
