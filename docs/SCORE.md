@@ -85,7 +85,7 @@ Baixa manutenção pode penalizar a pontuação, assim como uma boa manutenção
 
 - Cada Issue aberta penaliza **1** ponto.
 - Cada Issue fechada/resolvida equivale a **2** pontos, limitado a 50% da pontuação acumulada.
-- Projetos sem atividade _(commits)_ a partir de dois anos são penalizados com **200** pontos progressivamente para cada ano sem atividade e, nesse caso, para cada Issue aberta são penalizados **2.000** pontos.
+- Projetos com Issues abertas e sem atividade _(commits)_ a partir de dois anos, são penalizados com **200** pontos progressivamente para cada ano sem atividade e, para cada Issue aberta, são penalizados **2.000** pontos.
 
 Isso ajuda a filtrar projetos com altas pontuações que não são mais mantidos e não possuem expectativa de dar suporte aos usuários, mas sem penalizar de forma injusta projetos estáveis que não precisam de manutenção recorrente.
 
