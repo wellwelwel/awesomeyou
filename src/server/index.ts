@@ -3,8 +3,10 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-/// <reference path="../../worker-configuration.d.ts" />
+/// <reference types="@cloudflare/workers-types" />
 
+import type { Env as CounttyEnv } from 'countty';
+import { createCountty } from 'countty';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { processProject } from '@site/src/helpers/generate-stats';
 import { getScore } from '@site/src/helpers/get-score';
@@ -13,8 +15,39 @@ import { ALLOWED_ORIGINS } from './configs/origins.js';
 import { checkRateLimit, RATE_LIMIT } from './configs/rate-limit.js';
 import { isValidParam, sanitizeParam } from './helpers/validations.js';
 
+const { Countty, createContext } = createCountty();
+
+export { Countty };
+
 export default {
-  async fetch(request: Request, env: Env) {
+  async fetch(request: Request, env: Env & CounttyEnv) {
+    // Countty
+    const { router, rateLimit: counttyRateLimit } = createContext(request, env);
+    const url = new URL(request.url);
+    const { pathname } = url;
+    const counttyRoute: Record<string, () => Promise<Response>> = {
+      '/create': router.create,
+      '/badge': router.badge,
+      '/backup': router.backup,
+      '/list': router.list,
+      // '/views': router.views,
+      // '/remove': router.remove,
+      // '/reset': router.reset,
+    };
+
+    if (pathname in counttyRoute) {
+      if (!counttyRateLimit.available)
+        return new Response(
+          JSON.stringify({
+            message: 'Request limit exceeded. Please try again later.',
+          }),
+          { status: 429 }
+        );
+
+      return counttyRoute[pathname]();
+    }
+
+    // Awesome You
     if (request.method !== 'POST')
       return new Response('Método não permitido.', { status: 405 });
 
@@ -153,4 +186,4 @@ export default {
       return response({ message: 'Ops! Erro interno.' }, 500);
     }
   },
-};
+} satisfies ExportedHandler<Env & CounttyEnv>;
