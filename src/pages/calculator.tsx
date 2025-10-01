@@ -5,6 +5,7 @@
 
 import '@site/src/css/pages/calculator.scss';
 
+import type { APIErrorResponse } from '@site/src/@types/apis';
 import type { ScoreSimulator } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
 import { startTransition, useRef, useState } from 'react';
@@ -101,17 +102,17 @@ export default (): ReactNode => {
           ),
         });
 
-        const data = await response.json();
+        const data: ScoreSimulator | APIErrorResponse = await response.json();
 
         if (!response.ok) {
           setTimeout(() => {
-            toast.error(data.message);
+            toast.error((data as APIErrorResponse).message);
           }, 250);
 
           return;
         }
 
-        LRU.set(key, data);
+        LRU.set(key, data as ScoreSimulator);
         setStats(LRU.get(key)!);
       } catch (error) {
         setTimeout(() => {

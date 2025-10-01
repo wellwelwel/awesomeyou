@@ -3,6 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { GitHubRateLimit, GitHubUser } from '@site/src/@types/apis';
+import { execSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { env } from 'node:process';
@@ -10,6 +12,12 @@ import { listFiles, sleep } from 'poku';
 import { getCurrentDate, shouldUpdateFile } from './helpers/dates.mjs';
 
 await mkdir('./static/maintainers/', { recursive: true });
+
+const createMaintainerCountty = (username: string) => {
+  try {
+    execSync(`npm run countty:create "maintainer:${username}"`);
+  } catch {}
+};
 
 const token = String(env.GITHUB_TOKEN);
 const files = await listFiles('./static/maintainers/', {
@@ -21,7 +29,7 @@ const checkRateLimit = async () => {
     headers: token ? { Authorization: `Bearer ${token}` } : undefined,
   });
 
-  const data = await response.json();
+  const data: GitHubRateLimit = await response.json();
   const { remaining, reset } = data.rate;
   const now = Math.floor(Date.now() / 1000);
   const timeUntilReset = reset - now;
@@ -34,7 +42,7 @@ const getGitHubUserName = async (username: string) => {
     headers: typeof token ? { Authorization: `Bearer ${token}` } : undefined,
   });
 
-  const { name, bio, location, blog } = await response.json();
+  const { name, bio, location, blog } = (await response.json()) as GitHubUser;
 
   return { name: name || username, bio, location, blog };
 };
@@ -46,6 +54,8 @@ for (const file of files) {
 
   if (env.RESET_CACHE !== '1' && !(await shouldUpdateFile(filePath, 7)))
     continue;
+
+  createMaintainerCountty(username);
 
   if (!env.GITHUB_TOKEN) {
     try {

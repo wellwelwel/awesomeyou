@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { GitHubStatsProps, ShieldStatsProps } from '@site/src/@types/apis';
 import { GitHubAPI } from '@site/src/helpers/apis/github';
 import { delay } from '@site/src/helpers/delay';
 
@@ -10,7 +11,9 @@ const getManually = async (
   organization: string,
   repository: string
 ): Promise<string> => {
-  const data = await GitHubAPI(`repos/${organization}/${repository}`);
+  const data = await GitHubAPI<GitHubStatsProps>(
+    `repos/${organization}/${repository}`
+  );
   const license = data?.license;
 
   if (!license) return 'not specified';
@@ -33,7 +36,7 @@ export const license = async (
   while (attempts < maxRetries) {
     attempts++;
 
-    const results = await (
+    const results: ShieldStatsProps = await (
       await fetch(
         `https://img.shields.io/github/license/${organization}/${repository}.json?cacheSeconds=1`
       )

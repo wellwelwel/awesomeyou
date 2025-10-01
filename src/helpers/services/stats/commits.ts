@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { GitHubList, ShieldStatsProps } from '@site/src/@types/apis';
 import { GitHubAPI } from '@site/src/helpers/apis/github';
 import { delay } from '@site/src/helpers/delay';
 
@@ -43,7 +44,7 @@ const getManually = async (
   organization: string,
   repository: string
 ): Promise<string> => {
-  const data = await GitHubAPI(
+  const data = await GitHubAPI<GitHubList>(
     `repos/${organization}/${repository}/commits?per_page=1&page=1`
   );
 
@@ -99,7 +100,7 @@ export const commits = async (
   while (attempts < maxRetries) {
     attempts++;
 
-    const results = await (
+    const results: ShieldStatsProps = await (
       await fetch(
         `https://img.shields.io/github/last-commit/${organization}/${repository}.json?cacheSeconds=1`
       )

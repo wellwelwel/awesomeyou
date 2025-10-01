@@ -3,7 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import type { StatsPropos } from '@site/src/@types/projects.js';
+import type { GitHubList, ShieldStatsProps } from '@site/src/@types/apis.js';
+import type { StatsProps } from '@site/src/@types/projects.js';
 import { GitHubAPI } from '../../apis/github.js';
 import { localeNumber, setResult } from './set-result.js';
 
@@ -13,14 +14,14 @@ const getCommitsByMaintainerManually = async (
   organization: string,
   repository: string,
   maintainer: string
-): Promise<StatsPropos> => {
+): Promise<StatsProps> => {
   const perPage = 100;
 
   let page = 1;
   let totalCommits = 0;
 
   while (true) {
-    const data = await GitHubAPI(
+    const data = await GitHubAPI<GitHubList>(
       `repos/${organization}/${repository}/commits?author=${maintainer}&per_page=${perPage}&page=${page}`
     );
 
@@ -50,18 +51,18 @@ export const commitsByMaintainer = async (
   organization: string,
   repository: string,
   maintainer: string
-): Promise<StatsPropos> => {
+): Promise<StatsProps> => {
   const maxRetries = 10;
   const lag = 10;
   const retryDelay = 1000 + lag;
 
-  let processed: StatsPropos | undefined;
+  let processed: StatsProps | undefined;
   let attempts = 0;
 
   while (attempts < maxRetries) {
     attempts++;
 
-    const results = await (
+    const results: ShieldStatsProps = await (
       await fetch(
         `https://img.shields.io/github/commit-activity/t/${organization}/${repository}.json?authorFilter=${maintainer}&cacheSeconds=1`
       )

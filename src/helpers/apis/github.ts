@@ -3,13 +3,16 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { GitHubList, GitHubStatsProps } from '@site/src/@types/apis';
 import { cache } from '@site/src/configs/cache';
 import { env } from '@site/src/polyfills/env';
 
 const token = env.GITHUB_TOKEN;
 
-export const GitHubAPI = async (endpoint: string) => {
-  const cached = cache.GitHub.get(endpoint);
+export const GitHubAPI = async <T extends GitHubStatsProps | GitHubList>(
+  endpoint: string
+): Promise<T> => {
+  const cached = cache.GitHub.get(endpoint) as T | undefined;
 
   if (cached) return cached;
 
@@ -26,9 +29,9 @@ export const GitHubAPI = async (endpoint: string) => {
 
   if (!response.ok) throw new Error('GitHub API error');
 
-  const results = response.json();
+  const results: T = await response.json();
 
-  cache.GitHub.set(endpoint, results);
+  cache.GitHub.set(endpoint, results as GitHubStatsProps | GitHubList);
 
   return results;
 };

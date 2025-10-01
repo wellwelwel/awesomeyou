@@ -5,6 +5,10 @@
 
 import '@site/src/css/pages/home.scss';
 
+import type {
+  MaintainersAPIResponse,
+  ProjectsAPIResponse,
+} from '@site/src/@types/apis';
 import type { ResumedMaintaners } from '@site/src/@types/maintainers';
 import type { ResumedProject } from '@site/src/@types/projects';
 import type { ReactNode } from 'react';
@@ -87,7 +91,7 @@ export default (): ReactNode => {
     startTransition(() => {
       fetch(`/assets/json/resume/maintainers.json`, { signal }).then(
         async (response) => {
-          const results = await response.json();
+          const results: MaintainersAPIResponse = await response.json();
 
           sortMaintainers(results);
         }
@@ -95,7 +99,7 @@ export default (): ReactNode => {
 
       fetch(`/assets/json/resume/projects.json`, { signal }).then(
         async (response) => {
-          const results = await response.json();
+          const results: ProjectsAPIResponse = await response.json();
 
           sortProjects(results);
         }

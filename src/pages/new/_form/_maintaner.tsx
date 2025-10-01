@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { GitHubUser } from '@site/src/@types/apis';
 import type { RawProject } from '@site/src/@types/projects';
 import type { ChangeEvent, FC } from 'react';
 import { startTransition, useCallback, useContext, useEffect } from 'react';
@@ -50,7 +51,7 @@ export const Maintainer: FC = () => {
 
         LRU.set(username, exists);
 
-        const { name } = await response.json();
+        const { name } = (await response.json()) as GitHubUser;
 
         if (!exists) {
           toast.error(`O username "${username}" não foi encontrado.`);
