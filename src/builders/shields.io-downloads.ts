@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { ShieldStatsProps } from '@site/src/@types/apis';
 import { setResult } from '@site/src/helpers/services/stats/set-result';
 
 type Options = {
@@ -36,7 +37,7 @@ export const createShieldsIoDownloads = (options: Options) => {
       if (error instanceof Error) throw error;
     }
 
-    const response: any = await (
+    const response: ShieldStatsProps = await (
       await fetch(
         `https://img.shields.io/${registry}/${period}/${path}.json?cacheSeconds=1`
       )
