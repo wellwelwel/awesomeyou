@@ -7,7 +7,7 @@ import type { MaintainerInfo } from '@site/src/@types/maintainers';
 import type { categories } from '@site/src/configs/categories';
 import type { languages } from '@site/src/configs/languages';
 
-export type StatsPropos = {
+export type StatsProps = {
   value: number;
   label: string;
 };
@@ -36,19 +36,19 @@ export type RawProject = {
 
 export type ProjectStats = {
   license: string;
-  stars: StatsPropos;
-  forks: StatsPropos;
-  issues: StatsPropos;
-  closedIssues: StatsPropos;
-  contributors: StatsPropos;
+  stars: StatsProps;
+  forks: StatsProps;
+  issues: StatsProps;
+  closedIssues: StatsProps;
+  contributors: StatsProps;
   commits: string;
-  repositoryDependents: StatsPropos;
-  npm?: StatsPropos;
-  homebrew?: StatsPropos;
-  pypi?: StatsPropos;
-  vscode?: StatsPropos;
-  chocolatey?: StatsPropos;
-  packagist?: StatsPropos;
+  repositoryDependents: StatsProps;
+  npm?: StatsProps;
+  homebrew?: StatsProps;
+  pypi?: StatsProps;
+  vscode?: StatsProps;
+  chocolatey?: StatsProps;
+  packagist?: StatsProps;
   score: number;
 };
 

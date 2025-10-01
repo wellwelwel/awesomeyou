@@ -3,9 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import type { GitHubList, GitHubStatsProps } from '@site/src/@types/apis';
-import { createLRU } from 'lru.min';
-
-export const cache = {
-  GitHub: createLRU<string, GitHubStatsProps | GitHubList>({ max: 1000 }),
-};
+declare module '*.scss' {
+  const content: { [className: string]: string };
+  export default content;
+}

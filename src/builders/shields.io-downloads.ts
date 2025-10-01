@@ -36,7 +36,7 @@ export const createShieldsIoDownloads = (options: Options) => {
       if (error instanceof Error) throw error;
     }
 
-    const response = await (
+    const response: any = await (
       await fetch(
         `https://img.shields.io/${registry}/${period}/${path}.json?cacheSeconds=1`
       )

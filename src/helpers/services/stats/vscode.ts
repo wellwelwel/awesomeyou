@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { ShieldStatsProps } from '@site/src/@types/apis';
 import {
   localeNumber,
   setResult,
@@ -52,7 +53,7 @@ export const vscodeDownloads = async (vscode: string) => {
     }
   };
 
-  const results = await (
+  const results: ShieldStatsProps = await (
     await fetch(
       `https://img.shields.io/visual-studio-marketplace/i/${vscode}.json?cacheSeconds=1`
     )

@@ -3,6 +3,7 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { CloudflareError } from '@site/src/@types/apis';
 import { env, exit } from 'node:process';
 
 const { CF_ZONE_ID, CF_TOKEN, CI } = env;
@@ -27,7 +28,7 @@ try {
   });
 
   if (!response.ok) {
-    const error = await response.json();
+    const error: CloudflareError = await response.json();
     throw new Error(
       `Failed to purge cache: ${error.errors?.[0]?.message || response.statusText}`
     );

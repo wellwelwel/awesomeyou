@@ -3,7 +3,8 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import type { StatsPropos } from '@site/src/@types/projects';
+import type { GitHubStatsProps, ShieldStatsProps } from '@site/src/@types/apis';
+import type { StatsProps } from '@site/src/@types/projects';
 import { GitHubAPI } from '@site/src/helpers/apis/github';
 import { delay } from '@site/src/helpers/delay';
 import { setResult } from '@site/src/helpers/services/stats/set-result';
@@ -11,8 +12,8 @@ import { setResult } from '@site/src/helpers/services/stats/set-result';
 const getManually = async (
   organization: string,
   repository: string
-): Promise<StatsPropos> => {
-  const data = await GitHubAPI(
+): Promise<StatsProps> => {
+  const data = await GitHubAPI<GitHubStatsProps>(
     `search/issues?q=is:issue+is:open+repo:${organization}/${repository}`
   );
 
@@ -29,18 +30,18 @@ const getManually = async (
 export const issues = async (
   organization: string,
   repository: string
-): Promise<StatsPropos> => {
+): Promise<StatsProps> => {
   const maxRetries = 10;
   const lag = 10;
   const retryDelay = 1000 + lag;
 
-  let processed: StatsPropos | undefined;
+  let processed: StatsProps | undefined;
   let attempts = 0;
 
   while (attempts < maxRetries) {
     attempts++;
 
-    const results = await (
+    const results: ShieldStatsProps = await (
       await fetch(
         `https://img.shields.io/github/issues/${organization}/${repository}.json?cacheSeconds=1`
       )
