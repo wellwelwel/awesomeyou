@@ -1,0 +1,20 @@
+/**
+ * @license lucide-react v0.544.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * Anime.js - core - ESM
+ * @version v4.2.0
+ * @license MIT
+ * @copyright 2025 - Julian Garnier
+ */
+
+/**
+ * Anime.js - engine - ESM
+ * @version v4.2.0
+ * @license MIT
+ * @copyright 2025 - Julian Garnier
+ */
