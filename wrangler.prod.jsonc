@@ -1,9 +1,24 @@
 {
   "name": "awesomeyou",
   "main": "index.js",
-  "compatibility_date": "2025-04-10",
+  "compatibility_date": "2025-09-24",
   "no_bundle": true,
   "send_metrics": false,
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "countty",
+        "class_name": "Countty"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["Countty"]
+    }
+  ],
   "vars": {
     "ENVIRONMENT": "production"
   }

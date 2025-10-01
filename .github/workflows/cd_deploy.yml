@@ -45,6 +45,8 @@ jobs:
           npm run build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COUNTTY_TOKEN: ${{ secrets.COUNTTY_TOKEN }}
+          COUNTTY_URL: ${{ secrets.COUNTTY_URL }}
 
       - name: Deploy — Server
         uses: peaceiris/actions-gh-pages@v4
