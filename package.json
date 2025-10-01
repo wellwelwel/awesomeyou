@@ -33,7 +33,14 @@
     "postfetch": "cp -r assets/json/* static/assets/json/ && rm -rf assets && git reset -q HEAD -- .",
     "pretest": "npm run fetch && npm run build:maintainers && npm run build:projects && npm run build:cache",
     "test": "poku -r=compact",
-    "posttest": "npm run typecheck && npm run lint"
+    "posttest": "npm run typecheck && npm run lint",
+    "countty:secret": "wrangler secret put COUNTTY_TOKEN",
+    "countty:create": "countty create",
+    "countty:views": "countty views",
+    "countty:remove": "countty remove",
+    "countty:backup": "countty backup",
+    "countty:list": "countty list",
+    "countty:reset": "countty reset"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20251001.0",
@@ -45,6 +52,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "@mdx-js/react": "^3.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.4",
@@ -58,6 +66,7 @@
     "animejs": "^4.2.0",
     "comment-mark": "^2.0.1",
     "concurrently": "^9.2.1",
+    "countty": "^1.2.1",
     "docusaurus-plugin-sass": "^0.2.6",
     "lru.min": "^1.1.2",
     "lucide-react": "^0.544.0",
