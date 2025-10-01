@@ -3,6 +3,9 @@
  *  Licensed under the GNU Affero General Public License v3.0. See https://github.com/wellwelwel/awesomeyou/blob/main/LICENSE for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import type { ResumedMaintaners } from '@site/src/@types/maintainers';
+import type { ResumedProject } from '@site/src/@types/projects';
+
 export type ShieldStatsProps = {
   value: string;
   label: string;
@@ -55,3 +58,11 @@ export type CloudflareError = {
     message?: string;
   }[];
 };
+
+export type APIErrorResponse = {
+  message: string;
+};
+
+export type MaintainersAPIResponse = ResumedMaintaners[];
+
+export type ProjectsAPIResponse = ResumedProject[];

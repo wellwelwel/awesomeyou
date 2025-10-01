@@ -15,12 +15,16 @@ import { ALLOWED_ORIGINS } from './configs/origins.js';
 import { checkRateLimit, RATE_LIMIT } from './configs/rate-limit.js';
 import { isValidParam, sanitizeParam } from './helpers/validations.js';
 
+type Env = {
+  ENVIRONMENT: string;
+} & CounttyEnv;
+
 const { Countty, createContext } = createCountty();
 
 export { Countty };
 
 export default {
-  async fetch(request: Request, env: Env & CounttyEnv) {
+  async fetch(request: Request, env: Env) {
     // Countty
     const { router, rateLimit: counttyRateLimit } = createContext(request, env);
     const url = new URL(request.url);
@@ -186,4 +190,4 @@ export default {
       return response({ message: 'Ops! Erro interno.' }, 500);
     }
   },
-} satisfies ExportedHandler<Env & CounttyEnv>;
+} satisfies ExportedHandler<Env>;
