@@ -5,7 +5,7 @@
 
 /// <reference types="@cloudflare/workers-types" />
 
-import type { Env as CounttyEnv } from 'countty';
+import type { Env as CounttyEnv, CounttyRouter } from 'countty';
 import { createCountty } from 'countty';
 import { extractRepository } from '@site/src/helpers/extract-repository';
 import { processProject } from '@site/src/helpers/generate-stats';
@@ -19,17 +19,17 @@ type Env = {
   ENVIRONMENT: string;
 } & CounttyEnv;
 
-const { Countty, createContext } = createCountty();
+const { Countty, createContext } = createCountty({ cacheMs: 1000 });
 
 export { Countty };
 
 export default {
   async fetch(request: Request, env: Env) {
     // Countty
-    const { router, rateLimit: counttyRateLimit } = createContext(request, env);
+    const { router } = await createContext(request, env);
     const url = new URL(request.url);
     const { pathname } = url;
-    const counttyRoute: Record<string, () => Promise<Response>> = {
+    const counttyRoute: CounttyRouter = {
       '/create': router.create,
       '/badge': router.badge,
       '/backup': router.backup,
@@ -37,19 +37,10 @@ export default {
       // '/views': router.views,
       // '/remove': router.remove,
       // '/reset': router.reset,
+      // '/restore': router.restore,
     };
 
-    if (pathname in counttyRoute) {
-      if (!counttyRateLimit.available)
-        return new Response(
-          JSON.stringify({
-            message: 'Request limit exceeded. Please try again later.',
-          }),
-          { status: 429 }
-        );
-
-      return counttyRoute[pathname]();
-    }
+    if (pathname in counttyRoute) return counttyRoute[pathname]();
 
     // Awesome You
     if (request.method !== 'POST')
