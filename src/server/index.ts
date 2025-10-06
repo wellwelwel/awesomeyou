@@ -19,7 +19,7 @@ type Env = {
   ENVIRONMENT: string;
 } & CounttyEnv;
 
-const { Countty, createContext } = createCountty({ cacheMs: 1000 });
+const { Countty, createContext } = createCountty({ cacheMs: 5000 });
 
 export { Countty };
 
